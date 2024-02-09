@@ -1,21 +1,18 @@
 <script>
-	$(document).ready(function() {
-    var items = $('.random-item'); // 全ての要素を取得
-    var randomIndex = Math.floor(Math.random() * items.length); // ランダムなインデックスを取得
+    $(document).ready(function() {
+        var items = $('.random-item'); // 全ての要素を取得
+        var randomIndex = Math.floor(Math.random() * items.length); // ランダムなインデックスを取得
 
-    items.hide(); // 全ての要素を非表示にする
-    items.eq(randomIndex).show(); // ランダムに選ばれた要素を表示
-});
-</script>
+        items.hide(); // 全ての要素を非表示にする
+        items.eq(randomIndex).show(); // ランダムに選ばれた要素を表示
 
-<script>
-	$(document).ready(function() {
-    var items = $('.random-item'); // 全ての要素を取得
-    var randomIndex = Math.floor(Math.random() * items.length); // ランダムなインデックスを取得
+        // もう1つの処理も同じブロック内に統合
+        var items2 = $('.random-item2'); // 別の要素を取得
+        var randomIndex2 = Math.floor(Math.random() * items2.length); // ランダムなインデックスを取得
 
-    items.hide(); // 全ての要素を非表示にする
-    items.eq(randomIndex).show(); // ランダムに選ばれた要素を表示
-});
+        items2.hide(); // 別の要素を非表示にする
+        items2.eq(randomIndex2).show(); // ランダムに選ばれた要素を表示
+    });
 </script>
   
 <script>//<![CDATA[
