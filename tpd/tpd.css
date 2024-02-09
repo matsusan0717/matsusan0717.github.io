@@ -1995,6 +1995,7 @@ p.leftem {
 .index-post .post-info>h2 {
    font-family: "Noto Sans JP", sans-serif;
    font-size: 17px;
+   line-height: 1.2em;
 }
 span {
    display: inline-block;
