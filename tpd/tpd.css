@@ -2729,7 +2729,7 @@ input[type=&quot;checkbox&quot;]:checked:before {
   letter-spacing: 0.1em;  
 }
   
-  .parenta a {
+ #js-random .parenta a {
   color: #fff;
   font-size: 16px;
   font-weight: bold;
@@ -2738,15 +2738,15 @@ input[type=&quot;checkbox&quot;]:checked:before {
   border-radius: 6px;
   transition: .3s;
 }
-  .parenta a:hover {
+  #js-random .parenta a:hover {
   background: #ffa500;
 }
-  .parentb {
+  #js-random .parentb {
   width: 100%;
   text-align: center;
   letter-spacing: 0.1em;  
 }  
-  .parentb a {
+  #js-random .parentb a {
   color: #8b0000;
   font-size: 16px;
   font-weight: bold;
@@ -2755,7 +2755,7 @@ input[type=&quot;checkbox&quot;]:checked:before {
   border-radius: 6px;
   transition: .3s;
 }
-  .parentb a:hover {
+  #js-random .parentb a:hover {
   background: #8b0000;
   color: #ffd700;  
 }  
