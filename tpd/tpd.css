@@ -2811,3 +2811,6 @@ input[type=&quot;checkbox&quot;]:checked:before {
   background: #8b0000;
   color: #ffd700;  
 }
+.js-random{
+  margin: 0 0 50px 0;	
+}
