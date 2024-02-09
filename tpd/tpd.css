@@ -2779,3 +2779,6 @@ input[type=&quot;checkbox&quot;]:checked:before {
 #js-random{
   margin: 0 0 50px 0;	
 }
+.index-post .post-info > h2 > a {
+  font-size: 17px;
+}
