@@ -1469,7 +1469,7 @@ p.leftem {
 }
 .hrvideo {
    height: 1px;
-   background-color: #f3f1e7;
+   background-color: #FFFFFF;
    border: 0;
    /*デフォルトデザインでは線がある場合があるので&#12289;消しておく&#12290;*/
    margin-top: 0px;
