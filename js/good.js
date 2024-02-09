@@ -1,4 +1,5 @@
-window.addEventListener('DOMContentLoaded', () => {
+//<![CDATA[
+  window.addEventListener('DOMContentLoaded', () => {
 
     // 送信フォーム、フォーム送信後の処理のための iframe を取得
     const form = document.querySelector('.like-form');
@@ -31,3 +32,4 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+//]]>
