@@ -2740,6 +2740,7 @@ input[type=&quot;checkbox&quot;]:checked:before {
 }
   #js-random .parenta a:hover {
   background: #ffa500;
+  color: #0F9A58;	  
 }
   #js-random .parentb {
   width: 100%;
