@@ -347,7 +347,7 @@ ul.sideul :hover {
 .fmconntainer {
    display: grid;
    grid-template-columns: 1fr;
-   grid-template-rows: 25px 210px 50px;
+   grid-template-rows: 30px 210px 50px;
    grid-auto-columns: 1fr;
    gap: 5px 5px;
    grid-auto-flow: row;
@@ -356,7 +356,7 @@ ul.sideul :hover {
 .fmconntaineru {
    display: grid;
    grid-template-columns: 1fr;
-   grid-template-rows: 25px 200px 50px;
+   grid-template-rows: 30px 200px 50px;
    grid-auto-columns: 1fr;
    gap: 5px 5px;
    grid-auto-flow: row;
