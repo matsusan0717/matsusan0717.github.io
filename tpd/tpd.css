@@ -2687,7 +2687,7 @@ input[type="checkbox"]:checked:before {
    text-align: center;
    letter-spacing: 0.1em;
 }
-#js-random .parenta a {
+.random-item2 .parenta a {
    color: #ffffff;
    font-size: 16px;
    font-weight: bold;
@@ -2696,16 +2696,16 @@ input[type="checkbox"]:checked:before {
    border-radius: 6px;
    transition: .3s;
 }
-#js-random .parenta a:hover {
+.random-item2 .parenta a:hover {
    background: #ffa500;
    color: #ffffff;
 }
-#js-random .parentb {
+.random-item2 .parentb {
    width: 100%;
    text-align: center;
    letter-spacing: 0.1em;
 }
-#js-random .parentb a {
+.random-item2 .parentb a {
    color: #8b0000;
    font-size: 16px;
    font-weight: bold;
@@ -2714,7 +2714,7 @@ input[type="checkbox"]:checked:before {
    border-radius: 6px;
    transition: .3s;
 }
-#js-random .parentb a:hover {
+.random-item2 .parentb a:hover {
    background: #8b0000;
    color: #ffd700;
 }
@@ -2730,7 +2730,7 @@ input[type="checkbox"]:checked:before {
 .pagination:nth-child(n+12) {
    display: none;
 }
-#js-random {
+.random-item2 {
    margin: 0 0 50px 0;
 }
 .index-post .post-info>h2>a {
