@@ -339,6 +339,7 @@ ul.sideul :hover {
    /* 装飾用 */
    text-align: center;
    box-shadow: 3px 5px 7px -3px;
+       background-color: #ffffff;	
 }
 .box-childfm:nth-of-type(n+4) {
    margin-top: 20px;
