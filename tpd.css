@@ -2774,3 +2774,40 @@ input[type=&quot;checkbox&quot;]:checked:before {
 .pagination:nth-child(n+12) {
   display: none;
 }  
+ .parenta {
+  width: 100%;
+  text-align: center;
+  letter-spacing: 0.1em;  
+}
+  
+  .parenta a {
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  background: #00a33e;
+  padding: 18px 30px;
+  border-radius: 6px;
+  transition: .3s;
+}
+  .parenta a:hover {
+  background: #ffa500;
+}
+
+  .parentb {
+  width: 100%;
+  text-align: center;
+  letter-spacing: 0.1em;  
+}  
+  .parentb a {
+  color: #8b0000;
+  font-size: 16px;
+  font-weight: bold;
+  background: #ffd700;
+  padding: 18px 30px;
+  border-radius: 6px;
+  transition: .3s;
+}
+  .parentb a:hover {
+  background: #8b0000;
+  color: #ffd700;  
+}
