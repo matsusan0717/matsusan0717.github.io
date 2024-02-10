@@ -31,7 +31,7 @@
    margin-right: 5px;
    margin-top: 8px;
    line-height: 1em;
-   background: #ffffff; 
+   background: #ffffff;
 }
 .item-post .post-body h3 {
    font-size: 15px;
@@ -42,7 +42,7 @@
 .category:hover {
    text-decoration: none;
    background: #0F5474;
-   color: #ffffff;	
+   color: #ffffff;
 }
 .hashtag {
    display: inline-block;
@@ -311,7 +311,7 @@ ul.sideul li:before {
    transform: translateY(-50%);
 }
 ul.sideul a {
-   display:block;	
+   display: block;
    width: 100%;
    height: 100%;
    color: #fff;
@@ -340,7 +340,7 @@ ul.sideul :hover {
    /* 装飾用 */
    text-align: center;
    box-shadow: 3px 5px 7px -3px;
-       background-color: #ffffff;	
+   background-color: #ffffff;
 }
 .box-childfm:nth-of-type(n+4) {
    margin-top: 20px;
@@ -1380,7 +1380,7 @@ p.leftem {
 @media screen and (max-width: 768px) {
    .Tabledan tr {
       font-size: 14px;
-      border-bottom:2px #eee dashed;	   
+      border-bottom: 2px #eee dashed;
    }
 }
 .Tabledan th, .Tabledan tr, .Tabledan td {
@@ -1438,7 +1438,7 @@ p.leftem {
 }
 .cdinfo_smart {
    background-color: #ffffff;
-    box-shadow: 0 32px 30px -30px rgba(53, 47, 47, 0.15);
+   box-shadow: 0 32px 30px -30px rgba(53, 47, 47, 0.15);
    margin: 0;
    padding: 10px;
 }
@@ -2757,37 +2757,40 @@ input[type="checkbox"]:checked:before {
    line-height: 1.2;
 }
 .search-form-001 {
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    border: 2px solid #2589d0;
-    border-radius: 3px;
-  }
-  .search-form-001 input {
-    flex: 1; /* 入力欄が残りのスペースを埋めるようにする */
-    height: 45px;
-    padding: 5px 15px;
-    border: none;
-    box-sizing: border-box;
-    font-size: 1em;
-    outline: none;
-  }
-  .search-form-001 input::placeholder {
-    color: #767d83;
-  }
-  .search-form-001 button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 45px;
-    border: none;
-    background-color: #2589d0;
-    cursor: pointer;
-  }
-  /* アイコンのスタイル */
-  .search-form-001 button i {
-    font-size: 24px; /* アイコンの大きさを変更 */
-    color: white; /* アイコンの色を白に変更 */
-  }
+   display: flex;
+   align-items: center;
+   overflow: hidden;
+   border: 2px solid #2589d0;
+   border-radius: 3px;
+}
+.search-form-001 input {
+   flex: 1;
+   /* 入力欄が残りのスペースを埋めるようにする */
+   height: 45px;
+   padding: 5px 15px;
+   border: none;
+   box-sizing: border-box;
+   font-size: 1em;
+   outline: none;
+}
+.search-form-001 input::placeholder {
+   color: #767d83;
+}
+.search-form-001 button {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 50px;
+   height: 45px;
+   border: none;
+   background-color: #2589d0;
+   cursor: pointer;
+}
+/* アイコンのスタイル */
 
+.search-form-001 button i {
+   font-size: 24px;
+   /* アイコンの大きさを変更 */
+   color: white;
+   /* アイコンの色を白に変更 */
+}
