@@ -40,6 +40,8 @@
 }
 .category:hover {
    text-decoration: none;
+   background: #191970;
+   color: #ffffff;	
 }
 .hashtag {
    display: inline-block;
@@ -65,9 +67,6 @@
    font-weight: 900;
    color: #696969;
    padding-right: 6px;
-}
-.category:hover {
-   background: #f3f7f9;
 }
 .chacontainer {
    display: grid;
