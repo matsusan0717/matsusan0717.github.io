@@ -1078,7 +1078,7 @@ table.topicstbl td {
       top: 0;
       left: 100%;
    }
-   /*&#12288;矢印部分 */
+   /* 矢印部分  */
    .history dd {
       margin-left: 20%;
       position: relative;
@@ -1814,9 +1814,7 @@ p.leftem {
    background-color: #FFFFFF;
    color: #7A87B0;
    font-family: 'FontAwesome';
-   content: &#39;
-   \f10d&#39;
-   ;
+   content: '\f10d';
    line-height: 1;
    text-align: center;
    top: -20px;
@@ -1832,9 +1830,7 @@ p.leftem {
    padding: 10px;
    color: #7A87B0;
    font-family: 'FontAwesome';
-   content: &#39;
-   \f10e&#39;
-   ;
+   content: '\f10e';
    line-height: 1;
    text-align: center;
    font-size: 20px;
