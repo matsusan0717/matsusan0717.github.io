@@ -1380,7 +1380,7 @@ p.leftem {
 @media screen and (max-width: 768px) {
    .Tabledan tr {
       font-size: 15px;
-      border-bottom:1px #eee dashed;	   
+      border-bottom:2px #eee dashed;	   
    }
 }
 .Tabledan th, .Tabledan tr, .Tabledan td {
