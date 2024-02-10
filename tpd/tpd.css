@@ -2794,3 +2794,32 @@ input[type="checkbox"]:checked:before {
    color: white;
    /* アイコンの色を白に変更 */
 }
+/* 新譜*/
+@media screen and (min-width:1100px) { 
+	#youtube {
+	position: relative;
+	}
+	#youtube iframe {
+	position: absolute;
+	left: 392px;
+	top: 205px;
+	}
+	.ytboff{
+	display: none;
+	}  
+}
+
+@media screen and (max-width:1099px) { 
+  #youtube {
+  display: none;
+}
+.ytboff{
+	display: block;
+  }  
+.random-item2 .parentb {
+    width: 100%;
+    text-align: center;
+    letter-spacing: 0.1em;
+    padding: 25px 0 0 0;
+}  
+}  
