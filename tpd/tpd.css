@@ -291,7 +291,7 @@ ul.sideul li {
    position: relative;
    padding: 10px 5px 10px 35px;
    margin-bottom: 5px;
-   background: brown;
+   background: #0f5474;
    color: #fff;
 }
 ul.sideul li:before {
