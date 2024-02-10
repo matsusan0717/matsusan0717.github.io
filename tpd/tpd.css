@@ -24,14 +24,14 @@
 }
 .category {
    display: inline-block;
-   color: #444;
+   color: #0F5474;
    padding: 6px 6px;
    border: 1px solid #ccc;
    border-radius: 3px;
    margin-right: 5px;
    margin-top: 8px;
    line-height: 1em;
-   background: #0F5474; 
+   background: #ffffff; 
 }
 .item-post .post-body h3 {
    font-size: 15px;
@@ -41,7 +41,7 @@
 }
 .category:hover {
    text-decoration: none;
-   background: #191970;
+   background: #0F5474;
    color: #ffffff;	
 }
 .hashtag {
