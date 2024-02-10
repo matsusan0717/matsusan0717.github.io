@@ -24,7 +24,7 @@
 }
 .category {
    display: inline-block;
-   color: #444 !important;
+   color: #444;
    padding: 6px 6px;
    border: 1px solid #ccc;
    border-radius: 3px;
