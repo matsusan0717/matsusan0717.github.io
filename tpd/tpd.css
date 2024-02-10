@@ -2237,7 +2237,7 @@ span {
 }
 .pagination-link:hover {
    text-decoration: none;
-   background: #F57C00;
+   background: #0f5474;
    color: #ffffff;
    transition: all 0.5s 0s ease;
 }
