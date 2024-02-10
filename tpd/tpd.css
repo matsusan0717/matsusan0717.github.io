@@ -1811,7 +1811,7 @@ p.leftem {
 }
 .interview:before {
    position: absolute;
-   background-color: #FFFFFF;
+   background-color: #f4f5f7;
    color: #7A87B0;
    font-family: 'FontAwesome';
    content: '\f10d';
@@ -1826,7 +1826,7 @@ p.leftem {
    position: absolute;
    right: -10px;
    bottom: -20px;
-   background-color: #FFFFFF;
+   background-color: #f4f5f7;
    padding: 10px;
    color: #7A87B0;
    font-family: 'FontAwesome';
