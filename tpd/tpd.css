@@ -318,8 +318,8 @@ ul.sideul a {
    transition: .3s;
 }
 ul.sideul :hover {
-   background: #FFC800;
-   color: brown;
+   background: #F57C00;
+   color: #0f5474;
    transition: .3s;
 }
 .box-parentfm {
