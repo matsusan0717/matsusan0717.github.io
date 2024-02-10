@@ -78,7 +78,7 @@
    grid-auto-flow: row;
    width: 100%;
    background-color: #ffffff;
-   box-shadow: 0 32px 30px -30px rgba(53, 47, 47, 0.15);	
+   box-shadow: 0 10px 15px -21px rgba(53, 47, 47, 0.15);
 }
 .jacket {
    align-self: stretch;
