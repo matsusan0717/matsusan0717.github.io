@@ -58,6 +58,7 @@
 .hashtag:hover {
    text-decoration: none;
    color: #a3a3a3;
+   transition: .3s;	
 }
 .hashtag:hover::before {
    color: #a3a3a3;
