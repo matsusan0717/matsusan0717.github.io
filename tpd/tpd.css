@@ -2841,7 +2841,7 @@ input[type="checkbox"]:checked:before {
     box-sizing: border-box;
     background-color: #fff;
     border: 1px solid gray;
-    border-radius: 8px;
+    border-radius: 5px;
     padding: 10px;
 }
 
