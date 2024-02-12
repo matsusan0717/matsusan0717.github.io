@@ -43,6 +43,7 @@
    text-decoration: none;
    background: #0F5474;
    color: #ffffff;
+   transition: .3s;
 }
 .hashtag {
    display: inline-block;
