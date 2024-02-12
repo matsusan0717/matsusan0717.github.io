@@ -2898,4 +2898,8 @@ input[type="checkbox"]:checked:before {
         margin: 10px; /* Added margin for spacing between items */
     }
 }
-
+iframe.youtube-16-9 {
+width: 100%;
+height: auto;
+aspect-ratio: 16 / 9;
+} 
