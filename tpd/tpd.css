@@ -1181,6 +1181,9 @@ table.topicstbl td {
    top: 1px;
    left: 0;
 }
+li.sideli2 a{
+font-weight: 600;	
+}
 .rightbottom {
    /*コレ*/
    display: flex;
