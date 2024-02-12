@@ -2921,7 +2921,7 @@ a.cp_btn {
 	background: #455A64;
 	border:1px solid #fff;
 	overflow: hidden;
-	text-shadow: 0 -1px 1px #000, 1px 1px 1px #87ceeb;
+	text-shadow: 0 -1px 1px #000, 1px 1px 1px #000;
 }
 a.cp_btn:after {
 	content:"";
