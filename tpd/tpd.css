@@ -2941,7 +2941,8 @@ a.cp_btn:after {
 a.cp_btn:hover:after {
 	top: 0;
 	left: 0;
-	color: #fff;
+	color: #0f5474;
+	text-shadow: 0 -1px 1px #fff, 1px 1px 1px #fff;
 }
 
 .fa-spotify{
