@@ -2938,3 +2938,24 @@ a.cp_btn:hover:after {
 	top: 0;
 	left: 0;
 }
+
+.fa-spotify{
+  	color: #81b71a;
+  }  
+  
+.supplement{
+  	line-height: 1.8em;
+  	font-family: &quot;Noto Sans JP&quot;, &quot;Hiragino Kaku Gothic ProN&quot;, Meiryo, sans-serif;
+  }
+
+
+.post-title a {
+    text-align: center; /* デフォルトはセンター揃えにする */
+}
+
+.post-title a.long-title {
+    text-align: left; /* 23文字以上のタイトルは左揃えにする */
+}
+.item-post .post-body b{
+	color: #333;
+  }
