@@ -2824,7 +2824,9 @@ input[type="checkbox"]:checked:before {
   }  
 .hrdot{
   border-bottom: 1px dotted rgb(105, 105, 105);
-  }    
+  }   
+
+/* ブログカード ハーフ*/
 .bckiji-container {
     display: flex;
     flex-direction: column; /* Vertical layout by default */
@@ -2896,16 +2898,18 @@ input[type="checkbox"]:checked:before {
         justify-content: space-between; /* Distribute items evenly */
     }
     .bckiji-item {
-        width: calc(50% - 20px); /* Adjust width to fit two items with spacing */
-        margin: 10px; /* Added margin for spacing between items */
+        width: calc(50% - 10px); /* Adjust width to fit two items with spacing */
+        margin: 10px 0; /* Added margin for spacing between items */
     }
 }
+/* YouTube レスポンシブ*/
 iframe.youtube-16-9 {
 width: 100%;
 height: auto;
 aspect-ratio: 16 / 9;
 } 
 
+/*サイドバー 概要*/
 a.cp_btn {
 	display: block;
 	position: relative;
