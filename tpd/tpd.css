@@ -2905,3 +2905,31 @@ width: 100%;
 height: auto;
 aspect-ratio: 16 / 9;
 } 
+
+a.cp_btn {
+	display: block;
+	position: relative;
+	width: 100%;
+	padding: 0.8em 0;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background: #455A64;
+	border:1px solid #fff;
+	overflow: hidden;
+}
+a.cp_btn:after {
+	content:"";
+	position: absolute;
+	top: -100%;
+	left: -100%;
+	height: 100%;
+	width: 100%;
+	background : #fff;
+	opacity: 0.3;
+	transition: .4s;
+}
+a.cp_btn:hover:after {
+	top: 0;
+	left: 0;
+}
