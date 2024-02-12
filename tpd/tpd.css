@@ -162,6 +162,7 @@ hr.line1 {
    color: #fff;
    padding: 0.5em 1em calc(1em - 6px);
    position: relative;
+   margin-bottom: 10px;	
 }
 .ttl_background1::after {
    content: '';
