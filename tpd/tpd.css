@@ -1418,7 +1418,7 @@ p.leftem {
 
 #toc {
    margin: 2em auto;
-   max-width: 600px;
+   max-width: 100%;
    border: solid 1px silver;
 }
 .toc-title {
