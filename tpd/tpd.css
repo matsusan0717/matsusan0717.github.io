@@ -2973,14 +2973,16 @@ a.cp_btn:hover {
   }
 @media (min-width: 780px) {
 .yearb{
-     margin:40% 0;
      width: 100%;
-     text-align: center;	
+     text-align: center;
+     margin-top: calc(200px - 40%);	
 }
 }
 @media (max-width: 480px) {
 .yearb{	
-    margin: 85% 12%;
+    margin: 85% 0;
     font-size: 0.8em;
+    text-align: center;
+    width: 100%;	
 }	
 }
