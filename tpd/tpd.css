@@ -2971,8 +2971,12 @@ a.cp_btn:hover {
 .item-post .post-body b{
      color: #333;
   }
+@media (min-width: 780px) {
 .yearb{
-     margin:40% 30%;
+     margin:40% 0;
+     width: 100%;
+     text-align: center;	
+}
 }
 @media (max-width: 480px) {
 .yearb{	
