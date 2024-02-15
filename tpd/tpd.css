@@ -2969,5 +2969,14 @@ a.cp_btn:hover {
     text-align: left; /* 23文字以上のタイトルは左揃えにする */
 }
 .item-post .post-body b{
-	color: #333;
+     color: #333;
   }
+.yearb{
+     margin:40% 30%;
+}
+@media (max-width: 480px) {
+.yearb{	
+    margin: 85% 12%;
+    font-size: 0.8em;
+}	
+}
