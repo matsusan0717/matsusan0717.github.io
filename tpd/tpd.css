@@ -2980,7 +2980,7 @@ a.cp_btn:hover {
 }
 @media (max-width: 480px) {
 .yearb{	
-    margin-top: calc(200px - 80%);
+    margin-top: calc(200px - 75%);
     font-size: 0.8em;
     text-align: center;
     width: 100%;	
