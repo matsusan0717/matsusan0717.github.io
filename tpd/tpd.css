@@ -1277,6 +1277,7 @@ font-weight: 600;
    font-size: 50px;
    color: #ffffff;
    letter-spacing: 0.08em;
+   position: relative;	
 }
 .tpcyag_overview {
    grid-area: 1 / 2 / 2 / 3;
@@ -1294,6 +1295,10 @@ font-weight: 600;
    height: 200px;
    object-fit: cover;
 }
+.tpcyag_year a{
+  position:absolute;
+  width:100%;
+  height:100%;}
 /* 画像エフェクト個別 */
 
 .image_dlink {
