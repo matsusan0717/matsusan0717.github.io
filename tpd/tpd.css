@@ -2052,12 +2052,14 @@ span {
       border: 2px solid #d2e8f1;
       padding: 1em;
       vertical-align: middle;
+      color: #333;	   
    }
    #cover td {
       text-align: left;
    }
    #cover td a {
-      color: #585151;
+      color: #333;
+      font-weight: 400;	   
    }
    #cover td a:hover {
       color: #000;
@@ -2985,4 +2987,67 @@ a.cp_btn:hover {
     text-align: center;
     width: 100%;	
 }	
+}
+.PopularPosts .post-content {
+  position: relative;
+  width: 100%;
+}
+
+.PopularPosts .post-image-link {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  display: block;
+}
+
+.PopularPosts .post-image-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.PopularPosts .post-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.PopularPosts .post-info-content {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  padding: 25px 0 15px;
+  padding-top: 60px;
+  box-sizing: border-box;
+}
+
+.PopularPosts .post-info h2.post-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  text-align: center;
+  color: #fff;
+}
+
+.PopularPosts .post-info a {
+  color: #fff;
+  font-weight: 700;
+}
+
+.post-rank {
+  display: inline-block;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  border-radius: 50%;
+  background: #FF6E00;
+  color: #fff;
+  font-weight: 600;
+  z-index: 3;
 }
