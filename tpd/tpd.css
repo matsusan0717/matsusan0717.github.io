@@ -2989,53 +2989,46 @@ a.cp_btn:hover {
 }	
 }
 .PopularPosts .post-content {
-  position: relative;
-  width: 100%;
+   position: relative;
+   width: 100%;
 }
-
 .PopularPosts .post-image-link {
-  position: relative;
-  width: 100%;
-  height: 180px;
-  overflow: hidden;
-  display: block;
+   position: relative;
+   width: 100%;
+   height: 180px;
+   overflow: hidden;
+   display: block;
 }
-
 .PopularPosts .post-image-link img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   display: block;
 }
-
 .PopularPosts .post-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 2;
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   z-index: 2;
 }
-
 .PopularPosts .post-info-content {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
-  padding: 25px 0 15px;
-  padding-top: 60px;
-  box-sizing: border-box;
+   background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+   padding: 25px 0 15px;
+   padding-top: 60px;
+   box-sizing: border-box;
 }
-
 .PopularPosts .post-info h2.post-title {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 800;
-  text-align: center;
-  color: #fff;
+   margin: 0;
+   font-size: 15px;
+   font-weight: 800;
+   text-align: center;
+   color: #fff;
 }
-
 .PopularPosts .post-info a {
-  color: #fff;
-  font-weight: 700;
+   color: #fff;
+   font-weight: 700;
 }
-
 .post-rank {
   display: inline-block;
   position: absolute;
@@ -3051,29 +3044,34 @@ a.cp_btn:hover {
   z-index: 3;
   font-size: 1.2em;	
 }
- .tpy p{
-  padding: 0 15px 0 0;
-  font-weight: 600;  
-  }
-  .tpy a{
-  display: inline-block;
-  color:#0f5474;
-  font-size:110%;
-  text-decoration:none;
-  position: relative;
-  transition: .3s;
-}
-.tpy a::after{
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	content: '';
-	width: 0;
-	height: 1px;
-	background-color: #0f5474;
-	transition: .3s;
-	transform: translateX(-50%);
-}
-.tpy a:hover::after{
-	width: 100%;
-}
+ .tpy p {
+    padding: 0 15px 0 0;
+    font-weight: 600;
+ }
+ .tpy a {
+    display: inline-block;
+    color: #0f5474;
+    font-size: 110%;
+    text-decoration: none;
+    position: relative;
+    transition: .3s;
+ }
+ .tpy a::after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    content: '';
+    width: 0;
+    height: 1px;
+    background-color: #0f5474;
+    transition: .3s;
+    transform: translateX(-50%);
+ }
+ .tpy a:hover::after {
+    width: 100%;
+ }
+ .switch-order-link {
+    cursor: pointer;
+    /* マウスポインターを指に変更 */
+    font-size: 15px;
+ }
