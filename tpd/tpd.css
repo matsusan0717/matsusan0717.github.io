@@ -3051,3 +3051,29 @@ a.cp_btn:hover {
   z-index: 3;
   font-size: 1.2em;	
 }
+ .tpy p{
+  padding: 0 15px 0 0;
+  font-weight: 600;  
+  }
+  .tpy a{
+  display: inline-block;
+  color:#0f5474;
+  font-size:110%;
+  text-decoration:none;
+  position: relative;
+  transition: .3s;
+}
+.tpy a::after{
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	content: '';
+	width: 0;
+	height: 1px;
+	background-color: #0f5474;
+	transition: .3s;
+	transform: translateX(-50%);
+}
+.tpy a:hover::after{
+	width: 100%;
+}
