@@ -3078,3 +3078,20 @@ a.cp_btn:hover {
 .sidebar .widget > .widget-title > h3 a{
   color :#ffffff;
   } 
+.sidebar .widget > .widget-title > h3 a::after {
+position: absolute;
+left: calc(27% + 9px);;
+content: '';
+width: 42%;
+height: 2px;
+background: #ffffff;
+bottom: 20px; /*アンダーラインが現れ始める位置（aタグの下辺からの高さ）*/
+opacity: 0;
+visibility: hidden;
+transition: 0.3s;
+}
+.sidebar .widget > .widget-title > h3 a:hover::after {
+visibility: visible;
+bottom: 5px; /*アニメーションが止まる位置*/
+opacity: 1;
+}
