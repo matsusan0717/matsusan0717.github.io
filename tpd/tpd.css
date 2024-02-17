@@ -3072,8 +3072,8 @@ a.cp_btn:hover {
  }
  .switch-order-link {
     cursor: pointer;
-    /* マウスポインターを指に変更 */
     font-size: 15px;
+    margin-top: 20px;	 
  }
 .sidebar .widget > .widget-title > h3 a{
   color :#ffffff;
