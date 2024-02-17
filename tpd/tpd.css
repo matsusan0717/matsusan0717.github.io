@@ -3075,3 +3075,6 @@ a.cp_btn:hover {
     /* マウスポインターを指に変更 */
     font-size: 15px;
  }
+.sidebar .widget > .widget-title > h3 a{
+  color :#ffffff;
+  } 
