@@ -1,5 +1,5 @@
-//<![CDATA[
 <script>
+    //<![CDATA[
     document.addEventListener("DOMContentLoaded", function() {       
         var boldElements = document.querySelectorAll("b");
         boldElements.forEach(function(element) {
@@ -13,5 +13,5 @@
             item.innerHTML = tmp;
         });
     });
-</script>
 });//]]>
+</script>
