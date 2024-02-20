@@ -1,4 +1,3 @@
-<script type="text/javascript">
 //<![CDATA[
     document.addEventListener("DOMContentLoaded", function() {       
         var boldElements = document.querySelectorAll("b");
@@ -14,4 +13,4 @@
         });
     });
 //]]>
-</script>
+
