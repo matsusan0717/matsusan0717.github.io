@@ -1,4 +1,3 @@
-//<![CDATA[
     document.addEventListener("DOMContentLoaded", function() {       
         var boldElements = document.querySelectorAll("b");
         boldElements.forEach(function(element) {
@@ -11,5 +10,4 @@
         tmp = tmp.replace(/#/g, "");
         item.innerHTML = tmp;
         });
-//]]>
 
