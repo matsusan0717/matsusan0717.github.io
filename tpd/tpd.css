@@ -3073,8 +3073,7 @@ a.cp_btn:hover {
  .switch-order-link {
     cursor: pointer;
     font-size: 15px; 
-    width: 48px;
-    margin: 0 0 0 10px;	 
+    margin: 0;	 
  }
 .sidebar .widget > .widget-title > h3 a{
   color :#ffffff;
