@@ -2629,7 +2629,6 @@ input[type="checkbox"]:checked:before {
 }
 .related-img {
    display: block;
-   height: 140px;
    margin: 0;
    overflow: hidden;
 }
