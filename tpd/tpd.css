@@ -1371,7 +1371,7 @@ font-weight: 600;
    padding-left: 0.5em;
    padding-right: 0.5em;
 }
-.Tablekumi-Body-Row:nth-child(even) {
+.Tablekumi-Body-Row:nth-child(odd) {
    background: #f4F5F7;
 }
 .Tablekumi-Body-Row-Cell {
