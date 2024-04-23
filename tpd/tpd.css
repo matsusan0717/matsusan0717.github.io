@@ -2966,7 +2966,7 @@ a.cp_btn:hover {
 }
 
 .post-title a.long-title {
-    text-align: left; /* 23文字以上のタイトルは左揃えにする */
+    text-align: left !important; /* 23文字以上のタイトルは左揃えにする */
 }
 .item-post .post-body b{
      color: #333;
