@@ -2962,7 +2962,7 @@ a.cp_btn:hover {
   	font-family: &quot;Noto Sans JP&quot;, &quot;Hiragino Kaku Gothic ProN&quot;, Meiryo, sans-serif;
   }
 .post-title a {
-    text-align: center; /* デフォルトはセンター揃えにする */
+    text-align: left; /* デフォルトはセンター揃えにする */
 }
 
 .post-title a.long-title {
