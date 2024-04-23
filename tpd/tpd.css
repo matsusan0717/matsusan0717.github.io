@@ -3093,4 +3093,6 @@ visibility: visible;
 bottom: 5px; /*アニメーションが止まる位置*/
 opacity: 1;
 }
-
+ .left-align {
+    text-align: left !important;
+  }
