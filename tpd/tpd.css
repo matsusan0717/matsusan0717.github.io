@@ -2963,6 +2963,8 @@ a.cp_btn:hover {
   }
 .post-title a {
     text-align: left; /* デフォルトはセンター揃えにする */
+    margin-inline: auto;
+    max-inline-size: max-content;
 }
 
 .post-title a.long-title {
