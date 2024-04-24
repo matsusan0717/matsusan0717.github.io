@@ -2988,62 +2988,6 @@ a.cp_btn:hover {
     width: 100%;	
 }	
 }
-.PopularPosts .post-content {
-   position: relative;
-   width: 100%;
-}
-.PopularPosts .post-image-link {
-   position: relative;
-   width: 100%;
-   height: 180px;
-   overflow: hidden;
-   display: block;
-}
-.PopularPosts .post-image-link img {
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
-   display: block;
-}
-.PopularPosts .post-info {
-   position: absolute;
-   bottom: 0;
-   left: 0;
-   width: 100%;
-   z-index: 2;
-}
-.PopularPosts .post-info-content {
-   background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
-   padding: 25px 0 15px;
-   padding-top: 60px;
-   box-sizing: border-box;
-}
-.PopularPosts .post-info h2.post-title {
-   margin: 0;
-   font-size: 14px;
-   font-weight: 800;
-   text-align: center;
-   color: #fff;
-}
-.PopularPosts .post-info a {
-   color: #fff;
-   font-weight: 700;
-}
-.post-rank {
-  display: inline-block;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 35px;
-  height: 35px;
-  line-height: 35px;
-  text-align: center;
-  background: #FF0000;
-  color: #fff;
-  font-weight: 600;
-  z-index: 3;
-  font-size: 1.2em;	
-}
  .tpy p {
     padding: 0 15px 0 0;
     font-weight: 600;
