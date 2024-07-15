@@ -189,6 +189,7 @@ hr.line1 {
    display: inline-block;
    width: fit-content;
    position: absolute;
+   top:30px;	
    left: 0;
    right: 0;
    bottom: -4px;
