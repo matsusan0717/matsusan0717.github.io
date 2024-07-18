@@ -876,6 +876,7 @@ table.topicstbl td {
    text-align: center;
    line-height: 150%;
    color: #000000;
+   margin-bottm : 10px;	
 }
 .item-post .post-body .heading15::after {
    content: '';
