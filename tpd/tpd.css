@@ -3157,7 +3157,7 @@ body {
   
   }  
 .item-post h1.post-title::after{
-	content: &quot;Tokyo Performance Doll&quot;;
+	content: "Tokyo Performance Doll";
 	position: absolute;
 	top: -12px;
 	left: 10px;
