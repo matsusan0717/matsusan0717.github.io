@@ -3044,3 +3044,44 @@ opacity: 1;
  .left-align {
     text-align: left !important;
   }
+
+/* サイドバー001 */
+.button001 a {
+    background: #eee;
+    border-radius: 3px;
+    position: relative;
+    display: inline-flex; /* inline-flexに変更 */
+    align-items: center; /* justify-contentを削除し、align-itemsを追加 */
+    text-align: center; /* テキストを中央揃えにする */
+    margin: 0 auto;
+    width: 87%; /* 幅を100%に設定 */
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    text-decoration: none; /* リンクの下線を消す */
+    position: relative;
+}
+.button001 a:hover {
+    background: #313131;
+    color: #FFF;
+}
+.button001 a i {
+    margin-right: 10px; /* アイコンの右側に余白を追加 */
+}
+.button001 a:after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #313131;
+    border-right: 3px solid #313131;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    border-radius: 1px;
+    transition: 0.3s ease-in-out;
+}
+.button001 a:hover:after {
+    border-color: #FFF;
+}
