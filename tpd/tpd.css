@@ -3085,3 +3085,30 @@ opacity: 1;
 .button001 a:hover:after {
     border-color: #FFF;
 }
+/* サイドバートピックス */
+.tpy p{
+  padding: 0 15px 0 0;
+  font-weight: 600;  
+  }
+  .tpy a{
+  display: inline-block;
+  color:#0f5474;
+  font-size:120%;
+  text-decoration:none;
+  position: relative;
+  transition: .3s;
+}
+.tpy a::after{
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	content: '';
+	width: 0;
+	height: 1px;
+	background-color: #0f5474;
+	transition: .3s;
+	transform: translateX(-50%);
+}
+.tpy a:hover::after{
+	width: 100%;
+}
