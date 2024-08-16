@@ -2287,7 +2287,7 @@ figure.side_image {
 .post-body ul, .toc-container {
    line-height: 1.5;
    font-weight: 400;
-   margin: 8px;
+   margin: 1em 2em;
 }
 .toc-container li {
    list-style-type: none;
