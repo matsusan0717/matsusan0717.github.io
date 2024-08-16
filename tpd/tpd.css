@@ -2675,13 +2675,13 @@ input[type="checkbox"]:checked:before {
    color: #ffffff;
    font-size: 16px;
    font-weight: bold;
-   background: #00a33e;
+   background: #607D8B;
    padding: 18px 30px;
    border-radius: 6px;
    transition: .3s;
 }
 .random-item2 .parenta a:hover {
-   background: #ffa500;
+   background: #9E9E9E;
    color: #ffffff;
 }
 .random-item2 .parentb {
