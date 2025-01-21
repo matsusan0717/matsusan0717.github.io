@@ -3068,7 +3068,7 @@ opacity: 1;
     color: #FFF;
 }
 .button001 a i {
-    margin-right: 10px; /* アイコンの右側に余白を追加 */
+    margin-right: 0px; /* アイコンの右側に余白を追加 */
 }
 .button001 a:after {
     content: '';
