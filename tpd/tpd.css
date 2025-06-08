@@ -3560,3 +3560,75 @@ a.sns-tag-cloud-hatenab:hover .hatena-icon {
     opacity: 0;
   }
 }
+  .rc-note {
+    margin-bottom: 2em;
+  }
+
+  .rc-wrapper {
+    border-top: 1px dashed #bbb;
+    padding: 1em 0.5em;
+  }
+
+  .rc-block {
+    display: block;
+    font-size: 0.9em;
+    color: #444 !important;
+    word-break: break-word;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .rc-block:hover {
+    background: #fafafa;
+  }
+
+  .rc-head {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .rc-head img {
+    width: 38px;
+    height: 38px;
+    border: solid 1px #ccc;
+    border-radius: 50%;
+  }
+
+  .rc-author {
+    font-weight: bold;
+    margin: 0 10px;
+  }
+
+  .rc-time {
+    color: #777;
+    font-size: 0.85em;
+  }
+
+  .rc-body {
+    margin: 5px 0;
+  }
+
+  .comment-actions {
+    font-size: 0.85em;
+    margin-left: 48px;
+    color: #666;
+  }
+
+  .comment-actions a {
+    color: #888;
+    text-decoration: none;
+  }
+
+  .comment-actions a:hover {
+    text-decoration: underline;
+  }
+  
+  .comment-thread .comment {
+    position: relative;
+    padding: 15px 0 0;
+    margin: 15px 0 0;
+    list-style: none;
+    border-top: 1px dashed #ebebeb;
+    display: none;
+}
