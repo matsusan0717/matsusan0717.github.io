@@ -3328,3 +3328,135 @@ a.btn_09:hover {
     background: #ffffff;
     color: #FFC107;
 }
+
+.comments, .blog-post-comments {
+  display: block !important;
+} 
+  
+.author-name a {
+    color: #006494;
+}  
+  
+.post-pin-it,.item-post .post-header .post-meta {
+	display:none;
+}  
+  
+/* 記事上ソーシャルボタン 上部の余白 */
+.sns-tag-cloud {
+   margin: 30px 0 10px 0;
+}
+
+/* 記事上ソーシャルボタン 上部の余白 */
+.sns-tag-cloud {
+   margin: 30px 0 10px 0;
+}
+
+/* SNSシェアボタン */
+.sns-tag-cloud {
+   padding-inline-start: 0px;
+font-size: 12px;
+font-weight: bold;
+}
+
+.sns-tag-cloud-under {
+   padding-inline-start: 0px;
+font-size: 12px;
+font-weight: bold;
+text-align:center;
+}
+
+a.sns-tag-cloud-hatenab {
+	display: inline-block;
+padding: 10px;
+margin:3px;
+	line-height: 1;
+	text-decoration: none;
+color: #00A4DE;
+border: 1.5px solid;
+border-color: #00A4DE;
+border-radius: 3px;
+}
+a.sns-tag-cloud-hatenab:hover {
+background: #00A4DE; 
+color: #fff; 
+}
+
+a.sns-tag-cloud-facebook {
+	display: inline-block;
+padding: 10px;
+margin:3px;
+	line-height: 1;
+	text-decoration: none;
+	color: #4064AC;
+border: 1.5px solid;
+border-color: #4064AC;
+border-radius: 3px;
+}
+a.sns-tag-cloud-facebook:hover {
+background: #4064AC; 
+color: #fff; 
+}
+
+a.sns-tag-cloud-twitter {
+	display: inline-block;
+padding: 10px;
+margin:3px;
+	line-height: 1;
+	text-decoration: none;
+	color: #1DA1F2;
+border: 1.5px solid;
+border-color: #1DA1F2;
+border-radius: 3px;
+}
+a.sns-tag-cloud-twitter:hover {
+background: #1DA1F2; 
+color: #fff; 
+}
+
+a.sns-tag-cloud-pocket {
+	display: inline-block;
+padding: 10px;
+margin:3px;
+	line-height: 1;
+	text-decoration: none;
+	color: #EF4056;
+border: 1.5px solid;
+border-color: #EF4056;
+border-radius: 3px;
+}
+a.sns-tag-cloud-pocket:hover {
+background: #EF4056; 
+color: #fff; 
+}
+
+a.sns-tag-cloud-line {
+	display: inline-block;
+padding: 10px;
+margin:3px;
+	line-height: 1;
+	text-decoration: none;
+	color: #21BA4E;
+border: 1.5px solid;
+border-color: #21BA4E;
+border-radius: 3px;
+}
+a.sns-tag-cloud-line:hover {
+background: #21BA4E; 
+color: #fff; 
+}  
+  
+.sns-tag-cloud {
+  text-align: right;
+}  
+  
+.hatena-icon {
+  font-weight: bold;
+  font-size: 13px;
+  color: #00A4DE;
+  margin-right: 4px;
+}  
+/* ホバー時に親リンクがアクティブな場合&#12289;B! の色を白に */
+a.sns-tag-cloud-hatenab:hover .hatena-icon {
+  color: #fff;
+}  
+
