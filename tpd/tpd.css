@@ -3460,3 +3460,103 @@ a.sns-tag-cloud-hatenab:hover .hatena-icon {
   color: #fff;
 }  
 
+.ticker-wrap {
+  display: flex;
+  width: 710px;
+  background: chocolate;
+  padding: 6px;
+  margin: 0 0 2em;
+}
+.ticker-head {
+  width: calc(4em + 8px);
+  font-style: italic;
+  color: #fff;
+  line-height: 30px;
+  padding: 0 4px;
+  left: 8px;
+  position: relative;
+}
+.ticker {
+  width: 720px;
+  height: 30px;
+  font-size: 15px;
+  background: #fff;
+  line-height: 30px;
+  padding: 0 6px;
+  overflow: hidden;
+}
+.ticker ul {
+  position: relative;
+  list-style: none;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+.ticker-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-right: 0;
+  opacity: 0;
+}
+.ticker-item a {
+  display: inline-block;
+  width: auto;
+  color: #333;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: transform 5s linear;
+}
+.ticker-date {
+  font-weight: bold;
+}
+.ticker-title {
+  margin-left: 10px;
+}
+.ticker-new {
+  color: red;
+  margin-left: 10px;
+  animation: blink 1s ease-in-out infinite alternate;
+}
+.fadeInDown {
+  opacity: 0;
+}
+.fadeInDown.run {
+  animation: fadeInDown 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+.fadeOutDown {
+  opacity: 1;
+}
+.fadeOutDown.run {
+  animation: fadeOutDown 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeOutDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
