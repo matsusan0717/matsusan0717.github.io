@@ -1,21 +1,23 @@
 $(document).ready(function() {
-    var items1 = $('.random-item1');
-    var items2 = $('.random-item2');
+    // .random-item1 要素を取得
+    var items1 = $('.random-item1'); 
+    // .random-item2 要素を取得
+    var items2 = $('.random-item2'); 
 
-    // まず、念のため全てのランダム要素を確実に非表示にする（visibility: hiddenを強制）
-    // CSSで既に設定済みであれば不要ですが、確実性を高めるために残してもOK
-    items1.css('visibility', 'hidden !important');
-    items2.css('visibility', 'hidden !important');
+    // すべての要素を非表示にする
+    items1.hide(); 
+    items2.hide(); 
 
     // ランダムなインデックスを取得
-    var randomIndex1 = Math.floor(Math.random() * items1.length);
-    var randomIndex2 = Math.floor(Math.random() * items2.length);
+    var randomIndex1 = Math.floor(Math.random() * items1.length); 
+    var randomIndex2 = Math.floor(Math.random() * items2.length); 
 
-    // ランダムに選ばれた要素を visibility: visible で表示（!importantを付けて強制）
-    if (items1.length > 0) {
-        items1.eq(randomIndex1).css('visibility', 'visible !important');
+    // ランダムに選ばれた要素を表示
+    // 要素が存在する場合のみ処理 (念のため追加)
+    if (items1.length > 0) { 
+        items1.eq(randomIndex1).show(); 
     }
-    if (items2.length > 0) {
-        items2.eq(randomIndex2).css('visibility', 'visible !important');
+    if (items2.length > 0) { 
+        items2.eq(randomIndex2).show(); 
     }
-});
+}); 
