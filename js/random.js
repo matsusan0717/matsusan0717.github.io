@@ -20,4 +20,4 @@ $(document).ready(function() {
     if (items2.length > 0) { 
         items2.eq(randomIndex2).show(); 
     }
-}); 
+});
