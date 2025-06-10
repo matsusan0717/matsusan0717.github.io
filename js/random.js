@@ -1,4 +1,3 @@
-/*<![CDATA[*/
 $(document).ready(function() {
     var items1 = $('.random-item1');
     var items2 = $('.random-item2');
@@ -20,4 +19,3 @@ $(document).ready(function() {
         items2.eq(randomIndex2).fadeIn(200); // 200ミリ秒でフェードイン
     }
 });
-/*]]>*/
