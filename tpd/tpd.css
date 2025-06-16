@@ -3462,7 +3462,7 @@ a.sns-tag-cloud-hatenab:hover .hatena-icon {
 
 .ticker-wrap {
   display: flex;
-  width: 710px;
+  max-width: 710px;
   background: chocolate;
   padding: 6px;
   margin: 0 0 2em;
