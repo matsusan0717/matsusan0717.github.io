@@ -758,4 +758,181 @@ a.btn.col.m12.right {
   }
 }
 
+/* タグリスト全体 */
+.tag-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;           /* 横並び */
+  flex-wrap: wrap;         /* 折返し対応 */
+  gap: 8px;                /* タグ間の間隔 */
+}
+
+/* 各タグリンクの装飾 */
+.tag-item {
+  display: inline-block;
+  position: relative;
+  padding: 5px 12px;
+  border: 1px solid #06c7ea;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #06c7ea;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+/* ホバー時の変化 */
+.tag-item:hover {
+  background-color: #06c7ea;
+  color: #fff;
+  border-color: #06c7ea;
+}
+
+/* タグアイコン表示（元の#は残すHTMLでもOK） */
+.tag-name {
+  display: inline-block;
+  position: relative;
+}
+
+blockquote 
+{
+	padding-left: 1.5em;
+    padding-right: 1em;
+}
+
+/***ステップバーデザイン１***/
+.step-wrap1 {
+ counter-reset:count;
+ margin: 2em 0;
+ position: relative;
+}
+.step-content1 {
+ padding: 0 0 1.3em 2em;
+ margin: 0;
+ position: relative;
+}
+.step-content1::before {
+ content: "";
+ display: block;
+ width: 13px;
+ height: 13px;
+ background: #6ab5a5;
+ border: solid 3px #ffffff;
+ border-radius: 50%;
+ position: absolute;
+ top: 3px;
+ left: 3px;
+ box-shadow: 0 0 0 2px #6ab5a5;
+}
+.step-content1::after {
+ content: "";
+ display: block;
+ height: calc(100% - 35px);
+ border-left: dotted 5px #768888;
+ position: absolute;
+ top: 30px;
+ left: 7px;
+}
+.step-title1 {
+ font-weight: bold;
+ font-size: 120%;
+}
+.step-label1 {
+ color: #768888;
+ font-weight: bold;
+}
+.step-label1::after {
+ counter-increment:count;
+ content:counter(count);
+ position: relative;
+ left: .3em;
+}
+.step-body1 {
+ margin-top: .5em;
+ padding: 0 0 1em;
+ border-bottom: dotted 2px #ddd;
+}
+.step-wrap1 > :last-of-type::after {
+ display: none;
+}
+/***ステップバーデザイン１***/
+
+.cta-box {
+  max-width: 600px;
+  margin: 24px auto;
+  padding: 20px;
+  border: 2px solid #007BFF;
+  border-radius: 8px;
+  background-color: #E6F0FF; /* 優しい水色背景 */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.cta-header h3 {
+  margin: 0 0 12px;
+  color: #007BFF;
+  text-align: center;
+}
+
+.cta-body {
+  display: flex;
+  align-items: center; /* 縦方向中央揃え */
+  gap: 20px;
+}
+
+.cta-image img {
+  max-width: 120px;
+  border-radius: 4px;
+}
+
+.cta-text {
+  flex: 1;
+}
+
+.cta-text p {
+  margin: 0 0 12px;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.4;
+}
+  
+.cta-button {
+  display: block;
+  margin: 12px auto 0 auto;
+  padding: 10px 24px;
+  background-color: #007BFF;   /* ボタン背景 */
+  color: #FFFFFF !important;    /* 強制的に文字色を白 */
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 6px;
+  border: 2px solid #0056b3;   /* ボーダー */
+  text-align: center;           /* 中央揃え */
+  transition: 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+  
+/* スマホ対応: 480px以下で縦並び */
+@media screen and (max-width: 480px){
+  .cta-body {
+    flex-direction: column;
+    text-align: center; /* スマホでは中央揃え */
+  }
+  .cta-image img {
+    margin-bottom: 12px;
+  }
+  .cta-text {
+    text-align: center; /* スマホでは中央揃え */
+  }
+}
+
+.breadcrumbs.card a {
+    color: #263238;
+}
+
+.post a {
+    color: #263238;
+}
 
