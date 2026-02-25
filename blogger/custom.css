@@ -945,3 +945,8 @@ div.custom-pager {
   display: block;
   clear: both;
 }
+
+button:focus {
+    outline: none;
+    background-color: #efefef;
+}
