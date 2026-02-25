@@ -950,3 +950,76 @@ button:focus {
     outline: none;
     background-color: #efefef;
 }
+
+#related-posts h2{
+	margin: 2em 0 1em;
+}
+
+#related-posts{
+	margin : 0 0 2em;
+}
+
+/* パンくずリストを横並びにする設定 */
+.breadcrumbs ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important; /* 横並びにする */
+  flex-wrap: wrap !important; /* 折り返しを許可 */
+  align-items: center !important;
+}
+
+  /* コンテナ：ボタンと数字を横一列に中央揃え */
+  .like-wrapper {
+    display: inline-flex !important; /* コンテンツに合わせて幅を自動調整 */
+    align-items: center !important;
+    gap: 12px !important; /* ハートと数字の間隔 */
+    margin: 20px 0 !important;
+  }
+
+  /* ♡ボタン：枠を消してハートを大きく */
+  .heart-btn {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    cursor: pointer !important;
+    outline: none !important;
+    font-size: 36px !important; /* さらに少し大きくしました */
+    color: #ff5a5f !important;
+    line-height: 1 !important; /* 高さを詰めて横並びのズレを防ぐ */
+    display: inline-block !important;
+    transition: transform 0.2s ease;
+  }
+
+  .heart-btn:hover {
+    transform: scale(1.1);
+  }
+
+  /* カウント数字：ハートの横に並ぶ */
+  #likeCount {
+    font-size: 20px !important;
+    font-weight: bold !important;
+    color: #555 !important;
+    line-height: 1 !important;
+    display: inline-block !important;
+  }
+
+  /* アニメーション */
+  .animate {
+    animation: heartBeat 0.6s ease;
+  }
+
+  @keyframes heartBeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+
+  .heart-btn:disabled {
+    cursor: default;
+  }
+
+.widget .post-body li {
+    list-style: square;
+}
