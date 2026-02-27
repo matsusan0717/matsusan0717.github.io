@@ -1105,3 +1105,7 @@ button#likeBtn.heart-btn {
   color: #555 !important;
   font-family: sans-serif;
 }
+
+.section:last-child .widget:last-child {
+    margin: 2em 0;
+}
