@@ -1066,3 +1066,42 @@ blockquote cite {
 .breadcrumbs.card a:hover {
   text-decoration: underline;
 }
+
+/* ハートボタン（外枠・背景なし） */
+.like-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+/* ボタンの枠と背景を完全に消す */
+button#likeBtn.heart-btn {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  outline: none !important;
+  box-shadow: none !important;
+  appearance: none !important;
+}
+
+/* アイコンの色とサイズ（エンジ色に統一） */
+#likeBtn i.fa-heart {
+  color: #ff4d4d !important; /* パッと目を引く明るい赤 */
+  font-size: 24px !important;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* ホバー時に少し色を濃くして反応を出す */
+#likeBtn:hover i.fa-heart {
+  color: #ff0000 !important; /* 純粋な赤 */
+  transform: scale(1.2);
+}
+
+/* カウント数字の装飾（先ほどのCSSに合わせて調整） */
+#likeCount {
+  font-size: 18px !important;
+  color: #555 !important;
+  font-family: sans-serif;
+}
