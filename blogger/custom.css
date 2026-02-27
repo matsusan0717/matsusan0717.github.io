@@ -1109,3 +1109,10 @@ button#likeBtn.heart-btn {
 .section:last-child .widget:last-child {
     margin: 2em 0;
 }
+.widget .post-body li {
+    margin-bottom: 1rem !important;
+    line-height: 1.6 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    list-style: square;
+}
