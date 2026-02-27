@@ -1034,3 +1034,35 @@ blockquote cite {
     text-align: right;
     color: #808080;
 }
+
+/* パンくずリストを横並びにする */
+.breadcrumbs.card ul {
+  display: flex;          /* 横並びにする */
+  flex-wrap: wrap;        /* 幅が足りない時は折り返す */
+  list-style: none;       /* ポッチを消す */
+  padding: 0;             /* 余白リセット */
+  margin: 0;              /* 余白リセット */
+  align-items: center;    /* 垂直方向の中央揃え */
+}
+
+.breadcrumbs.card li {
+  display: flex;
+  align-items: center;
+  font-size: 14px;        /* 文字サイズ調整 */
+}
+
+/* 区切り文字（ › ）の左右に余白を作る */
+.breadcrumbs.card li b {
+  margin: 0 8px;
+  font-weight: normal;
+  color: #999;            /* 少し薄くして馴染ませる */
+}
+
+/* リンクの色（既存のCSS設定があればそれに従います） */
+.breadcrumbs.card a {
+  text-decoration: none;
+}
+
+.breadcrumbs.card a:hover {
+  text-decoration: underline;
+}
