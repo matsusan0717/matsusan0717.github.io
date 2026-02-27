@@ -1116,3 +1116,7 @@ button#likeBtn.heart-btn {
     padding-bottom: 0 !important;
     list-style: square;
 }
+#header-inner .titlewrapper {
+    padding-top: 45px;
+    padding-bottom: 10px;
+}
