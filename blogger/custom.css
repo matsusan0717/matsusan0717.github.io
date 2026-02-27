@@ -1,3 +1,6 @@
+#footer-widgets .widget-container a:hover {
+    color: white;
+}
 
 
 .post a {
@@ -80,7 +83,7 @@
 }
 
 blockquote {
-	padding: 1.5em; 0;
+	padding: 1.5em: 0;
 }
 
 /* タイトル */
@@ -1002,4 +1005,117 @@ div.custom-pager {
   }
 #Text1 {
 	font-size: 14px;
+}
+
+/* 引用 */
+blockquote{
+    position:relative;
+    border-top:1px solid #7A87B0;
+    border-bottom:1px solid #7A87B0;
+    padding:10px;
+    margin: 1em 0;
+}
+blockquote:before{
+    position:absolute;
+    background-color:#FFFFFF;
+    color:#7A87B0;
+    font-family:'FontAwesome';
+    content:'\f10d';
+    line-height:1;
+    text-align:center;
+    top:-20px;
+    left:-10px;
+    padding:10px;
+    font-size:20px;
+}
+blockquote:after{
+    position:absolute;
+    right:-10px;
+    bottom:-20px;
+    background-color:#FFFFFF;
+    padding:10px;
+    color:#7A87B0;
+    font-family:'FontAwesome';
+    content:'\f10e';
+    line-height:1;
+    text-align:center;
+    font-size:20px;
+}
+blockquote cite {
+    display: block;
+    padding-right:30px;
+    font-size: 0.8rem;
+    text-align: right;
+    color: #808080;
+}
+
+/* いいねボタン */
+/* ハートボタン（外枠・背景なし） */
+.like-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+/* ボタンの枠と背景を完全に消す */
+button#likeBtn.heart-btn {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  outline: none !important;
+  box-shadow: none !important;
+  appearance: none !important;
+}
+
+#likeBtn i.fa-heart {
+  color: #ff4d4d !important; /* パッと目を引く明るい赤 */
+  font-size: 24px !important;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* ホバー時に少し色を濃くして反応を出す */
+#likeBtn:hover i.fa-heart {
+  color: #ff0000 !important; /* 純粋な赤 */
+  transform: scale(1.2);
+}
+
+/* カウント数字の装飾（先ほどのCSSに合わせて調整） */
+#likeCount {
+  font-size: 18px !important;
+  color: #555 !important;
+  font-family: sans-serif;
+}
+
+/* パンくずリストを横並びにする */
+.breadcrumbs.card ul {
+  display: flex;          /* 横並びにする */
+  flex-wrap: wrap;        /* 幅が足りない時は折り返す */
+  list-style: none;       /* ポッチを消す */
+  padding: 0;             /* 余白リセット */
+  margin: 0;              /* 余白リセット */
+  align-items: center;    /* 垂直方向の中央揃え */
+}
+
+.breadcrumbs.card li {
+  display: flex;
+  align-items: center;
+  font-size: 14px;        /* 文字サイズ調整 */
+}
+
+/* 区切り文字（ › ）の左右に余白を作る */
+.breadcrumbs.card li b {
+  margin: 0 8px;
+  font-weight: normal;
+  color: #999;            /* 少し薄くして馴染ませる */
+}
+
+/* リンクの色（既存のCSS設定があればそれに従います） */
+.breadcrumbs.card a {
+  text-decoration: none;
+}
+
+.breadcrumbs.card a:hover {
+  text-decoration: underline;
 }
