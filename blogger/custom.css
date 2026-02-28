@@ -1120,3 +1120,7 @@ button#likeBtn.heart-btn {
     padding-top: 45px;
     padding-bottom: 10px;
 }
+
+#FeaturedPost1 .post-summary img.image {
+    margin-top: 5px !important;
+}
