@@ -1279,3 +1279,35 @@ blockquote cite {
  display: none;
 }
 /***ステップバーデザイン１***/
+
+
+/***関連記事***/
+#related-posts {
+    margin: 1em 0;
+}
+#related-posts p {
+    font-size: 115%;
+}
+#related-posts ul {
+    margin: 0;
+    padding: 0;
+    border-top: solid 1px #dddddd;
+}
+#related-posts ul li {
+    list-style: none;
+    border-bottom: solid 1px #dddddd;
+}
+#related-posts ul li a {
+    display: block;
+    position: relative;
+    padding: 1em 2em 1em 0;
+}
+#related-posts ul li a::after {
+    font-family: FontAwesome;
+    content: "\f054";
+    color: #cccccc;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -10.5px;
+}
