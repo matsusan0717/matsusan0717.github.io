@@ -742,80 +742,6 @@ div.custom-pager {
     color: #374142;
     font-size: 14px;
 }
-/*
-/* 1. 標準のページネーションを非表示 */
-.blog-pager-newer-link, 
-.blog-pager-older-link, 
-.home-link,
-.blog-pager-newer-link-mobile,
-.blog-pager-older-link-mobile {
-    display: none !important;
-}
-
-/* 2. まつさんVer.（custom-pager）だけを表示 */
-#blog-pager.custom-pager,
-.blog-pager.custom-pager,
-div.custom-pager {
-    display: block !important;
-    visibility: visible !important;
-    margin: 40px 0;
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-}
-
-/* 3. 数字・記号・省略記号の共通ベーススタイル */
-.pager-a, #pager-current, .pager-dots {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    margin: 0 4px;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 4px;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-}
-
-/* 4. 通常時：白背景 ＋ エンジ色の文字と枠 */
-.pager-a {
-    background-color: #ffffff !important;
-    color: #722f37 !important;
-    border: 1px solid #722f37 !important;
-}
-
-/* 5. ホバー時 */
-.pager-a:hover {
-    background-color: #914d55 !important;
-    color: #ffffff !important;
-    border-color: #914d55 !important;
-}
-
-/* 6. 現在のページ：エンジ背景 ＋ 白文字 */
-#pager-current {
-    background-color: #722f37 !important;
-    color: #ffffff !important;
-    border: 1px solid #722f37 !important;
-}
-
-/* 7. 省略記号（...） */
-.pager-dots {
-    color: #722f37;
-    width: auto;
-    padding: 0 5px;
-}
-
-/* 8. スマホ対策 */
-@media screen and (max-width: 480px) {
-    .pager-a, #pager-current {
-        width: 38px;
-        height: 38px;
-        font-size: 16px;
-        margin: 2px;
-    }
-} */
 
 /* ヘッダー・サイドバー装飾 */
 #header-inner .titlewrapper .title a {
@@ -1494,7 +1420,7 @@ blockquote cite {
     display: none !important;
 }
 
-/* 2. カスタムページネーション（custom-pager）の基本表示 */
+/* 2. まつさんVer.（custom-pager）だけを表示 */
 #blog-pager.custom-pager,
 .blog-pager.custom-pager,
 div.custom-pager {
@@ -1521,27 +1447,30 @@ div.custom-pager {
     transition: all 0.3s ease;
 }
 
-/* 4. 通常時スタイル */
+/* 4. 通常時：白背景 ＋ エンジ色の文字と枠 */
 .pager-a {
     background-color: #ffffff !important;
-    border: 1px solid #ccc !important;
-    color: #333 !important;
+    color: #722f37 !important;
+    border: 1px solid #722f37 !important;
 }
 
 /* 5. ホバー時 */
 .pager-a:hover {
-    background-color: #f0f0f0 !important;
-}
-
-/* 6. 現在のページ */
-#pager-current {
-    background-color: #333 !important;
+    background-color: #914d55 !important;
     color: #ffffff !important;
-    border: 1px solid #333 !important;
+    border-color: #914d55 !important;
 }
 
-/* 7. 省略記号 */
+/* 6. 現在のページ：エンジ背景 ＋ 白文字 */
+#pager-current {
+    background-color: #722f37 !important;
+    color: #ffffff !important;
+    border: 1px solid #722f37 !important;
+}
+
+/* 7. 省略記号（...） */
 .pager-dots {
+    color: #722f37;
     width: auto;
     padding: 0 5px;
 }
@@ -1554,10 +1483,4 @@ div.custom-pager {
         font-size: 16px;
         margin: 2px;
     }
-}
-
-/* 9. 1ページ目のみ8件目以降を隠す（CSS制御） */
-.is-first-page .blog-posts > .post-outer:nth-child(n+8),
-.is-first-page .blog-posts > article:nth-child(n+8) {
-    display: none !important;
-}
+} 
