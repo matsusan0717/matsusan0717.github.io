@@ -1411,14 +1411,7 @@ blockquote cite {
     color: #ffffff !important;
 }
 
-/* 1. 標準のページネーションを非表示 */
-.blog-pager-newer-link, 
-.blog-pager-older-link, 
-.home-link,
-.blog-pager-newer-link-mobile,
-.blog-pager-older-link-mobile {
-    display: none !important;
-}
+
 
 /* 2. まつさんVer.（custom-pager）だけを表示 */
 #blog-pager.custom-pager,
