@@ -1926,7 +1926,7 @@ a:hover {
 .popular-posts .title
  {
     font-weight: bold;
-    font-size: 14px;
-    line-height: 120%;
+    font-size: 14px; !important
+    line-height: 120% !important; 
     color: #555555;
 }
