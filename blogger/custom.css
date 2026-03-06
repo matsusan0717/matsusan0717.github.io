@@ -1930,3 +1930,8 @@ a:hover {
     line-height: 120% !important; 
     color: #555555;
 }
+
+.item-thumbnail
+{
+  left : 10px !important; 
+}
