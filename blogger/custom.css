@@ -1922,3 +1922,12 @@ a:hover {
 .section:last-child .widget:last-child {
    margin: 0px 0px 2em;
 }
+
+.popular-posts .title
+Specificity: (0,2,0)
+ {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 120%;
+    color: #555555;
+}
