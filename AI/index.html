@@ -149,11 +149,11 @@
         <p>120件のボット襲撃をデータに変え、本物の読者を惹きつける「逆転」の思考。</p>
     </div>
 
-    <div class="card" onclick="openMD('./patterns/blogger-dynamic-infeed-card.md')">
-        <span class="tag">02_Patterns</span>
-        <h2>🛠️ 実装パターン集</h2>
-        <p>インフィードカード、3Dプロフィール、音楽チャート生成。動的UXの全レシピ。</p>
-    </div>
+<div class="card" onclick="showFileList('patterns')">
+    <span class="tag">02_Patterns</span>
+    <h2>🛠️ 武器庫：実装ライブラリ</h2>
+    <p>クリックして、実装済みの全パターン（Likeボタン、MusicChart等）を選択表示します。</p>
+</div>
 
     <div class="card" onclick="openMD('./tech/BLOGGER_JS_HACK.md')">
         <span class="tag">04_Tech</span>
@@ -217,6 +217,43 @@
         }});
     }
 
+// フォルダ内のファイルリスト（手動で管理するのが確実です）
+const fileMap = {
+    'patterns': [
+        { name: 'カスタムいいねボタン', path: './patterns/blogger-custom-like-button.md' },
+        { name: '動的インフィードカード', path: './patterns/blogger-dynamic-infeed-card.md' },
+        { name: '音楽チャート生成器', path: './patterns/blogger-music-chart-generator.md' },
+        { name: 'Bloggerハック集', path: './patterns/BLOGGER_JS_HACK.md' },
+        { name: '最適化パターン', path: './patterns/blogger-optimization-pattern.md' }
+    ],
+    'principles': [
+        { name: '品質の定義', path: './principles/concept-of-quality.md' },
+        { name: '開発スタンス', path: './principles/development-attitude.md' }
+    ]
+};
+
+function showFileList(category) {
+    const content = document.getElementById('md-content');
+    const modal = document.getElementById('md-modal');
+    
+    let listHTML = `<h1>📂 ${category.toUpperCase()}</h1><ul style="list-style:none; padding:0;">`;
+    
+    fileMap[category].forEach(file => {
+        listHTML += `
+            <li style="margin-bottom:15px;">
+                <a href="javascript:void(0)" onclick="openMD('${file.path}')" 
+                   style="font-size:1.2rem; text-decoration:none; color:var(--accent-green); border-bottom:1px dashed #334155; display:block; padding:10px;">
+                   📄 ${file.name}
+                </a>
+            </li>`;
+    });
+    
+    listHTML += `</ul>`;
+    content.innerHTML = listHTML;
+    modal.style.display = 'block';
+    gsap.from(".modal-content", { y: 30, opacity: 0 });
+}
+    
     // ESCキーで閉じる
     window.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); });
 </script>
