@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blogger 限界突破プロジェクト | System Dashboard</title>
+    <title>Blogger 限界突破 | Engineering Notes</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         :root {
             --bg-dark: #0f172a;
@@ -19,16 +20,13 @@
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            font-family: 'Noto Sans JP', 'Fira Code', monospace;
+            font-family: 'Noto Sans JP', sans-serif;
             margin: 0;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
-
-        /* 背景：デジタルガーデンの粒子演出イメージ */
-        #bg-canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.3; }
 
         header {
             padding: 60px 5% 100px;
@@ -38,9 +36,8 @@
         }
 
         .hero-title {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            letter-spacing: -0.02em;
             margin: 0;
             background: linear-gradient(to right, var(--accent-blue), var(--accent-green));
             -webkit-background-clip: text;
@@ -50,15 +47,15 @@
         .principles-typing {
             font-family: 'Fira Code', monospace;
             color: var(--accent-green);
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-top: 15px;
             height: 1.5em;
         }
 
         .dashboard {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
             padding: 0 5% 60px;
             margin-top: -40px;
         }
@@ -66,45 +63,16 @@
         .card {
             background: var(--card-bg);
             border-radius: 12px;
-            padding: 30px;
+            padding: 25px;
             border: 1px solid #334155;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.3s;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d; /* EVA式視差の準備 */
+            transform-style: preserve-3d;
         }
 
         .card:hover {
             border-color: var(--accent-blue);
-            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 4px; height: 100%;
-            background: var(--accent-blue);
-            transform: scaleY(0);
-            transition: 0.3s;
-        }
-
-        .card:hover::before { transform: scaleY(1); }
-
-        .card h2 {
-            font-size: 1.4rem;
-            margin: 0 0 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .card p {
-            font-size: 0.9rem;
-            color: var(--text-sub);
-            line-height: 1.6;
-            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .tag {
@@ -113,146 +81,145 @@
             padding: 4px 8px;
             border-radius: 4px;
             color: var(--accent-blue);
-            text-transform: uppercase;
         }
 
-        footer {
-            margin-top: auto;
+        /* --- モーダル（閲覧室）のスタイル --- */
+        #md-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.98);
+            z-index: 1000;
+            overflow-y: auto;
             padding: 40px 5%;
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--text-sub);
-            border-top: 1px solid #334155;
+            backdrop-filter: blur(10px);
         }
 
-        .status-dot {
-            display: inline-block;
-            width: 8px; height: 8px;
-            background: var(--accent-green);
-            border-radius: 50%;
-            margin-right: 5px;
-            box-shadow: 0 0 8px var(--accent-green);
+        .modal-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #1e293b;
+            padding: 50px;
+            border-radius: 16px;
+            border: 1px solid #334155;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
+
+        .close-btn {
+            position: sticky;
+            top: 0;
+            float: right;
+            background: #334155;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            z-index: 1001;
+        }
+
+        /* Markdownの中身の装飾 */
+        #md-content h1, #md-content h2 { border-bottom: 1px solid var(--accent-blue); padding-bottom: 10px; color: var(--accent-blue); }
+        #md-content code { background: #0f172a; padding: 2px 5px; border-radius: 4px; color: var(--accent-green); font-family: 'Fira Code', monospace; }
+        #md-content pre { background: #0f172a; padding: 20px; border-radius: 8px; overflow-x: auto; border: 1px solid #334155; }
+        #md-content a { color: var(--accent-green); }
+
+        footer { text-align: center; padding: 40px; color: var(--text-sub); font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1 class="hero-title">Blogger 限界突破プロジェクト</h1>
+    <h1 class="hero-title">Blogger Engineering Notes</h1>
     <div id="typewriter" class="principles-typing"></div>
 </header>
 
 <main class="dashboard">
-    <div class="card" onclick="location.href='./principles/'">
-        <span class="tag">00_Context / Principles</span>
-        <h2>🧠 設計思想のコア</h2>
-        <p>「完成は静止画である」「等価交換のデザイン」など、AIとの共創を支える思考のOS。</p>
+    <div class="card" onclick="openMD('./principles/concept-of-quality.md')">
+        <span class="tag">00_Principles</span>
+        <h2>🧠 品質と完成の定義</h2>
+        <p>「完成は静止画である」— AIとの共創における最終到達地点の捉え方。</p>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="openMD('./tech/README.md')">
         <span class="tag">01_Strategy</span>
-        <h2>📈 事業・成長戦略</h2>
-        <p>120件のボット襲撃をデータに変える。三点観測に基づくブログ運営の意思決定録。</p>
+        <h2>📈 サイト運営・成長戦略</h2>
+        <p>120件のボット襲撃をデータに変え、本物の読者を惹きつける「逆転」の思考。</p>
     </div>
 
-    <div class="card" onclick="location.href='./patterns/'">
-        <span class="tag">02_Projects / Patterns</span>
-        <h2>🛠 武器庫：実装ライブラリ</h2>
-        <p>GAS連携いいね、GSAPスライダー、3Dプロフィール。Bloggerを動的アプリへ変えるコード集。</p>
+    <div class="card" onclick="openMD('./patterns/blogger-dynamic-infeed-card.md')">
+        <span class="tag">02_Patterns</span>
+        <h2>🛠️ 実装パターン集</h2>
+        <p>インフィードカード、3Dプロフィール、音楽チャート生成。動的UXの全レシピ。</p>
     </div>
 
-    <div class="card" onclick="location.href='./tech/'">
-        <span class="tag">04_Learning / Tech</span>
+    <div class="card" onclick="openMD('./tech/BLOGGER_JS_HACK.md')">
+        <span class="tag">04_Tech</span>
         <h2>🔬 技術研究：Tech Lab</h2>
-        <p>decodeURIComponentによる文字化け回避、updated-maxによるページネーションハック。</p>
+        <p>decodeURIComponentによる文字化け回避、updated-maxによるページ番号遷移。Bloggerの急所。</p>
     </div>
 </main>
 
+<div id="md-modal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal()">CLOSE [ESC]</button>
+        <div id="md-content">読み込み中...</div>
+    </div>
+</div>
+
 <footer>
-    <p><span class="status-dot"></span> System Status: 稼働中 (3月12日 要塞化完了)</p>
-    <p>© 2026 まつさん | Blogger=デジタルガーデン庭師</p>
+    <p>© 2026 まつさん | System Dashboard Operating</p>
 </footer>
 
 <script>
-    // 1. Principlesのタイピング演出
-    const phrases = [
-        "完成は静止画である。",
-        "デザインとUXの等価交換。",
-        "実装正義：動けばヨシ！",
-        "キャンバスの端を楽しむ。",
-        "AIの限界は、言語化の限界。"
-    ];
-
+    // 1. タイピング
+    const phrases = ["完成は静止画である。", "デザインとUXの等価交換。", "実装正義：動けばヨシ！", "Blogger Engineering Notes V1.0"];
     let i = 0;
     const typewriter = document.getElementById('typewriter');
-    
     function updateTypewriter() {
-        typewriter.innerText = decodeURIComponent(escape(phrases[i % phrases.length])); 
-        // ※Bloggerハックの精神を汲み、特殊文字があればデコード
+        typewriter.innerText = phrases[i % phrases.length];
         gsap.fromTo("#typewriter", { opacity: 0 }, { opacity: 1, duration: 1 });
         i++;
     }
-    
     setInterval(updateTypewriter, 4000);
     updateTypewriter();
 
-    // 2. GSAPによる初期起動アニメーション
-    gsap.from("header", { duration: 1.2, y: -100, opacity: 0, ease: "power4.out" });
-    gsap.from(".card", { 
-        duration: 0.8, 
-        y: 50, 
-        opacity: 0, 
-        stagger: 0.2, 
-        ease: "back.out(1.7)",
-        delay: 0.5 
+    // 2. 視差効果
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 15;
+        const y = (e.clientY / window.innerHeight - 0.5) * 15;
+        gsap.to(".card", { rotationY: x, rotationX: -y, duration: 1 });
     });
 
-    // 3. マウスストーキング視差エフェクト（簡略版）
-    document.addEventListener('mousemove', (e) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 10;
-        const y = (e.clientY / window.innerHeight - 0.5) * 10;
-        gsap.to(".card", { rotationY: x, rotationX: -y, duration: 1, ease: "power1.out" });
-    });
+    // 3. Markdown閲覧システム
+    async function openMD(path) {
+        const modal = document.getElementById('md-modal');
+        const content = document.getElementById('md-content');
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // 背景スクロール禁止
+        gsap.from(".modal-content", { y: 50, opacity: 0, duration: 0.5, ease: "power3.out" });
+
+        try {
+            const response = await fetch(path);
+            const text = await response.text();
+            content.innerHTML = marked.parse(text); // md -> html
+        } catch (e) {
+            content.innerHTML = "<h1>404</h1><p>ファイルが見つかりません: " + path + "</p>";
+        }
+    }
+
+    function closeModal() {
+        document.body.style.overflow = 'auto';
+        gsap.to(".modal-content", { y: 50, opacity: 0, duration: 0.3, onComplete: () => {
+            document.getElementById('md-modal').style.display = 'none';
+        }});
+    }
+
+    // ESCキーで閉じる
+    window.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); });
 </script>
 
 </body>
 </html>
-
-/* --- 追加：Markdown閲覧エンジン --- */
-// 1. Marked.js を動的に読み込む
-const script = document.createElement('script');
-script.src = "https://cdn.jsdelivr.net/npm/marked/marked.min.js";
-document.head.appendChild(script);
-
-// 2. モーダル（閲覧窓）のHTMLを動的に生成して追加
-const modalHTML = `
-<div id="md-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.95); z-index:1000; overflow-y:auto; padding:40px 5%;">
-    <div style="max-width:800px; margin:0 auto; background:var(--card-bg); padding:40px; border-radius:12px; border:1px solid var(--accent-blue); position:relative;">
-        <button onclick="closeModal()" style="position:absolute; top:20px; right:20px; background:none; border:1px solid var(--text-sub); color:var(--text-sub); cursor:pointer; padding:5px 10px; border-radius:4px;">CLOSE [ESC]</button>
-        <div id="md-content" style="line-height:1.8; color:var(--text-main);">読み込み中...</div>
-    </div>
-</div>
-`;
-document.body.insertAdjacentHTML('beforeend', modalHTML);
-
-// 3. mdファイルを取得して表示する関数
-async function openMD(path) {
-    const modal = document.getElementById('md-modal');
-    const content = document.getElementById('md-content');
-    modal.style.display = 'block';
-    gsap.from("#md-modal > div", { scale: 0.9, opacity: 0, duration: 0.4 });
-
-    try {
-        const response = await fetch(path);
-        const text = await response.text();
-        content.innerHTML = marked.parse(text); // ここでMarkdownをHTMLに変換
-    } catch (e) {
-        content.innerHTML = "エラー: ファイルが見つかりません。";
-    }
-}
-
-function closeModal() {
-    document.getElementById('md-modal').style.display = 'none';
-}
-
-// 4. 各カードの onclick を書き換える（例：openMD('./principles/concept-of-quality.md')）
