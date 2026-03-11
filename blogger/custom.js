@@ -327,29 +327,32 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.appendChild(s);
   })();
 
-  /* 3. アーカイブ制御 & メイン記事数制限 ------------------- */
+/* 3. アーカイブウィジェット制御 (開閉・遷移) ------------------- */
   (function() {
-    // アーカイブ開閉
     const archiveRoot = document.getElementById("ArchiveList");
     if (archiveRoot) {
       archiveRoot.addEventListener("click", function(e) {
         const target = e.target.closest(".post-count-link");
         if (!target) return;
         const parentLi = target.closest("li.archivedate"), content = parentLi.querySelector(".hierarchy-content");
+        
+        // 年テキスト（左側）をクリック：遷移
         if (e.clientX - target.getBoundingClientRect().left <= 50) {
           const yearMatch = target.textContent.match(/\d{4}/);
           if (yearMatch) window.location.href = window.location.origin + "/" + yearMatch[0] + "/?max-results=7";
           return;
         }
-        if (content) { e.preventDefault(); e.stopPropagation(); parentLi.classList.toggle("collapsed"); parentLi.classList.toggle("expanded"); }
+        
+        // アイコン（右側）をクリック：展開/折りたたみ
+        if (content) { 
+          e.preventDefault(); 
+          e.stopPropagation(); 
+          parentLi.classList.toggle("collapsed"); 
+          parentLi.classList.toggle("expanded"); 
+        }
       });
     }
-    // 7件制限（物理削除）
-    const allPosts = document.querySelectorAll('.blog-posts .post-outer');
-    if (allPosts.length > 7) {
-      for (let i = 7; i < allPosts.length; i++) allPosts[i].parentNode.removeChild(allPosts[i]);
-    }
-    document.querySelectorAll('.date-outer').forEach(outer => { if (!outer.querySelector('.post-outer')) outer.parentNode.removeChild(outer); });
+    // ※ 7件制限（物理削除）のコードはページネーション側と重複するため、ここからは削除しました。
   })();
 
   /* 4. 広告制御 (自動広告削除 & 遅延読み込み) -------------- */
