@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogger 限界突破プロジェクト | System Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --accent-blue: #38bdf8;
+            --accent-green: #4ade80;
+            --text-main: #f1f5f9;
+            --text-sub: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Noto Sans JP', 'Fira Code', monospace;
+            margin: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* 背景：デジタルガーデンの粒子演出イメージ */
+        #bg-canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.3; }
+
+        header {
+            padding: 60px 5% 100px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            border-bottom: 2px solid var(--accent-blue);
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .principles-typing {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent-green);
+            font-size: 1.1rem;
+            margin-top: 15px;
+            height: 1.5em;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            padding: 0 5% 60px;
+            margin-top: -40px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid #334155;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d; /* EVA式視差の準備 */
+        }
+
+        .card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--accent-blue);
+            transform: scaleY(0);
+            transition: 0.3s;
+        }
+
+        .card:hover::before { transform: scaleY(1); }
+
+        .card h2 {
+            font-size: 1.4rem;
+            margin: 0 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            background: #334155;
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 40px 5%;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            border-top: 1px solid #334155;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 8px; height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            margin-right: 5px;
+            box-shadow: 0 0 8px var(--accent-green);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 class="hero-title">Blogger 限界突破プロジェクト</h1>
+    <div id="typewriter" class="principles-typing"></div>
+</header>
+
+<main class="dashboard">
+    <div class="card" onclick="location.href='./principles/'">
+        <span class="tag">00_Context / Principles</span>
+        <h2>🧠 設計思想のコア</h2>
+        <p>「完成は静止画である」「等価交換のデザイン」など、AIとの共創を支える思考のOS。</p>
+    </div>
+
+    <div class="card">
+        <span class="tag">01_Strategy</span>
+        <h2>📈 事業・成長戦略</h2>
+        <p>120件のボット襲撃をデータに変える。三点観測に基づくブログ運営の意思決定録。</p>
+    </div>
+
+    <div class="card" onclick="location.href='./patterns/'">
+        <span class="tag">02_Projects / Patterns</span>
+        <h2>🛠 武器庫：実装ライブラリ</h2>
+        <p>GAS連携いいね、GSAPスライダー、3Dプロフィール。Bloggerを動的アプリへ変えるコード集。</p>
+    </div>
+
+    <div class="card" onclick="location.href='./tech/'">
+        <span class="tag">04_Learning / Tech</span>
+        <h2>🔬 技術研究：Tech Lab</h2>
+        <p>decodeURIComponentによる文字化け回避、updated-maxによるページネーションハック。</p>
+    </div>
+</main>
+
+<footer>
+    <p><span class="status-dot"></span> System Status: 稼働中 (3月12日 要塞化完了)</p>
+    <p>© 2026 まつさん | Blogger=デジタルガーデン庭師</p>
+</footer>
+
+<script>
+    // 1. Principlesのタイピング演出
+    const phrases = [
+        "完成は静止画である。",
+        "デザインとUXの等価交換。",
+        "実装正義：動けばヨシ！",
+        "キャンバスの端を楽しむ。",
+        "AIの限界は、言語化の限界。"
+    ];
+
+    let i = 0;
+    const typewriter = document.getElementById('typewriter');
+    
+    function updateTypewriter() {
+        typewriter.innerText = decodeURIComponent(escape(phrases[i % phrases.length])); 
+        // ※Bloggerハックの精神を汲み、特殊文字があればデコード
+        gsap.fromTo("#typewriter", { opacity: 0 }, { opacity: 1, duration: 1 });
+        i++;
+    }
+    
+    setInterval(updateTypewriter, 4000);
+    updateTypewriter();
+
+    // 2. GSAPによる初期起動アニメーション
+    gsap.from("header", { duration: 1.2, y: -100, opacity: 0, ease: "power4.out" });
+    gsap.from(".card", { 
+        duration: 0.8, 
+        y: 50, 
+        opacity: 0, 
+        stagger: 0.2, 
+        ease: "back.out(1.7)",
+        delay: 0.5 
+    });
+
+    // 3. マウスストーキング視差エフェクト（簡略版）
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 10;
+        const y = (e.clientY / window.innerHeight - 0.5) * 10;
+        gsap.to(".card", { rotationY: x, rotationX: -y, duration: 1, ease: "power1.out" });
+    });
+</script>
+
+</body>
+</html>
