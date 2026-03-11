@@ -174,88 +174,110 @@
 </footer>
 
 <script>
-    // 1. タイピング
-    const phrases = ["完成は静止画である。", "デザインとUXの等価交換。", "実装正義：動けばヨシ！", "Blogger Engineering Notes V1.0"];
-    let i = 0;
-    const typewriter = document.getElementById('typewriter');
-    function updateTypewriter() {
-        typewriter.innerText = phrases[i % phrases.length];
-        gsap.fromTo("#typewriter", { opacity: 0 }, { opacity: 1, duration: 1 });
-        i++;
-    }
-    setInterval(updateTypewriter, 4000);
-    updateTypewriter();
-
-    // 2. 視差効果
-    document.addEventListener('mousemove', (e) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 15;
-        const y = (e.clientY / window.innerHeight - 0.5) * 15;
-        gsap.to(".card", { rotationY: x, rotationX: -y, duration: 1 });
-    });
-
-    // 3. Markdown閲覧システム
-    async function openMD(path) {
-        const modal = document.getElementById('md-modal');
-        const content = document.getElementById('md-content');
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // 背景スクロール禁止
-        gsap.from(".modal-content", { y: 50, opacity: 0, duration: 0.5, ease: "power3.out" });
-
-        try {
-            const response = await fetch(path);
-            const text = await response.text();
-            content.innerHTML = marked.parse(text); // md -> html
-        } catch (e) {
-            content.innerHTML = "<h1>404</h1><p>ファイルが見つかりません: " + path + "</p>";
-        }
-    }
-
-    function closeModal() {
-        document.body.style.overflow = 'auto';
-        gsap.to(".modal-content", { y: 50, opacity: 0, duration: 0.3, onComplete: () => {
-            document.getElementById('md-modal').style.display = 'none';
-        }});
-    }
-
-// フォルダ内のファイルリスト（手動で管理するのが確実です）
+// ==========================================
+// 1. データ定義（ここを最新のファイル名に合わせる）
+// ==========================================
 const fileMap = {
     'patterns': [
+        { name: 'JSハック：文字化け回避', path: './patterns/BLOGGER_JS_HACK.md' },
         { name: 'カスタムいいねボタン', path: './patterns/blogger-custom-like-button.md' },
-        { name: '動的インフィードカード', path: './patterns/blogger-dynamic-infeed-card.md' },
-        { name: '音楽チャート生成器', path: './patterns/blogger-music-chart-generator.md' },
-        { name: 'Bloggerハック集', path: './patterns/BLOGGER_JS_HACK.md' },
-        { name: '最適化パターン', path: './patterns/blogger-optimization-pattern.md' }
+        { name: '動的ホームページ設計', path: './patterns/blogger-dynamic-homepage.md' },
+        { name: 'インフィードカード戦略', path: './patterns/blogger-dynamic-infeed-card.md' },
+        { name: '音楽チャート生成', path: './patterns/blogger-music-chart-generator.md' },
+        { name: '画像・読み込み最適化', path: './patterns/blogger-optimization-pattern.md' },
+        { name: 'サイドバー・ウィジェット', path: './patterns/blogger-sidebar-widgets.md' }
     ],
     'principles': [
-        { name: '品質の定義', path: './principles/concept-of-quality.md' },
-        { name: '開発スタンス', path: './principles/development-attitude.md' }
+        { name: '完成は静止画である', path: './principles/concept-of-quality.md' },
+        { name: '庭師の開発スタンス', path: './principles/development-attitude.md' }
     ]
 };
 
-function showFileList(category) {
-    const content = document.getElementById('md-content');
+// ==========================================
+// 2. 基本演出（タイピング・視差）
+// ==========================================
+const phrases = ["完成は静止画である。", "デザインとUXの等価交換。", "実装正義：動けばヨシ！", "Blogger Engineering Notes V1.0"];
+let phraseIdx = 0;
+const typewriter = document.getElementById('typewriter');
+
+function updateTypewriter() {
+    typewriter.innerText = phrases[phraseIdx % phrases.length];
+    gsap.fromTo("#typewriter", { opacity: 0 }, { opacity: 1, duration: 1 });
+    phraseIdx++;
+}
+setInterval(updateTypewriter, 4000);
+updateTypewriter();
+
+document.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 15;
+    const y = (e.clientY / window.innerHeight - 0.5) * 15;
+    gsap.to(".card", { rotationY: x, rotationX: -y, duration: 1 });
+});
+
+// ==========================================
+// 3. コア機能（Markdown表示 & リスト表示）
+// ==========================================
+
+// モーダルを閉じる
+function closeModal() {
+    document.body.style.overflow = 'auto';
+    gsap.to(".modal-content", { y: 50, opacity: 0, duration: 0.3, onComplete: () => {
+        document.getElementById('md-modal').style.display = 'none';
+    }});
+}
+
+// Markdownファイルを1つ開く
+async function openMD(path) {
     const modal = document.getElementById('md-modal');
+    const content = document.getElementById('md-content');
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    gsap.from(".modal-content", { y: 50, opacity: 0, duration: 0.5, ease: "power3.out" });
+
+    try {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error();
+        const text = await response.text();
+        content.innerHTML = marked.parse(text); 
+    } catch (e) {
+        content.innerHTML = `<h1>404</h1><p>ファイルが見つかりません: ${path}</p>`;
+    }
+}
+
+// フォルダ内のファイルリストを表示する（これが一覧を出す魔法）
+function showFileList(category) {
+    const modal = document.getElementById('md-modal');
+    const content = document.getElementById('md-content');
     
-    let listHTML = `<h1>📂 ${category.toUpperCase()}</h1><ul style="list-style:none; padding:0;">`;
+    if (!fileMap[category]) {
+        console.error("Category not found:", category);
+        return;
+    }
+
+    let listHTML = `<h1 style="color:var(--accent-blue); border-bottom:2px solid var(--accent-blue); padding-bottom:10px;">📂 ${category.toUpperCase()} INDEX</h1>`;
+    listHTML += `<ul style="list-style:none; padding:20px 0;">`;
     
     fileMap[category].forEach(file => {
         listHTML += `
-            <li style="margin-bottom:15px;">
+            <li style="margin-bottom:15px; border:1px solid #334155; border-radius:8px; transition:0.3s;">
                 <a href="javascript:void(0)" onclick="openMD('${file.path}')" 
-                   style="font-size:1.2rem; text-decoration:none; color:var(--accent-green); border-bottom:1px dashed #334155; display:block; padding:10px;">
-                   📄 ${file.name}
+                   style="font-size:1.1rem; text-decoration:none; color:var(--accent-green); display:block; padding:15px; width:100%;">
+                   📄 ${file.name} <span style="float:right; opacity:0.5;">&gt;</span>
                 </a>
             </li>`;
     });
     
     listHTML += `</ul>`;
+    
     content.innerHTML = listHTML;
     modal.style.display = 'block';
-    gsap.from(".modal-content", { y: 30, opacity: 0 });
+    document.body.style.overflow = 'hidden';
+    gsap.from(".modal-content", { y: 30, opacity: 0, duration: 0.4 });
 }
-    
-    // ESCキーで閉じる
-    window.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); });
+
+// ESCキー対応
+window.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); });
+
 </script>
 
 </body>
