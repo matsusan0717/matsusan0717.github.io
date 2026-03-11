@@ -83,7 +83,7 @@
             color: var(--accent-blue);
         }
 
-        /* --- モーダル（閲覧室）のスタイル --- */
+        /* --- モーダル --- */
         #md-modal {
             display: none;
             position: fixed;
@@ -120,7 +120,6 @@
             z-index: 1001;
         }
 
-        /* Markdownの中身の装飾 */
         #md-content h1, #md-content h2 { border-bottom: 1px solid var(--accent-blue); padding-bottom: 10px; color: var(--accent-blue); }
         #md-content code { background: #0f172a; padding: 2px 5px; border-radius: 4px; color: var(--accent-green); font-family: 'Fira Code', monospace; }
         #md-content pre { background: #0f172a; padding: 20px; border-radius: 8px; overflow-x: auto; border: 1px solid #334155; }
@@ -152,13 +151,13 @@
     <div class="card" onclick="showFileList('patterns')">
         <span class="tag">02_Patterns</span>
         <h2>🛠️ 武器庫：実装ライブラリ</h2>
-        <p>Likeボタン、MusicChart、動的カード。Bloggerをアプリへ変える全レシピ。</p>
+        <p>Likeボタン、MusicChart。Bloggerをアプリへ変える全レシピ。</p>
     </div>
 
     <div class="card" onclick="showFileList('tech')">
         <span class="tag">04_Tech</span>
         <h2>🔬 技術研究：Tech Lab</h2>
-        <p>文字化け回避、ページネーション、WebP強制。Bloggerの急所を突く技術録。</p>
+        <p>文字化け回避、ページネーション。Bloggerの急所を突く技術録。</p>
     </div>
 </main>
 
@@ -174,16 +173,13 @@
 </footer>
 
 <script>
-// ==========================================
-// 1. データ定義（ここを最新のファイル名に合わせる）
-// ==========================================
+// 1. データ定義
 const fileMap = {
     'principles': [
         { name: '品質の定義（完成は静止画）', path: './principles/concept-of-quality.md' },
         { name: '庭師の開発スタンス', path: './principles/development-attitude.md' }
     ],
     'strategy': [
-        // index.html と同じ階層にある README.md を「戦略」として表示
         { name: '2026年3月 戦略要諦', path: './README.md' }
     ],
     'patterns': [
@@ -201,13 +197,10 @@ const fileMap = {
     ]
 };
 
-// ==========================================
-// 2. 基本演出（タイピング・視差）
-// ==========================================
-const phrases = ["完成は静止画である。", "デザインとUXの等価交換。", "実装正義：動けばヨシ！", "Blogger Engineering Notes V1.0"];
+// 2. 演出
+const phrases = ["完成は静止画である。", "デザインとUXの等価交換。", "実装正義：動けばヨシ！", "Blogger Engineering Notes V1.1"];
 let phraseIdx = 0;
 const typewriter = document.getElementById('typewriter');
-
 function updateTypewriter() {
     typewriter.innerText = phrases[phraseIdx % phrases.length];
     gsap.fromTo("#typewriter", { opacity: 0 }, { opacity: 1, duration: 1 });
@@ -222,71 +215,55 @@ document.addEventListener('mousemove', (e) => {
     gsap.to(".card", { rotationY: x, rotationX: -y, duration: 1 });
 });
 
-// ==========================================
-// 3. コア機能（Markdown表示 & リスト表示）
-// ==========================================
-
-// モーダルを閉じる
+// 3. モーダル操作
 function closeModal() {
     document.body.style.overflow = 'auto';
     gsap.to(".modal-content", { y: 50, opacity: 0, duration: 0.3, onComplete: () => {
         document.getElementById('md-modal').style.display = 'none';
+        document.getElementById('md-content').innerHTML = ""; // 中身を消す
     }});
 }
 
-// Markdownファイルを1つ開く
 async function openMD(path) {
-    const modal = document.getElementById('md-modal');
     const content = document.getElementById('md-content');
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    gsap.from(".modal-content", { y: 50, opacity: 0, duration: 0.5, ease: "power3.out" });
-
+    content.innerHTML = "読み込み中...";
     try {
         const response = await fetch(path);
         if (!response.ok) throw new Error();
         const text = await response.text();
-        content.innerHTML = marked.parse(text); 
+        content.innerHTML = marked.parse(text);
+        document.getElementById('md-modal').scrollTop = 0; // 上端に戻す
     } catch (e) {
-        content.innerHTML = `<h1>404</h1><p>ファイルが見つかりません: ${path}</p>`;
+        content.innerHTML = `<h1>404</h1><p>見つかりません: ${path}</p>`;
     }
 }
 
-// フォルダ内のファイルリストを表示する（これが一覧を出す魔法）
 function showFileList(category) {
     const modal = document.getElementById('md-modal');
     const content = document.getElementById('md-content');
     
-    if (!fileMap[category]) {
-        console.error("Category not found:", category);
-        return;
-    }
+    if (!fileMap[category]) return;
 
-    let listHTML = `<h1 style="color:var(--accent-blue); border-bottom:2px solid var(--accent-blue); padding-bottom:10px;">📂 ${category.toUpperCase()} INDEX</h1>`;
+    let listHTML = `<h1 style="color:var(--accent-blue);">📂 ${category.toUpperCase()}</h1>`;
     listHTML += `<ul style="list-style:none; padding:20px 0;">`;
-    
     fileMap[category].forEach(file => {
         listHTML += `
-            <li style="margin-bottom:15px; border:1px solid #334155; border-radius:8px; transition:0.3s;">
+            <li style="margin-bottom:15px; border:1px solid #334155; border-radius:8px; background: rgba(255,255,255,0.03);">
                 <a href="javascript:void(0)" onclick="openMD('${file.path}')" 
-                   style="font-size:1.1rem; text-decoration:none; color:var(--accent-green); display:block; padding:15px; width:100%;">
-                   📄 ${file.name} <span style="float:right; opacity:0.5;">&gt;</span>
+                   style="font-size:1.1rem; text-decoration:none; color:var(--accent-green); display:block; padding:15px;">
+                   📄 ${file.name}
                 </a>
             </li>`;
     });
-    
     listHTML += `</ul>`;
     
     content.innerHTML = listHTML;
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
-    gsap.from(".modal-content", { y: 30, opacity: 0, duration: 0.4 });
+    gsap.fromTo(".modal-content", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4 });
 }
 
-// ESCキー対応
 window.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); });
-
 </script>
-
 </body>
 </html>
