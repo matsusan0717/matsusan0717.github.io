@@ -7,7 +7,7 @@
    ========================================================== */
 
 document.addEventListener("DOMContentLoaded", function() {
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbxW5Y9eiqkCMoZHPropEO9voGsyGJ16QhO4AZZfOT3N462_Vwf19ecpccHzoyuOl7vG4g/exec";
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbxa1Z3HGKSlkuYhWqrqaaqRj1_IDx-iilHnrbDTfvTvni0smaxsabxx4ACC_aAjNFryVg/exec";
   const EXCLUDE_PATH = "/p/";
   const circleNumbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩"];
 
