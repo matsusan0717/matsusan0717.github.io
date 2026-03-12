@@ -71,9 +71,9 @@ The implementations in this repository are actively deployed and tested at:
 
 The "Operating System of Thought" behind every implementation. These serve as behavioral guidelines for co-creation with AI.
 
-- **[Completion is a Still Image](./principles/concept-of-quality-eg.md):** Pursuing the "optimal solution for now" under the assumption of continuous change.
-- **[Design of Equivalent Exchange](./principles/concept-of-quality-eg.md):** Aesthetics dedicated to expanding usability.
-- **[Implementation Justice & Breaking Boundaries](./principles/development-attitude-eg.md):** Transforming platform constraints into a playground with a "Functionality First" mindset.
+- **[Completion is a Still Image](./principles/concept-of-quality-en.md):** Pursuing the "optimal solution for now" under the assumption of continuous change.
+- **[Design of Equivalent Exchange](./principles/concept-of-quality-en.md):** Aesthetics dedicated to expanding usability.
+- **[Implementation Justice & Breaking Boundaries](./principles/development-attitude-en.md):** Transforming platform constraints into a playground with a "Functionality First" mindset.
 
 ---
 
