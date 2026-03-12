@@ -234,6 +234,46 @@ const fileMap = {
     ]
 };
 
+// 1. 全ファイルをフラットな配列に展開（計算用）
+const allFiles = Object.entries(fileMap).flatMap(([category, files]) => 
+    files.map(f => ({ ...f, category }))
+);
+
+// 2. 「最新の防衛記録」を抽出（とりあえず配列の最後の方を最新と仮定、または日付プロパティを追加）
+// ※ pathに日付を入れるか、オブジェクトに date: '2026-03-12' と書くとより正確です
+const recentFiles = allFiles.slice(-3).reverse(); 
+
+// 3. メイン画面の描画を「動的」に書き換える関数
+function renderDashboard(filterCategory = 'all') {
+    const container = document.querySelector('.dashboard');
+    container.innerHTML = ''; // 一旦クリア
+
+    // 「最新の防衛記録」セクションをトップに生成（フィルタリングされていない時のみ）
+    if (filterCategory === 'all') {
+        let recentHTML = `
+            <div class="card" style="grid-column: 1 / -1; border-color: var(--accent-green); background: rgba(74, 222, 128, 0.05);">
+                <span class="tag" style="background: var(--accent-green); color: var(--bg-dark);">NEW UPDATES</span>
+                <h2>📡 最近の防衛記録</h2>
+                <div style="display: flex; gap: 15px; margin-top: 10px; overflow-x: auto;">
+                    ${recentFiles.map(f => `
+                        <button onclick="openMD('${f.path}')" style="background: #334155; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; white-space: nowrap;">
+                            ${f.name}
+                        </button>
+                    `).join('')}
+                </div>
+            </div>`;
+        container.insertAdjacentHTML('beforeend', recentHTML);
+    }
+
+    // カテゴリカードの生成（既存のロジックを流用）
+    Object.keys(fileMap).forEach(cat => {
+        if (filterCategory !== 'all' && filterCategory !== cat) return;
+        
+        // ここに既存のカード生成HTMLを配置
+        // （省略：既存の <div class="card" onclick="showFileList('${cat}')">... </div>）
+    });
+}
+    
 // 2. 演出
 const phrases = ["完成は静止画である。", "デザインとUXの等価交換。", "実装正義：動けばヨシ！", "Blogger Engineering Notes V1.1"];
 let phraseIdx = 0;
