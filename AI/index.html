@@ -132,6 +132,30 @@
             z-index: 1001;
         }
 
+        /* --- Markdownコンテンツの表示調整（蹂躙用） --- */
+        #md-content {
+            line-height: 1.8;      /* 行間をゆったりさせる（標準は1.2〜1.4） */
+            letter-spacing: 0.05em; /* 文字の間隔も少し広げて可読性を上げる */
+        }
+
+        #md-content p, #md-content li {
+            margin-bottom: 1.5em;  /* 段落やリストの間の余白を確保 */
+        }
+
+        #md-content li {
+            margin-left: 1.2em;    /* リストのインデントを調整 */
+        }
+
+        #md-content h1, #md-content h2, #md-content h3 {
+            margin-top: 2em;       /* 見出しの上の余白を広げてセクションを明確に */
+            margin-bottom: 1em;
+        }
+
+        #md-content pre {
+            margin: 20px 0;
+            line-height: 1.5;      /* コードブロック内は少し詰め気味にして引き締める */
+        }
+
         #md-content h1, #md-content h2 { border-bottom: 1px solid var(--accent-blue); padding-bottom: 10px; color: var(--accent-blue); }
         #md-content code { background: #0f172a; padding: 2px 5px; border-radius: 4px; color: var(--accent-green); font-family: 'Fira Code', monospace; }
         #md-content pre { background: #0f172a; padding: 20px; border-radius: 8px; overflow-x: auto; border: 1px solid #334155; }
