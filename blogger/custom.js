@@ -257,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function() {
    Blogger Custom Scripts (matsusan0717)
    - ログ・ランキング・画像リサイズ・目次・タブ
    - レーダーチャート・日付整形・ラベル制御・タイピング演出
-   - インフィードカード・アーカイブ制御・記事数制限・広告制御
+   - インフィードカード・記事数制限・広告制御
    ========================================================== */
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -327,33 +327,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.appendChild(s);
   })();
 
-/* 3. アーカイブウィジェット制御 (開閉・遷移) ------------------- */
-  (function() {
-    const archiveRoot = document.getElementById("ArchiveList");
-    if (archiveRoot) {
-      archiveRoot.addEventListener("click", function(e) {
-        const target = e.target.closest(".post-count-link");
-        if (!target) return;
-        const parentLi = target.closest("li.archivedate"), content = parentLi.querySelector(".hierarchy-content");
-        
-        // 年テキスト（左側）をクリック：遷移
-        if (e.clientX - target.getBoundingClientRect().left <= 50) {
-          const yearMatch = target.textContent.match(/\d{4}/);
-          if (yearMatch) window.location.href = window.location.origin + "/" + yearMatch[0] + "/?max-results=7";
-          return;
-        }
-        
-        // アイコン（右側）をクリック：展開/折りたたみ
-        if (content) { 
-          e.preventDefault(); 
-          e.stopPropagation(); 
-          parentLi.classList.toggle("collapsed"); 
-          parentLi.classList.toggle("expanded"); 
-        }
-      });
-    }
-    // ※ 7件制限（物理削除）のコードはページネーション側と重複するため、ここからは削除しました。
-  })();
+  /* 3. アーカイブウィジェット制御 ------------------------- */
+  // ※ この機能はBloggerテンプレート内のXML側に集約したため、外部JSからは削除しました。
 
   /* 4. 広告制御 (自動広告削除 & 遅延読み込み) -------------- */
   (function() {
@@ -361,7 +336,6 @@ document.addEventListener("DOMContentLoaded", function() {
     removeAds();
     new MutationObserver(removeAds).observe(document.body, { childList: true, subtree: true });
     
-    // AdSense遅延読み込み (あなたのIDを適宜書き換えてください)
     window.addEventListener("load", () => {
       setTimeout(() => {
         const ad = document.createElement("script"); ad.async = true;
@@ -371,19 +345,14 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   })();
 
-  /* 5. 画像・日付・タイピング・チャート (既存機能) -------- */
-  // (中略：以前のコードを統合)
-  // ※画像リサイズ、和風日付、レーダーチャート、タイピングタイトル等
-  
   /* 6. jQuery依存 (読了率・ラベル件数・タブ) -------------- */
   if (typeof jQuery !== 'undefined') {
     (function($) {
-      // ラベル件数
+      // ラベルリンクに7件制限を付与
       $('a[href*="/search/label/"]').each(function() {
         const base = $(this).attr("href").split('?')[0];
         $(this).attr("href", base + "?&max-results=7");
       });
-      // (中略：読了率、タブ機能)
     })(jQuery);
   }
 });
