@@ -5,6 +5,8 @@
 - **課題:** JSの文字列比較（`if` 文など）が一致しなくなり、ロジックが崩壊する。
 - **解決策:** `decodeURIComponent("%形式")` を使用。Bloggerのパーサーをスルーさせ、実行時にのみデコードする。
 
+！%EF%BC%81decodeURIComponent("%EF%BC%81")。%E3%80%82decodeURIComponent("%E3%80%82")、%E3%80%81decodeURIComponent("%E3%80%81")：%EF%BC%9AdecodeURIComponent("%EF%BC%9A")？%EF%BC%9FdecodeURIComponent("%EF%BC%9F")
+
 ## 2. 実装パターン
 ```javascript
 // ❌ NG (置換対象)
@@ -17,5 +19,3 @@ const msg = decodeURIComponent("%E5%AE%8C%E4%BA%86%EF%BC%81");
   error:   decodeURIComponent("%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%A7%E3%81%99%E3%80%82")
 };
 
-**Would you like me to...**
-このパターンをさらに「蹂躙」するために、**「全角記号を自動でこのdecodeURIComponent形式に一括置換する簡単なスクリプト」**も作成しましょうか？🚀🛡️💎✨
