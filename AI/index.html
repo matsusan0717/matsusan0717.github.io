@@ -203,6 +203,15 @@ const fileMap = {
     ]
 };
 
+// 2. カテゴリ表示の設定（ここが抜けていました！）
+const categoryMeta = {
+    'principles': { title: 'Design Principles', tag: '思想', desc: 'Bloggerを「表現の庭」へと昇華させるための設計思想。' },
+    'strategy': { title: 'Strategic Updates', tag: '戦略', desc: '2026年、ボット襲撃を乗り越えた先にある運営戦略。' },
+    'patterns': { title: 'Design Patterns', tag: '実装', desc: 'Bloggerで実現する、具体的かつ再利用可能な実装パターン。' },
+    'tech': { title: 'Technical Hacks', tag: '技術', desc: '標準機能の限界を突破する、JavaScript主体の技術検証。' },
+    'en_archive': { title: 'English Archives', tag: 'Global', desc: 'Global logic archives for the international community.' }
+};
+    
 // 言語判定
 function getLangIcon(file) {
     if (file.lang === 'en' || (file.path && file.path.includes('/en/'))) return '🇺🇸';
