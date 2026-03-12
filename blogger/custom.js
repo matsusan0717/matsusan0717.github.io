@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function() {
    ========================================================== */
 
 document.addEventListener("DOMContentLoaded", function() {
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbxW5Y9eiqkCMoZHPropEO9voGsyGJ16QhO4AZZfOT3N462_Vwf19ecpccHzoyuOl7vG4g/exec";
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbxS5Q2evDdaZ6D13BE3ikIeTMUEVsPlL6XtchE6VELFHu9OhmSYCJNXm6_onlrBna-G4w/exec";
   const BLOG_URL = 'https://blogger.matsusanjpn.com/';
   const EXCLUDE_PATH = "/p/";
   const circleNumbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩"];
