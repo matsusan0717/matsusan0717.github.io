@@ -20,4 +20,5 @@ In the Blogger XML environment, special characters are often auto-encoded (The "
 2. Ensure your `API_KEY` has the correct restrictions for your domain.
 
 ---
-**Back to [Matsusan's Digital Garden](https://blogger.matsusanjpn.com/)**
+**実装の軌跡（Bloggerカスタマイズ履歴）**
+[Blogger Customization History | Materiapollo](https://blogger.matsusanjpn.com/2026/03/blogger-customization-history.html)
