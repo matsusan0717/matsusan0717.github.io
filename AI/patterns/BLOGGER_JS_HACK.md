@@ -21,12 +21,8 @@
 
 ## 4. 管理戦略
 メッセージ群は定数オブジェクトに集約し、AIへのコンテキスト入力を効率化する。
-    const MSG = {
-      success: decodeURIComponent("%E5%AE%8C%E4%BA%86%EF%BC%81"),
-      error:   decodeURIComponent("%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%A7%E3%81%99%E3%80%82")
-    };
 
-## 2. 実装パターン
+## 5. 実装パターン
 ```javascript
 // ❌ NG (置換対象)
 const msg = "完了！";
