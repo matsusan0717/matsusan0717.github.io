@@ -193,6 +193,9 @@ const fileMap = {
     ],
     'tech': [
         { name: 'ページネーションハック', path: './tech/blogger-pagination.md' },
+    ],
+    'en_archive': [
+
     ]
 };
 
@@ -300,16 +303,37 @@ async function openMD(path) {
 
 function showFileList(category) {
     const content = document.getElementById('md-content');
-    let listHTML = `<h1 style="color:var(--accent-blue);">📂 ${category.toUpperCase()}</h1><ul style="list-style:none; padding:20px 0;">`;
-    fileMap[category].forEach(file => {
-        listHTML += `
-            <li style="margin-bottom:15px; border:1px solid #334155; border-radius:8px; background: rgba(255,255,255,0.03);">
-                <a href="javascript:void(0)" onclick="openMD('${file.path}')" style="font-size:1.1rem; text-decoration:none; color:var(--accent-green); display:block; padding:15px;">
-                    ${getLangIcon(file)} ${file.name}
-                </a>
-            </li>`;
-    });
-    content.innerHTML = listHTML + `</ul>`;
+    const files = fileMap[category];
+
+    // もし中身が空っぽ（[]）だった時の特別演出
+    if (!files || files.length === 0) {
+        content.innerHTML = `
+            <div style="text-align:center; padding:50px 20px;">
+                <h1 style="color:var(--accent-blue); font-size:3rem; margin-bottom:20px;">📡</h1>
+                <h2 style="color:var(--accent-green); letter-spacing:0.2em;">COMING SOON...</h2>
+                <p style="color:var(--text-sub); margin-top:20px;">
+                    このエリアは現在、情報の「防衛・整理」プロトコルが進行中です。<br>
+                    Global Archivesの公開まで、今しばらくお待ちください。
+                </p>
+                <div style="margin-top:30px; border-top:1px dashed #334155; padding-top:20px;">
+                    <code style="color:var(--accent-blue);">Status: Under Construction / Language: EN</code>
+                </div>
+            </div>`;
+    } else {
+        // 通常のリスト表示（既存のロジック）
+        let listHTML = `<h1 style="color:var(--accent-blue);">📂 ${category.toUpperCase()}</h1><ul style="list-style:none; padding:20px 0;">`;
+        files.forEach(file => {
+            listHTML += `
+                <li style="margin-bottom:15px; border:1px solid #334155; border-radius:8px; background: rgba(255,255,255,0.03);">
+                    <a href="javascript:void(0)" onclick="openMD('${file.path}')" style="font-size:1.1rem; text-decoration:none; color:var(--accent-green); display:block; padding:15px;">
+                        ${getLangIcon(file)} ${file.name}
+                    </a>
+                </li>`;
+        });
+        content.innerHTML = listHTML + `</ul>`;
+    }
+
+    // モーダルを表示する演出
     document.getElementById('md-modal').style.display = 'block';
     document.body.style.overflow = 'hidden';
     gsap.fromTo(".modal-content", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4 });
