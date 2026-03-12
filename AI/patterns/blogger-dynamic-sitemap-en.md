@@ -1,24 +1,29 @@
-# Dynamic Sitemap: Auto-Labeling Index Generator
+# Pattern: Dynamic Sitemap via Asynchronous Fetch
 
-A dynamic pattern that utilizes the Blogger API to automatically categorize and display all posts by labels. This implementation bridges the gap between Blogger's legacy structure and a modern, data-driven UX.
+## Challenges
+As a Blogger site grows, "past assets" tend to get buried under new content.
 
-## 🧠 Logic: The "Auto-Garden" Approach
-Instead of relying on standard Blogger lists, this pattern reconstructs data on the client-side to provide:
+- **Standard Limitations:** Labels and archive gadgets aren't enough to provide a bird's-eye view of the entire blog.
+- **Manual Overhead:** Manually updating a sitemap for every new post is inefficient and prone to errors.
+- **Fragmented UX:** Forcing users to click through multiple pages to find content discourages deep exploration.
 
-- **Zero Maintenance:** The sitemap updates automatically as you publish new posts.
-- **Label-First Navigation:** A structure that prioritizes user interest, grouping content into intuitive hierarchies.
-- **High-Speed Fetching:** Direct integration with Google Blogger API (v3) for real-time performance.
+## Implementation (What I Did)
+1. **Leveraging Blogger Feed API**
+   - Used JavaScript `fetch` to retrieve the site's RSS feed (`/feeds/posts/summary`).
+   - Built logic to handle metadata like titles, dates, and URLs for all posts as a consolidated data set.
 
-## 🛠 Technical Highlights
-- **Smart Thumbnail Extraction:** Uses a Regex-based logic to scavenge the first `<img>` tag from post content, ensuring a visual-rich index.
-- **Dynamic Grouping:** Implements a `labelMap` object to sort posts asynchronously, creating a structured H3-category layout.
-- **Blogger API v3 Integration:** Demonstrates how to handle `maxResults` and API key authentication within a serverless environment.
+2. **Dynamic Frontend Rendering**
+   - Iterated through the fetched data to dynamically generate HTML list elements (`<ul>`).
+   - Implemented sorting and grouping by labels to improve information architecture.
 
-## 🚨 Implementation Justice
-In the Blogger XML environment, special characters are often auto-encoded (The "Character Entity" Mire). To ensure this code works:
-1. Wrap the script properly or host it externally as `custom.js`.
-2. Ensure your `API_KEY` has the correct restrictions for your domain.
+3. **Lightweight Asynchronous Loading**
+   - Ensured the sitemap loads asynchronously to avoid blocking the main page rendering, providing a smooth user experience.
+
+## Insights (Why it Works)
+- **The "Self-Growing" Garden:** Once implemented, the sitemap grows automatically with every new post, requiring zero maintenance.
+- **Mapping Knowledge:** Visitors can instantly grasp the "landscape" of the blog, breathing new life into older articles.
+- **Visualizing Heritage:** Seeing a complete list of one's work serves as a powerful motivator and a clear record of the gardener's journey.
 
 ---
-**実装の軌跡（Bloggerカスタマイズ履歴）**
+**Back to the History:**
 [Blogger Customization History | Materiapollo](https://blogger.matsusanjpn.com/2026/03/blogger-customization-history.html)
