@@ -189,21 +189,21 @@ const fileMap = {
         { name: 'サイドバー・ウィジェット', path: './patterns/blogger-sidebar-widgets.md' },
         { name: 'ハイブリッド・コメントシステム', path: './patterns/blogger-hybrid-comment-system.md' },
         { name: '翻訳ページ遷移', path: './patterns/auto-translation.md' },
-        { name: 'サイトマップカテゴリ別', path: './patterns/blogger-dynamic-sitemap.md' }          
+        { name: 'サイトマップカテゴリ別', path: './patterns/blogger-dynamic-sitemap.md' }
     ],
     'tech': [
-        { name: 'ページネーションハック', path: './tech/blogger-pagination.md' },
+        { name: 'ページネーションハック', path: './tech/blogger-pagination.md' }
     ],
     'en_archive': [
-        { name: 'READ ME', path: './en/README-en.md' }, // リネームしたらここも README.md へ
+        { name: 'READ ME', path: './en/README-en.md' },
         { name: 'Definition of Quality', path: './en/principles/concept-of-quality.md' },
         { name: 'Development Attitude', path: './en/principles/development-attitude.md' },
         { name: '[Pattern] Auto Translation', path: './en/patterns/auto-translation.md' },
         { name: '[Pattern] Dynamic Sitemap', path: './en/patterns/blogger-dynamic-sitemap.md' }
-    ],
+    ]
 };
 
-// 2. カテゴリ表示の設定（ここが抜けていました！）
+// 2. カテゴリ表示の設定（これがないとカードが表示されません）
 const categoryMeta = {
     'principles': { title: 'Design Principles', tag: '思想', desc: 'Bloggerを「表現の庭」へと昇華させるための設計思想。' },
     'strategy': { title: 'Strategic Updates', tag: '戦略', desc: '2026年、ボット襲撃を乗り越えた先にある運営戦略。' },
