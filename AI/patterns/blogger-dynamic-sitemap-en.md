@@ -1,28 +1,25 @@
-# Pattern: Dynamic Sitemap via Asynchronous Fetch
+# Pattern: Dynamic Sitemap with Anchor-linked Navigation
 
 ## Challenges
-As a Blogger site grows, "past assets" tend to get buried under new content.
+As the number of posts grows, a simple list becomes an "information flood," making it harder for readers to find specific content.
 
-- **Standard Limitations:** Labels and archive gadgets aren't enough to provide a bird's-eye view of the entire blog.
-- **Manual Overhead:** Manually updating a sitemap for every new post is inefficient and prone to errors.
-- **Fragmented UX:** Forcing users to click through multiple pages to find content discourages deep exploration.
+- **Information Overload:** Listing everything in a flat structure obscures the big picture.
+- **Lack of Navigation:** No way to instantly jump to specific categories without reloading pages.
+- **Visual Clutter:** Poorly managed whitespace leads to reader fatigue.
 
 ## Implementation (What I Did)
-1. **Leveraging Blogger Feed API**
-   - Used JavaScript `fetch` to retrieve the site's RSS feed (`/feeds/posts/summary`).
-   - Built logic to handle metadata like titles, dates, and URLs for all posts as a consolidated data set.
-
-2. **Dynamic Frontend Rendering**
-   - Iterated through the fetched data to dynamically generate HTML list elements (`<ul>`).
-   - Implemented sorting and grouping by labels to improve information architecture.
-
-3. **Lightweight Asynchronous Loading**
-   - Ensured the sitemap loads asynchronously to avoid blocking the main page rendering, providing a smooth user experience.
+1. **Dynamic Navigation Layer**
+   - Extracted unique labels from the dataset and rendered them as an "Anchor Navigation" at the top of the page.
+2. **Anchor Jumping & Smooth Scrolling**
+   - Dynamically assigned IDs to `<h3>` headers and implemented `scroll-behavior: smooth` for a seamless user experience.
+3. **"Wabi-Sabi" Spacing Design**
+   - Fine-tuned `margin-top` and `margin-bottom` to balance the connection and independence of the navigation bar.
+   - Added `scroll-margin-top` to ensure headers don't stick too close to the browser edge after jumping.
 
 ## Insights (Why it Works)
-- **The "Self-Growing" Garden:** Once implemented, the sitemap grows automatically with every new post, requiring zero maintenance.
-- **Mapping Knowledge:** Visitors can instantly grasp the "landscape" of the blog, breathing new life into older articles.
-- **Visualizing Heritage:** Seeing a complete list of one's work serves as a powerful motivator and a clear record of the gardener's journey.
+- **Overview before Detail:** By providing a map (label list) before the terrain (post list), cognitive load is drastically reduced.
+- **The Beauty of Pixels:** Subtle adjustments to whitespace define the overall "class" and readability of the site.
+- **Autonomous Growth:** The system grows by itself—every new post automatically updates both the navigation and the list, creating a "self-sustaining garden."
 
 ---
 **Back to the History:**
