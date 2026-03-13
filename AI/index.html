@@ -1,25 +1,14 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blogger TIPS | Engineering Notes</title>
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@macco_tpd">
-    <meta name="twitter:title" content="Blogger TIPS: The Digital Garden Logic">
-    <meta name="twitter:description" content="Bloggerを『表現の庭』へと昇華させるための、設計思想とロジックのアーカイブ。">
-    <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEix8vsfWLoB9OSoWD4u80XIU5HMOn-RMvwJl7fv1AEDbN7uB3GaZV4-DxxZavjZtnaAb0uP0-Qvj5c0cdn1Xgt2oMLIACOka-weHelMFLJ8JFM0ZdgS6Yk3E-XYfG99dtBPSu-kTlcch_5-842Ci9bGXL-BoSFMi44uycbaXMw0Yi3LPxLrpEdQRX6h3vg/s1280/unnamed%20%2823%29.jpg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blogger TIPS | Engineering Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
 
-    <meta property="og:title" content="Blogger TIPS: The Digital Garden Logic" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://matsusan0717.github.io/AI/" />
-    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEix8vsfWLoB9OSoWD4u80XIU5HMOn-RMvwJl7fv1AEDbN7uB3GaZV4-DxxZavjZtnaAb0uP0-Qvj5c0cdn1Xgt2oMLIACOka-weHelMFLJ8JFM0ZdgS6Yk3E-XYfG99dtBPSu-kTlcch_5-842Ci9bGXL-BoSFMi44uycbaXMw0Yi3LPxLrpEdQRX6h3vg/s1280/unnamed%20%2823%29.jpg" />
-    <meta property="og:description" content="Bloggerを『表現の庭』へと昇華させるための、設計思想とロジックのアーカイブ。" />
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiHIUyTEaZevxc4f_lOfKGXneSJiqpcLyZxc3IStiiPjCbvZGBPEbnIfe1v42KKyHno_T0ey9fcUBHkURLD66jXgGfIYAxujDodOSQYRCQMrgQCsVdwqtFz341OmGVxgLJ-MtzMbKl1UPPsIV0e2fOozxpDsEEWjiZCTa7GYxYJDm56EhVUAwTGygJV7NY/s512/Kc57tD9d4zc8XzK1773302327_1773302338.png" type="image/png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <style>
         :root {
             --bg-dark: #0f172a;
             --card-bg: #1e293b;
@@ -146,17 +135,21 @@
         #md-content a { color: var(--accent-green); }
 
         footer { text-align: center; padding: 40px; color: var(--text-sub); font-size: 0.8rem; }
-    </style>
+
+</style>
 </head>
 <body>
 
 <header>
     <h1 class="hero-title">Blogger Engineering Notes</h1>
     <div id="typewriter" class="principles-typing"></div>
+    <!-- 言語切替ボタン -->
+    <div style="text-align:center; margin-top: 15px;">
+        <button id="lang-toggle" onclick="toggleLang()" style="padding:10px 20px; border-radius:20px; border:none; cursor:pointer; background:#334155; color:white;">日本語｜ENGLISH</button>
+    </div>
 </header>
 
-<main class="dashboard">
-    </main>
+<main class="dashboard"></main>
 
 <div id="md-modal">
     <div class="modal-content">
@@ -170,8 +163,8 @@
 </footer>
 
 <script>
-// 1. データ定義
-const fileMap = {
+// --- 1. 言語別ファイルマップ ---
+const fileMapJP = {
     'principles': [
         { name: '品質の定義（完成は静止画）', path: './principles/concept-of-quality.md' },
         { name: '庭師の開発スタンス', path: './principles/development-attitude.md' }
@@ -193,98 +186,92 @@ const fileMap = {
     ],
     'tech': [
         { name: 'ページネーションハック', path: './tech/blogger-pagination.md' }
-    ],
-    'en_archive': [
-        { name: 'READ ME', path: './en/README-en.md' },
-        { name: 'Definition of Quality', path: './en/principles/concept-of-quality-en.md' },
-        { name: 'Development Attitude', path: './en/principles/development-attitude-en.md' },
-        { name: '[Pattern] Auto Translation', path: './en/patterns/auto-translation-en.md' },
-        { name: '[Pattern] Dynamic Sitemap', path: './en/patterns/blogger-dynamic-sitemap-en.md' },
-        { name: '[Pattern] JS Hack', path: './en/patterns/BLOGGER_JS_HACK-en.md' }        
     ]
 };
 
-// 2. カテゴリ表示の設定（これがないとカードが表示されません）
-const categoryMeta = {
+const fileMapEN = {
+    'principles': [
+        { name: 'Definition of Quality', path: './en/principles/concept-of-quality-en.md' },
+        { name: 'Development Attitude', path: './en/principles/development-attitude-en.md' }
+    ],
+    'strategy': [
+        { name: 'READ ME', path: './en/README-en.md' }
+    ],
+    'patterns': [
+        { name: '[Pattern] JS Hack', path: './en/patterns/BLOGGER_JS_HACK-en.md' },
+        { name: '[Pattern] Custom Like Button', path: './en/patterns/blogger-custom-like-button-en.md' },
+        { name: '[Pattern] Dynamic Homepage', path: './en/patterns/blogger-dynamic-homepage-en.md' },
+        { name: '[Pattern] Infeed Card', path: './en/patterns/blogger-dynamic-infeed-card-en.md' },
+        { name: '[Pattern] Music Chart Generator', path: './en/patterns/blogger-music-chart-generator-en.md' },
+        { name: '[Pattern] Optimization Pattern', path: './en/patterns/blogger-optimization-pattern-en.md' },
+        { name: '[Pattern] Sidebar Widgets', path: './en/patterns/blogger-sidebar-widgets-en.md' },
+        { name: '[Pattern] Hybrid Comment System', path: './en/patterns/blogger-hybrid-comment-system-en.md' },
+        { name: '[Pattern] Auto Translation', path: './en/patterns/auto-translation-en.md' },
+        { name: '[Pattern] Dynamic Sitemap', path: './en/patterns/blogger-dynamic-sitemap-en.md' }
+    ],
+    'tech': [
+        { name: 'Pagination Hack', path: './en/tech/blogger-pagination-en.md' }
+    ]
+};
+
+// カテゴリメタ
+const categoryMetaJP = {
     'principles': { title: 'Design Principles', tag: '思想', desc: 'Bloggerを「表現の庭」へと昇華させるための設計思想。' },
     'strategy': { title: 'Strategic Updates', tag: '戦略', desc: '2026年、ボット襲撃を乗り越えた先にある運営戦略。' },
     'patterns': { title: 'Design Patterns', tag: '実装', desc: 'Bloggerで実現する、具体的かつ再利用可能な実装パターン。' },
-    'tech': { title: 'Technical Hacks', tag: '技術', desc: '標準機能の限界を突破する、JavaScript主体の技術検証。' },
-    'en_archive': { title: 'English Archives', tag: 'Global', desc: 'Global logic archives for the international community.' }
+    'tech': { title: 'Technical Hacks', tag: '技術', desc: '標準機能の限界を突破する、JavaScript主体の技術検証。' }
 };
-    
-// 言語判定
-function getLangIcon(file) {
-    if (file.lang === 'en' || (file.path && file.path.includes('/en/'))) return '🇺🇸';
-    return '🇯🇵';
+const categoryMetaEN = {
+    'principles': { title: 'Design Principles', tag: 'Principles', desc: 'Archives of design principles for Blogger.' },
+    'strategy': { title: 'Strategic Updates', tag: 'Strategy', desc: 'Operational strategies in 2026.' },
+    'patterns': { title: 'Design Patterns', tag: 'Patterns', desc: 'Reusable implementation patterns for Blogger.' },
+    'tech': { title: 'Technical Hacks', tag: 'Tech', desc: 'Technical hacks and JS experiments.' }
+};
+
+// 言語管理
+let currentLang = 'JP';
+function toggleLang() {
+    currentLang = currentLang === 'JP' ? 'EN' : 'JP';
+    renderDashboard();
 }
 
-const allFiles = Object.entries(fileMap).flatMap(([category, files]) => 
-    files.map(f => ({ ...f, category }))
-);
-const recentFiles = allFiles.slice(-3).reverse(); 
+// --- 2. ダッシュボード描画 ---
+function getLangIcon(file) {
+    return (currentLang === 'EN') ? '🇺🇸' : '🇯🇵';
+}
 
 function renderDashboard() {
     const container = document.querySelector('.dashboard');
     container.innerHTML = ''; 
 
-    // A. 最新の防衛記録
+    const activeMap = currentLang === 'JP' ? fileMapJP : fileMapEN;
+    const activeMeta = currentLang === 'JP' ? categoryMetaJP : categoryMetaEN;
+
+    const allFiles = Object.entries(activeMap).flatMap(([cat, files]) => files.map(f => ({...f, category: cat})));
+    const recentFiles = allFiles.slice(-3).reverse();
+
+    // 最新カード
     let recentHTML = `
         <div class="card recent-card" style="grid-column: 1 / -1; border-color: var(--accent-green); background: rgba(74, 222, 128, 0.05);">
             <span class="tag" style="background: var(--accent-green); color: var(--bg-dark);">NEW UPDATES</span>
             <h2>📡 最近の防衛記録</h2>
             <div style="display: flex; gap: 15px; margin-top: 15px; overflow-x: auto; padding-bottom: 10px;">
-                ${recentFiles.map(f => `
-                    <button onclick="openMD('${f.path}')" style="background: #334155; color: white; border: 1px solid var(--accent-green); padding: 10px 20px; border-radius: 20px; cursor: pointer; white-space: nowrap; transition: 0.3s;" onmouseover="this.style.background='var(--accent-green)';this.style.color='var(--bg-dark)'" onmouseout="this.style.background='#334155';this.style.color='white'">
-                        ${getLangIcon(f)} ${f.name}
-                    </button>
-                `).join('')}
+                ${recentFiles.map(f => `<button onclick="openMD('${f.path}')" style="background:#334155;color:white;border:1px solid var(--accent-green);padding:10px 20px;border-radius:20px;cursor:pointer;white-space:nowrap;transition:0.3s;" onmouseover="this.style.background='var(--accent-green)';this.style.color='var(--bg-dark)'" onmouseout="this.style.background='#334155';this.style.color='white'">${getLangIcon(f)} ${f.name}</button>`).join('')}
             </div>
         </div>`;
     container.insertAdjacentHTML('beforeend', recentHTML);
 
-    // B. 各カテゴリカード
-    Object.keys(fileMap).forEach(cat => {
-        const meta = categoryMeta[cat];
-        let cardHTML = `
-            <div class="card" onclick="showFileList('${cat}')">
-                <span class="tag">${meta.tag}</span>
-                <h2>${meta.title}</h2>
-                <p>${meta.desc}</p>
-            </div>`;
+    // カテゴリカード
+    Object.keys(activeMap).forEach(cat => {
+        const meta = activeMeta[cat];
+        let cardHTML = `<div class="card" onclick="showFileList('${cat}')"><span class="tag">${meta.tag}</span><h2>${meta.title}</h2><p>${meta.desc}</p></div>`;
         container.insertAdjacentHTML('beforeend', cardHTML);
     });
 }
 
 renderDashboard();
 
-// 演出
-const phrases = ["完成は静止画である。", "デザインとUXの等価交換。", "実装正義：動けばヨシ！", "Blogger Engineering Notes V1.1"];
-let phraseIdx = 0;
-function updateTypewriter() {
-    const typewriter = document.getElementById('typewriter');
-    if(typewriter) {
-        typewriter.innerText = phrases[phraseIdx % phrases.length];
-        gsap.fromTo("#typewriter", { opacity: 0 }, { opacity: 1, duration: 1 });
-        phraseIdx++;
-    }
-}
-setInterval(updateTypewriter, 4000);
-updateTypewriter();
-
-document.addEventListener('mousemove', (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 10;
-    const y = (e.clientY / window.innerHeight - 0.5) * 10;
-    gsap.to(".card", { rotationY: x, rotationX: -y, duration: 0.5, ease: "power1.out" });
-});
-
-function closeModal() {
-    document.body.style.overflow = 'auto';
-    gsap.to(".modal-content", { y: 50, opacity: 0, duration: 0.3, onComplete: () => {
-        document.getElementById('md-modal').style.display = 'none';
-    }});
-}
-
+// --- 3. モーダル／カード演出は既存コード流用 ---
 async function openMD(path) {
     const modal = document.getElementById('md-modal');
     const content = document.getElementById('md-content');
@@ -304,44 +291,47 @@ async function openMD(path) {
 }
 
 function showFileList(category) {
+    const activeMap = currentLang === 'JP' ? fileMapJP : fileMapEN;
+    const files = activeMap[category];
     const content = document.getElementById('md-content');
-    const files = fileMap[category];
 
-    // もし中身が空っぽ（[]）だった時の特別演出
     if (!files || files.length === 0) {
-        content.innerHTML = `
-            <div style="text-align:center; padding:50px 20px;">
-                <h1 style="color:var(--accent-blue); font-size:3rem; margin-bottom:20px;">📡</h1>
-                <h2 style="color:var(--accent-green); letter-spacing:0.2em;">COMING SOON...</h2>
-                <p style="color:var(--text-sub); margin-top:20px;">
-                    このエリアは現在、情報の「防衛・整理」プロトコルが進行中です。<br>
-                    Global Archivesの公開まで、今しばらくお待ちください。
-                </p>
-                <div style="margin-top:30px; border-top:1px dashed #334155; padding-top:20px;">
-                    <code style="color:var(--accent-blue);">Status: Under Construction / Language: EN</code>
-                </div>
-            </div>`;
+        content.innerHTML = `<div style="text-align:center; padding:50px 20px;"><h2>COMING SOON...</h2></div>`;
     } else {
-        // 通常のリスト表示（既存のロジック）
-        let listHTML = `<h1 style="color:var(--accent-blue);">📂 ${category.toUpperCase()}</h1><ul style="list-style:none; padding:20px 0;">`;
-        files.forEach(file => {
-            listHTML += `
-                <li style="margin-bottom:15px; border:1px solid #334155; border-radius:8px; background: rgba(255,255,255,0.03);">
-                    <a href="javascript:void(0)" onclick="openMD('${file.path}')" style="font-size:1.1rem; text-decoration:none; color:var(--accent-green); display:block; padding:15px;">
-                        ${getLangIcon(file)} ${file.name}
-                    </a>
-                </li>`;
+        let listHTML = `<h1>${category.toUpperCase()}</h1><ul style="list-style:none; padding:20px 0;">`;
+        files.forEach(f => {
+            listHTML += `<li style="margin-bottom:15px;border:1px solid #334155;border-radius:8px;background: rgba(255,255,255,0.03);">
+                <a href="javascript:void(0)" onclick="openMD('${f.path}')" style="font-size:1.1rem;text-decoration:none;color:var(--accent-green);display:block;padding:15px;">
+                ${getLangIcon(f)} ${f.name}</a></li>`;
         });
-        content.innerHTML = listHTML + `</ul>`;
+        content.innerHTML = listHTML + '</ul>';
     }
-
-    // モーダルを表示する演出
     document.getElementById('md-modal').style.display = 'block';
     document.body.style.overflow = 'hidden';
     gsap.fromTo(".modal-content", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4 });
 }
 
-window.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); });
+function closeModal() {
+    document.body.style.overflow = 'auto';
+    gsap.to(".modal-content", { y: 50, opacity: 0, duration: 0.3, onComplete: () => { document.getElementById('md-modal').style.display = 'none'; }});
+}
+
+document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); });
+
+// --- タイプライター演出 ---
+const phrases = ["完成は静止画である。", "デザインとUXの等価交換。", "実装正義：動けばヨシ！", "Blogger Engineering Notes V1.1"];
+let phraseIdx = 0;
+function updateTypewriter() {
+    const typewriter = document.getElementById('typewriter');
+    if(typewriter) {
+        typewriter.innerText = phrases[phraseIdx % phrases.length];
+        gsap.fromTo("#typewriter", { opacity: 0 }, { opacity: 1, duration: 1 });
+        phraseIdx++;
+    }
+}
+setInterval(updateTypewriter, 4000);
+updateTypewriter();
+
 </script>
 </body>
 </html>
