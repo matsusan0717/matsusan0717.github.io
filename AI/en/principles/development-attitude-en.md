@@ -7,6 +7,16 @@ Never sacrifice the intended experience for the sake of code brevity or "academi
 * **Embracing the Gritty Solution:** Be prouder of ten lines that work exactly as intended than one elegant line that doesn't.
 * **Co-creation with AI:** Leave complex refactoring (optimization) to the AI; focus your own energy on "Direction"—what needs to be achieved.
 
+### 🧩 My Philosophy: Building a Square (□) from Triangles (△)
+
+I am not a Web development professional, and I often encounter gaps in my technical knowledge. 
+However, I operate under a single guiding principle:
+
+> **"If you don't know how to make a square (□), but you know how to make a triangle (△), then combine those triangles to build your square."**
+
+Instead of chasing complex professional techniques, I focus on how to combine what I *currently know* to reach my goal. 
+The code and customizations in this repository are the results of this creative process—crafted through trial, error, and the innovative combination of simple parts to solve complex problems.
+
 ## 2. Viewing Blogger's Limits as "Edges of the Canvas"
 Treat the constraints of the Blogger platform not as "limitations," but as "rules that stimulate creativity."
 
