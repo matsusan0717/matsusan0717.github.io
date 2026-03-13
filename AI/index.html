@@ -21,7 +21,7 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            line-height: 1.8; /* 全体の行間を広く設定 */
+            line-height: 1.8;
         }
 
         .header {
@@ -116,7 +116,6 @@
             z-index: 1001;
         }
 
-        /* Markdownコンテンツ内の行間設定 */
         #md-content h1, #md-content h2, #md-content h3 { 
             border-bottom: 1px solid var(--border-color); 
             padding-bottom: 10px; 
@@ -126,7 +125,7 @@
         }
         #md-content p {
             margin-bottom: 1.5em;
-            line-height: 2.0; /* 本文の行間を特に広く */
+            line-height: 2.0;
         }
         #md-content li {
             margin-bottom: 0.8em;
@@ -181,23 +180,23 @@ const BASE_URL = "https://matsusan0717.github.io/";
 
 const fileMapJP = {
     'principles': [
-        { name: '品質の概念', path: BASE_URL + 'principles/concept-of-quality.md' },
-        { name: '開発姿勢', path: BASE_URL + 'principles/development-attitude.md' }
+        { name: '品質の概念', path: BASE_URL + 'AI/principles/concept-of-quality.md' },
+        { name: '開発姿勢', path: BASE_URL + 'AI/principles/development-attitude.md' }
     ],
     'patterns': [
-        { name: 'BLOGGER JS HACK', path: BASE_URL + 'patterns/BLOGGER_JS_HACK.md' },
-        { name: '自動翻訳の実装', path: BASE_URL + 'patterns/auto-translation.md' },
-        { name: 'カスタム「いいね」ボタン', path: BASE_URL + 'patterns/blogger-custom-like-button.md' },
-        { name: 'ダイナミックホームページ', path: BASE_URL + 'patterns/blogger-dynamic-homepage.md' },
-        { name: 'インフィードカード', path: BASE_URL + 'patterns/blogger-dynamic-infeed-card.md' },
-        { name: '動的サイトマップ', path: BASE_URL + 'patterns/blogger-dynamic-sitemap.md' },
-        { name: 'ハイブリッドコメントシステム', path: BASE_URL + 'patterns/blogger-hybrid-comment-system.md' },
-        { name: '音楽チャート生成', path: BASE_URL + 'patterns/blogger-music-chart-generator.md' },
-        { name: '最適化パターン', path: BASE_URL + 'patterns/blogger-optimization-pattern.md' },
-        { name: 'サイドバーウィジェット', path: BASE_URL + 'patterns/blogger-sidebar-widgets.md' }
+        { name: 'BLOGGER JS HACK', path: BASE_URL + 'AI/patterns/BLOGGER_JS_HACK.md' },
+        { name: '自動翻訳の実装', path: BASE_URL + 'AI/patterns/auto-translation.md' },
+        { name: 'カスタム「いいね」ボタン', path: BASE_URL + 'AI/patterns/blogger-custom-like-button.md' },
+        { name: 'ダイナミックホームページ', path: BASE_URL + 'AI/patterns/blogger-dynamic-homepage.md' },
+        { name: 'インフィードカード', path: BASE_URL + 'AI/patterns/blogger-dynamic-infeed-card.md' },
+        { name: '動的サイトマップ', path: BASE_URL + 'AI/patterns/blogger-dynamic-sitemap.md' },
+        { name: 'ハイブリッドコメントシステム', path: BASE_URL + 'AI/patterns/blogger-hybrid-comment-system.md' },
+        { name: '音楽チャート生成', path: BASE_URL + 'AI/patterns/blogger-music-chart-generator.md' },
+        { name: '最適化パターン', path: BASE_URL + 'AI/patterns/blogger-optimization-pattern.md' },
+        { name: 'サイドバーウィジェット', path: BASE_URL + 'AI/patterns/blogger-sidebar-widgets.md' }
     ],
     'tech': [
-        { name: 'ページネーション実装', path: BASE_URL + 'tech/blogger-pagination.md' }
+        { name: 'ページネーション実装', path: BASE_URL + 'AI/tech/blogger-pagination.md' }
     ],
     'readme': [
         { name: 'README (JP)', path: BASE_URL + 'README.md' }
