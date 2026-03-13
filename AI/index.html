@@ -160,56 +160,56 @@
 </div>
 
 <script>
-// --- データ定義 ---
-// 日本語版 (ルート直下の各フォルダ)
+const BASE_URL = "https://matsusan0717.github.io/";
+
+// --- データ定義 (絶対パス) ---
 const fileMapJP = {
     'principles': [
-        { name: '品質の概念', path: 'principles/concept-of-quality.md' },
-        { name: '開発姿勢', path: 'principles/development-attitude.md' }
+        { name: '品質の概念', path: BASE_URL + 'principles/concept-of-quality.md' },
+        { name: '開発姿勢', path: BASE_URL + 'principles/development-attitude.md' }
     ],
     'patterns': [
-        { name: 'BLOGGER JS HACK', path: 'patterns/BLOGGER_JS_HACK.md' },
-        { name: '自動翻訳の実装', path: 'patterns/auto-translation.md' },
-        { name: 'カスタム「いいね」ボタン', path: 'patterns/blogger-custom-like-button.md' },
-        { name: 'ダイナミックホームページ', path: 'patterns/blogger-dynamic-homepage.md' },
-        { name: 'インフィードカード', path: 'patterns/blogger-dynamic-infeed-card.md' },
-        { name: '動的サイトマップ', path: 'patterns/blogger-dynamic-sitemap.md' },
-        { name: 'ハイブリッドコメントシステム', path: 'patterns/blogger-hybrid-comment-system.md' },
-        { name: '音楽チャート生成', path: 'patterns/blogger-music-chart-generator.md' },
-        { name: '最適化パターン', path: 'patterns/blogger-optimization-pattern.md' },
-        { name: 'サイドバーウィジェット', path: 'patterns/blogger-sidebar-widgets.md' }
+        { name: 'BLOGGER JS HACK', path: BASE_URL + 'patterns/BLOGGER_JS_HACK.md' },
+        { name: '自動翻訳の実装', path: BASE_URL + 'patterns/auto-translation.md' },
+        { name: 'カスタム「いいね」ボタン', path: BASE_URL + 'patterns/blogger-custom-like-button.md' },
+        { name: 'ダイナミックホームページ', path: BASE_URL + 'patterns/blogger-dynamic-homepage.md' },
+        { name: 'インフィードカード', path: BASE_URL + 'patterns/blogger-dynamic-infeed-card.md' },
+        { name: '動的サイトマップ', path: BASE_URL + 'patterns/blogger-dynamic-sitemap.md' },
+        { name: 'ハイブリッドコメントシステム', path: BASE_URL + 'patterns/blogger-hybrid-comment-system.md' },
+        { name: '音楽チャート生成', path: BASE_URL + 'patterns/blogger-music-chart-generator.md' },
+        { name: '最適化パターン', path: BASE_URL + 'patterns/blogger-optimization-pattern.md' },
+        { name: 'サイドバーウィジェット', path: BASE_URL + 'patterns/blogger-sidebar-widgets.md' }
     ],
     'tech': [
-        { name: 'ページネーション実装', path: 'tech/blogger-pagination.md' }
+        { name: 'ページネーション実装', path: BASE_URL + 'tech/blogger-pagination.md' }
     ],
     'readme': [
-        { name: 'README (JP)', path: 'README.md' }
+        { name: 'README (JP)', path: BASE_URL + 'README.md' }
     ]
 };
 
-// 英語版 (AI/en/ 以下の各フォルダ)
 const fileMapEN = {
     'principles': [
-        { name: 'Concept of Quality', path: 'AI/en/principles/concept-of-quality-en.md' },
-        { name: 'Development Attitude', path: 'AI/en/principles/development-attitude-en.md' }
+        { name: 'Concept of Quality', path: BASE_URL + 'AI/en/principles/concept-of-quality-en.md' },
+        { name: 'Development Attitude', path: BASE_URL + 'AI/en/principles/development-attitude-en.md' }
     ],
     'patterns': [
-        { name: 'BLOGGER JS HACK', path: 'https://matsusan0717.github.io/AI/en/patterns/BLOGGER_JS_HACK-en.md' },
-        { name: 'Auto Translation', path: 'https://matsusan0717.github.io/AI/en/patterns/auto-translation-en.md' },
-        { name: 'Custom Like Button', path: 'https://matsusan0717.github.io/AI/en/patterns/blogger-custom-like-button-en.md' },
-        { name: 'Dynamic Homepage', path: 'https://matsusan0717.github.io/AI/en/patterns/blogger-dynamic-homepage-en.md' },
-        { name: 'Dynamic Infeed Card', path: 'https://matsusan0717.github.io/AI/en/patterns/blogger-dynamic-infeed-card-en.md' },
-        { name: 'Dynamic Sitemap', path: 'https://matsusan0717.github.io/AI/en/patterns/blogger-dynamic-sitemap-en.md' },
-        { name: 'Hybrid Comment System', path: 'https://matsusan0717.github.io/AI/en/patterns/blogger-hybrid-comment-system-en.md' },
-        { name: 'Music Chart Generator', path: 'https://matsusan0717.github.io/AI/en/patterns/blogger-music-chart-generator-en.md' },
-        { name: 'Optimization Pattern', path: 'https://matsusan0717.github.io/AI/en/patterns/blogger-optimization-pattern-en.md' },
-        { name: 'Sidebar Widgets', path: 'https://matsusan0717.github.io/AI/en/patterns/blogger-sidebar-widgets-en.md' }
+        { name: 'BLOGGER JS HACK', path: BASE_URL + 'AI/en/patterns/BLOGGER_JS_HACK-en.md' },
+        { name: 'Auto Translation', path: BASE_URL + 'AI/en/patterns/auto-translation-en.md' },
+        { name: 'Custom Like Button', path: BASE_URL + 'AI/en/patterns/blogger-custom-like-button-en.md' },
+        { name: 'Dynamic Homepage', path: BASE_URL + 'AI/en/patterns/blogger-dynamic-homepage-en.md' },
+        { name: 'Dynamic Infeed Card', path: BASE_URL + 'AI/en/patterns/blogger-dynamic-infeed-card-en.md' },
+        { name: 'Dynamic Sitemap', path: BASE_URL + 'AI/en/patterns/blogger-dynamic-sitemap-en.md' },
+        { name: 'Hybrid Comment System', path: BASE_URL + 'AI/en/patterns/blogger-hybrid-comment-system-en.md' },
+        { name: 'Music Chart Generator', path: BASE_URL + 'AI/en/patterns/blogger-music-chart-generator-en.md' },
+        { name: 'Optimization Pattern', path: BASE_URL + 'AI/en/patterns/blogger-optimization-pattern-en.md' },
+        { name: 'Sidebar Widgets', path: BASE_URL + 'AI/en/patterns/blogger-sidebar-widgets-en.md' }
     ],
     'tech': [
-        { name: 'Pagination Hacks', path: 'https://matsusan0717.github.io/AI/en/tech/blogger-pagination-en.md' }
+        { name: 'Pagination Hacks', path: BASE_URL + 'AI/en/tech/blogger-pagination-en.md' }
     ],
     'readme': [
-        { name: 'README (EN)', path: 'https://matsusan0717.github.io/AI/en/README-en.md' }
+        { name: 'README (EN)', path: BASE_URL + 'AI/en/README-en.md' }
     ]
 };
 
@@ -262,7 +262,7 @@ async function openMD(path) {
         content.innerHTML = marked.parse(text);
         modal.scrollTop = 0;
     } catch(e) {
-        content.innerHTML = `<h1>404 Not Found</h1><p style="word-break: break-all;">Path: ${path}</p><p>リポジトリ構造とパスが一致しているか確認してください。</p>`;
+        content.innerHTML = `<h1>404 Not Found</h1><p style="word-break: break-all;">Target URL: ${path}</p><p>絶対パスを確認してください。</p>`;
     }
 }
 
@@ -315,7 +315,7 @@ document.addEventListener('keydown', (e)=>{
     if(e.key==="Escape") closeModalWithStack();
 });
 
-const phrases = ["完成は静止画である。","デザインとUXの等価交換。","実装正義：動けばヨシ！","GitHub Engineering Notes V1.2"];
+const phrases = ["完成は静止画である。","デザインとUXの等価交換。","実装正義：動けばヨシ！","GitHub Engineering Notes V1.3"];
 let phraseIdx=0;
 function updateTypewriter(){
     const typewriter = document.getElementById('typewriter');
