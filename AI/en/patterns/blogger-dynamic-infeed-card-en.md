@@ -1,68 +1,45 @@
-# Blogger Portal Transformation: Dynamic UI & Portal Strategy
+# Pattern: Dynamic In-feed Cards using Blogger JSON Feed
 
-This document outlines the strategy for transforming the standard Blogger index page into a high-end, dynamic portal using GSAP and custom JavaScript logic.
+## Issues
 
-## 1. Core Concept
+The following problems occur when trying to guide readers to the next article after they finish reading:
 
-*   **Problem:** Standard Blogger index pages are static chronological lists, leading to low "freshness" for returning visitors and a lack of information hierarchy.
+*   **Obsolescence of Static Links**: Manually placed related article links tend to become "old information" over time.
     
-*   **Solution:** Implement a "Portal UI" that prioritizes key content through dynamic hero units and interactive sliders, breaking the linear CMS constraint.
+*   **Design Mismatch**: Standard Blogger related post widgets offer low design flexibility, making it difficult to match the tone and manner of the article body.
     
-*   **Impact:** Activates the "Long Tail" of older content and significantly reduces bounce rates by providing an immersive experience.
-    
-
-## 2. Implementation Pillars
-
-### A. Random Hero Unit (The Expectation Manager)
-
-Instead of a fixed header, a random selection logic is used to present different featured content upon each refresh.
-
-*   **Dynamic Lottery:** JavaScript selects a "winner" from multiple `.random-unit` elements.
-    
-*   **Geometric Impact:** Using `clip-path: polygon()` to create diagonal, modern layouts that break the traditional grid.
+*   **Maintenance Cost**: It is unrealistic to update links in past articles every time a new post is written.
     
 
-### B. High-End Interactive Slider (Powered by GSAP)
+## Implementation (Practice)
 
-Utilizing the GreenSock Animation Platform (GSAP) to create professional-grade motion graphics within the Blogger template.
+### 1. Asynchronous Utilization of Blogger Feed API
 
-*   **Asynchronous Rendering:** Data is handled as an array in JavaScript, with DOM elements generated dynamically. Includes a preloader that waits for image assets.
-    
-*   **Timeline Control:** Precise 0.1s-level control over card movement, scaling, and z-index transitions.
-    
-*   **UX-Focused Navigation:** Implements `handleNav` logic to reset auto-play timers upon user interaction, preventing intrusive movement.
-    
+Leveraged Blogger's hidden powerful feature, `feeds/posts/default?alt=json-in-script`, to fetch data on the client side.
 
-### C. Dynamic In-Feed Cards (Blogger JSON Feed API)
-
-Using the hidden power of Blogger’s feed API to inject fresh, dynamic content recommendations within the article body.
-
-*   **Real-time Feed Retrieval:** Fetches data via `feeds/posts/default?alt=json-in-script` to bypass static link limitations. Use of timestamps prevents cache-related stale data.
+*   **Random Extraction of Latest Articles**: Randomly selects one post from the latest 10 (`max-results=10`) using JavaScript. This prevents returning visitors from getting bored by changing the suggestion each time.
     
-*   **Modern Skewed UI:** Employs CSS `transform: skewX()` and `row-reverse` layouts to create a rhythmic visual break that contrasts with standard post body text.
-    
-*   **Image Optimization Logic:** Dynamically swaps low-res thumbnails for high-quality versions (w600) using regex: `.replace(/\/s[0-9]+(-c)?/, '/w600')`.
+*   **Cache Avoidance**: Appends a timestamp (`t=${new Date().getTime()}`) to the end of the URL to ensure the latest feed information is always retrieved.
     
 
-### D. Media & Context Integration
+### 2. Modern UI with "Diagonal Cuts"
 
-Integrating external platforms like Spotify to add a "lifestyle" dimension to the technical/textual content.
+A design that stands out from existing templates by using CSS `transform: skewX()`.
 
-## 3. Implementation Matrix
-
-| Feature         | Technology                     | Benefit                                                      |
-|-----------------|--------------------------------|--------------------------------------------------------------|
-| Dynamic Hero     | JavaScript Random Logic        | Increases site "freshness" and re-activates old posts       |
-| Advanced Motion  | GSAP (GreenSock)              | High-end, interactive UI comparable to Headless CMS         |
-| Layout Design    | CSS `clip-path` / `skewX`     | Breaks visual boredom and creates modern rhythm             |
-| Content Feed     | Blogger JSON Feed API          | Decouples content and ensures "evergreen" internal linking  |
-
-## 4. Why This Works (Insights)
-
-*   **Discovery by Chance:** Random features re-surface high-quality past articles that would otherwise be buried in the archives.
+*   **Responsive Transform**: Switches between vertical stacking on mobile and horizontal stacking using `row-reverse` on PC. On PC, the background of the text area is cut diagonally, creating rhythm at the boundary with the image.
     
-*   **Automated Freshness:** Once the script is set, new articles automatically flow into in-feed cards, keeping internal pathways alive without manual maintenance.
+*   **Image High-Quality Processing**: Uses regular expressions (`.replace(/\/s[0-9]+(-c)?/, '/w600')`) to dynamically replace Blogger thumbnail URLs with clear, high-quality images (`w600`).
     
-*   **Experience Over Reading:** Moving sliders, skewed designs, and integrated music transform the site from a "document to read" into an "experience to visit."
+
+### 3. Context-Preserving Snippet Generation
+
+*   **Clean Summaries**: Completely removes HTML tags using regular expressions to extract pure text only. Displays readable snippets that feel natural even when placed within the article body.
     
-*   **Platform Potential:** Demonstrates that even with a restricted platform like Blogger, combining external libraries (GSAP) with creative CSS and Feed APIs can achieve total UI freedom.
+
+## Why it Works (Insights)
+
+*   **Automatic Freshness of Internal Links**: Once the script is installed, new articles automatically flow as in-feed content, ensuring the path from old articles to the latest ones never dies.
+    
+*   **Visual "Breather"**: In long articles, inserting a sophisticatedly designed card heals the reader's visual fatigue and guides their gaze to the next point of interest.
+    
+*   **Safety within the Domain**: Since no external recommendation widgets are used, it is completely unaffected by privacy policy concerns or external server downtime.
