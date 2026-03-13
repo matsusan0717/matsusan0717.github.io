@@ -29,84 +29,12 @@ const msg = decodeURIComponent("%E5%AE%8C%E4%BA%86%EF%BC%81"); // "完了！"
 
 ## 3. Translation Matrix (Standard Armament)
 
-| 
-Symbol
-
- | 
-
-URI Encoded
-
- | 
-
-Implementation Example
-
- |
-| --- | --- | --- |
-| 
-
-！ (Full-width Exclamation)
-
- | 
-
-%EF%BC%81
-
- | 
-
-`decodeURIComponent("%EF%BC%81")`
-
- |
-| 
-
-。 (Japanese Period)
-
- | 
-
-%E3%80%82
-
- | 
-
-`decodeURIComponent("%E3%80%82")`
-
- |
-| 
-
-、 (Japanese Comma)
-
- | 
-
-%E3%80%81
-
- | 
-
-`decodeURIComponent("%E3%80%81")`
-
- |
-| 
-
-： (Full-width Colon)
-
- | 
-
-%EF%BC%9A
-
- | 
-
-`decodeURIComponent("%EF%BC%9A")`
-
- |
-| 
-
-？ (Full-width Question)
-
- | 
-
-%EF%BC%9F
-
- | 
-
-`decodeURIComponent("%EF%BC%9F")`
-
- |
+| 記号 | URIエンコード | 実装コード例 |
+| :--- | :--- | :--- |
+| ！ | %EF%BC%81 | decodeURIComponent("%EF%BC%81") |
+| 。 | %E3%80%82 | decodeURIComponent("%E3%80%82") |
+| 、 | %E3%80%81 | decodeURIComponent("%E3%80%81") |
+| ： | %EF%BC%9A | decodeURIComponent("%EF%BC%9A") |
 
 ## 4. Management Strategy
 
