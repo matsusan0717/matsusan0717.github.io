@@ -160,7 +160,7 @@
 </div>
 
 <script>
-// --- データ定義 (全ディレクトリ構造を反映) ---
+// --- データ定義 (修正済みパス) ---
 const fileMapJP = {
     'principles': [
         { name: '品質の概念', path: 'principles/concept-of-quality.md' },
@@ -260,7 +260,7 @@ async function openMD(path) {
         content.innerHTML = marked.parse(text);
         modal.scrollTop = 0;
     } catch(e) {
-        content.innerHTML = `<h1>404 Not Found</h1><p>Path: ${path}</p>`;
+        content.innerHTML = `<h1>404 Not Found</h1><p style="word-break: break-all;">Path: ${path}</p><p>リポジトリ構造とパスが一致しているか確認してください。</p>`;
     }
 }
 
@@ -313,7 +313,7 @@ document.addEventListener('keydown', (e)=>{
     if(e.key==="Escape") closeModalWithStack();
 });
 
-const phrases = ["完成は静止画である。","デザインとUXの等価交換。","実装正義：動けばヨシ！","GitHub Engineering Notes V1.1"];
+const phrases = ["完成は静止画である。","デザインとUXの等価交換。","実装正義：動けばヨシ！","GitHub Engineering Notes V1.2"];
 let phraseIdx=0;
 function updateTypewriter(){
     const typewriter = document.getElementById('typewriter');
