@@ -21,6 +21,7 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 20px;
+            line-height: 1.8; /* 全体の行間を広く設定 */
         }
 
         .header {
@@ -71,12 +72,13 @@
         .card h2 {
             margin: 15px 0 10px;
             font-size: 1.4rem;
+            line-height: 1.3;
         }
 
         .card p {
             color: #8b949e;
             font-size: 0.9rem;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         #md-modal {
@@ -114,11 +116,26 @@
             z-index: 1001;
         }
 
-        #md-content h1 { border-bottom: 1px solid var(--border-color); padding-bottom: 10px; color: var(--accent-green); }
+        /* Markdownコンテンツ内の行間設定 */
+        #md-content h1, #md-content h2, #md-content h3 { 
+            border-bottom: 1px solid var(--border-color); 
+            padding-bottom: 10px; 
+            color: var(--accent-green);
+            line-height: 1.4;
+            margin-top: 2em;
+        }
+        #md-content p {
+            margin-bottom: 1.5em;
+            line-height: 2.0; /* 本文の行間を特に広く */
+        }
+        #md-content li {
+            margin-bottom: 0.8em;
+            line-height: 1.8;
+        }
         #md-content a { color: var(--accent-green); }
         #md-content code { background: #21262d; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
-        #md-content pre { background: #21262d; padding: 15px; border-radius: 8px; overflow-x: auto; }
-        #md-content blockquote { border-left: 4px solid var(--border-color); padding-left: 15px; color: #8b949e; }
+        #md-content pre { background: #21262d; padding: 15px; border-radius: 8px; overflow-x: auto; line-height: 1.4; }
+        #md-content blockquote { border-left: 4px solid var(--border-color); padding-left: 15px; color: #8b949e; font-style: italic; }
 
         .lang-toggle {
             position: fixed;
@@ -162,7 +179,6 @@
 <script>
 const BASE_URL = "https://matsusan0717.github.io/";
 
-// --- データ定義 (絶対パス) ---
 const fileMapJP = {
     'principles': [
         { name: '品質の概念', path: BASE_URL + 'principles/concept-of-quality.md' },
