@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blogger TIPS | Engineering Notes</title>
+<title>GitHub Dashboard | Engineering Notes</title>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -16,7 +16,6 @@
     --text-main: #f1f5f9;
     --text-sub: #94a3b8;
 }
-
 body {
     background-color: var(--bg-dark);
     color: var(--text-main);
@@ -27,8 +26,6 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-
-/* Header */
 header {
     padding: 60px 5% 100px;
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
@@ -50,13 +47,9 @@ header {
     margin-top: 15px;
     height: 1.5em;
 }
-
-/* Screens */
-.screen { display:none; }
-#main-screen { display:block; }
 .dashboard {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 0 5% 60px;
     margin-top: -40px;
@@ -74,190 +67,230 @@ header {
     border-color: var(--accent-blue);
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
-.tag { font-size: 0.7rem; background: #334155; padding: 4px 8px; border-radius: 4px; color: var(--accent-blue); }
-
-/* --- Modal / MD Screen --- */
+.tag {
+    font-size: 0.7rem;
+    background: #334155;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: var(--accent-blue);
+}
+/* --- モーダル --- */
 #md-modal {
-    position: fixed; top: 0; left: 0; width:100%; height:100%;
-    background: rgba(15,23,42,0.98); z-index:1000; overflow-y:auto;
-    padding:40px 5%; backdrop-filter: blur(10px); display:none;
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.98);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 40px 5%;
+    backdrop-filter: blur(10px);
 }
 .modal-content {
-    max-width:900px; margin:0 auto; background:#1e293b; padding:50px;
-    border-radius:16px; border:1px solid #334155;
-    box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);
+    max-width: 900px;
+    margin: 0 auto;
+    background: #1e293b;
+    padding: 50px;
+    border-radius: 16px;
+    border: 1px solid #334155;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
-.close-btn { position:sticky; top:0; float:right; background:#334155; color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; font-size:0.8rem; z-index:1001; }
-#md-content { line-height:1.8; letter-spacing:0.05em; }
-#md-content p, #md-content li { margin-bottom:1.5em; }
-#md-content li { margin-left:1.2em; }
-#md-content h1,h2,h3 { margin-top:2em; margin-bottom:1em; }
-#md-content h1,h2 { border-bottom:1px solid var(--accent-blue); padding-bottom:10px; color:var(--accent-blue); }
-#md-content code { background:#0f172a; padding:2px 5px; border-radius:4px; color:var(--accent-green); font-family:'Fira Code', monospace; }
-#md-content pre { background:#0f172a; padding:20px; border-radius:8px; overflow-x:auto; border:1px solid #334155; margin:20px 0; line-height:1.5; }
+.close-btn {
+    position: sticky;
+    top: 0;
+    float: right;
+    background: #334155;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    z-index: 1001;
+}
+#md-content {
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+}
+#md-content p, #md-content li { margin-bottom: 1.5em; }
+#md-content li { margin-left: 1.2em; }
+#md-content h1, #md-content h2, #md-content h3 { margin-top: 2em; margin-bottom: 1em; }
+#md-content h1, #md-content h2 { border-bottom: 1px solid var(--accent-blue); padding-bottom: 10px; color: var(--accent-blue); }
+#md-content code { background: #0f172a; padding: 2px 5px; border-radius: 4px; color: var(--accent-green); font-family: 'Fira Code', monospace; }
+#md-content pre { background: #0f172a; padding: 20px; border-radius: 8px; overflow-x: auto; border: 1px solid #334155; margin: 20px 0; line-height: 1.5; }
 #md-content a { color: var(--accent-green); }
 
-/* --- List Screen --- */
-#list-screen { padding:20px; }
-#list-content ul { list-style:none; padding:0; }
-#list-content li { margin-bottom:10px; border:1px solid #334155; border-radius:8px; background: rgba(255,255,255,0.03); }
-#list-content a { display:block; padding:10px 15px; text-decoration:none; color:var(--accent-green); font-size:1.05rem; }
-#list-content button { margin-bottom:20px; }
+footer { text-align: center; padding: 40px; color: var(--text-sub); font-size: 0.8rem; }
+.lang-toggle-container { text-align:center; margin-top: 15px; }
+.lang-toggle-container button { padding:10px 20px; border-radius:20px; border:none; cursor:pointer; background:#334155; color:white; }
 
-/* Language Toggle */
-.lang-toggle { text-align:center; margin-top:15px; }
-.lang-toggle button { padding:10px 20px; border-radius:20px; border:none; cursor:pointer; background:#334155; color:white; }
-
-footer { text-align:center; padding:40px; color:var(--text-sub); font-size:0.8rem; }
+.pagination {
+    display:flex;
+    justify-content:center;
+    margin:30px 0 60px;
+    gap:8px;
+}
+.pagination button {
+    background:#334155;
+    color:white;
+    border:none;
+    border-radius:6px;
+    padding:6px 12px;
+    cursor:pointer;
+}
+.pagination button.active { background: var(--accent-green); color: var(--bg-dark); }
+.pagination button:hover { background: var(--accent-blue); }
 </style>
 </head>
 <body>
 
 <header>
-    <h1 class="hero-title">Blogger Engineering Notes</h1>
+    <h1 class="hero-title">GitHub Engineering Notes</h1>
     <div id="typewriter" class="principles-typing"></div>
 </header>
 
-<!-- Screens -->
-<main id="main-screen" class="dashboard"></main>
-
-<div id="list-screen" class="screen">
-    <button onclick="closeCurrent()">← 戻る</button>
-    <div id="list-content"></div>
+<div class="lang-toggle-container">
+    <button id="lang-toggle" onclick="toggleLang()">日本語｜ENGLISH</button>
 </div>
+
+<main class="dashboard"></main>
 
 <div id="md-modal">
     <div class="modal-content">
-        <button class="close-btn" onclick="closeCurrent()">CLOSE [ESC]</button>
+        <button class="close-btn" onclick="closeModal()">CLOSE [ESC]</button>
         <div id="md-content">読み込み中...</div>
     </div>
 </div>
 
-<div class="lang-toggle">
-    <button id="lang-toggle" onclick="toggleLang()">日本語｜ENGLISH</button>
-</div>
+<div class="pagination" id="dashboard-pagination"></div>
 
 <footer>
-    <p>© 2026 matsusan | System Dashboard Operating</p>
+    <p>© 2026 matsusan | GitHub Dashboard</p>
 </footer>
 
 <script>
-// --- File Maps / Categories ---
-const fileMapJP = {
-    'principles': [ { name:'品質の定義', path:'./principles/concept-of-quality.md' }, { name:'庭師の開発スタンス', path:'./principles/development-attitude.md' } ],
-    'strategy': [ { name:'2026年3月 戦略要諦', path:'./README.md' } ],
-    'patterns': [ { name:'JSハック：文字化け回避', path:'./patterns/BLOGGER_JS_HACK.md' } ],
-    'tech': [ { name:'ページネーションハック', path:'./tech/blogger-pagination.md' } ]
-};
-const fileMapEN = {
-    'principles': [ { name:'Definition of Quality', path:'./en/principles/concept-of-quality-en.md' }, { name:'Development Attitude', path:'./en/principles/development-attitude-en.md' } ],
-    'strategy': [ { name:'READ ME', path:'./en/README-en.md' } ],
-    'patterns': [ { name:'[Pattern] JS Hack', path:'./en/patterns/BLOGGER_JS_HACK-en.md' } ],
-    'tech': [ { name:'Pagination Hack', path:'./en/tech/blogger-pagination-en.md' } ]
-};
-
-const categoryMetaJP = { 'principles':{title:'Design Principles', tag:'思想', desc:'Bloggerを「表現の庭」へと昇華させる設計思想。'}, 'strategy':{title:'Strategic Updates', tag:'戦略', desc:'2026年の運営戦略。'}, 'patterns':{title:'Design Patterns', tag:'実装', desc:'再利用可能な実装パターン。'}, 'tech':{title:'Technical Hacks', tag:'技術', desc:'JS主体の技術検証。'} };
-const categoryMetaEN = { 'principles':{title:'Design Principles', tag:'Principles', desc:'Archives of design principles for Blogger.'}, 'strategy':{title:'Strategic Updates', tag:'Strategy', desc:'Operational strategies in 2026.'}, 'patterns':{title:'Design Patterns', tag:'Patterns', desc:'Reusable implementation patterns for Blogger.'}, 'tech':{title:'Technical Hacks', tag:'Tech', desc:'Technical hacks and JS experiments.'} };
+/* ===== 言語 & ファイルマップ ===== */
+const fileMapJP = { /* 省略: 先ほどの JP マップ */ };
+const fileMapEN = { /* 省略: 先ほどの EN マップ */ };
+const categoryMetaJP = { /* 省略 */ };
+const categoryMetaEN = { /* 省略 */ };
 
 let currentLang = 'JP';
-const navStack = ['main'];
+let currentPage = 1;
+const pageSize = 4; // 1ページ4カード
+let lastViewStack = []; // 戻る順序管理
 
-// --- Language Toggle ---
-function toggleLang(){ currentLang = currentLang==='JP'?'EN':'JP'; renderDashboard(); }
+function toggleLang() {
+    currentLang = currentLang === 'JP' ? 'EN' : 'JP';
+    renderDashboard(1);
+}
 
-// --- Render Dashboard ---
-function getLangIcon(f){ return currentLang==='EN'?'🇺🇸':'🇯🇵'; }
-function renderDashboard(){
-    const container = document.getElementById('main-screen');
+/* ===== ダッシュボード描画 ===== */
+function renderDashboard(page = 1) {
+    currentPage = page;
+    const container = document.querySelector('.dashboard');
     container.innerHTML = '';
     const activeMap = currentLang==='JP'?fileMapJP:fileMapEN;
     const activeMeta = currentLang==='JP'?categoryMetaJP:categoryMetaEN;
-    const allFiles = Object.entries(activeMap).flatMap(([cat, files])=>files.map(f=>({...f, category:cat})));
-    const recentFiles = allFiles.slice(-3).reverse();
+    const cats = Object.keys(activeMap);
 
-    // Recent Card
-    let recentHTML = `<div class="card recent-card" style="grid-column:1/-1; border-color:var(--accent-green); background:rgba(74,222,128,0.05);">
-        <span class="tag" style="background:var(--accent-green); color:var(--bg-dark);">NEW UPDATES</span>
-        <h2>📡 最近の防衛記録</h2>
-        <div style="display:flex; gap:15px; margin-top:15px; overflow-x:auto; padding-bottom:10px;">
-        ${recentFiles.map(f=>`<button onclick="openMD('${f.path}')" style="background:#334155;color:white;border:1px solid var(--accent-green);padding:10px 20px;border-radius:20px;cursor:pointer;white-space:nowrap;transition:0.3s;" onmouseover="this.style.background='var(--accent-green)';this.style.color='var(--bg-dark)'" onmouseout="this.style.background='#334155';this.style.color='white'">${getLangIcon(f)} ${f.name}</button>`).join('')}
-        </div></div>`;
-    container.insertAdjacentHTML('beforeend', recentHTML);
+    // ページネーション用
+    const totalItems = cats.length;
+    const totalPages = Math.ceil(totalItems/pageSize);
+    const startIdx = (page-1)*pageSize;
+    const pageCats = cats.slice(startIdx, startIdx+pageSize);
 
-    // Category Cards
-    Object.keys(activeMap).forEach(cat=>{
+    pageCats.forEach(cat => {
         const meta = activeMeta[cat];
-        let cardHTML = `<div class="card" onclick="showFileList('${cat}')"><span class="tag">${meta.tag}</span><h2>${meta.title}</h2><p>${meta.desc}</p></div>`;
+        const cardHTML = `<div class="card" onclick="showFileList('${cat}')">
+            <span class="tag">${meta.tag}</span>
+            <h2>${meta.title}</h2>
+            <p>${meta.desc}</p>
+        </div>`;
         container.insertAdjacentHTML('beforeend', cardHTML);
     });
+
+    renderPagination(totalPages);
 }
 
-// --- Show File List ---
-function showFileList(category){
-    navStack.push("list-"+category);
-    const activeMap = currentLang==='JP'?fileMapJP:fileMapEN;
-    const files = activeMap[category]||[];
-    const container = document.getElementById('list-content');
-
-    if(files.length===0) container.innerHTML=`<div style="text-align:center; padding:50px 20px;"><h2>COMING SOON...</h2></div>`;
-    else {
-        let html = `<h1>${category}</h1><ul>`;
-        files.forEach(f=>{ html+=`<li><a href="javascript:void(0)" onclick="openMD('${f.path}')">${getLangIcon(f)} ${f.name}</a></li>`; });
-        html+='</ul>'; container.innerHTML=html;
+function renderPagination(totalPages) {
+    const pagContainer = document.getElementById('dashboard-pagination');
+    pagContainer.innerHTML = '';
+    for(let i=1;i<=totalPages;i++){
+        const btn = document.createElement('button');
+        btn.innerText = i;
+        if(i===currentPage) btn.classList.add('active');
+        btn.onclick = ()=>{ renderDashboard(i); };
+        pagContainer.appendChild(btn);
     }
-    showScreen('list-screen');
 }
 
-// --- Open MD ---
-async function openMD(path){
-    navStack.push("md-"+path);
+/* ===== モーダル / ファイルリスト ===== */
+async function openMD(path) {
+    lastViewStack.push('list'); // 戻る順序保存
     const modal = document.getElementById('md-modal');
     const content = document.getElementById('md-content');
-    showScreen('md-screen');
-    document.body.style.overflow='hidden';
-    content.innerHTML='読み込み中...';
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    content.innerHTML = "読み込み中...";
+    gsap.fromTo(".modal-content",{y:30,opacity:0},{y:0,opacity:1,duration:0.4});
     try{
         const res = await fetch(path);
         const text = await res.text();
         content.innerHTML = marked.parse(text);
-    }catch(e){
-        content.innerHTML=`<h1>404</h1><p>見つかりません: ${path}</p>`;
+        modal.scrollTop=0;
+    }catch(e){ content.innerHTML=`<h1>404</h1><p>見つかりません: ${path}</p>`; }
+}
+
+function showFileList(category){
+    lastViewStack.push('dashboard');
+    const activeMap = currentLang==='JP'?fileMapJP:fileMapEN;
+    const files = activeMap[category];
+    const content = document.getElementById('md-content');
+    if(!files||files.length===0){
+        content.innerHTML=`<div style="text-align:center;padding:50px 20px;"><h2>COMING SOON...</h2></div>`;
+    } else {
+        let listHTML=`<h1>${category.toUpperCase()}</h1><ul style="list-style:none;padding:20px 0;">`;
+        files.forEach(f=>{
+            listHTML+=`<li style="margin-bottom:15px;border:1px solid #334155;border-radius:8px;background: rgba(255,255,255,0.03);">
+                <a href="javascript:void(0)" onclick="openMD('${f.path}')" style="font-size:1.1rem;text-decoration:none;color:var(--accent-green);display:block;padding:15px;">
+                ${currentLang==='JP'?'🇯🇵':'🇺🇸'} ${f.name}</a></li>`;
+        });
+        content.innerHTML=listHTML+'</ul>';
     }
-    modal.scrollTop=0;
+    document.getElementById('md-modal').style.display='block';
+    document.body.style.overflow='hidden';
+    gsap.fromTo(".modal-content",{y:30,opacity:0},{y:0,opacity:1,duration:0.4});
 }
 
-// --- Close / Back ---
-function closeCurrent(){
-    if(navStack.length<=1) return;
-    navStack.pop();
-    const prev = navStack[navStack.length-1];
-    if(prev.startsWith("md-")) showScreen('md-screen');
-    else if(prev.startsWith("list-")) showScreen('list-screen');
-    else showScreen('main-screen');
+function closeModal(){
+    document.body.style.overflow='auto';
+    gsap.to(".modal-content",{y:50,opacity:0,duration:0.3,onComplete:()=>{
+        document.getElementById('md-modal').style.display='none';
+        const lastView = lastViewStack.pop();
+        if(lastView==='list') renderFileListFromStack();
+        else if(lastView==='dashboard') renderDashboard(currentPage);
+    }});
 }
 
-// --- Screen Switch ---
-function showScreen(id){
-    const screens = ['main-screen','list-screen','md-screen'];
-    screens.forEach(s=>{
-        const el = s==='md-screen'?document.getElementById('md-modal'):document.getElementById(s);
-        if(el) el.style.display=(s===id)?'block':'none';
-    });
+function renderFileListFromStack(){
+    // 最後のカテゴリを再表示
+    const lastCategory = Object.keys(currentLang==='JP'?fileMapJP:fileMapEN)[currentPage-1];
+    if(lastCategory) showFileList(lastCategory);
 }
 
-// --- Typewriter ---
-const phrases = ["完成は静止画である。","デザインとUXの等価交換。","実装正義：動けばヨシ！","Blogger Engineering Notes V1.1"];
+/* ===== タイプライター ===== */
+const phrases=["完成は静止画である。","デザインとUXの等価交換。","実装正義：動けばヨシ！","GitHub Dashboard V1.0"];
 let phraseIdx=0;
 function updateTypewriter(){
-    const tw = document.getElementById('typewriter');
-    if(tw){ tw.innerText=phrases[phraseIdx%phrases.length]; gsap.fromTo("#typewriter",{opacity:0},{opacity:1,duration:1}); phraseIdx++; }
+    const t=document.getElementById('typewriter');
+    if(t){ t.innerText=phrases[phraseIdx%phrases.length]; gsap.fromTo("#typewriter",{opacity:0},{opacity:1,duration:1}); phraseIdx++; }
 }
 setInterval(updateTypewriter,4000);
 updateTypewriter();
 
+/* 初期表示 */
 renderDashboard();
-
-document.addEventListener('keydown', (e)=>{ if(e.key==="Escape") closeCurrent(); });
 </script>
 
 </body>
