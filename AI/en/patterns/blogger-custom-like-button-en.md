@@ -1,67 +1,47 @@
-# Custom "Like" Button Implementation: GAS + Spreadsheet
+# Pattern: Implementing a "Custom Like Button" with GAS and Google Sheets
 
-This document details the strategy for implementing a lightweight, self-hosted reaction system for Blogger using Google Apps Script (GAS) and Google Sheets.
+## Issues
 
-## 1. Core Concept
-
-*   **Problem:** Blogger lacks a built-in reaction/like feature. Third-party widgets are often heavy, non-customizable, and store data on external servers.
+*   **Blogger lacks a built-in "Like" feature for easy reader reactions.**
     
-*   **Solution:** Build a serverless backend using GAS as the API layer and Google Sheets as the database.
+*   **Drawbacks of existing options**: External widgets are heavy to load and offer low design customizability.
     
-*   **Identification:** Use `location.href` as the unique ID to manage individual counts for every article with a single script.
+*   **Data opacity**: It is difficult to personally manage and analyze data on who reacted to which article.
     
-
-## 2. Implementation Architecture
-
-### Backend: Google Apps Script (GAS)
-
-The script handles asynchronous requests via `doGet` and `doPost`.
-
-*   **GET:** Retrieves the current count for a specific URL.
-    
-*   **POST:** Increments the count in the spreadsheet.
+*   **Cost**: Building a database server (such as Firebase) incurs operational and learning costs.
     
 
-### Frontend: Lightweight JavaScript & CSS
+## Implementation (Practice)
 
-*   **Asynchronous Fetch:** Updates counts without page reloads using the `fetch` API.
+### 1. Utilizing GAS as a "Serverless Database"
+
+*   **Adopted Google Apps Script and Google Sheets as the backend instead of expensive servers.**
     
-*   **Immediate Feedback:** Optimistic UI updates (incrementing the display count before the server responds) ensure a "snappy" user experience.
+*   **Distinction between GET/POST**: Built a lightweight communication logic that fetches the current count via `fetch` (GET) on page load and increments the count via `POST` on click.
     
-
-## 3. Interaction & Visual Patterns
-
-### ❌ Ineffective Pattern
-
-Static buttons with no feedback or relying on heavy external libraries.
-
-### ✅ Effective Pattern (The "Interactive Heart")
-
-```
-// State Management: Toggle classes and disable on click
-const likeBtn = document.getElementById("like-button");
-likeBtn.addEventListener("click", () => {
-    likeBtn.classList.add("animated-pop"); // Trigger CSS Scale animation
-    likeBtn.disabled = true; // Prevent double-clicking
-    // Change icon from regular to solid using FontAwesome classes
-    icon.classList.replace("far", "fas"); 
-});
-```
-
-## 4. Why This Works (Insights)
-
-*   **Reciprocity Principle:** Visualizing reader reactions serves as the primary motivation for consistent writing.
-    
-*   **Zero-Cost Ecosystem:** By staying within the Google environment (Blogger + GAS + Sheets), the entire system remains maintenance-free and accessible via a single Google account.
-    
-*   **Data as Asset:** All reaction data is stored in a spreadsheet, allowing for easy, independent analysis of popular content without needing complex database tools.
+*   **URL Identifier**: Achieved individual count management for all articles with a common script by saving `location.href` as the key (ID) in the spreadsheet.
     
 
-## 5. Implementation Matrix
+### 2. Interactive Frontend Presentation
 
-| Feature        | Technology                  | Benefit                             |
-|----------------|----------------------------|-------------------------------------|
-| Database       | Google Sheets              | Transparent data management / Zero cost |
-| API Layer      | Google Apps Script         | Serverless execution / No hosting required |
-| UI/UX          | CSS `transform: scale()`    | Satisfying "micro-interaction"      |
-| Communication  | Fetch API (CORS)           | Seamless, non-blocking updates      |
+*   **Implemented a comfortable micro-interaction using JavaScript and CSS, emphasizing the "pressed feeling."**
+    
+*   **State Management**: Disabled the button after one press to prevent double-clicking. Dynamically changed the `FontAwesome` class from an "outline heart" to a "filled heart."
+    
+*   **Animation**: Temporarily applied an `animate` class and added a visual "pop effect" using CSS `transform: scale()`, making the button appear to bounce.
+    
+
+### 3. Seamless Experience through Asynchronous Communication
+
+*   **Updated data in the background without page transitions using the `fetch` API.**
+    
+*   **Instant Feedback**: Created a sense of "speed" for the user by updating the display (+1) on the JS side immediately (or right after success) without waiting for the full server response.
+    
+
+## Why it Works (Insights)
+
+*   **"Reciprocity" and Motivation**: Visualizing reactions from readers becomes the greatest motivation for the author to continue writing.
+    
+*   **Ecosystem Construction**: By completing the system entirely within Google's toolset (Blogger + GAS + Spreadsheet), a "perfectly lightweight system" is achieved that can be maintained with a single Google account.
+    
+*   **Data as an Asset**: Since data accumulates in a spreadsheet, it is easy to personally aggregate and analyze which articles are popular.
