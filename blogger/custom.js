@@ -308,77 +308,7 @@ document.addEventListener("DOMContentLoaded", function() {
   })();
 
   /* 2. インフィード関連記事カード ------------------------- */
-(function() {
-  const blogURL = 'https://blogger.matsusanjpn.com/';
-  const domain = blogURL.replace(/^https?:\/\//, '').split('/')[0];
-  const container = document.getElementById('infeed-slanted-card-container');
 
-  window.callback_infeed_final = function(data) {
-    if (!data || !data.feed || !data.feed.entry) return;
-
-    const entries = data.feed.entry;
-    const entry = entries[Math.floor(Math.random() * entries.length)];
-    const title = entry.title.$t;
-    const link = entry.link.find(l => l.rel === 'alternate').href;
-
-    let labelsHtml = '';
-    const icon = '<i class="fa-solid fa-tag"></i>';
-    if (entry.category && entry.category.length > 0) {
-      labelsHtml = entry.category.map(cat => `<span class="category-label">${icon}${cat.term}</span>`).join('');
-    } else {
-      labelsHtml = `<span class="category-label">${icon}RECOMMEND</span>`;
-    }
-
-    const summary = entry.summary 
-      ? entry.summary.$t.replace(/<[^>]*>/g, '').substring(0, 150) 
-      : (entry.content ? entry.content.$t.replace(/<[^>]*>/g, '').substring(0, 150) : '');
-
-    // デフォルト画像（NoImage）
-    let img = 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPDYu4ibLWCVdJdTwQa2zoBViIfND-ZB0Y9g8IU1Csk_7AoRwVi1efzTdGFKjaiXh9LPWyCllES9iKlhik8b2G2liUUd8oeAA4NOVflZO3VqPtxhzuUteSAIGCRkyw2Ps8R5FjyFd1FzhmgPYCeAUGBM2qx3Z-lXUGUft6xgiKGUORq3Uz2ULqbSZFEsQ/s1600/NoImage.png';
-
-    // サムネイルURLの取得と徹底的な置換
-    if (entry.media$thumbnail && entry.media$thumbnail.url) {
-      let originalUrl = entry.media$thumbnail.url;
-      
-      // あらゆるサイズ指定（s72-c, s320, w120-h120等）を w600 に強制変換
-      // パターンA: スラッシュに挟まれたサイズ指定
-      img = originalUrl.replace(/\/s[0-9]+[^\/]*\//, '/w600/').replace(/\/w[0-9]+-h[0-9]+[^\/]*\//, '/w600/');
-      // パターンB: 末尾のサイズ指定
-      img = img.replace(/\/s[0-9]+[^\/]*$/, '/w600').replace(/\/w[0-9]+-h[0-9]+[^\/]*$/, '/w600');
-      
-      // 置換がうまくいかなかった場合の安全策として、s1600（オリジナルサイズ）を試行
-      if (img === originalUrl) {
-          img = originalUrl.replace(/\/s[0-9]+(-c)?/, '/s1600');
-      }
-    } else if (entry.content && entry.content.$t.includes('<img')) {
-      const imgMatch = entry.content.$t.match(/<img[^>]+src="([^">]+)"/);
-      if (imgMatch) img = imgMatch[1];
-    }
-
-    container.innerHTML = `
-      <a href="${link}" class="infeed-blog-card">
-        <div class="meta">
-          <div class="photo" style="background-image: url('${img}')"></div>
-        </div>
-        <div class="description">
-          <div class="label-container">${labelsHtml}</div>
-          <div><b>${title}</b></div>
-          <p>${summary}</p>
-        </div>
-      </a>
-    `;
-  };
-
-  const script = document.createElement('script');
-  script.src = `https://${domain}/feeds/posts/default?alt=json-in-script&callback=callback_infeed_final&max-results=10&t=${new Date().getTime()}`;
-  document.body.appendChild(script);
-})();
-
-  const script = document.createElement('script');
-  // キャッシュ回避のタイムスタンプを維持
-  script.src = `https://${domain}/feeds/posts/default?alt=json-in-script&callback=callback_infeed_final&max-results=10&t=${new Date().getTime()}`;
-  document.body.appendChild(script);
-})();
 
   /* 3. アーカイブウィジェット制御 ------------------------- */
   // ※ この機能はBloggerテンプレート内のXML側に集約したため、外部JSからは削除しました。
