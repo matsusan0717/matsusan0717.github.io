@@ -308,24 +308,66 @@ document.addEventListener("DOMContentLoaded", function() {
   })();
 
   /* 2. インフィード関連記事カード ------------------------- */
-  (function() {
-    const container = document.getElementById('infeed-slanted-card-container');
-    if (!container) return;
-    const domain = BLOG_URL.replace(/^https?:\/\//, '').split('/')[0];
-    window.callback_infeed_final = function(data) {
-      if (!data || !data.feed.entry) return;
-      const entry = data.feed.entry[Math.floor(Math.random() * data.feed.entry.length)];
-      const title = entry.title.$t, link = entry.link.find(l => l.rel === 'alternate').href;
-      const icon = '<i class="fa-solid fa-tag"></i>';
-      const labelsHtml = entry.category ? entry.category.map(cat => `<span class="category-label">${icon}${cat.term}</span>`).join('') : `<span class="category-label">${icon}RECOMMEND</span>`;
-      const summary = (entry.summary ? entry.summary.$t : (entry.content ? entry.content.$t : '')).replace(/<[^>]*>/g, '').substring(0, 150);
-      const img = entry.media$thumbnail ? entry.media$thumbnail.url.replace(/\/s[0-9]+(-c)?/, '/w600') : 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPDYu4ibLWCVdJdTwQa2zoBViIfND-ZB0Y9g8IU1Csk_7AoRwVi1efzTdGFKjaiXh9LPWyCllES9iKlhik8b2G2liUUd8oeAA4NOVflZO3VqPtxhzuUteSAIGCRkyw2Ps8R5FjyFd1FzhmgPYCeAUGBM2qx3Z-lXUGUft6xgiKGUORq3Uz2ULqbSZFEsQ/s1600/NoImage.png';
-      container.innerHTML = `<a href="${link}" class="infeed-blog-card"><div class="meta"><div class="photo" style="background-image: url(${img})"></div></div><div class="description"><div class="label-container">${labelsHtml}</div><div><b>${title}</b></div><p>${summary}</p></div></a>`;
-    };
-    const s = document.createElement('script');
-    s.src = `https://${domain}/feeds/posts/default?alt=json-in-script&callback=callback_infeed_final&max-results=10&t=${new Date().getTime()}`;
-    document.body.appendChild(s);
-  })();
+(function() {
+  const blogURL = 'https://blogger.matsusanjpn.com/';
+  const domain = blogURL.replace(/^https?:\/\//, '').split('/')[0];
+  const container = document.getElementById('infeed-slanted-card-container');
+
+  window.callback_infeed_final = function(data) {
+    if (!data || !data.feed || !data.feed.entry) return;
+
+    const entries = data.feed.entry;
+    // 最新10件からランダムに1件選択
+    const entry = entries[Math.floor(Math.random() * entries.length)];
+    const title = entry.title.$t;
+    const link = entry.link.find(l => l.rel === 'alternate').href;
+
+    // 全ラベル取得（Font Awesomeアイコン付き）
+    let labelsHtml = '';
+    const icon = '<i class="fa-solid fa-tag"></i>';
+    if (entry.category && entry.category.length > 0) {
+      labelsHtml = entry.category.map(cat => `<span class="category-label">${icon}${cat.term}</span>`).join('');
+    } else {
+      labelsHtml = `<span class="category-label">${icon}RECOMMEND</span>`;
+    }
+
+    // スニペット取得（タグ除去）
+    const summary = entry.summary 
+      ? entry.summary.$t.replace(/<[^>]*>/g, '').substring(0, 150) 
+      : (entry.content ? entry.content.$t.replace(/<[^>]*>/g, '').substring(0, 150) : '');
+
+    // 高画質画像置換ロジックの強化
+    // デフォルトのNoImage
+    let img = 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPDYu4ibLWCVdJdTwQa2zoBViIfND-ZB0Y9g8IU1Csk_7AoRwVi1efzTdGFKjaiXh9LPWyCllES9iKlhik8b2G2liUUd8oeAA4NOVflZO3VqPtxhzuUteSAIGCRkyw2Ps8R5FjyFd1FzhmgPYCeAUGBM2qx3Z-lXUGUft6xgiKGUORq3Uz2ULqbSZFEsQ/s1600/NoImage.png';
+
+    if (entry.media$thumbnail && entry.media$thumbnail.url) {
+      // 従来の /s[0-9]+(-c)?/ だけでなく、より広範囲なサイズ指定を w600 に置換
+      img = entry.media$thumbnail.url.replace(/\/s[0-9]+[^\/]*\//, '/w600/').replace(/\/s[0-9]+[^\/]*$/, '/w600');
+    } else if (entry.content && entry.content.$t.includes('<img')) {
+      // サムネイル属性がない場合の予備：本文の1枚目を取得
+      const imgMatch = entry.content.$t.match(/<img[^>]+src="([^">]+)"/);
+      if (imgMatch) img = imgMatch[1];
+    }
+
+    container.innerHTML = `
+      <a href="${link}" class="infeed-blog-card">
+        <div class="meta">
+          <div class="photo" style="background-image: url(${img})"></div>
+        </div>
+        <div class="description">
+          <div class="label-container">${labelsHtml}</div>
+          <div><b>${title}</b></div>
+          <p>${summary}</p>
+        </div>
+      </a>
+    `;
+  };
+
+  const script = document.createElement('script');
+  // キャッシュ回避のタイムスタンプを維持
+  script.src = `https://${domain}/feeds/posts/default?alt=json-in-script&callback=callback_infeed_final&max-results=10&t=${new Date().getTime()}`;
+  document.body.appendChild(script);
+})();
 
   /* 3. アーカイブウィジェット制御 ------------------------- */
   // ※ この機能はBloggerテンプレート内のXML側に集約したため、外部JSからは削除しました。
