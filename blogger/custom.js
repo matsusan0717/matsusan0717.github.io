@@ -317,12 +317,10 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!data || !data.feed || !data.feed.entry) return;
 
     const entries = data.feed.entry;
-    // 最新10件からランダムに1件選択
     const entry = entries[Math.floor(Math.random() * entries.length)];
     const title = entry.title.$t;
     const link = entry.link.find(l => l.rel === 'alternate').href;
 
-    // 全ラベル取得（Font Awesomeアイコン付き）
     let labelsHtml = '';
     const icon = '<i class="fa-solid fa-tag"></i>';
     if (entry.category && entry.category.length > 0) {
@@ -331,20 +329,28 @@ document.addEventListener("DOMContentLoaded", function() {
       labelsHtml = `<span class="category-label">${icon}RECOMMEND</span>`;
     }
 
-    // スニペット取得（タグ除去）
     const summary = entry.summary 
       ? entry.summary.$t.replace(/<[^>]*>/g, '').substring(0, 150) 
       : (entry.content ? entry.content.$t.replace(/<[^>]*>/g, '').substring(0, 150) : '');
 
-    // 高画質画像置換ロジックの強化
-    // デフォルトのNoImage
+    // デフォルト画像（NoImage）
     let img = 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPDYu4ibLWCVdJdTwQa2zoBViIfND-ZB0Y9g8IU1Csk_7AoRwVi1efzTdGFKjaiXh9LPWyCllES9iKlhik8b2G2liUUd8oeAA4NOVflZO3VqPtxhzuUteSAIGCRkyw2Ps8R5FjyFd1FzhmgPYCeAUGBM2qx3Z-lXUGUft6xgiKGUORq3Uz2ULqbSZFEsQ/s1600/NoImage.png';
 
+    // サムネイルURLの取得と徹底的な置換
     if (entry.media$thumbnail && entry.media$thumbnail.url) {
-      // 従来の /s[0-9]+(-c)?/ だけでなく、より広範囲なサイズ指定を w600 に置換
-      img = entry.media$thumbnail.url.replace(/\/s[0-9]+[^\/]*\//, '/w600/').replace(/\/s[0-9]+[^\/]*$/, '/w600');
+      let originalUrl = entry.media$thumbnail.url;
+      
+      // あらゆるサイズ指定（s72-c, s320, w120-h120等）を w600 に強制変換
+      // パターンA: スラッシュに挟まれたサイズ指定
+      img = originalUrl.replace(/\/s[0-9]+[^\/]*\//, '/w600/').replace(/\/w[0-9]+-h[0-9]+[^\/]*\//, '/w600/');
+      // パターンB: 末尾のサイズ指定
+      img = img.replace(/\/s[0-9]+[^\/]*$/, '/w600').replace(/\/w[0-9]+-h[0-9]+[^\/]*$/, '/w600');
+      
+      // 置換がうまくいかなかった場合の安全策として、s1600（オリジナルサイズ）を試行
+      if (img === originalUrl) {
+          img = originalUrl.replace(/\/s[0-9]+(-c)?/, '/s1600');
+      }
     } else if (entry.content && entry.content.$t.includes('<img')) {
-      // サムネイル属性がない場合の予備：本文の1枚目を取得
       const imgMatch = entry.content.$t.match(/<img[^>]+src="([^">]+)"/);
       if (imgMatch) img = imgMatch[1];
     }
@@ -352,7 +358,7 @@ document.addEventListener("DOMContentLoaded", function() {
     container.innerHTML = `
       <a href="${link}" class="infeed-blog-card">
         <div class="meta">
-          <div class="photo" style="background-image: url(${img})"></div>
+          <div class="photo" style="background-image: url('${img}')"></div>
         </div>
         <div class="description">
           <div class="label-container">${labelsHtml}</div>
@@ -362,6 +368,11 @@ document.addEventListener("DOMContentLoaded", function() {
       </a>
     `;
   };
+
+  const script = document.createElement('script');
+  script.src = `https://${domain}/feeds/posts/default?alt=json-in-script&callback=callback_infeed_final&max-results=10&t=${new Date().getTime()}`;
+  document.body.appendChild(script);
+})();
 
   const script = document.createElement('script');
   // キャッシュ回避のタイムスタンプを維持
