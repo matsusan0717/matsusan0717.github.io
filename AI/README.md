@@ -1,4 +1,4 @@
-# Blogger 限界突破プロジェクト：Patterns & Principles
+# Blogger 限界挑戦プロジェクト：Patterns & Principles
 
 Bloggerという「枯れた」と思われがちなプラットフォームを、モダンなWeb体験の実験場へと変えるカスタマイズ・コードとその設計思想のアーカイブです。
 
