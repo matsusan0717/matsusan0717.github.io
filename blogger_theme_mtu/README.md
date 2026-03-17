@@ -121,7 +121,7 @@ const maxResults = 4; // ← この数字を変える
 
 ---
 
-### 使用例
+#### 使用例
 
 ```html
 [chat-left img="https://example.com/panda.jpg" name="パンダくん"]おはよう！[/chat-left]
@@ -133,7 +133,7 @@ const maxResults = 4; // ← この数字を変える
 
 ---
 
-### 画像なしで使う場合
+#### 画像なしで使う場合
 
 `img` と `name` は省略できます。その場合はグレーのプレースホルダー画像が表示されます。
 
