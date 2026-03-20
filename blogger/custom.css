@@ -1072,3 +1072,238 @@ nav.npin .input-field label {
         padding: 0px;
     }
 }
+
+.sidebar a:hover {
+    color: #006494;
+    -webkit-text-stroke: 0.1px #006494; 
+}
+
+@media (prefers-color-scheme: dark) {
+    .blogcard > a, .blogcard:hover > a {
+        color: rgb(240, 240, 240) !important;
+    }
+}
+
+.readme {
+  clear: both;       /* floatしている要素の下に置く */
+  margin-top: 20px;  /* 上に余白を追加して重なり防止 */
+}
+
+.wrapfullpost > div:last-child {
+  clear: both;
+  margin-top: 20px;
+}
+
+.md-thumb img
+ {
+    margin-bottom: 30px;
+}
+
+#FeaturedPost1 .post-summary h3, #FeaturedPost1 .post-summary h3 a
+ {;
+    line-height: 150%;
+}
+
+/* 1. リストの箇条書きスタイルをリセットし、横に並べる */
+.tag-list {
+    display: flex !important;
+    flex-wrap: wrap !important; /* 幅が足りない場合に改行を許可 */
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+}
+
+/* 2. 各アイテムの物理的な余白 */
+.tag-list li {
+    display: inline-block !important;
+    margin-right: 8px !important;
+    margin-bottom: 8px !important;
+}
+
+/* 3. リンク（aタグ）をブロック要素として扱い、クリック範囲を確保 */
+.tag-item {
+    display: inline-flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+}
+
+.label-size span.badge {
+    background-color: #722f37;
+}
+
+@media only screen and (min-width: 993px) {
+    .post-title.entry-title {
+        left: 10px;
+    }
+}
+
+#Label4.widget.Label ul li{
+    padding: 0;
+    margin: 0;
+}
+
+.tag-list{
+	font-size:0.9em;
+}
+
+@media only screen and (min-width: 400px) {
+    #FeaturedPost1 .post-summary h3, #FeaturedPost1 .post-summary h3 a {
+        line-height: 150%;
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    .row .col.l7 {
+        margin-bottom: 45px;
+    }
+}
+
+.lava-lamp-wrapper {
+  margin: 0;
+}
+
+.lava-lamp-wrapper .custom-tabs-container {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.lava-lamp-wrapper .tab-buttons {
+  display: flex;
+  background: #eee;
+  position: relative;
+  border-bottom: 2px solid #ddd;
+}
+
+.lava-lamp-wrapper .tab-buttons span {
+  flex: 1;
+  font: 700 14px sans-serif; /* 主の好みに合わせ太めに設定 */
+  color: #555;
+  cursor: pointer;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  z-index: 2;
+}
+
+.lava-lamp-wrapper .lamp {
+  /* 幅はJSでボタンの数に合わせて自動計算するため初期値は0 */
+  width: 0; 
+  height: 2px;
+  background: #333;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  transition: all 0.3s ease-out;
+  z-index: 3;
+}
+
+.lava-lamp-wrapper .tab-content {
+  border-top: none;
+  padding: 0px;
+  font-size: 14px;
+  color: #555;
+  min-height: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.lava-lamp-wrapper .tab-content > div {
+  display: none;
+}
+
+.lava-lamp-wrapper .tab-content > div.content1 {
+  display: block;
+}
+
+#tpd-title-text, #tpd-title-console{
+	font-size:40px;
+	color:#ffffff;
+	font-weight:600;
+	text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+}
+
+.sidebar .widget {
+    margin: 0 0 30px 0;
+}
+
+/* 1. リストの箇条書きを解除し、横一列に整列 */
+.breadcrumbs ul {
+    display: flex !important;
+    flex-wrap: nowrap !important; /* 折り返さず一行に収める */
+    align-items: center !important; /* 縦方向の中央揃え */
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+    overflow-x: auto !important; /* 長すぎる場合に横スクロールを許可 */
+}
+
+/* 2. 各アイテムの物理的な配置 */
+.breadcrumbs li {
+    display: inline-flex !important;
+    align-items: center !important;
+    white-space: nowrap !important; /* 改行を禁止 */
+    font-size: 14px; /* 必要に応じて調整 */
+}
+
+/* 3. 区切り文字（›）やテキストの余白 */
+.breadcrumbs li b,
+.breadcrumbs li span,
+.breadcrumbs li a {
+    margin: 0 5px !important;
+}
+
+/* 4. PRラベルを右端へ押し出す */
+.breadcrumb-pr {
+    margin-left: auto !important;
+}
+
+.widget .post-body li {
+    list-style: square;
+}
+
+#toc ol li{
+	list-style:auto;
+}
+
+button:focus {
+    background-color: #722f37;
+}
+
+.copy-btn{
+	background-color: #722f37 !important;
+}
+
+/* 1. ボタン全体のスタイル（枠線などを消す最小構成） */
+.heart-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+    outline: none !important; /* 標準のフォーカス枠を消す */
+    transition: transform 0.2s ease-in-out !important; /* 膨らむアニメーション */
+}
+
+/* 2. ハートアイコン（far fa-heart）の初期設定 */
+.heart-btn i.fa-heart {
+    color: #e31b23 !important; /* ハートの色 */
+    font-size: 20px !important;  /* 必要に応じて調整 */
+    transition: color 0.2s ease-in-out !important;
+}
+
+/* 3. フォーカス時（ホバー含む）：ちょっと膨らむ（物理的な変形） */
+.heart-btn:hover,
+.heart-btn:focus {
+    transform: scale(1.1) !important; /* 1.1倍に膨らむ */
+}
+
+/* 4. クリック（アクティブ）時：塗りつぶし（fas fa-heart相当）へ切り替え */
+/* HTMLが書き換え不可のため、CSSで塗りつぶし状態を擬似的に作る */
+.heart-btn:active i.fa-heart {
+    font-weight: 900 !important; /* Font Awesome で「塗りつぶし」にするための物理命令 */
+    transform: scale(1.2) !important; /* クリックした瞬間さらに少し膨らむ */
+}
