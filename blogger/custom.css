@@ -1134,6 +1134,7 @@ nav.npin .input-field label {
 @media only screen and (min-width: 993px) {
     .post-title.entry-title {
         left: 10px;
+		line-height: 130%;
     }
 }
 
@@ -1447,3 +1448,150 @@ button:focus {
     display: block !important;
     clear: both !important;
   }
+
+/* カード全体像 */
+.blogcard {
+  max-width: 100%;
+  margin-bottom: 30px;
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid rgb(211,211,211);
+  box-shadow: 0 10px 6px -6px rgba(0,0,0,.1);
+  background: white;
+  transition: .2s ease-in-out;
+}
+
+.blogcard > a {
+  color: rgb(51,51,51);
+}
+
+/* float親要素 */
+.blogcard-content {
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+/* 画像 */
+.blogcard-image {
+  display: inline-block;
+  float: right; /* 画像を左に配置したい場合は left に変更 1/2 */
+  width: 100px; /* 画像の表示サイズ変更は数値をpxで変更 1/6 */
+  height: 100px; /* 画像の表示サイズ変更は数値をpxで変更 2/6 */
+  margin: 0 0 5px 5px; /* 画像を左に配置したい場合は 0 10px 5px 0 に変更 2/2 */
+}
+
+.blogcard-image-wrapper {
+  display: inline-block;
+  width: 100px; /* 画像の表示サイズ変更は数値をpxで変更 3/6 */
+  height: 100px; /* 画像の表示サイズ変更は数値をpxで変更 4/6 */
+}
+
+.blogcard-image-wrapper img {
+  width: 100px; /* 画像の表示サイズ変更は数値をpxで変更 5/6 */
+  height: 100px; /* 画像の表示サイズ変更は数値をpxで変更 6/6 */
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* タイトル */
+.blogcard-title {
+  margin: 0 !important;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* 引用 */
+.blogcard blockquote {
+  position: static;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  border: 0;
+  background: transparent; /* ブログテンプレートに背景に関する強制力の強い指定がある場合には transparent の直後に !important を付けてください */
+}
+
+.blogcard blockquote::before,
+.blogcard blockquote::after {
+  content: none;
+}
+
+/* 記事概要 */
+.blogcard-description {
+  margin: 1em 0 !important;
+  font-size: 13px;
+  line-height: 1.5 !important;
+}
+
+/* フッター(元記事サイト名とリンク) */
+.blogcard-footer {
+  font-size: 12px;
+}
+
+.blogcard-footer img {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+/* カードマウスホバー */
+.blogcard:hover {
+  box-shadow: 0 10px 10px 2px rgba(0,0,0,.1);
+}
+
+.blogcard:hover > a {
+  color: rgb(51,51,51);
+  text-decoration: none !important;
+}
+
+/* OSダークモード対応(テンプレートがダークモード未対応の場合は不要) */
+@media (prefers-color-scheme: dark) {
+  .blogcard {
+    box-shadow: 0px 20px 40px rgba(0,0,0,.5);
+    border-color: rgb(60,60,60);
+    background: rgb(51,51,51);
+  }
+  .blogcard > a,
+  .blogcard:hover > a {
+    color: rgb(240,240,240);
+  }
+}
+
+.status-msg-body.card{
+	padding:10px;
+}
+
+/* タイトル付きボックス（ラベル） */
+.blogger-box-label {
+  position: relative;
+  margin: 2em auto;
+  max-width: 950px;
+  color: #1e3a8a; /* 枠・ラベルの基準色：暗めの青 */
+  border: 2px solid currentColor;
+  border-radius: 4px;
+}
+
+/* ラベル部分 */
+.blogger-box-label .box-title {
+  position: absolute;
+  top: -0.6em;
+  left: 1em;
+  background: #fff;
+  color: currentColor; /* 枠と同色 */
+  padding: 0 .5em;
+  font-weight: bold;
+}
+
+/* 本文部分 */
+.blogger-box-label .box-content {
+  padding: 2em;
+  color: #111; /* 中身は黒で読みやすく */
+}
+
+/* 段落余白リセット */
+.blogger-box-label p {
+  margin: 0;
+}
+
+.headline_meta.col.s12.m7.l7.right{
+	margin:0 0 1em;
+}
