@@ -395,7 +395,7 @@ document.addEventListener("DOMContentLoaded", function() {
       // ラベルリンクに7件制限を付与
       $('a[href*="/search/label/"]').each(function() {
         const base = $(this).attr("href").split('?')[0];
-        $(this).attr("href", base + "?&max-results=7");
+        $(this).attr("href", base + "?&max-results=10");
       });
     })(jQuery);
   }
