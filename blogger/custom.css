@@ -9,7 +9,7 @@
    color: cornflowerblue;
 }
 .breadcrumbs.card a {
-   color: #263238;
+   color: #263238 !important;
 }
 .post a {
    color: #597481 !important;
