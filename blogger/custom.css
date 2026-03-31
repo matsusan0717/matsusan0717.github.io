@@ -1,3 +1,6 @@
+#footer-widgets .widget-container a:hover {
+    color: white;
+}
 .btn.col.m12.right {
    color: #ffffff;
 }
@@ -1517,7 +1520,7 @@ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-s
    }
    /* 本文部分 */
    .blogger-box-label .box-content {
-      padding: 2em;
+      padding: 1em;
       color: #111;
       /* 中身は黒で読みやすく */
    }
@@ -1600,4 +1603,18 @@ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-s
   background-position: center !important;
   background-repeat: no-repeat !important;
   border-radius: 8px !important;
+}
+
+/* 枠 */
+.blogger-box-label p:nth-child(1){
+	padding: 1em 1em 0;
+}
+.blogger-box-label p{
+	padding: 1em 1em;
+}
+
+@media only screen and (min-width: 400px) {
+    .status-msg-body.card {
+        text-align: left;
+    }
 }
