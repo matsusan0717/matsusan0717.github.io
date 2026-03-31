@@ -1619,3 +1619,6 @@ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-s
         text-align: left;
     }
 }
+.label-size span.badge {
+    background-color: #722f37;
+}
