@@ -1058,7 +1058,7 @@ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-s
       }
    }
    .sidebar a:hover {
-      color: #006494;
+      color: #006494 !important;
       -webkit-text-stroke: 0.1px #006494;
    }
    @media (prefers-color-scheme: dark) {
