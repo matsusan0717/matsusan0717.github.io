@@ -1105,7 +1105,7 @@ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-s
       text-decoration: none !important;
    }
    .label-size span.badge {
-      background-color: #722f37;
+      background-color: #722f37 !important;
    }
    @media only screen and (min-width: 993px) {
       .wrapfullpost.card h2 a{
