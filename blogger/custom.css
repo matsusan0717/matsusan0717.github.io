@@ -472,7 +472,7 @@ header img, .headerleft img {
 }
 .label-size .btn:hover {
    background-color: #0f2b46 !important;
-   color: #fff;
+   color: #fff !important;
 }
 /* 親要素：見出し本体 */
 
