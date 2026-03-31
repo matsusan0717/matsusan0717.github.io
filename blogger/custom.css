@@ -1191,7 +1191,7 @@ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-s
       text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
    }
    .sidebar .widget {
-      margin: 0 0 30px 0;
+      margin: 0 0 32px 0 !important;
    }
    /* 1. リストの箇条書きを解除し、横一列に整列 */
    .breadcrumbs ul {
