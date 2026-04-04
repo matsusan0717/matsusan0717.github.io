@@ -892,7 +892,7 @@ nav.npin, .npin .nav-wrapper i {
    height: 42px;
    line-height: 42px;
 }
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 375px) {
    nav.npin .nav-wrapper .input-field input[type="search"] {
       width: 180px;
    }
@@ -968,7 +968,7 @@ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-s
 .widget .post-body li {
    font-weight: 500;
 }
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 375px) {
    nav.npin .nav-wrapper .input-field input[type="search"] {
       -webkit-text-stroke: 0px transparent;
    }
@@ -1051,7 +1051,7 @@ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-s
       width: 100%;
       padding: 10px;
    }
-   @media only screen and (min-width: 400px) {
+   @media only screen and (min-width: 375px) {
       .status-msg-wrap {
          width: 100%;
          padding: 0px;
@@ -1122,7 +1122,7 @@ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-s
    .tag-list {
       font-size: 0.9em;
    }
-   @media only screen and (min-width: 400px) {
+   @media only screen and (min-width: 375px) {
       #FeaturedPost1 .post-summary h3, #FeaturedPost1 .post-summary h3 a {
          line-height: 150%;
          margin-bottom: 15px;
@@ -1555,7 +1555,7 @@ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-s
     margin-top: 3em;
 }
 
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 375px) {
     @media only screen and (min-width: 993px) {
         .post_wrapper2 .post-title.entry-title {
             left: 0px;
@@ -1614,7 +1614,7 @@ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-s
 	padding: 0 1em 1em;
 }
 
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 375px) {
     .status-msg-body.card {
         text-align: left;
     }
