@@ -1228,6 +1228,7 @@ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-s
    }
    #toc ol li {
       list-style: auto;
+	   padding-bottom: 0;
    }
    button:focus {
       background-color: #722f37;
