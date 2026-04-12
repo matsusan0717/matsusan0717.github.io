@@ -1,5 +1,5 @@
 /* ==========================================================
-   Blogger Custom Scripts (matsusan0717) - Full Restoration Version
+   Blogger Custom Scripts (matsusan0717) - Tab Fix Version
    ========================================================== */
 
 // 【設定】URLをそれぞれ指定してください
@@ -12,10 +12,9 @@ const circleNumbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. 基本設定
   const BLOG_URL_HOSTNAME = window.location.hostname;
 
-  // 2. 画像最適化 (WebP/リサイズ) & 広告制御 -------------------
+  // 1. 画像最適化 (WebP/リサイズ) & 広告制御
   const optimizeContent = () => {
     document.querySelectorAll('img').forEach(img => {
       const src = img.getAttribute('src');
@@ -32,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', optimizeContent);
   new MutationObserver(optimizeContent).observe(document.body, { childList: true, subtree: true });
 
-  // 3. ランキング表示 (GET) -----------------------------------
+  // 2. ランキング表示 (GET)
   (function() {
     const rankContainer = document.getElementById('global-ranking-container');
     if (!rankContainer) return;
@@ -53,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }).catch(err => console.error("Ranking Load Error:", err));
   })();
 
-  // 4. レーダーチャート生成 -------------------------------
+  // 3. レーダーチャート生成
   (function() {
     const updateRadar = () => {
       const container = document.querySelector('.radar-chart-2');
@@ -82,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateRadar();
   })();
 
-  // 5. 日付形式の統一 -----------------------------------
+  // 4. 日付形式の統一
   (function() {
     const formatDates = () => {
       document.querySelectorAll('#ArchiveList ul.flat li.archivedate a').forEach(link => {
@@ -107,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', formatDates);
   })();
 
-  // 6. タイピング演出 -----------------------------------
+  // 5. タイピング演出
   (function() {
     const origin = document.getElementById('tpd-origin-data'), 
           target = document.getElementById('tpd-title-text'), 
@@ -122,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => { con.style.visibility = (con.style.visibility === "hidden") ? "visible" : "hidden"; }, 400);
   })();
 
-  // 7. インフィード関連記事 (デザイン復元版) -------------------------------
+  // 6. インフィード関連記事 (デザイン復元版)
   (function() {
     const container = document.getElementById('infeed-slanted-card-container');
     if (!container) return;
@@ -161,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(script);
   })();
 
-  // 8. 広告遅延読み込み ---------------------------------
+  // 7. 広告遅延読み込み
   window.addEventListener("load", () => {
     setTimeout(() => {
       const ad = document.createElement("script");
@@ -172,9 +171,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2000);
   });
 
-  // 9. jQuery依存機能 (読了率・タブ) ---------------------
+  // 8. jQuery依存機能 (読了率・タブ)
   if (typeof jQuery !== 'undefined') {
     (function($) {
+      // 読了率
       $(window).on('scroll resize', function() {
         const $content = $('.post-body, .entry-content').first();
         if (!$content.length) return;
@@ -184,28 +184,48 @@ document.addEventListener('DOMContentLoaded', () => {
         $('#reading-progress-bar').css('width', Math.min(100, Math.max(0, prog)) + '%');
       });
 
+      // ラベルリンクの修正
       $('a[href*="/search/label/"]').each(function() {
         const base = $(this).attr("href").split('?')[0];
         $(this).attr("href", base + "?&max-results=10");
       });
 
+      // タブ・ラバランプ (動作修正版)
       $('.lava-lamp-wrapper').each(function() {
-        const $w = $(this), $l = $w.find('.lamp'), $b = $w.find('.tab-buttons span'), $c = $w.find('.tab-content');
+        const $w = $(this), 
+              $l = $w.find('.lamp'), 
+              $b = $w.find('.tab-buttons span'), 
+              $c = $w.find('.tab-content');
+        
         const lw = 100 / $b.length;
         $l.css({ 'width': lw + '%', 'transition': 'left 0.4s ease', 'position': 'absolute' });
+        
         $b.on('click', function() {
-          const idx = $b.index(this), tc = $(this).attr('class').replace('active','').trim();
-          $b.removeClass('active'); $(this).addClass('active');
+          const idx = $b.index(this);
+          // クラス名から「active」を除去した純粋なターゲットクラス名を取得
+          const tc = $(this).attr('class').split(' ').filter(c => c !== 'active').join('').trim();
+          
+          $b.removeClass('active');
+          $(this).addClass('active');
           $l.css('left', (idx * lw) + '%');
+          
+          // コンテンツの切り替え
           $c.find('> div').hide().css('opacity','0').removeClass('active');
           $c.find('> div.' + tc).show().css('opacity','1').addClass('active');
-        }).filter('.active').trigger('click'); 
-        if (!$b.hasClass('active')) $b.eq(0).trigger('click');
+        });
+
+        // 初期化：activeクラスがある要素をクリック、なければ1つ目をクリック
+        const $activeBtn = $b.filter('.active');
+        if ($activeBtn.length) {
+          $activeBtn.trigger('click');
+        } else {
+          $b.eq(0).trigger('click');
+        }
       });
     })(jQuery);
   }
 
-  // 10. ログ記録 (POST) ---------------------------------
+  // 9. ログ記録 (POST)
   (function() {
     const currentUrl = window.location.href;
     const currentPath = window.location.pathname;
@@ -237,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-  // 11. ページャー非表示 ---------------------------------
+  // 10. ページャー非表示
   (function() {
     const hidePager = () => {
       const pagers = document.querySelectorAll('.blog-pager, #blog-pager, .paging-control');
