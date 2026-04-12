@@ -1,8 +1,15 @@
 /* ==========================================================
-   Blogger Custom Scripts (matsusan0717) - Optimized Version
+   Blogger Custom Scripts (matsusan0717) - Fully Integrated
    ========================================================== */
 
+// 共通設定：ここを新しいURLに書き換えてください
+const GAS_URL = "https://script.google.com/macros/s/AKfycbx2h91Hn0jKy04oLEAdYyFAZcGXbxintxOKwvK6hYJLLF2GKwE4w8ZLkx3SrPByWqDLeA/exec";
+const circleNumbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩"];
 
+document.addEventListener('DOMContentLoaded', () => {
+
+  // 1. 基本設定 (既存の引き継ぎ)
+  const BLOG_URL = window.location.origin;
 
   // 2. 画像最適化 (WebP/リサイズ) & 広告制御 -------------------
   const optimizeContent = () => {
@@ -21,23 +28,33 @@
   window.addEventListener('load', optimizeContent);
   new MutationObserver(optimizeContent).observe(document.body, { childList: true, subtree: true });
 
-  // 3. ランキング表示 -----------------------------------
+  // 3. ランキング表示 (最新版) -----------------------------------
   (function() {
     const rankContainer = document.getElementById('global-ranking-container');
     if (!rankContainer) return;
 
     fetch(GAS_URL).then(res => res.json()).then(data => {
-      if (!data || data.length === 0) return;
+      if (!data || !Array.isArray(data) || data.length === 0) {
+        rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px; color:#999;">集計中...</td></tr>';
+        return;
+      }
       let html = '';
       data.forEach((item, index) => {
-        const rank = circleNumbers[data.length - index - 1] || (data.length - index);
-        html += `<tr class="ranking-item"><td class="col-rank">${rank}</td><td class="col-title"><a href="${item.path}">${item.title || item.path}</a></td><td class="col-score">${Math.round(item.finalScore * 100)}点</td></tr>`;
+        const rank = circleNumbers[index] || (index + 1);
+        html += `<tr class="ranking-item">
+          <td class="col-rank">${rank}</td>
+          <td class="col-title"><a href="${item.path}" class="ranking-link">${item.title || item.path}</a></td>
+          <td class="col-score">${Math.round(item.finalScore * 100)}点</td>
+        </tr>`;
       });
       rankContainer.innerHTML = html;
-    }).catch(err => console.error("Ranking Load Error:", err));
+    }).catch(err => {
+      console.error("Ranking Load Error:", err);
+      rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px; color:red;">データ読み込み失敗</td></tr>';
+    });
   })();
 
-  // 4. レーダーチャート生成 -------------------------------
+  // 4. レーダーチャート生成 (既存) -------------------------------
   (function() {
     const updateRadar = () => {
       const container = document.querySelector('.radar-chart-2');
@@ -66,7 +83,7 @@
     updateRadar();
   })();
 
-  // 5. 日付形式の統一 -----------------------------------
+  // 5. 日付形式の統一 (既存) -----------------------------------
   (function() {
     const formatDates = () => {
       document.querySelectorAll('#ArchiveList ul.flat li.archivedate a').forEach(link => {
@@ -91,7 +108,7 @@
     window.addEventListener('load', formatDates);
   })();
 
-  // 6. タイピング演出 -----------------------------------
+  // 6. タイピング演出 (既存) -----------------------------------
   (function() {
     const origin = document.getElementById('tpd-origin-data'), 
           target = document.getElementById('tpd-title-text'), 
@@ -106,7 +123,7 @@
     setInterval(() => { con.style.visibility = (con.style.visibility === "hidden") ? "visible" : "hidden"; }, 400);
   })();
 
-  // 7. インフィード関連記事 -------------------------------
+  // 7. インフィード関連記事 (既存) -------------------------------
   (function() {
     const container = document.getElementById('infeed-slanted-card-container');
     if (!container) return;
@@ -140,13 +157,13 @@
         </a>`;
     };
 
-    const domain = BLOG_URL.replace(/^https?:\/\//, '').split('/')[0];
+    const domain = window.location.hostname;
     const script = document.createElement('script');
     script.src = `https://${domain}/feeds/posts/default?alt=json-in-script&callback=callback_infeed_final&max-results=10&t=${Date.now()}`;
     document.body.appendChild(script);
   })();
 
-  // 8. 広告遅延読み込み ---------------------------------
+  // 8. 広告遅延読み込み (既存) ---------------------------------
   window.addEventListener("load", () => {
     setTimeout(() => {
       const ad = document.createElement("script");
@@ -157,7 +174,7 @@
     }, 2000);
   });
 
-  // 9. jQuery依存機能 (読了率・タブ) ---------------------
+  // 9. jQuery依存機能 (既存) ---------------------
   if (typeof jQuery !== 'undefined') {
     (function($) {
       $(window).on('scroll resize', function() {
@@ -189,4 +206,53 @@
       });
     })(jQuery);
   }
+
+  // 10. 読了ログ送信 (追加) ---------------------------------
+  (function() {
+    let sent = false;
+    const startTime = Date.now();
+    
+    const sendLog = () => {
+      if (sent) return;
+      const content = document.querySelector('.post-body, .entry-content');
+      if (!content) return;
+
+      const stayTime = Math.floor((Date.now() - startTime) / 1000);
+      const scrollPos = window.scrollY + window.innerHeight;
+      const contentBottom = content.offsetTop + content.offsetHeight;
+
+      // 記事の80%以上読んだ、または30秒以上滞在
+      if (scrollPos > contentBottom * 0.8 || stayTime > 30) {
+        sent = true;
+        const payload = {
+          path: window.location.pathname,
+          title: document.title.split(' - ')[0],
+          score: Math.min(1, stayTime / 120), // 2分で満点
+          stayTime: stayTime,
+          count: 1
+        };
+        
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(GAS_URL, JSON.stringify(payload));
+        } else {
+          fetch(GAS_URL, { method: 'POST', body: JSON.stringify(payload), keepalive: true });
+        }
+      }
+    };
+
+    window.addEventListener('beforeunload', sendLog);
+    window.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') sendLog(); });
+  })();
+
+  // ページャー非表示
+  (function() {
+    const hidePager = () => {
+      const pagers = document.querySelectorAll('.blog-pager, #blog-pager, .paging-control');
+      pagers.forEach(p => p.style.display = 'none');
+    };
+    hidePager();
+    setTimeout(hidePager, 500);
+    setTimeout(hidePager, 1500);
+  })();
+
 });
