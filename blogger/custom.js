@@ -210,43 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2000);
   });
 
-  // 9. jQuery依存機能 (読了率・ラベル・タブ)
-  if (typeof jQuery !== 'undefined') {
-    (function($) {
-      // 読了率
-      $(window).on('scroll resize', function() {
-        const $content = $('.post-body, .entry-content').first();
-        if (!$content.length) return;
-        const st = $(window).scrollTop(), cTop = $content.offset().top;
-        $('#reading-progress-container').toggleClass('is-scrolled', st > 10);
-        let prog = (st > cTop) ? ((st - cTop) / ($content.outerHeight() - $(window).height() + 200)) * 100 : 0;
-        $('#reading-progress-bar').css('width', Math.min(100, Math.max(0, prog)) + '%');
-      });
-
-      // ラベルリンクの修正
-      $('a[href*="/search/label/"]').each(function() {
-        const base = $(this).attr("href").split('?')[0];
-        $(this).attr("href", base + "?&max-results=10");
-      });
-
-      // タブ・ラバランプ
-      $('.lava-lamp-wrapper').each(function() {
-        const $w = $(this), $l = $w.find('.lamp'), $b = $w.find('.tab-buttons span'), $c = $w.find('.tab-content');
-        const lw = 100 / $b.length;
-        $l.css({ 'width': lw + '%', 'transition': 'left 0.4s ease', 'position': 'absolute' });
-        $b.on('click', function() {
-          const idx = $b.index(this), tc = $(this).attr('class').replace('active','').trim();
-          $b.removeClass('active'); $(this).addClass('active');
-          $l.css('left', (idx * lw) + '%');
-          $c.find('> div').hide().css('opacity','0').removeClass('active');
-          $c.find('> div.' + tc).show().css('opacity','1').addClass('active');
-        }).filter('.active').trigger('click'); 
-        if (!$b.hasClass('active')) $b.eq(0).trigger('click');
-      });
-    })(jQuery);
-  }
-
-  // 10. ページャー非表示
+  // 9. ページャー非表示
   (function() {
     const hidePager = () => {
       const pagers = document.querySelectorAll('.blog-pager, #blog-pager, .paging-control');
@@ -258,3 +222,95 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
 });
+
+// 10. jQuery依存機能 (読了率・ラベル・タブ) - DOMContentLoadedの外で実行
+(function() {
+  const initJQueryFeatures = () => {
+    if (typeof jQuery === 'undefined') {
+      // jQueryがまだ読み込まれていない場合は再試行
+      setTimeout(initJQueryFeatures, 100);
+      return;
+    }
+
+    const $ = jQuery;
+
+    // 読了率バー
+    $(window).on('scroll resize', function() {
+      const $content = $('.post-body, .entry-content').first();
+      if (!$content.length) return;
+      const st = $(window).scrollTop(), cTop = $content.offset().top;
+      $('#reading-progress-container').toggleClass('is-scrolled', st > 10);
+      let prog = (st > cTop) ? ((st - cTop) / ($content.outerHeight() - $(window).height() + 200)) * 100 : 0;
+      $('#reading-progress-bar').css('width', Math.min(100, Math.max(0, prog)) + '%');
+    });
+
+    // ラベルリンクの修正
+    $('a[href*="/search/label/"]').each(function() {
+      const base = $(this).attr("href").split('?')[0];
+      $(this).attr("href", base + "?&max-results=10");
+    });
+
+    // タブ・ラバランプ - 修正版
+    const initTabs = () => {
+      $('.lava-lamp-wrapper').each(function() {
+        const $w = $(this);
+        const $l = $w.find('.lamp');
+        const $b = $w.find('.tab-buttons span');
+        const $c = $w.find('.tab-content');
+        
+        if ($b.length === 0) return;
+        
+        const lw = 100 / $b.length;
+        $l.css({ 
+          'width': lw + '%', 
+          'transition': 'left 0.4s ease', 
+          'position': 'absolute' 
+        });
+        
+        $b.on('click', function() {
+          const idx = $b.index(this);
+          
+          // 修正: クラス名の取得を改善
+          const allClasses = $(this).attr('class') || '';
+          const classArray = allClasses.split(' ').filter(c => c && c !== 'active');
+          const tc = classArray[0] || '';
+          
+          // activeクラスの切り替え
+          $b.removeClass('active');
+          $(this).addClass('active');
+          
+          // ランプの移動
+          $l.css('left', (idx * lw) + '%');
+          
+          // コンテンツの切り替え
+          $c.find('> div').hide().css('opacity', '0').removeClass('active');
+          
+          if (tc) {
+            const $target = $c.find('> div.' + tc);
+            $target.show().css('opacity', '1').addClass('active');
+          }
+        });
+        
+        // 初期表示
+        const $activeBtn = $b.filter('.active');
+        if ($activeBtn.length > 0) {
+          $activeBtn.trigger('click');
+        } else {
+          $b.eq(0).addClass('active').trigger('click');
+        }
+      });
+    };
+
+    // 複数のタイミングで初期化を試行
+    $(document).ready(initTabs);
+    $(window).on('load', initTabs);
+    setTimeout(initTabs, 500);
+  };
+
+  // 実行開始
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initJQueryFeatures);
+  } else {
+    initJQueryFeatures();
+  }
+})();
