@@ -3,9 +3,13 @@
    ========================================================== */
 
 document.addEventListener("DOMContentLoaded", function() {
+  // --- グローバル設定（各機能で共通利用） ---
   const GAS_URL = "https://script.google.com/macros/s/AKfycbyAqPeDcWpniZGNlDlejQsqOQ9tYK-WD_FszPkKGDbfXAfXNLMrBw-opvY3Aj4pZJioSA/exec";
+  const BLOG_URL = 'https://blogger.matsusanjpn.com/';
   const EXCLUDE_PATH = "/p/";
+  const circleNumbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩"];
 
+  // 1. ログ記録 (Beacon API & Fallback) ---------------------------
   (function() {
     const currentUrl = window.location.href;
     const currentPath = window.location.pathname;
@@ -14,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const startTime = Date.now();
     let maxScrollRate = 0;
-    let isSent = false; // 二重送信防止
+    let isSent = false;
 
     window.addEventListener("scroll", () => {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -22,10 +26,8 @@ document.addEventListener("DOMContentLoaded", function() {
       if (currentRate > maxScrollRate) maxScrollRate = currentRate;
     }, { passive: true });
 
-    // 送信処理の共通化
     const sendLog = () => {
       if (isSent) return;
-      
       const stayTimeSec = (Date.now() - startTime) / 1000;
       const payload = {
         path: currentPath, 
@@ -37,11 +39,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
       const blob = new Blob([JSON.stringify(payload)], { type: 'text/plain' });
 
-      // 1. Beaconを試行
       if (navigator.sendBeacon && navigator.sendBeacon(GAS_URL, blob)) {
         isSent = true;
       } else {
-        // 2. Beacon失敗時のフォールバック (fetch keepalive)
         fetch(GAS_URL, {
           method: 'POST',
           body: JSON.stringify(payload),
@@ -52,22 +52,17 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     };
 
-    // 複数のイベントで補足
     window.addEventListener("visibilitychange", () => {
       if (document.visibilityState === 'hidden') sendLog();
     });
-
     window.addEventListener("pagehide", sendLog);
   })();
-});
 
   // 2. 画像最適化 (WebP/リサイズ) & 広告制御 -------------------
   const optimizeContent = () => {
-    // 画像リサイズ
     document.querySelectorAll('img').forEach(img => {
       const src = img.getAttribute('src');
       if (!src || src.includes('data:image')) return;
-
       if (src.match(/\/s\d+(-rw)?\//)) {
         img.setAttribute('src', src.replace(/\/s\d+(-rw)?\//, '/w750-rw/'));
       }
@@ -75,12 +70,8 @@ document.addEventListener("DOMContentLoaded", function() {
         img.setAttribute('src', src.replace('/s1600/', '/w400-rw/'));
       }
     });
-
-    // 自動広告の即時削除
     document.querySelectorAll('.google-auto-placed, .adsbygoogle[data-ad-status="unfilled"]').forEach(ad => ad.remove());
   };
-
-  // 初期実行と監視の統合
   window.addEventListener('load', optimizeContent);
   new MutationObserver(optimizeContent).observe(document.body, { childList: true, subtree: true });
 
@@ -118,7 +109,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const x = centerX + (radius * (val / 10)) * Math.cos(angle);
         const y = centerY + (radius * (val / 10)) * Math.sin(angle);
         points.push(`${x.toFixed(1)} ${y.toFixed(1)}`);
-        
         if (dotsGroup) {
           const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
           c.setAttribute("cx", x.toFixed(1)); c.setAttribute("cy", y.toFixed(1)); c.setAttribute("r", "3");
@@ -133,19 +123,16 @@ document.addEventListener("DOMContentLoaded", function() {
   // 5. 日付形式の統一 -----------------------------------
   (function() {
     const formatDates = () => {
-      // アーカイブ
       document.querySelectorAll('#ArchiveList ul.flat li.archivedate a').forEach(link => {
         const m = link.textContent.match(/(\d+月)\s+(\d{4})/);
         if (m) link.textContent = `${m[2]} ${m[1]}`;
       });
-      // 投稿日時
       document.querySelectorAll('.published-info .date').forEach(u => {
         if (!u.dataset.publishd) return;
         const tp = new Date(u.dataset.publishd);
         u.textContent = tp.getFullYear()+'/'+('0'+(tp.getMonth()+1)).slice(-2)+'/'+('0'+tp.getDate()).slice(-2)+' '+tp.getHours()+':'+('0'+tp.getMinutes()).slice(-2);
         u.parentElement.style.display = 'inline';
       });
-      // 個別ページ
       document.querySelectorAll('.thetime').forEach(el => {
         const m = el.textContent.match(/(\d+)月\s+(\d+),\s+(\d+)/);
         if (m) {
@@ -227,7 +214,6 @@ document.addEventListener("DOMContentLoaded", function() {
   // 9. jQuery依存機能 (読了率・タブ) ---------------------
   if (typeof jQuery !== 'undefined') {
     (function($) {
-      // 読了率バー
       $(window).on('scroll resize', function() {
         const $content = $('.post-body, .entry-content').first();
         if (!$content.length) return;
@@ -237,13 +223,11 @@ document.addEventListener("DOMContentLoaded", function() {
         $('#reading-progress-bar').css('width', Math.min(100, Math.max(0, prog)) + '%');
       });
 
-      // ラベルリンク制限
       $('a[href*="/search/label/"]').each(function() {
         const base = $(this).attr("href").split('?')[0];
         $(this).attr("href", base + "?&max-results=10");
       });
 
-      // タブ・ラバランプ
       $('.lava-lamp-wrapper').each(function() {
         const $w = $(this), $l = $w.find('.lamp'), $b = $w.find('.tab-buttons span'), $c = $w.find('.tab-content');
         const lw = 100 / $b.length;
