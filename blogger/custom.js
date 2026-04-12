@@ -1,19 +1,17 @@
 /* ==========================================================
-   Blogger Custom Scripts (matsusan0717) - Dual GAS Version
+   Blogger Custom Scripts (matsusan0717) - Legacy Load Version
    ========================================================== */
 
-// 【重要】2つのURLを使い分けます
-const GAS_URL_POST = "https://script.google.com/macros/s/AKfycbx2h91Hn0jKy04oLEAdYyFAZcGXbxintxOKwvK6hYJLLF2GKwE4w8ZLkx3SrPByWqDLeA/exec";
-const GAS_URL_GET  = "https://script.google.com/macros/s/AKfycbyAqPeDcWpniZGNlDlejQsqOQ9tYK-WD_FszPkKGDbfXAfXNLMrBw-opvY3Aj4pZJioSA/exec";
+const GAS_URL_POST = "https://script.google.com/macros/s/AKfycbx2h91Hn0jKy04oLEAdYyFAZcGXbxintxOKwvK6hYJLLF2GKwE4w8ZLkx3SrPByWqDLeA/exec"; // 新しいGAS（記録用）
+const GAS_URL_GET  = "https://script.google.com/macros/s/AKfycbxS5Q2evDdaZ6D13BE3ikIeTMUEVsPlL6XtchE6VELFHu9OhmSYCJNXm6_onlrBna-G4w/exec"; // 前のGAS（読み込み用）
 
+const BLOG_URL = 'https://blogger.matsusanjpn.com/';
+const EXCLUDE_PATH = "/p/";
 const circleNumbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩"];
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
 
-  // 1. 基本設定
-  const BLOG_URL = window.location.origin;
-
-  // 2. 画像最適化 (WebP/リサイズ) & 広告制御
+  // 1. 画像最適化 (WebP/リサイズ) & 広告制御
   const optimizeContent = () => {
     document.querySelectorAll('img').forEach(img => {
       const src = img.getAttribute('src');
@@ -30,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', optimizeContent);
   new MutationObserver(optimizeContent).observe(document.body, { childList: true, subtree: true });
 
-  // 3. ランキング表示 (古いGAS URLから取得)
+  // 2. ランキング表示 (以前のGAS読み込み仕様を再現)
   (function() {
     const rankContainer = document.getElementById('global-ranking-container');
     if (!rankContainer) return;
@@ -38,31 +36,72 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(GAS_URL_GET)
       .then(res => res.json())
       .then(data => {
-        if (!data || !Array.isArray(data) || data.length === 0) {
-          rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px; color:#999;">ランキングデータがありません</td></tr>';
+        // データが存在しない、または空の場合
+        if (!data || data.length === 0) {
+          rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px; color:#999;">集計データがありません</td></tr>';
           return;
         }
         
-        // 古いGASが「降順（1位が最後）」で返している場合があるため、
-        // 必要に応じてここで .reverse() するか、そのままループします
         let html = '';
+        // 以前のGASが配列をそのまま返していた場合と、オブジェクト配列の場合の両方に対応
         data.forEach((item, index) => {
+          if (index >= 10) return; // 最大10件
+
           const rankLabel = circleNumbers[index] || (index + 1);
+          // item[1]がパス、item[0]がタイトルなど、配列形式だった場合も考慮
+          const path = item.path || (Array.isArray(item) ? item[1] : '');
+          const title = item.title || (Array.isArray(item) ? item[0] : '');
+          const score = item.finalScore || (Array.isArray(item) ? item[2] : 0);
+
+          if (!path) return;
+
           html += `
             <tr class="ranking-item">
               <td class="col-rank">${rankLabel}</td>
               <td class="col-title">
-                <a href="${item.path}" class="ranking-link">${item.title || item.path}</a>
+                <a href="${path}" class="ranking-link">${title || path}</a>
               </td>
-              <td class="col-score">${Math.round(item.finalScore * 100)}点</td>
+              <td class="col-score">${Math.round(score * 100) || 0}点</td>
             </tr>`;
         });
         rankContainer.innerHTML = html;
       })
       .catch(err => {
         console.error("Ranking Load Error:", err);
-        rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px; color:red;">読み込み失敗</td></tr>';
+        rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px; color:red;">読み込みエラー</td></tr>';
       });
+  })();
+
+  // 3. ログ記録 (Beacon API / Blob送信形式)
+  (function() {
+    const currentUrl = window.location.href;
+    const currentPath = window.location.pathname;
+    if (currentPath.indexOf(EXCLUDE_PATH) !== -1 || /preview|draft/.test(currentUrl)) return;
+
+    const startTime = Date.now();
+    let maxScrollRate = 0;
+
+    window.addEventListener("scroll", () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const currentRate = docHeight > 0 ? window.scrollY / docHeight : 0;
+      if (currentRate > maxScrollRate) maxScrollRate = currentRate;
+    }, { passive: true });
+
+    window.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === 'hidden') {
+        const stayTimeSec = (Date.now() - startTime) / 1000;
+        const payload = {
+          path: currentPath, 
+          title: document.title.trim(),
+          score: stayTimeSec * Math.max(maxScrollRate, 0.1),
+          count: 1, 
+          stayTime: stayTimeSec
+        };
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(GAS_URL_POST, new Blob([JSON.stringify(payload)], {type: 'text/plain'}));
+        }
+      }
+    });
   })();
 
   // 4. レーダーチャート生成
@@ -75,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const dds = container.querySelectorAll('dd');
       const centerX = 100, centerY = 100, radius = 100, count = dds.length;
       let points = [];
-      
       if (dotsGroup) dotsGroup.innerHTML = '';
       dds.forEach((dd, i) => {
         const val = parseFloat(dd.textContent) || 0;
@@ -107,14 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
         u.textContent = tp.getFullYear()+'/'+('0'+(tp.getMonth()+1)).slice(-2)+'/'+('0'+tp.getDate()).slice(-2)+' '+tp.getHours()+':'+('0'+tp.getMinutes()).slice(-2);
         u.parentElement.style.display = 'inline';
       });
-      document.querySelectorAll('.thetime').forEach(el => {
-        const m = el.textContent.match(/(\d+)月\s+(\d+),\s+(\d+)/);
-        if (m) {
-          const formatted = `${m[3]}/${m[1].padStart(2, '0')}/${m[2].padStart(2, '0')}`;
-          const icon = el.querySelector('i');
-          el.innerHTML = icon ? icon.outerHTML + formatted : formatted;
-        }
-      });
     };
     window.addEventListener('load', formatDates);
   })();
@@ -138,36 +168,17 @@ document.addEventListener('DOMContentLoaded', () => {
   (function() {
     const container = document.getElementById('infeed-slanted-card-container');
     if (!container) return;
-
     window.callback_infeed_final = function(data) {
       if (!data?.feed?.entry) return;
       const entries = data.feed.entry;
       const entry = entries[Math.floor(Math.random() * entries.length)];
       const title = entry.title.$t;
       const link = entry.link.find(l => l.rel === 'alternate').href;
-      const icon = '<i class="fa-solid fa-tag"></i>';
-      const labelsHtml = entry.category?.length > 0 
-        ? entry.category.map(cat => `<span class="category-label">${icon}${cat.term}</span>`).join('')
-        : `<span class="category-label">${icon}RECOMMEND</span>`;
-
-      const summary = (entry.summary?.$t || entry.content?.$t || '').replace(/<[^>]*>/g, '').substring(0, 150);
+      const summary = (entry.summary?.$t || '').replace(/<[^>]*>/g, '').substring(0, 150);
       let img = 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPDYu4ibLWCVdJdTwQa2zoBViIfND-ZB0Y9g8IU1Csk_7AoRwVi1efzTdGFKjaiXh9LPWyCllES9iKlhik8b2G2liUUd8oeAA4NOVflZO3VqPtxhzuUteSAIGCRkyw2Ps8R5FjyFd1FzhmgPYCeAUGBM2qx3Z-lXUGUft6xgiKGUORq3Uz2ULqbSZFEsQ/s1600/NoImage.png';
-
-      if (entry.media$thumbnail) {
-        img = entry.media$thumbnail.url.replace(/\/s[0-9]+[^\/]*\//, '/w600/').replace(/\/w[0-9]+-h[0-9]+[^\/]*\//, '/w600/');
-      }
-
-      container.innerHTML = `
-        <a href="${link}" class="infeed-blog-card">
-          <div class="meta"><div class="photo" style="background-image: url('${img}')"></div></div>
-          <div class="description">
-            <div class="label-container">${labelsHtml}</div>
-            <div><b>${title}</b></div>
-            <p>${summary}</p>
-          </div>
-        </a>`;
+      if (entry.media$thumbnail) img = entry.media$thumbnail.url.replace(/\/s[0-9]+[^\/]*\//, '/w600/');
+      container.innerHTML = `<a href="${link}" class="infeed-blog-card"><div class="description"><b>${title}</b><p>${summary}</p></div></a>`;
     };
-
     const domain = window.location.hostname;
     const script = document.createElement('script');
     script.src = `https://${domain}/feeds/posts/default?alt=json-in-script&callback=callback_infeed_final&max-results=10&t=${Date.now()}`;
@@ -185,76 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2000);
   });
 
-  // 9. jQuery依存機能 (読了率・タブ)
-  if (typeof jQuery !== 'undefined') {
-    (function($) {
-      $(window).on('scroll resize', function() {
-        const $content = $('.post-body, .entry-content').first();
-        if (!$content.length) return;
-        const st = $(window).scrollTop(), cTop = $content.offset().top;
-        $('#reading-progress-container').toggleClass('is-scrolled', st > 10);
-        let prog = (st > cTop) ? ((st - cTop) / ($content.outerHeight() - $(window).height() + 200)) * 100 : 0;
-        $('#reading-progress-bar').css('width', Math.min(100, Math.max(0, prog)) + '%');
-      });
-
-      $('a[href*="/search/label/"]').each(function() {
-        const base = $(this).attr("href").split('?')[0];
-        $(this).attr("href", base + "?&max-results=10");
-      });
-
-      $('.lava-lamp-wrapper').each(function() {
-        const $w = $(this), $l = $w.find('.lamp'), $b = $w.find('.tab-buttons span'), $c = $w.find('.tab-content');
-        const lw = 100 / $b.length;
-        $l.css({ 'width': lw + '%', 'transition': 'left 0.4s ease', 'position': 'absolute' });
-        $b.on('click', function() {
-          const idx = $b.index(this), tc = $(this).attr('class').replace('active','').trim();
-          $b.removeClass('active'); $(this).addClass('active');
-          $l.css('left', (idx * lw) + '%');
-          $c.find('> div').hide().css('opacity','0').removeClass('active');
-          $c.find('> div.' + tc).show().css('opacity','1').addClass('active');
-        }).filter('.active').trigger('click'); 
-        if (!$b.hasClass('active')) $b.eq(0).trigger('click');
-      });
-    })(jQuery);
-  }
-
-  // 10. 読了ログ送信 (新しいGAS URLへ送信)
-  (function() {
-    let sent = false;
-    const startTime = Date.now();
-    
-    const sendLog = () => {
-      if (sent) return;
-      const content = document.querySelector('.post-body, .entry-content');
-      if (!content) return;
-
-      const stayTime = Math.floor((Date.now() - startTime) / 1000);
-      const scrollPos = window.scrollY + window.innerHeight;
-      const contentBottom = content.offsetTop + content.offsetHeight;
-
-      if (scrollPos > contentBottom * 0.8 || stayTime > 30) {
-        sent = true;
-        const payload = {
-          path: window.location.pathname,
-          title: document.title.split(' - ')[0],
-          score: Math.min(1, stayTime / 120),
-          stayTime: stayTime,
-          count: 1
-        };
-        
-        if (navigator.sendBeacon) {
-          navigator.sendBeacon(GAS_URL_POST, JSON.stringify(payload));
-        } else {
-          fetch(GAS_URL_POST, { method: 'POST', body: JSON.stringify(payload), keepalive: true });
-        }
-      }
-    };
-
-    window.addEventListener('beforeunload', sendLog);
-    window.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') sendLog(); });
-  })();
-
-  // ページャー非表示
+  // 9. ページャー非表示
   (function() {
     const hidePager = () => {
       const pagers = document.querySelectorAll('.blog-pager, #blog-pager, .paging-control');
@@ -262,7 +204,5 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     hidePager();
     setTimeout(hidePager, 500);
-    setTimeout(hidePager, 1500);
   })();
-
 });
