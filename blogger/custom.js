@@ -1,5 +1,6 @@
+
 /* ==========================================================
-   Blogger Custom Scripts (matsusan0717) - Full Integration
+   Blogger Custom Scripts (matsusan0717) - Full Integration (Tabs Removed)
    ========================================================== */
 
 // 【設定】URL
@@ -13,62 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const BLOG_URL_HOSTNAME = window.location.hostname;
 
-  // 1. アクセスログ記録 (POST) - 新バージョン
-  (function() {
-    const currentUrl = window.location.href;
-    const currentPath = window.location.pathname;
-    
-    if (currentPath.indexOf(EXCLUDE_PATH) !== -1 || /preview|draft/.test(currentUrl)) return;
-
-    const startTime = Date.now();
-    let maxScrollRate = 0;
-    let isSent = false; // 二重送信防止
-
-    window.addEventListener("scroll", () => {
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const currentRate = docHeight > 0 ? window.scrollY / docHeight : 0;
-      if (currentRate > maxScrollRate) maxScrollRate = currentRate;
-    }, { passive: true });
-
-    // 送信処理の共通化
-    const sendLog = () => {
-      if (isSent) return;
-      
-      const stayTimeSec = (Date.now() - startTime) / 1000;
-      const payload = {
-        path: currentPath, 
-        title: document.title.trim(),
-        score: stayTimeSec * Math.max(maxScrollRate, 0.1),
-        count: 1, 
-        stayTime: stayTimeSec
-      };
-
-      const blob = new Blob([JSON.stringify(payload)], { type: 'text/plain' });
-
-      // 1. Beaconを試行
-      if (navigator.sendBeacon && navigator.sendBeacon(GAS_URL_POST, blob)) {
-        isSent = true;
-      } else {
-        // 2. Beacon失敗時のフォールバック (fetch keepalive)
-        fetch(GAS_URL_POST, {
-          method: 'POST',
-          body: JSON.stringify(payload),
-          keepalive: true,
-          mode: 'no-cors'
-        });
-        isSent = true;
-      }
-    };
-
-    // 複数のイベントで補足
-    window.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === 'hidden') sendLog();
-    });
-
-    window.addEventListener("pagehide", sendLog);
-  })();
-
-  // 2. 画像最適化 (WebP/リサイズ) & 広告制御
+  // 1. 画像最適化 (WebP/リサイズ) & 広告制御
   const optimizeContent = () => {
     document.querySelectorAll('img').forEach(img => {
       const src = img.getAttribute('src');
@@ -85,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', optimizeContent);
   new MutationObserver(optimizeContent).observe(document.body, { childList: true, subtree: true });
 
-  // 3. ランキング表示 (GET)
+  // 2. ランキング表示 (GET)
   (function() {
     const rankContainer = document.getElementById('global-ranking-container');
     if (!rankContainer) return;
@@ -105,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }).catch(err => console.error("Ranking Load Error:", err));
   })();
 
-  // 4. レーダーチャート生成
+  // 3. レーダーチャート生成
   (function() {
     const updateRadar = () => {
       const container = document.querySelector('.radar-chart-2');
@@ -133,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateRadar();
   })();
 
-  // 5. 日付形式の統一
+  // 4. 日付形式の統一
   (function() {
     const formatDates = () => {
       document.querySelectorAll('#ArchiveList ul.flat li.archivedate a').forEach(link => {
@@ -158,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', formatDates);
   })();
 
-  // 6. タイピング演出
+  // 5. タイピング演出
   (function() {
     const origin = document.getElementById('tpd-origin-data'), 
           target = document.getElementById('tpd-title-text'), 
@@ -173,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => { con.style.visibility = (con.style.visibility === "hidden") ? "visible" : "hidden"; }, 400);
   })();
 
-  // 7. インフィード関連記事
+  // 6. インフィード関連記事
   (function() {
     const container = document.getElementById('infeed-slanted-card-container');
     if (!container) return;
@@ -199,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(script);
   })();
 
-  // 8. 広告遅延読み込み
+  // 7. 広告遅延読み込み
   window.addEventListener("load", () => {
     setTimeout(() => {
       const ad = document.createElement("script");
@@ -210,7 +156,67 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2000);
   });
 
-  // 9. ページャー非表示
+  // 8. jQuery依存機能 (読了率・ラベル)
+  if (typeof jQuery !== 'undefined') {
+    (function($) {
+      // 読了率
+      $(window).on('scroll resize', function() {
+        const $content = $('.post-body, .entry-content').first();
+        if (!$content.length) return;
+        const st = $(window).scrollTop(), cTop = $content.offset().top;
+        $('#reading-progress-container').toggleClass('is-scrolled', st > 10);
+        let prog = (st > cTop) ? ((st - cTop) / ($content.outerHeight() - $(window).height() + 200)) * 100 : 0;
+        $('#reading-progress-bar').css('width', Math.min(100, Math.max(0, prog)) + '%');
+      });
+
+      // ラベルリンクの修正
+      $('a[href*="/search/label/"]').each(function() {
+        const base = $(this).attr("href").split('?')[0];
+        $(this).attr("href", base + "?&max-results=10");
+      });
+    })(jQuery);
+  }
+
+  // 9. アクセスログ記録 (POST)
+  (function() {
+    const currentUrl = window.location.href;
+    const currentPath = window.location.pathname;
+    if (currentPath.indexOf(EXCLUDE_PATH) !== -1 || /preview|draft/.test(currentUrl)) return;
+
+    const startTime = Date.now();
+    let maxScrollRate = 0;
+    let isSent = false;
+
+    window.addEventListener("scroll", () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const currentRate = docHeight > 0 ? window.scrollY / docHeight : 0;
+      if (currentRate > maxScrollRate) maxScrollRate = currentRate;
+    }, { passive: true });
+
+    const sendLog = () => {
+      if (isSent) return;
+      const stayTimeSec = (Date.now() - startTime) / 1000;
+      const payload = {
+        path: currentPath, 
+        title: document.title.trim(),
+        score: stayTimeSec * Math.max(maxScrollRate, 0.1),
+        count: 1, 
+        stayTime: stayTimeSec
+      };
+      const blob = new Blob([JSON.stringify(payload)], { type: 'text/plain' });
+      if (navigator.sendBeacon && navigator.sendBeacon(GAS_URL_POST, blob)) {
+        isSent = true;
+      } else {
+        fetch(GAS_URL_POST, { method: 'POST', body: JSON.stringify(payload), keepalive: true, mode: 'no-cors' });
+        isSent = true;
+      }
+    };
+
+    window.addEventListener("visibilitychange", () => { if (document.visibilityState === 'hidden') sendLog(); });
+    window.addEventListener("pagehide", sendLog);
+  })();
+
+  // 10. ページャー非表示
   (function() {
     const hidePager = () => {
       const pagers = document.querySelectorAll('.blog-pager, #blog-pager, .paging-control');
@@ -222,95 +228,3 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
 });
-
-// 10. jQuery依存機能 (読了率・ラベル・タブ) - DOMContentLoadedの外で実行
-(function() {
-  const initJQueryFeatures = () => {
-    if (typeof jQuery === 'undefined') {
-      // jQueryがまだ読み込まれていない場合は再試行
-      setTimeout(initJQueryFeatures, 100);
-      return;
-    }
-
-    const $ = jQuery;
-
-    // 読了率バー
-    $(window).on('scroll resize', function() {
-      const $content = $('.post-body, .entry-content').first();
-      if (!$content.length) return;
-      const st = $(window).scrollTop(), cTop = $content.offset().top;
-      $('#reading-progress-container').toggleClass('is-scrolled', st > 10);
-      let prog = (st > cTop) ? ((st - cTop) / ($content.outerHeight() - $(window).height() + 200)) * 100 : 0;
-      $('#reading-progress-bar').css('width', Math.min(100, Math.max(0, prog)) + '%');
-    });
-
-    // ラベルリンクの修正
-    $('a[href*="/search/label/"]').each(function() {
-      const base = $(this).attr("href").split('?')[0];
-      $(this).attr("href", base + "?&max-results=10");
-    });
-
-    // タブ・ラバランプ - 修正版
-    const initTabs = () => {
-      $('.lava-lamp-wrapper').each(function() {
-        const $w = $(this);
-        const $l = $w.find('.lamp');
-        const $b = $w.find('.tab-buttons span');
-        const $c = $w.find('.tab-content');
-        
-        if ($b.length === 0) return;
-        
-        const lw = 100 / $b.length;
-        $l.css({ 
-          'width': lw + '%', 
-          'transition': 'left 0.4s ease', 
-          'position': 'absolute' 
-        });
-        
-        $b.on('click', function() {
-          const idx = $b.index(this);
-          
-          // 修正: クラス名の取得を改善
-          const allClasses = $(this).attr('class') || '';
-          const classArray = allClasses.split(' ').filter(c => c && c !== 'active');
-          const tc = classArray[0] || '';
-          
-          // activeクラスの切り替え
-          $b.removeClass('active');
-          $(this).addClass('active');
-          
-          // ランプの移動
-          $l.css('left', (idx * lw) + '%');
-          
-          // コンテンツの切り替え
-          $c.find('> div').hide().css('opacity', '0').removeClass('active');
-          
-          if (tc) {
-            const $target = $c.find('> div.' + tc);
-            $target.show().css('opacity', '1').addClass('active');
-          }
-        });
-        
-        // 初期表示
-        const $activeBtn = $b.filter('.active');
-        if ($activeBtn.length > 0) {
-          $activeBtn.trigger('click');
-        } else {
-          $b.eq(0).addClass('active').trigger('click');
-        }
-      });
-    };
-
-    // 複数のタイミングで初期化を試行
-    $(document).ready(initTabs);
-    $(window).on('load', initTabs);
-    setTimeout(initTabs, 500);
-  };
-
-  // 実行開始
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initJQueryFeatures);
-  } else {
-    initJQueryFeatures();
-  }
-})();
