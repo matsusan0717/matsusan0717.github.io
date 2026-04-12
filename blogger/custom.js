@@ -3,7 +3,7 @@
    ========================================================== */
 
 document.addEventListener("DOMContentLoaded", function() {
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbxS5Q2evDdaZ6D13BE3ikIeTMUEVsPlL6XtchE6VELFHu9OhmSYCJNXm6_onlrBna-G4w/exec";
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbx2h91Hn0jKy04oLEAdYyFAZcGXbxintxOKwvK6hYJLLF2GKwE4w8ZLkx3SrPByWqDLeA/exec";
   const BLOG_URL = 'https://blogger.matsusanjpn.com/';
   const EXCLUDE_PATH = "/p/";
   const circleNumbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩"];
