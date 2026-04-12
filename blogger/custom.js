@@ -13,7 +13,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const BLOG_URL_HOSTNAME = window.location.hostname;
 
-  // 1. 画像最適化 (WebP/リサイズ) & 広告制御
+  // 1. アクセスログ記録 (POST) - 新バージョン
+  (function() {
+    const currentUrl = window.location.href;
+    const currentPath = window.location.pathname;
+    
+    if (currentPath.indexOf(EXCLUDE_PATH) !== -1 || /preview|draft/.test(currentUrl)) return;
+
+    const startTime = Date.now();
+    let maxScrollRate = 0;
+    let isSent = false; // 二重送信防止
+
+    window.addEventListener("scroll", () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const currentRate = docHeight > 0 ? window.scrollY / docHeight : 0;
+      if (currentRate > maxScrollRate) maxScrollRate = currentRate;
+    }, { passive: true });
+
+    // 送信処理の共通化
+    const sendLog = () => {
+      if (isSent) return;
+      
+      const stayTimeSec = (Date.now() - startTime) / 1000;
+      const payload = {
+        path: currentPath, 
+        title: document.title.trim(),
+        score: stayTimeSec * Math.max(maxScrollRate, 0.1),
+        count: 1, 
+        stayTime: stayTimeSec
+      };
+
+      const blob = new Blob([JSON.stringify(payload)], { type: 'text/plain' });
+
+      // 1. Beaconを試行
+      if (navigator.sendBeacon && navigator.sendBeacon(GAS_URL_POST, blob)) {
+        isSent = true;
+      } else {
+        // 2. Beacon失敗時のフォールバック (fetch keepalive)
+        fetch(GAS_URL_POST, {
+          method: 'POST',
+          body: JSON.stringify(payload),
+          keepalive: true,
+          mode: 'no-cors'
+        });
+        isSent = true;
+      }
+    };
+
+    // 複数のイベントで補足
+    window.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === 'hidden') sendLog();
+    });
+
+    window.addEventListener("pagehide", sendLog);
+  })();
+
+  // 2. 画像最適化 (WebP/リサイズ) & 広告制御
   const optimizeContent = () => {
     document.querySelectorAll('img').forEach(img => {
       const src = img.getAttribute('src');
@@ -30,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', optimizeContent);
   new MutationObserver(optimizeContent).observe(document.body, { childList: true, subtree: true });
 
-  // 2. ランキング表示 (GET)
+  // 3. ランキング表示 (GET)
   (function() {
     const rankContainer = document.getElementById('global-ranking-container');
     if (!rankContainer) return;
@@ -50,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }).catch(err => console.error("Ranking Load Error:", err));
   })();
 
-  // 3. レーダーチャート生成
+  // 4. レーダーチャート生成
   (function() {
     const updateRadar = () => {
       const container = document.querySelector('.radar-chart-2');
@@ -78,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateRadar();
   })();
 
-  // 4. 日付形式の統一
+  // 5. 日付形式の統一
   (function() {
     const formatDates = () => {
       document.querySelectorAll('#ArchiveList ul.flat li.archivedate a').forEach(link => {
@@ -103,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', formatDates);
   })();
 
-  // 5. タイピング演出
+  // 6. タイピング演出
   (function() {
     const origin = document.getElementById('tpd-origin-data'), 
           target = document.getElementById('tpd-title-text'), 
@@ -118,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => { con.style.visibility = (con.style.visibility === "hidden") ? "visible" : "hidden"; }, 400);
   })();
 
-  // 6. インフィード関連記事
+  // 7. インフィード関連記事
   (function() {
     const container = document.getElementById('infeed-slanted-card-container');
     if (!container) return;
@@ -144,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(script);
   })();
 
-  // 7. 広告遅延読み込み
+  // 8. 広告遅延読み込み
   window.addEventListener("load", () => {
     setTimeout(() => {
       const ad = document.createElement("script");
@@ -155,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2000);
   });
 
-  // 8. jQuery依存機能 (読了率・ラベル・タブ)
+  // 9. jQuery依存機能 (読了率・ラベル・タブ)
   if (typeof jQuery !== 'undefined') {
     (function($) {
       // 読了率
@@ -190,45 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })(jQuery);
   }
-
-  // 9. アクセスログ記録 (POST)
-  (function() {
-    const currentUrl = window.location.href;
-    const currentPath = window.location.pathname;
-    if (currentPath.indexOf(EXCLUDE_PATH) !== -1 || /preview|draft/.test(currentUrl)) return;
-
-    const startTime = Date.now();
-    let maxScrollRate = 0;
-    let isSent = false;
-
-    window.addEventListener("scroll", () => {
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const currentRate = docHeight > 0 ? window.scrollY / docHeight : 0;
-      if (currentRate > maxScrollRate) maxScrollRate = currentRate;
-    }, { passive: true });
-
-    const sendLog = () => {
-      if (isSent) return;
-      const stayTimeSec = (Date.now() - startTime) / 1000;
-      const payload = {
-        path: currentPath, 
-        title: document.title.trim(),
-        score: stayTimeSec * Math.max(maxScrollRate, 0.1),
-        count: 1, 
-        stayTime: stayTimeSec
-      };
-      const blob = new Blob([JSON.stringify(payload)], { type: 'text/plain' });
-      if (navigator.sendBeacon && navigator.sendBeacon(GAS_URL_POST, blob)) {
-        isSent = true;
-      } else {
-        fetch(GAS_URL_POST, { method: 'POST', body: JSON.stringify(payload), keepalive: true, mode: 'no-cors' });
-        isSent = true;
-      }
-    };
-
-    window.addEventListener("visibilitychange", () => { if (document.visibilityState === 'hidden') sendLog(); });
-    window.addEventListener("pagehide", sendLog);
-  })();
 
   // 10. ページャー非表示
   (function() {
