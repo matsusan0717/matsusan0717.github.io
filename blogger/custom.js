@@ -1,9 +1,11 @@
 /* ==========================================================
-   Blogger Custom Scripts (matsusan0717) - Full Implementation
+   Blogger Custom Scripts (matsusan0717) - Dual GAS Version
    ========================================================== */
 
-// 共通設定：ここを新しいURLに書き換えてください
-const GAS_URL = "https://script.google.com/macros/s/AKfycbx2h91Hn0jKy04oLEAdYyFAZcGXbxintxOKwvK6hYJLLF2GKwE4w8ZLkx3SrPByWqDLeA/exec";
+// 【重要】2つのURLを使い分けます
+const GAS_URL_POST = "https://script.google.com/macros/s/AKfycbx2h91Hn0jKy04oLEAdYyFAZcGXbxintxOKwvK6hYJLLF2GKwE4w8ZLkx3SrPByWqDLeA/exec";
+const GAS_URL_GET  = "https://script.google.com/macros/s/AKfycbyAqPeDcWpniZGNlDlejQsqOQ9tYK-WD_FszPkKGDbfXAfXNLMrBw-opvY3Aj4pZJioSA/exec";
+
 const circleNumbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩"];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,24 +30,24 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', optimizeContent);
   new MutationObserver(optimizeContent).observe(document.body, { childList: true, subtree: true });
 
-  // 3. ランキング表示 (修正版・計算ミス排除)
+  // 3. ランキング表示 (古いGAS URLから取得)
   (function() {
     const rankContainer = document.getElementById('global-ranking-container');
     if (!rankContainer) return;
 
-    fetch(GAS_URL)
+    fetch(GAS_URL_GET)
       .then(res => res.json())
       .then(data => {
         if (!data || !Array.isArray(data) || data.length === 0) {
-          rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px; color:#999;">集計データが不足しています</td></tr>';
+          rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px; color:#999;">ランキングデータがありません</td></tr>';
           return;
         }
         
+        // 古いGASが「降順（1位が最後）」で返している場合があるため、
+        // 必要に応じてここで .reverse() するか、そのままループします
         let html = '';
         data.forEach((item, index) => {
-          // 配列の先頭から順に①〜⑩を割り当てる
           const rankLabel = circleNumbers[index] || (index + 1);
-          
           html += `
             <tr class="ranking-item">
               <td class="col-rank">${rankLabel}</td>
@@ -59,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(err => {
         console.error("Ranking Load Error:", err);
-        rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px; color:red;">データの読み込みに失敗しました</td></tr>';
+        rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px; color:red;">読み込み失敗</td></tr>';
       });
   })();
 
@@ -78,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
       dds.forEach((dd, i) => {
         const val = parseFloat(dd.textContent) || 0;
         const angle = (Math.PI * 2 / count) * i - (Math.PI / 2);
-        const x = centerX + (radius * (val / 10)) * Math.const(angle);
+        const x = centerX + (radius * (val / 10)) * Math.cos(angle);
         const y = centerY + (radius * (val / 10)) * Math.sin(angle);
         points.push(`${x.toFixed(1)} ${y.toFixed(1)}`);
         if (dotsGroup) {
@@ -216,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })(jQuery);
   }
 
-  // 10. 読了ログ送信
+  // 10. 読了ログ送信 (新しいGAS URLへ送信)
   (function() {
     let sent = false;
     const startTime = Date.now();
@@ -241,9 +243,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         
         if (navigator.sendBeacon) {
-          navigator.sendBeacon(GAS_URL, JSON.stringify(payload));
+          navigator.sendBeacon(GAS_URL_POST, JSON.stringify(payload));
         } else {
-          fetch(GAS_URL, { method: 'POST', body: JSON.stringify(payload), keepalive: true });
+          fetch(GAS_URL_POST, { method: 'POST', body: JSON.stringify(payload), keepalive: true });
         }
       }
     };
