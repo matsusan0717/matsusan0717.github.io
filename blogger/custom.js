@@ -1,5 +1,5 @@
 /* ==========================================================
-   Blogger Custom Scripts (matsusan0717) - Absolute Integration
+   Blogger Custom Scripts (matsusan0717) - Full Integration
    ========================================================== */
 
 // 【設定】URL
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $(this).attr("href", base + "?&max-results=10");
       });
 
-      // タブ・ラバランプ (指定された通り変更を一切加えない)
+      // タブ・ラバランプ
       $('.lava-lamp-wrapper').each(function() {
         const $w = $(this), $l = $w.find('.lamp'), $b = $w.find('.tab-buttons span'), $c = $w.find('.tab-content');
         const lw = 100 / $b.length;
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })(jQuery);
   }
 
-  // 9. ログ記録 (アクセスログ)
+  // 9. アクセスログ記録 (POST)
   (function() {
     const currentUrl = window.location.href;
     const currentPath = window.location.pathname;
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const startTime = Date.now();
     let maxScrollRate = 0;
-    let isSent = false; // 二重送信防止
+    let isSent = false;
 
     window.addEventListener("scroll", () => {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -207,10 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (currentRate > maxScrollRate) maxScrollRate = currentRate;
     }, { passive: true });
 
-    // 送信処理の共通化
     const sendLog = () => {
       if (isSent) return;
-      
       const stayTimeSec = (Date.now() - startTime) / 1000;
       const payload = {
         path: currentPath, 
@@ -219,29 +217,16 @@ document.addEventListener('DOMContentLoaded', () => {
         count: 1, 
         stayTime: stayTimeSec
       };
-
       const blob = new Blob([JSON.stringify(payload)], { type: 'text/plain' });
-
-      // 1. Beaconを試行
       if (navigator.sendBeacon && navigator.sendBeacon(GAS_URL_POST, blob)) {
         isSent = true;
       } else {
-        // 2. Beacon失敗時のフォールバック (fetch keepalive)
-        fetch(GAS_URL_POST, {
-          method: 'POST',
-          body: JSON.stringify(payload),
-          keepalive: true,
-          mode: 'no-cors'
-        });
+        fetch(GAS_URL_POST, { method: 'POST', body: JSON.stringify(payload), keepalive: true, mode: 'no-cors' });
         isSent = true;
       }
     };
 
-    // 複数のイベントで補足
-    window.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === 'hidden') sendLog();
-    });
-
+    window.addEventListener("visibilitychange", () => { if (document.visibilityState === 'hidden') sendLog(); });
     window.addEventListener("pagehide", sendLog);
   })();
 
