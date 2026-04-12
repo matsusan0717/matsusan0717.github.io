@@ -3,7 +3,7 @@
    ========================================================== */
 
 document.addEventListener("DOMContentLoaded", function() {
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbxS5Q2evDdaZ6D13BE3ikIeTMUEVsPlL6XtchE6VELFHu9OhmSYCJNXm6_onlrBna-G4w/exec";
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbyAqPeDcWpniZGNlDlejQsqOQ9tYK-WD_FszPkKGDbfXAfXNLMrBw-opvY3Aj4pZJioSA/exec";
   const EXCLUDE_PATH = "/p/";
 
   (function() {
