@@ -1,5 +1,5 @@
 /* ==========================================================
-   Blogger Custom Scripts (matsusan0717) - Fully Integrated
+   Blogger Custom Scripts (matsusan0717) - Full Implementation
    ========================================================== */
 
 // 共通設定：ここを新しいURLに書き換えてください
@@ -8,10 +8,10 @@ const circleNumbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. 基本設定 (既存の引き継ぎ)
+  // 1. 基本設定
   const BLOG_URL = window.location.origin;
 
-  // 2. 画像最適化 (WebP/リサイズ) & 広告制御 -------------------
+  // 2. 画像最適化 (WebP/リサイズ) & 広告制御
   const optimizeContent = () => {
     document.querySelectorAll('img').forEach(img => {
       const src = img.getAttribute('src');
@@ -28,33 +28,42 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', optimizeContent);
   new MutationObserver(optimizeContent).observe(document.body, { childList: true, subtree: true });
 
-  // 3. ランキング表示 (最新版) -----------------------------------
+  // 3. ランキング表示 (修正版・計算ミス排除)
   (function() {
     const rankContainer = document.getElementById('global-ranking-container');
     if (!rankContainer) return;
 
-    fetch(GAS_URL).then(res => res.json()).then(data => {
-      if (!data || !Array.isArray(data) || data.length === 0) {
-        rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px; color:#999;">集計中...</td></tr>';
-        return;
-      }
-      let html = '';
-      data.forEach((item, index) => {
-        const rank = circleNumbers[index] || (index + 1);
-        html += `<tr class="ranking-item">
-          <td class="col-rank">${rank}</td>
-          <td class="col-title"><a href="${item.path}" class="ranking-link">${item.title || item.path}</a></td>
-          <td class="col-score">${Math.round(item.finalScore * 100)}点</td>
-        </tr>`;
+    fetch(GAS_URL)
+      .then(res => res.json())
+      .then(data => {
+        if (!data || !Array.isArray(data) || data.length === 0) {
+          rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px; color:#999;">集計データが不足しています</td></tr>';
+          return;
+        }
+        
+        let html = '';
+        data.forEach((item, index) => {
+          // 配列の先頭から順に①〜⑩を割り当てる
+          const rankLabel = circleNumbers[index] || (index + 1);
+          
+          html += `
+            <tr class="ranking-item">
+              <td class="col-rank">${rankLabel}</td>
+              <td class="col-title">
+                <a href="${item.path}" class="ranking-link">${item.title || item.path}</a>
+              </td>
+              <td class="col-score">${Math.round(item.finalScore * 100)}点</td>
+            </tr>`;
+        });
+        rankContainer.innerHTML = html;
+      })
+      .catch(err => {
+        console.error("Ranking Load Error:", err);
+        rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px; color:red;">データの読み込みに失敗しました</td></tr>';
       });
-      rankContainer.innerHTML = html;
-    }).catch(err => {
-      console.error("Ranking Load Error:", err);
-      rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px; color:red;">データ読み込み失敗</td></tr>';
-    });
   })();
 
-  // 4. レーダーチャート生成 (既存) -------------------------------
+  // 4. レーダーチャート生成
   (function() {
     const updateRadar = () => {
       const container = document.querySelector('.radar-chart-2');
@@ -69,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       dds.forEach((dd, i) => {
         const val = parseFloat(dd.textContent) || 0;
         const angle = (Math.PI * 2 / count) * i - (Math.PI / 2);
-        const x = centerX + (radius * (val / 10)) * Math.cos(angle);
+        const x = centerX + (radius * (val / 10)) * Math.const(angle);
         const y = centerY + (radius * (val / 10)) * Math.sin(angle);
         points.push(`${x.toFixed(1)} ${y.toFixed(1)}`);
         if (dotsGroup) {
@@ -83,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateRadar();
   })();
 
-  // 5. 日付形式の統一 (既存) -----------------------------------
+  // 5. 日付形式の統一
   (function() {
     const formatDates = () => {
       document.querySelectorAll('#ArchiveList ul.flat li.archivedate a').forEach(link => {
@@ -108,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', formatDates);
   })();
 
-  // 6. タイピング演出 (既存) -----------------------------------
+  // 6. タイピング演出
   (function() {
     const origin = document.getElementById('tpd-origin-data'), 
           target = document.getElementById('tpd-title-text'), 
@@ -123,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => { con.style.visibility = (con.style.visibility === "hidden") ? "visible" : "hidden"; }, 400);
   })();
 
-  // 7. インフィード関連記事 (既存) -------------------------------
+  // 7. インフィード関連記事
   (function() {
     const container = document.getElementById('infeed-slanted-card-container');
     if (!container) return;
@@ -163,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(script);
   })();
 
-  // 8. 広告遅延読み込み (既存) ---------------------------------
+  // 8. 広告遅延読み込み
   window.addEventListener("load", () => {
     setTimeout(() => {
       const ad = document.createElement("script");
@@ -174,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2000);
   });
 
-  // 9. jQuery依存機能 (既存) ---------------------
+  // 9. jQuery依存機能 (読了率・タブ)
   if (typeof jQuery !== 'undefined') {
     (function($) {
       $(window).on('scroll resize', function() {
@@ -207,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })(jQuery);
   }
 
-  // 10. 読了ログ送信 (追加) ---------------------------------
+  // 10. 読了ログ送信
   (function() {
     let sent = false;
     const startTime = Date.now();
@@ -221,13 +230,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const scrollPos = window.scrollY + window.innerHeight;
       const contentBottom = content.offsetTop + content.offsetHeight;
 
-      // 記事の80%以上読んだ、または30秒以上滞在
       if (scrollPos > contentBottom * 0.8 || stayTime > 30) {
         sent = true;
         const payload = {
           path: window.location.pathname,
           title: document.title.split(' - ')[0],
-          score: Math.min(1, stayTime / 120), // 2分で満点
+          score: Math.min(1, stayTime / 120),
           stayTime: stayTime,
           count: 1
         };
