@@ -2,44 +2,7 @@
    Blogger Custom Scripts (matsusan0717) - Optimized Version
    ========================================================== */
 
-(function() {
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbx2h91Hn0jKy04oLEAdYyFAZcGXbxintxOKwvK6hYJLLF2GKwE4w8ZLkx3SrPByWqDLeA/exec"; // ここを差し替え
-  const rankContainer = document.getElementById('global-ranking-container');
-  const circleNumbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩"];
 
-  if (!rankContainer) return;
-
-  fetch(GAS_URL)
-    .then(res => {
-      if (!res.ok) throw new Error("ネットワークエラーが発生しました");
-      return res.json();
-    })
-    .then(data => {
-      // ログはあるが、集計ロジック（5秒ルール等）でランキングが0件の場合
-      if (!data || !Array.isArray(data) || data.length === 0) {
-        rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:30px; color:#999;">集計データがまだありません</td></tr>';
-        return;
-      }
-
-      let html = '';
-      data.forEach((item, index) => {
-        const rankText = circleNumbers[index] || (index + 1);
-        html += `
-          <tr class="ranking-item">
-            <td class="col-rank">${rankText}</td>
-            <td class="col-title">
-              <a href="${item.path}" class="ranking-link">${item.title || item.path}</a>
-            </td>
-            <td class="col-score">${Math.round(item.finalScore * 100)}点</td>
-          </tr>`;
-      });
-      rankContainer.innerHTML = html;
-    })
-    .catch(err => {
-      console.error("Ranking fetch error:", err);
-      rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:30px; color:red;">データの読み込みに失敗しました</td></tr>';
-    });
-})();
 
   // 2. 画像最適化 (WebP/リサイズ) & 広告制御 -------------------
   const optimizeContent = () => {
