@@ -4,20 +4,17 @@
 
 document.addEventListener("DOMContentLoaded", function() {
   const GAS_URL = "https://script.google.com/macros/s/AKfycbxS5Q2evDdaZ6D13BE3ikIeTMUEVsPlL6XtchE6VELFHu9OhmSYCJNXm6_onlrBna-G4w/exec";
-  const BLOG_URL = 'https://blogger.matsusanjpn.com/';
   const EXCLUDE_PATH = "/p/";
-  const circleNumbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩"];
 
-  // 1. ログ記録 (Beacon API) ---------------------------
   (function() {
     const currentUrl = window.location.href;
     const currentPath = window.location.pathname;
     
-    // プレビューや特定パスを除外
     if (currentPath.indexOf(EXCLUDE_PATH) !== -1 || /preview|draft/.test(currentUrl)) return;
 
     const startTime = Date.now();
     let maxScrollRate = 0;
+    let isSent = false; // 二重送信防止
 
     window.addEventListener("scroll", () => {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -25,21 +22,44 @@ document.addEventListener("DOMContentLoaded", function() {
       if (currentRate > maxScrollRate) maxScrollRate = currentRate;
     }, { passive: true });
 
-    window.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === 'hidden') {
-        const stayTimeSec = (Date.now() - startTime) / 1000;
-        // 滞在時間制限を撤廃（全アクセス送信）
-        const payload = {
-          path: currentPath, 
-          title: document.title.trim(),
-          score: stayTimeSec * Math.max(maxScrollRate, 0.1),
-          count: 1, 
-          stayTime: stayTimeSec
-        };
-        navigator.sendBeacon(GAS_URL, new Blob([JSON.stringify(payload)], {type: 'text/plain'}));
+    // 送信処理の共通化
+    const sendLog = () => {
+      if (isSent) return;
+      
+      const stayTimeSec = (Date.now() - startTime) / 1000;
+      const payload = {
+        path: currentPath, 
+        title: document.title.trim(),
+        score: stayTimeSec * Math.max(maxScrollRate, 0.1),
+        count: 1, 
+        stayTime: stayTimeSec
+      };
+
+      const blob = new Blob([JSON.stringify(payload)], { type: 'text/plain' });
+
+      // 1. Beaconを試行
+      if (navigator.sendBeacon && navigator.sendBeacon(GAS_URL, blob)) {
+        isSent = true;
+      } else {
+        // 2. Beacon失敗時のフォールバック (fetch keepalive)
+        fetch(GAS_URL, {
+          method: 'POST',
+          body: JSON.stringify(payload),
+          keepalive: true,
+          mode: 'no-cors'
+        });
+        isSent = true;
       }
+    };
+
+    // 複数のイベントで補足
+    window.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === 'hidden') sendLog();
     });
+
+    window.addEventListener("pagehide", sendLog);
   })();
+});
 
   // 2. 画像最適化 (WebP/リサイズ) & 広告制御 -------------------
   const optimizeContent = () => {
