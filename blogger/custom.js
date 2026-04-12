@@ -2,43 +2,44 @@
    Blogger Custom Scripts (matsusan0717) - Optimized Version
    ========================================================== */
 
-document.addEventListener("DOMContentLoaded", function() {
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbx2h91Hn0jKy04oLEAdYyFAZcGXbxintxOKwvK6hYJLLF2GKwE4w8ZLkx3SrPByWqDLeA/exec";
-  const BLOG_URL = 'https://blogger.matsusanjpn.com/';
-  const EXCLUDE_PATH = "/p/";
+(function() {
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbx2h91Hn0jKy04oLEAdYyFAZcGXbxintxOKwvK6hYJLLF2GKwE4w8ZLkx3SrPByWqDLeA/exec"; // ここを差し替え
+  const rankContainer = document.getElementById('global-ranking-container');
   const circleNumbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩"];
 
-  // 1. ログ記録 (Beacon API) ---------------------------
-  (function() {
-    const currentUrl = window.location.href;
-    const currentPath = window.location.pathname;
+  if (!rankContainer) return;
 
-     // プレビューや特定パスを除外
-    if (currentPath.indexOf(EXCLUDE_PATH) !== -1 || /preview|draft/.test(currentUrl)) return;
-    const startTime = Date.now();
-    let maxScrollRate = 0;
-    window.addEventListener("scroll", () => {
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const currentRate = docHeight > 0 ? window.scrollY / docHeight : 0;
-      if (currentRate > maxScrollRate) maxScrollRate = currentRate;
-    }, { passive: true });
-
-     window.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === 'hidden') {
-        const stayTimeSec = (Date.now() - startTime) / 1000;
-
-        // 滞在時間制限を撤廃（全アクセス送信）
-        const payload = {
-          path: currentPath, 
-          title: document.title.trim(),
-          score: stayTimeSec * Math.max(maxScrollRate, 0.1),
-          count: 1, 
-          stayTime: stayTimeSec
-        };
-        navigator.sendBeacon(GAS_URL, new Blob([JSON.stringify(payload)], {type: 'text/plain'}));
+  fetch(GAS_URL)
+    .then(res => {
+      if (!res.ok) throw new Error("ネットワークエラーが発生しました");
+      return res.json();
+    })
+    .then(data => {
+      // ログはあるが、集計ロジック（5秒ルール等）でランキングが0件の場合
+      if (!data || !Array.isArray(data) || data.length === 0) {
+        rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:30px; color:#999;">集計データがまだありません</td></tr>';
+        return;
       }
+
+      let html = '';
+      data.forEach((item, index) => {
+        const rankText = circleNumbers[index] || (index + 1);
+        html += `
+          <tr class="ranking-item">
+            <td class="col-rank">${rankText}</td>
+            <td class="col-title">
+              <a href="${item.path}" class="ranking-link">${item.title || item.path}</a>
+            </td>
+            <td class="col-score">${Math.round(item.finalScore * 100)}点</td>
+          </tr>`;
+      });
+      rankContainer.innerHTML = html;
+    })
+    .catch(err => {
+      console.error("Ranking fetch error:", err);
+      rankContainer.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:30px; color:red;">データの読み込みに失敗しました</td></tr>';
     });
-  })();
+})();
 
   // 2. 画像最適化 (WebP/リサイズ) & 広告制御 -------------------
   const optimizeContent = () => {
