@@ -1688,4 +1688,34 @@ figure {
       padding-top: 0;
     }
   }
+/* お気に入りボタンのデザイン */
+.favorite-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #fff;
+  border: 2px solid #ff6b6b;
+  border-radius: 25px;
+  color: #ff6b6b;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.favorite-btn:hover {
+  background: #ff6b6b;
+  color: #fff;
+}
+
+/* お気に入り済みの状態 */
+.favorite-btn.active {
+  background: #ff6b6b;
+  color: #fff;
+  border-color: #ff6b6b;
+}
+
+.favorite-icon {
+  font-size: 18px;
+}	
 	
