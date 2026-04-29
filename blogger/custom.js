@@ -277,14 +277,14 @@ document.addEventListener('DOMContentLoaded', () => {
         icon.classList.remove('fa-regular');
         icon.classList.add('fa-solid');
       }
-      if (text) text.textContent = 'お気に入り済み';
+      if (text) text.textContent = '保存済み';
     } else {
       button.classList.remove('active');
       if (icon) {
         icon.classList.remove('fa-solid');
         icon.classList.add('fa-regular');
       }
-      if (text) text.textContent = 'お気に入り';
+      if (text) text.textContent = '保存して後で読む';
     }
   }
 
