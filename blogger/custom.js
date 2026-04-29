@@ -1,4 +1,3 @@
-
 /* ==========================================================
    Blogger Custom Scripts (matsusan0717) - Full Integration (Tabs Removed)
    ========================================================== */
@@ -225,6 +224,87 @@ document.addEventListener('DOMContentLoaded', () => {
     hidePager();
     setTimeout(hidePager, 500);
     setTimeout(hidePager, 1500);
+  })();
+
+  // 11. お気に入り機能
+  (function() {
+    const favoriteButtons = document.querySelectorAll('.favorite-btn');
+    if (!favoriteButtons.length) return;
+    
+    // LocalStorageからお気に入りリストを取得
+    function getFavorites() {
+      const favorites = localStorage.getItem('blogFavorites');
+      return favorites ? JSON.parse(favorites) : [];
+    }
+    
+    // お気に入りリストを保存
+    function saveFavorites(favorites) {
+      localStorage.setItem('blogFavorites', JSON.stringify(favorites));
+    }
+    
+    // 指定URLがお気に入り済みかチェック
+    function isFavorited(url) {
+      const favorites = getFavorites();
+      return favorites.some(fav => fav.url === url);
+    }
+    
+    // お気に入りに追加
+    function addFavorite(url, title) {
+      const favorites = getFavorites();
+      favorites.push({
+        url: url,
+        title: title,
+        date: new Date().toISOString()
+      });
+      saveFavorites(favorites);
+    }
+    
+    // お気に入りから削除
+    function removeFavorite(url) {
+      let favorites = getFavorites();
+      favorites = favorites.filter(fav => fav.url !== url);
+      saveFavorites(favorites);
+    }
+    
+    // ボタンの表示を更新
+    function updateButtonState(button, isFav) {
+      const icon = button.querySelector('.material-icons');
+      const text = button.querySelector('.favorite-text');
+      
+      if (isFav) {
+        button.classList.add('active');
+        if (icon) icon.textContent = 'star'; // 塗りつぶし星
+        if (text) text.textContent = 'お気に入り済み';
+      } else {
+        button.classList.remove('active');
+        if (icon) icon.textContent = 'star_border'; // 白抜き星
+        if (text) text.textContent = 'お気に入り';
+      }
+    }
+    
+    // 各ボタンに処理を適用
+    favoriteButtons.forEach(function(button) {
+      const postUrl = button.dataset.url;
+      const postTitle = button.dataset.title;
+      
+      if (!postUrl) return; // URLがない場合はスキップ
+      
+      // 初期状態を設定
+      updateButtonState(button, isFavorited(postUrl));
+      
+      // クリックイベント
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        if (isFavorited(postUrl)) {
+          removeFavorite(postUrl);
+          updateButtonState(button, false);
+        } else {
+          addFavorite(postUrl, postTitle);
+          updateButtonState(button, true);
+        }
+      });
+    });
   })();
 
 });
