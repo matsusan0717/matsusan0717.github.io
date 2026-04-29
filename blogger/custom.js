@@ -274,11 +274,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isFav) {
         button.classList.add('active');
         if (icon) icon.textContent = 'star'; // 塗りつぶし星
-        if (text) text.textContent = 'お気に入り済み';
+        if (text) text.textContent = '保存済み';
       } else {
         button.classList.remove('active');
         if (icon) icon.textContent = 'star_border'; // 白抜き星
-        if (text) text.textContent = 'お気に入り';
+        if (text) text.textContent = '保存して後で読む';
       }
     }
     
