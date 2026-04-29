@@ -227,86 +227,87 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
 // 11. お気に入り機能
-  (function() {
-    const favoriteButtons = document.querySelectorAll('.favorite-btn');
-    if (!favoriteButtons.length) return;
-    
-    // LocalStorageからお気に入りリストを取得
-    function getFavorites() {
-      const favorites = localStorage.getItem('blogFavorites');
-      return favorites ? JSON.parse(favorites) : [];
-    }
-    
-    // お気に入りリストを保存
-    function saveFavorites(favorites) {
-      localStorage.setItem('blogFavorites', JSON.stringify(favorites));
-    }
-    
-    // 指定URLがお気に入り済みかチェック
-    function isFavorited(url) {
-      const favorites = getFavorites();
-      return favorites.some(fav => fav.url === url);
-    }
-    
-    // お気に入りに追加
-    function addFavorite(url, title) {
-      const favorites = getFavorites();
-      favorites.push({
-        url: url,
-        title: title,
-        date: new Date().toISOString()
-      });
-      saveFavorites(favorites);
-    }
-    
-    // お気に入りから削除
-    function removeFavorite(url) {
-      let favorites = getFavorites();
-      favorites = favorites.filter(fav => fav.url !== url);
-      saveFavorites(favorites);
-    }
-    
-    // ボタンの表示を更新
-    function updateButtonState(button, isFav) {
-      const icon = button.querySelector('i');
-      const text = button.querySelector('.favorite-text');
-      
-      if (isFav) {
-        button.classList.add('active');
-        if (icon) {
-          icon.className = 'fa-solid fa-bookmark';
-        }
-        if (text) text.textContent = '保存済み';
-      } else {
-        button.classList.remove('active');
-        if (icon) {
-          icon.className = 'fa-regular fa-bookmark';
-        }
-        if (text) text.textContent = '保存して後で読む';
-      }
-    }
-    
-    // 各ボタンに処理を適用
-    favoriteButtons.forEach(function(button) {
-      const postUrl = button.dataset.url;
-      const postTitle = button.dataset.title;
-      
-      if (!postUrl) return; // URLがない場合はスキップ
-      
-      // 初期状態を設定
-      updateButtonState(button, isFavorited(postUrl));
-      
-      // クリックイベント
-      button.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        if (isFavorited(postUrl)) {
-          removeFavorite(postUrl);
-          updateButtonState(button, false);
-        } else {
-          addFavorite(postUrl, postTitle);
-          updateButtonState(button, true);
-        }
-      });
+(function() {
+  const favoriteButtons = document.querySelectorAll('.favorite-btn');
+  if (!favoriteButtons.length) return;
+
+  // LocalStorageからお気に入りリストを取得
+  function getFavorites() {
+    const favorites = localStorage.getItem('blogFavorites');
+    return favorites ? JSON.parse(favorites) : [];
+  }
+
+  // お気に入りリストを保存
+  function saveFavorites(favorites) {
+    localStorage.setItem('blogFavorites', JSON.stringify(favorites));
+  }
+
+  // 指定URLがお気に入り済みかチェック
+  function isFavorited(url) {
+    const favorites = getFavorites();
+    return favorites.some(fav => fav.url === url);
+  }
+
+  // お気に入りに追加
+  function addFavorite(url, title) {
+    const favorites = getFavorites();
+    favorites.push({
+      url: url,
+      title: title,
+      date: new Date().toISOString()
     });
-  })();
+    saveFavorites(favorites);
+  }
+
+  // お気に入りから削除
+  function removeFavorite(url) {
+    let favorites = getFavorites();
+    favorites = favorites.filter(fav => fav.url !== url);
+    saveFavorites(favorites);
+  }
+
+  // ボタンの表示を更新（←ここだけ修正済み）
+  function updateButtonState(button, isFav) {
+    const icon = button.querySelector('i');
+    const text = button.querySelector('.favorite-text');
+
+    if (isFav) {
+      button.classList.add('active');
+      if (icon) {
+        icon.classList.remove('fa-regular');
+        icon.classList.add('fa-solid');
+      }
+      if (text) text.textContent = 'お気に入り済み';
+    } else {
+      button.classList.remove('active');
+      if (icon) {
+        icon.classList.remove('fa-solid');
+        icon.classList.add('fa-regular');
+      }
+      if (text) text.textContent = 'お気に入り';
+    }
+  }
+
+  // 各ボタンに処理を適用
+  favoriteButtons.forEach(function(button) {
+    const postUrl = button.dataset.url;
+    const postTitle = button.dataset.title;
+    if (!postUrl) return;
+
+    // 初期状態を設定
+    updateButtonState(button, isFavorited(postUrl));
+
+    // クリックイベント
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      if (isFavorited(postUrl)) {
+        removeFavorite(postUrl);
+        updateButtonState(button, false);
+      } else {
+        addFavorite(postUrl, postTitle);
+        updateButtonState(button, true);
+      }
+    });
+  });
+})();
