@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(hidePager, 1500);
   })();
 
-  // 11. お気に入り機能
+// 11. お気に入り機能
   (function() {
     const favoriteButtons = document.querySelectorAll('.favorite-btn');
     if (!favoriteButtons.length) return;
@@ -268,16 +268,22 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // ボタンの表示を更新
     function updateButtonState(button, isFav) {
-      const icon = button.querySelector('.material-icons');
+      const icon = button.querySelector('i'); // class名に関わらずiタグを取得
       const text = button.querySelector('.favorite-text');
       
       if (isFav) {
         button.classList.add('active');
-        if (icon) icon.textContent = 'star'; // 塗りつぶし星
+        if (icon) {
+          icon.classList.remove('fa-regular');
+          icon.classList.add('fa-solid'); // 塗りつぶし
+        }
         if (text) text.textContent = '保存済み';
       } else {
         button.classList.remove('active');
-        if (icon) icon.textContent = 'star_border'; // 白抜き星
+        if (icon) {
+          icon.classList.remove('fa-solid');
+          icon.classList.add('fa-regular'); // 線だけ
+        }
         if (text) text.textContent = '保存して後で読む';
       }
     }
@@ -306,5 +312,3 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   })();
-
-});
