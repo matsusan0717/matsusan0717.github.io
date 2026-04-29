@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(hidePager, 1500);
   })();
 
-// 11. お気に入り機能
+  // 11. お気に入り機能
   (function() {
     const favoriteButtons = document.querySelectorAll('.favorite-btn');
     if (!favoriteButtons.length) return;
@@ -268,23 +268,17 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // ボタンの表示を更新
     function updateButtonState(button, isFav) {
-      const icon = button.querySelector('i');
+      const icon = button.querySelector('.material-icons');
       const text = button.querySelector('.favorite-text');
       
       if (isFav) {
         button.classList.add('active');
-        if (icon) {
-          icon.classList.remove('fa-regular');
-          icon.classList.add('fa-solid');
-        }
-        if (text) text.textContent = '保存済み';
+        if (icon) icon.textContent = 'star'; // 塗りつぶし星
+        if (text) text.textContent = 'お気に入り済み';
       } else {
         button.classList.remove('active');
-        if (icon) {
-          icon.classList.remove('fa-solid');
-          icon.classList.add('fa-regular');
-        }
-        if (text) text.textContent = '保存して後で読む';
+        if (icon) icon.textContent = 'star_border'; // 白抜き星
+        if (text) text.textContent = 'お気に入り';
       }
     }
     
@@ -293,10 +287,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const postUrl = button.dataset.url;
       const postTitle = button.dataset.title;
       
-      if (!postUrl) return;
+      if (!postUrl) return; // URLがない場合はスキップ
       
+      // 初期状態を設定
       updateButtonState(button, isFavorited(postUrl));
       
+      // クリックイベント
       button.addEventListener('click', function(e) {
         e.preventDefault();
         
@@ -310,3 +306,5 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   })();
+
+});
