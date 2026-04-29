@@ -1689,7 +1689,7 @@ figure {
     }
   }
 @media only screen and (min-width: 375px) {
-    button:focus {
+   button,  button:focus {
         background-color: transparent;
         border: 0;
         margin: 0 10px 0 0;
