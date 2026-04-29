@@ -268,21 +268,21 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // ボタンの表示を更新
     function updateButtonState(button, isFav) {
-      const icon = button.querySelector('i'); // class名に関わらずiタグを取得
+      const icon = button.querySelector('i');
       const text = button.querySelector('.favorite-text');
       
       if (isFav) {
         button.classList.add('active');
         if (icon) {
           icon.classList.remove('fa-regular');
-          icon.classList.add('fa-solid'); // 塗りつぶし
+          icon.classList.add('fa-solid');
         }
         if (text) text.textContent = '保存済み';
       } else {
         button.classList.remove('active');
         if (icon) {
           icon.classList.remove('fa-solid');
-          icon.classList.add('fa-regular'); // 線だけ
+          icon.classList.add('fa-regular');
         }
         if (text) text.textContent = '保存して後で読む';
       }
@@ -293,12 +293,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const postUrl = button.dataset.url;
       const postTitle = button.dataset.title;
       
-      if (!postUrl) return; // URLがない場合はスキップ
+      if (!postUrl) return;
       
-      // 初期状態を設定
       updateButtonState(button, isFavorited(postUrl));
       
-      // クリックイベント
       button.addEventListener('click', function(e) {
         e.preventDefault();
         
