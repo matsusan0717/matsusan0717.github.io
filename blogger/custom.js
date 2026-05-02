@@ -13,20 +13,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const BLOG_URL_HOSTNAME = window.location.hostname;
 
-  // 1. 画像最適化 (WebP/リサイズ) & 広告制御
+// 1. 画像最適化 (WebP/リサイズ) & 広告制御
   const optimizeContent = () => {
     document.querySelectorAll('img').forEach(img => {
       const src = img.getAttribute('src');
       if (!src || src.includes('data:image')) return;
+
+      // w750-rw/ から w900-rw/ に変更
       if (src.match(/\/s\d+(-rw)?\//)) {
-        img.setAttribute('src', src.replace(/\/s\d+(-rw)?\//, '/w750-rw/'));
+        img.setAttribute('src', src.replace(/\/s\d+(-rw)?\//, '/w900-rw/'));
       }
+      
       if (img.closest('.md-thumb') && src.includes('/s1600/')) {
         img.setAttribute('src', src.replace('/s1600/', '/w400-rw/'));
       }
     });
+
+    // 不要な広告ユニットの削除
     document.querySelectorAll('.google-auto-placed, .adsbygoogle[data-ad-status="unfilled"]').forEach(ad => ad.remove());
   };
+
   window.addEventListener('load', optimizeContent);
   new MutationObserver(optimizeContent).observe(document.body, { childList: true, subtree: true });
 
