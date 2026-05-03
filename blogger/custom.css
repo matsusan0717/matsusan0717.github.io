@@ -1709,3 +1709,33 @@ figure {
 .widget .post-body li {
     line-height: 160%;
 }
+
+/* 1. floatによるレイアウト崩れを防ぐため、親要素をflex化 */
+.headline_meta {
+    display: flex;
+    flex-wrap: wrap; /* 折り返しを許可 */
+    align-items: center;
+    float: none; /* 親のfloatを解除 */
+}
+
+/* 2. span.badge のデフォルトの float: right を無効化 */
+.headline_meta span.badge,
+.headline_meta .thecategories span.new.badge {
+    float: none !important; /* 強制的に右寄せを解除 */
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px; /* 要素間の余白 */
+    margin-left: 0;
+}
+
+/* 3. カテゴリ内の各要素も左寄せで並ぶように調整 */
+.thecategories {
+    display: contents; /* 子要素（badge）を親のflexに直接参加させる */
+}
+
+/* 4. スマホ環境での微調整 */
+@media only screen and (max-width: 600px) {
+    .headline_meta span.badge {
+        margin-bottom: 5px; /* 行間が詰まりすぎるのを防止 */
+    }
+}	
