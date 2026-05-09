@@ -96,7 +96,6 @@
       color-scheme: light;
    }
    /* ダークモード設定 (OS連動 ＋ 手動切替) */
-
    @media (prefers-color-scheme: dark) {
       html:not([data-theme="light"]) {
          --bg-color: #0f172a;
@@ -136,7 +135,6 @@
 ]]></b:skin>
     <style>
       /* モバイルナビゲーション */
-
       .mobile-nav-navigation .mobile-nav-nav {
          display: block !important;
          padding: 0 !important;
@@ -278,7 +276,6 @@
          }
       }
       /* プロフィールウィジェット */
-
       #matsu-profile-container {
          display: flex;
          justify-content: center;
@@ -427,7 +424,6 @@
          margin-top: 1rem;
       }
       /* Lightbox */
-
       #matsu-lightbox {
          position: fixed;
          top: 0;
@@ -474,7 +470,6 @@
          cursor: zoom-in !important;
       }
       /* Table of Contents */
-
       .matsu-toc {
          background: rgba(128, 128, 128, 0.05);
          border: 1px solid var(--border);
@@ -521,7 +516,6 @@
       .matsu-toc a:hover {
          color: var(--accent);
       }
-
       /* SNS埋め込み */
       .entry-content .twitter-tweet,
       .entry-content .twitter-tweet-rendered {
@@ -556,7 +550,6 @@
             width: 100% !important;
          }
       }
-
       /* #FULL モード */
       .sidebar-toggle {
          display: none;
@@ -627,7 +620,6 @@
          }
          .slide-sidebar-overlay.is-active { display: block; }
       }
-
       /* ヘッダー内検索フォーム */
       .header-search {
          display: none;
@@ -686,7 +678,6 @@
       }
     </style>
   </head>
-
   <body>
     <div id='hidden-label-widget'>
       <b:section id='top-hidden-section' locking='yes' maxwidgets='4' showaddelement='no'>
