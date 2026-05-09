@@ -37,24 +37,33 @@ document.addEventListener('DOMContentLoaded', () => {
   new MutationObserver(optimizeContent).observe(document.body, { childList: true, subtree: true });
 
   // 2. ランキング表示 (GET)
-  (function() {
-    const rankContainer = document.getElementById('global-ranking-container');
-    if (!rankContainer) return;
+(function() {
+  const rankContainer = document.getElementById('global-ranking-container');
+  if (!rankContainer) return;
 
-    fetch(GAS_URL_GET).then(res => res.json()).then(data => {
-      if (!data || data.length === 0) return;
-      let html = '';
-      data.forEach((item, index) => {
-        const rank = circleNumbers[index] || (index + 1);
-        const path = item.path || (Array.isArray(item) ? item[1] : '');
-        const title = item.title || (Array.isArray(item) ? item[0] : '');
-        const score = item.finalScore || (Array.isArray(item) ? item[2] : 0);
-        if (!path) return;
-        html += `<tr class="ranking-item"><td class="col-rank">${rank}</td><td class="col-title"><a href="${path}">${title || path}</a></td><td class="col-score">${Math.round(score * 100)}点</td></tr>`;
-      });
-      rankContainer.innerHTML = html;
-    }).catch(err => console.error("Ranking Load Error:", err));
-  })();
+  fetch(GAS_URL_GET).then(res => res.json()).then(data => {
+    if (!data || data.length === 0) return;
+    let html = '';
+    
+    // データ件数を取得（通常は10件）
+    const totalItems = data.length;
+
+    data.forEach((item, index) => {
+      // 10位から順に表示されているため、index=0の時に「⑩」が来るように計算
+      // totalItems=10 の時、10 - 1 - 0 = 9 (circleNumbers[9] = ⑩)
+      const rankIdx = totalItems - 1 - index;
+      const rank = circleNumbers[rankIdx] || (rankIdx + 1);
+      
+      const path = item.path || (Array.isArray(item) ? item[1] : '');
+      const title = item.title || (Array.isArray(item) ? item[0] : '');
+      const score = item.finalScore || (Array.isArray(item) ? item[2] : 0);
+      
+      if (!path) return;
+      html += `<tr class="ranking-item"><td class="col-rank">${rank}</td><td class="col-title"><a href="${path}">${title || path}</a></td><td class="col-score">${Math.round(score * 100)}点</td></tr>`;
+    });
+    rankContainer.innerHTML = html;
+  }).catch(err => console.error("Ranking Load Error:", err));
+})();
 
   // 3. レーダーチャート生成
   (function() {
