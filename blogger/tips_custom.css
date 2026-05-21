@@ -2176,3 +2176,10 @@ div.ranking-item {
     right: -150px;
     position: relative;
 }
+.search-widget .search-form .search-input {
+    color: #ffffff !important;
+	-webkit-text-fill-color: inherit !important;
+}
+.search-widget .search-form .search-input:-webkit-autofill {
+  -webkit-text-fill-color: #ffffff !important;
+}
