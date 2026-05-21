@@ -588,15 +588,16 @@ code:not([class*=&quot;language-&quot;]) {
    letter-spacing: -0.01em;
 }
 .site-title a {
-   text-decoration: none;
-   background: linear-gradient(to right, white 0%, white 42%, var(--sub-amber) 42%, var(--sub-amber) 50%, var(--sub-amber) 50%, var(--sub-amber) 92%, white 92%, white 100%);
-   background-size: 200% 100%;
-   background-position: 0% 0%;
-   -webkit-background-clip: text;
-   -webkit-text-fill-color: transparent;
-   display: inline-block;
-   transition: background-position 0.2s ease;
-   font-size: 40px;
+    text-decoration: none;
+    /* 位置のパーセンテージを「Blogger 」の長さに合わせて変更 */
+    background: linear-gradient(to right, white 0%, white 65%, var(--sub-amber) 65%, var(--sub-amber) 100%);
+    background-size: 200% 100%;
+    background-position: 0% 0%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    transition: background-position 0.2s ease;
+    font-size: 40px;
 }
 .site-title a:hover {
    background-position: 100% 0%;
