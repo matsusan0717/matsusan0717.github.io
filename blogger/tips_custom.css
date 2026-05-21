@@ -1758,68 +1758,6 @@ div#slide-sidebar-content .download a[style] {
             flex: 0 0 48% !important;
         }
     }
-	.lava-lamp-wrapper {
-	    margin: 0;
-	}
-	.lava-lamp-wrapper .custom-tabs-container {
-	    width: 100%;
-	    margin: 0 auto;
-	    position: relative;
-	}
-	.lava-lamp-wrapper .tab-buttons {
-	    display: flex;
-	    background: #eee;
-	    position: relative;
-	    border-bottom: 2px solid #ddd;
-	}
-	.lava-lamp-wrapper .tab-buttons span {
-	    flex: 1;
-	    font: 700 14px sans-serif;
-	    color: #555;
-	    cursor: pointer;
-	    text-align: center;
-	    height: 40px;
-	    line-height: 40px;
-	    z-index: 2;
-	}
-	.lava-lamp-wrapper .lamp {
-	    width: 0;
-	    height: 2px;
-	    background: #333;
-	    position: absolute;
-	    bottom: -2px;
-	    left: 0;
-	    transition: all 0.3s ease-out;
-	    z-index: 3;
-	}
-	.lava-lamp-wrapper .tab-content {
-	    border-top: none;
-	    padding: 0px;
-	    font-size: 14px;
-	    color: #555;
-	    min-height: 80px;
-	    position: relative;
-	    overflow: hidden;
-	}
-	.lava-lamp-wrapper .tab-content&gt;
-	div {
-	    position: absolute;
-	    top: 0;
-	    left: 0;
-	    width: 100%;
-	    height: auto;
-	    opacity: 0;
-	    visibility: hidden;
-	    transition: opacity 0.3s ease, visibility 0.3s ease;
-	    z-index: 1;
-	}
-	.lava-lamp-wrapper .tab-content&gt;
-	div.active {
-	    position: relative;
-	    opacity: 1;
-	    visibility: visible;
-	    z-index: 2;
-	}
 	.infeed-blog-card {
 	    display: flex;
 	    flex-direction: column;
