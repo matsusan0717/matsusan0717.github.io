@@ -598,8 +598,8 @@ code:not([class*=&quot;language-&quot;]) {
        [100%〜200%] ホバー状態用：50%〜81.8%（Blogger=色）、81.8%〜100%（TIPS=白）
     */
     background: linear-gradient(to right, 
-        white 0%, white 31.8%, var(--sub-amber) 31.8%, var(--sub-amber) 50%,
-        var(--sub-amber) 50%, var(--sub-amber) 81.8%, white 81.8%, white 100%
+        white 0%, white 31.8%, var(--header-bg) 31.8%, var(--header-bg) 50%,
+        var(--sub-amber) 50%, var(--header-bg) 81.8%, white 81.8%, white 100%
     );
     background-size: 200% 100%;
     
