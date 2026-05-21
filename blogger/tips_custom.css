@@ -2165,13 +2165,18 @@ table#table01, table#table01 td, table#table01 th {
 div.ranking-item {
     background-color: #f8fafc;
 }
+  .blogger-box-alert
+ {
+    background-color: #ece9e9 !important;
+}
 #header-search .search-form .search-input {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: inherit !important;
 }
-#header-search .search-form .search-input:-webkit-autofill, #header-search .search-form .search-input:-webkit-autofill:hover, #header-search .search-form .search-input:-webkit-autofill:focus {
-    -webkit-text-fill-color: #ffffff !important;
-}
+
+#header-search .search-form .search-input:-webkit-autofill {
+  -webkit-text-fill-color: #ffffff !important;
+} 
 .hashtag-see-more {
     right: -150px;
     position: relative;
