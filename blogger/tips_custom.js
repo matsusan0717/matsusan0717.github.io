@@ -37,32 +37,52 @@ document.addEventListener('DOMContentLoaded', () => {
   new MutationObserver(optimizeContent).observe(document.body, { childList: true, subtree: true });
 
   // 3. レーダーチャート生成
-  (function() {
-    const updateRadar = () => {
-      const container = document.querySelector('.radar-chart-2');
-      if (!container) return;
-      const poly = container.querySelector('path[fill="#d0582530"]');
-      const dotsGroup = container.querySelector('g[fill="#d05825"]');
-      const dds = container.querySelectorAll('dd');
-      const centerX = 100, centerY = 100, radius = 100, count = dds.length;
-      let points = [];
-      if (dotsGroup) dotsGroup.innerHTML = '';
-      dds.forEach((dd, i) => {
-        const val = parseFloat(dd.textContent) || 0;
-        const angle = (Math.PI * 2 / count) * i - (Math.PI / 2);
-        const x = centerX + (radius * (val / 10)) * Math.cos(angle);
-        const y = centerY + (radius * (val / 10)) * Math.sin(angle);
-        points.push(`${x.toFixed(1)} ${y.toFixed(1)}`);
-        if (dotsGroup) {
-          const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-          c.setAttribute("cx", x.toFixed(1)); c.setAttribute("cy", y.toFixed(1)); c.setAttribute("r", "3");
-          dotsGroup.appendChild(c);
-        }
-      });
-      if (poly) poly.setAttribute("d", "M " + points.join(" L ") + " Z");
+(function() {
+    const update = () => {
+        const containers = document.querySelectorAll('.radar-chart-2');
+        containers.forEach(container => {
+            const poly = container.querySelector('path[fill="#d0582530"]');
+            const dots = container.querySelectorAll('g[fill="#d05825"] circle');
+            const dds = container.querySelectorAll('dd');
+
+            if (dds.length === 0) return;
+
+            const centerX = 100, centerY = 100, radius = 100, count = dds.length;
+            let points = [];
+
+            for (let i = 0; i < count; i++) {
+                const val = parseFloat(dds[i].textContent) || 0;
+                const angle = (Math.PI * 2 / count) * i - (Math.PI / 2);
+                const x = (centerX + (radius * (val / 10)) * Math.cos(angle)).toFixed(1);
+                const y = (centerY + (radius * (val / 10)) * Math.sin(angle)).toFixed(1);
+                
+                points.push(x + " " + y);
+                if (dots[i]) {
+                    dots[i].setAttribute("cx", x);
+                    dots[i].setAttribute("cy", y);
+                }
+            }
+            if (poly) poly.setAttribute("d", "M " + points.join(" L ") + " Z");
+        });
     };
-    updateRadar();
-  })();
+
+    const targetNode = document.getElementById('view-root') || document.documentElement;
+
+    const observer = new MutationObserver(() => {
+        update();
+    });
+
+    observer.observe(targetNode, {
+        childList: true,
+        subtree: true
+    });
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', update);
+    } else {
+        update();
+    }
+})();
 
   // 4. 日付形式の統一
   (function() {
