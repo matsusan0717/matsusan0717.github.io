@@ -1976,3 +1976,7 @@ div#slide-sidebar-content .download a[style] {
     font-size: 1.2rem;
 }
 }  
+  .blogger-box-label .box-content {
+    padding: 1.5em 1em;
+    color: #111;
+}
