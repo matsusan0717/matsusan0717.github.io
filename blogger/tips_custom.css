@@ -589,14 +589,15 @@ code:not([class*=&quot;language-&quot;]) {
 }
 .site-title a {
     text-decoration: none;
-    /* [左側] ホバー用：Blogger(色)/TIPS(白)  | [右側] 初期状態用：Blogger(白)/TIPS(色) */
+    /* 0%〜100%（初期表示用）：Blogger(白) / TIPS(色) 
+       100%〜200%（ホバー用）：Blogger(色) / TIPS(白) */
     background: linear-gradient(to right, 
-        var(--sub-amber) 0%, var(--sub-amber) 65%, white 65%, white 100%, 
-        white 100%, white 165%, var(--sub-amber) 165%, var(--sub-amber) 200%
+        white 0%, white 65%, var(--sub-amber) 65%, var(--sub-amber) 100%,
+        var(--sub-amber) 100%, var(--sub-amber) 165%, white 165%, white 200%
     );
     background-size: 200% 100%;
-    /* 初期状態は右側半分を表示（Blogger:白 / TIPS:色） */
-    background-position: 100% 0%;
+    /* 初期状態は左側の領域（Blogger:白 / TIPS:色）を表示 */
+    background-position: 0% 0%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
@@ -604,9 +605,9 @@ code:not([class*=&quot;language-&quot;]) {
     font-size: 40px;
 }
 
-/* ホバー時に左側半分へスライド（Blogger:色 / TIPS:白） */
+/* ホバー時に右側の領域（Blogger:色 / TIPS:白）へスライド */
 .site-title a:hover {
-    background-position: 0% 0%;
+    background-position: 100% 0%;
 }
 .search-form {
    display: flex;
