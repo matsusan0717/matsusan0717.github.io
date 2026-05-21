@@ -589,7 +589,7 @@ code:not([class*=&quot;language-&quot;]) {
 }
 .site-title a {
     text-decoration: none;
-    font-size: 2rem;
+    font-size: 4rem;
     font-weight: 700;
     letter-spacing: -0.01em;
     
