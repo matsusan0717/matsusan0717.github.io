@@ -2166,3 +2166,17 @@ table#table01, table#table01 td, table#table01 th {
 .lava-lamp-wrapper .tab-content .content1.active, .lava-lamp-wrapper .tab-content .content2.active, .lava-lamp-wrapper .tab-content .content3.active, .lava-lamp-wrapper .tab-content .content4.active {
     display: block !important;
 }
+div.ranking-item {
+    background-color: #f8fafc;
+}
+#header-search .search-form .search-input {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+#header-search .search-form .search-input:-webkit-autofill, #header-search .search-form .search-input:-webkit-autofill:hover, #header-search .search-form .search-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #ffffff !important;
+}
+.hashtag-see-more {
+    right: -150px;
+    position: relative;
+}
