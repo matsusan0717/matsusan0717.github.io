@@ -589,20 +589,24 @@ code:not([class*=&quot;language-&quot;]) {
 }
 .site-title a {
     text-decoration: none;
-    /* 位置のパーセンテージを「Blogger 」の長さに合わせて変更 */
-    background: linear-gradient(to right, white 0%, white 65%, var(--sub-amber) 65%, var(--sub-amber) 100%);
+    /* [左側] ホバー用：Blogger(色)/TIPS(白)  | [右側] 初期状態用：Blogger(白)/TIPS(色) */
+    background: linear-gradient(to right, 
+        var(--sub-amber) 0%, var(--sub-amber) 65%, white 65%, white 100%, 
+        white 100%, white 165%, var(--sub-amber) 165%, var(--sub-amber) 200%
+    );
     background-size: 200% 100%;
-    background-position: 0% 0%;
+    /* 初期状態は右側半分を表示（Blogger:白 / TIPS:色） */
+    background-position: 100% 0%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
     transition: background-position 0.2s ease;
     font-size: 40px;
 }
+
+/* ホバー時に左側半分へスライド（Blogger:色 / TIPS:白） */
 .site-title a:hover {
-   background-position: 100% 0%;
-   -webkit-background-clip: text;
-   -webkit-text-fill-color: transparent;
+    background-position: 0% 0%;
 }
 .search-form {
    display: flex;
