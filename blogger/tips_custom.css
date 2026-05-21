@@ -1970,3 +1970,9 @@ div#slide-sidebar-content .download a[style] {
 	.infeed-blog-card:hover .photo {
 	    transform: scale(1.1) rotate(0deg);
 	}
+@media (max-width: 639px) {
+.post-full-title
+ {
+    font-size: 1.2rem;
+}
+}  
