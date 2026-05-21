@@ -1929,3 +1929,240 @@ div#slide-sidebar-content .download a[style] {
     margin: 0;
     height: 18px;
 }
+.blogger-box-label .box-title {
+    position: absolute;
+    top: -0.6em;
+    left: 1em;
+    background: #fff;
+    color: currentColor;
+    padding: 0 1em;
+    font-weight: bold;
+    margin: 0;
+    height: 18px;
+}
+.ms-fetch-error-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 2rem;
+    box-sizing: border-box;
+    z-index: 5;
+    background: linear-gradient(-45deg, var(--bg-color), var(--border), var(--accent), var(--bg-color));
+    background-size: 400% 400%;
+    animation: msGradientBg 15s ease infinite;
+}
+.ms-fetch-error {
+    width: 100%;
+    max-width: 580px;
+    text-align: center;
+    color: var(--bg-color) !important;
+    border: 2px solid var(--border) !important;
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem;
+    background: var(--accent) !important;
+}
+.ms-fetch-error h1 {
+    font-size: clamp(80px, 18vw, 140px);
+    font-weight: 900;
+    line-height: 1;
+    margin: 0 0 0.1em;
+    color: var(--if-bg);
+    letter-spacing: -0.04em;
+}
+.ms-fetch-error .fill, .ms-fetch-error button:hover {
+    background: var(--if-bg);
+    color: var(--base-navy) !important;
+    border-color: var(--accent);
+}
+.ms-fetch-error h1 {
+    font-size: clamp(80px, 18vw, 140px);
+    font-weight: 900;
+    line-height: 1;
+    margin: 0 0 0.1em;
+    color: var(--if-bg) !important;
+    letter-spacing: -0.04em;
+}
+.ms-fetch-error .fill, .ms-fetch-error button:hover {
+    background: var(--if-bg) !important;
+    color: var(--accent) !important;
+    border-color: var(--body-bg-color) !important;
+}
+.ms-fetch-error h2 {
+    color: var(--if-bg) !important;
+}
+.ms-fetch-error p {
+    color: var(--if-bg) !important;
+}
+.ms-fetch-error .fill, .ms-fetch-error button:hover {
+    color: var(--accent) !important;
+}
+.ms-fetch-error {
+    background: var(--accent) !important;
+}
+.site-header {
+    z-index: 999;
+    position: relative;
+}
+@media (max-width: 639px) {
+    .post-full-title {
+        font-size: 1.4rem !important;
+    }
+}
+.search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 8px 0;
+    font-size: 0.9rem;
+    outline: none;
+    color: #ffffff;
+    -webkit-box-shadow: 0 0 0px 1000px rgb(30, 58, 95) inset;
+    box-shadow: 0 0 0px 1000px rgb(30, 58, 95) inset;
+    -webkit-text-fill-color: inherit;
+}
+.search-input:-webkit-autofill {
+    -webkit-text-fill-color: #ffffff !important;
+}
+div.blogger-box-label p {
+    color: #555555;
+}
+.post-body th {
+    background: transparent;
+}
+.ranking-link {
+    font-weight: 400 !important;
+    font-size: 15px;
+}
+.ranking-outer {
+    max-width: 900px !important;
+}
+@media (max-width:600px) {
+    .blogcard {
+        max-width: 100%;
+        margin: 0;
+        box-shadow: none !important;
+    }
+    .blogcard-image {
+        float: none;
+        width: 100%;
+        height: initial;
+        aspect-ratio: 16/9;
+        margin: 0 0 15px;
+    }
+    .blogcard-image-wrapper {
+        width: 100%;
+        height: 100%;
+    }
+    .blogcard-image-wrapper img {
+        width: 100%;
+        height: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .post-body h2 {
+        font-size: 1.15rem;
+        padding: 0.6rem 0rem;
+        margin: 2rem 0 1.2rem;
+    }
+}
+.blogcard-image .blogcard-image-wrapper img {
+    width: 100%;
+    height: 100px !important;
+    object-fit: cover;
+}
+@media screen and (max-width: 600px) {
+    .blogcard-image .blogcard-image-wrapper img {
+        height: 170px !important;
+    }
+}
+figure {
+    margin: 0;
+}
+@media (prefers-color-scheme: dark) {
+    .blogcard {
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, .5);
+    }
+}
+.blogger-box-label .box-title {
+    background: #f8fafc !important;
+    top: -1.0em !important;
+}
+.post-body ul {
+    left: 0em;
+    position: relative;
+}
+.fa-solid.fa-circle-check {
+    margin-right: 5px;
+}
+.post-full {
+    max-width: 832px;
+}
+.matsu-toc ul {
+    left: 2em;
+    position: relative;
+}
+.matsu-toc ul li {
+    list-style: none;
+    position: relative;
+}
+table#table01, table#table01 td, table#table01 th {
+    background-color: #f8fafc !important;
+}
+.lava-lamp-wrapper {
+    margin: 0;
+}
+.lava-lamp-wrapper .custom-tabs-container {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+.lava-lamp-wrapper .tab-buttons {
+    display: flex;
+    background: #eee;
+    position: relative;
+    border-bottom: 2px solid #ddd;
+}
+.lava-lamp-wrapper .tab-buttons span {
+    flex: 1;
+    font: 700 14px sans-serif;
+    color: #555;
+    cursor: pointer;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    z-index: 2;
+}
+.lava-lamp-wrapper .tab-buttons span.active {
+    color: rgb(85, 85, 85) !important;
+}
+.lava-lamp-wrapper .lamp {
+    width: 0;
+    height: 2px;
+    background: #333;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    transform: translateX(0);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    z-index: 3;
+}
+.lava-lamp-wrapper .tab-content {
+    border-top: none;
+    padding: 0px;
+    font-size: 14px;
+    color: #555;
+    min-height: 80px;
+    position: relative;
+    overflow: hidden;
+}
+.lava-lamp-wrapper .tab-content .content1, .lava-lamp-wrapper .tab-content .content2, .lava-lamp-wrapper .tab-content .content3, .lava-lamp-wrapper .tab-content .content4 {
+    display: none !important;
+}
+.lava-lamp-wrapper .tab-content .content1.active, .lava-lamp-wrapper .tab-content .content2.active, .lava-lamp-wrapper .tab-content .content3.active, .lava-lamp-wrapper .tab-content .content4.active {
+    display: block !important;
+}
