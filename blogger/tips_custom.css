@@ -1980,3 +1980,14 @@ div#slide-sidebar-content .download a[style] {
     padding: 1.5em 1em;
     color: #111;
 }
+.blogger-box-label .box-title {
+    position: absolute;
+    top: -0.6em;
+    left: 1em;
+    background: #fff;
+    color: currentColor;
+    padding: 0 1em;
+    font-weight: bold;
+    margin: 0;
+    height: 18px;
+}
