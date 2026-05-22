@@ -2674,3 +2674,62 @@ pre[class*="language-"] {
       flex: 0 0 48% !important;
    }
 }
+@media (max-width: 600px) {
+.post-full {
+    background: var(--card-bg);
+    padding: 0;
+    box-shadow: var(--shadow);
+    max-width: 97% !important;
+    left:5px;
+    position: relative;
+	}
+.layout-container
+ {
+    max-width: var(--max-width);
+    margin: 2rem auto;
+    padding: 0 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr var(--sidebar-width);
+    gap: 45px;
+    align-items: start;
+	}  
+}  
+@media (max-width: 900px) {
+    #view-root pre, .post-full pre, .post-body pre {
+        max-width: calc(100vw - 2rem) !important;
+        width: calc(100vw - 1rem) !important;
+        overflow-x: auto !important;
+        white-space: pre !important;
+        word-break: normal !important;
+        overflow-wrap: normal !important;
+    }
+}
+.post-full-meta
+ {
+    gap: 1rem 0.8rem;
+}  
+.box-title h2 {
+    top: -12px;
+}  
+.meta-item
+ {
+    gap: 0.2rem;
+}  
+.blogger-box-label
+ {
+    padding: 1em 1em;
+} 
+.entry-tag-container {
+    padding-top: 0;
+}  
+.card-image img{
+  max-height:200px;
+  max-width:200px !important;
+  }
+span#lp-v-title:hover, span#lp-v-artist:hover{
+  color: var(--accent-hover) !important;
+  text-decoration: none !important;
+  }  
+div.hashtag-see-more:hover{
+  color: var(--accent-hover) !important;
+  }  
