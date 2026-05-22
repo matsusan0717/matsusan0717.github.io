@@ -1953,3 +1953,95 @@ div.ranking-item {
       max-height: 200px;
       max-width: 200px !important;
   }
+		.strux-ab-wrapper {
+		    margin: 8px 0 1.5em;
+		}
+		.strux-ab-item {
+		    display: none;
+		}
+		.strux-side-container {
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    text-align: center;
+		    gap: 1rem;
+		    padding: 1.5em 1em;
+		    background-color: #f6f5f5;
+		    border-radius: 4px;
+		    font-family: &#39;
+		    Noto Sans JP&#39;
+		    , sans-serif;
+		}
+		.mtu-theme-style {
+		    border: 1px solid #0f2b46;
+		    color: #0f2b46;
+		}
+		.mtu-theme-style .strux-side-detail {
+		    border-top: 1px solid #0f2b46;
+		}
+		.mtu-theme-style .status-tag {
+		    background-color: #0f2b46;
+		    color: #ffffff;
+		}
+		.mtu-theme-style a {
+		    color: #0f2b46 !important;
+		}
+		.mtu-theme-style a:hover {
+		    color: #4b647b !important;
+		    text-decoration: underline !important;
+		    text-decoration-color: #4b647b !important;
+		}
+		.strux-theme-style {
+		    border: 1px solid #b45309;
+		    color: #b45309;
+		}
+		.strux-theme-style .strux-side-detail {
+		    border-top: 1px solid #b45309;
+		}
+		.strux-theme-style .status-tag {
+		    background-color: #b45309;
+		    color: #ffffff;
+		}
+		.strux-theme-style a {
+		    color: #b45309 !important;
+		}
+		.strux-theme-style a:hover {
+		    color: #d97706 !important;
+		    text-decoration: underline !important;
+		    text-decoration-color: #d97706 !important;
+		}
+		.strux-side-text {
+		    line-height: 1.1;
+		}
+		.strux-side-text .upper {
+		    font-size: 14px;
+		    font-weight: 500;
+		    display: block;
+		    opacity: 0.8;
+		}
+		.strux-side-text .lower {
+		    font-size: 48px;
+		    font-weight: 900;
+		    display: block;
+		    letter-spacing: -0.02em;
+		}
+		.strux-side-detail {
+		    font-size: 14px;
+		    font-weight: 700;
+		    line-height: 1.6;
+		    padding-top: 1rem;
+		    width: 100%;
+		}
+		.strux-side-detail .status-tag {
+		    display: inline-block;
+		    padding: 0.1em 0.5em;
+		    border-radius: 2px;
+		    font-size: 11px;
+		    margin-bottom: 0.5em;
+		}
+		.strux-side-detail a {
+		    text-decoration: none !important;
+		    display: block;
+		    margin-top: 0.5em;
+		    font-size: 13px;
+		}
