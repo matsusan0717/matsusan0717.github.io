@@ -2733,3 +2733,7 @@ span#lp-v-title:hover, span#lp-v-artist:hover{
 div.hashtag-see-more:hover{
   color: var(--accent-hover) !important;
   }  
+.blogger-box-alert::after
+ {
+    left: 75px !important;
+}
