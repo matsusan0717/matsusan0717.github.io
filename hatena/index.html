@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>amp-iframe hatena</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://s.hatena.ne.jp/js/HatenaStar.js"></script>
+</head>
+
+<body style="margin-left: 0;">
+  <div id="container">
+    <div style="display: none;">
+      <a id="h-uri" href="http://example.com">
+        <h3 id="h-title">はてなスター for M-StruX</h3>
+      </a>
+    </div>
+    <div id="hatena-star-container" style="padding-top: 40px;"></div>
+  </div>
+  <script>
+    var params = new URLSearchParams(window.location.search);
+    var title = params.get("title") || '';
+    var url = params.get("url") || '';
+    console.log(title);
+    console.log(url);
+    document.querySelector("#h-title").innerText = title;
+    document.querySelector("#h-uri").href = url;
+  </script>
+  <script>
+    window.addEventListener('message', receiveMessage, false);
+    function receiveMessage(event) {
+      if (event.data) {
+        var msg;
+        try {
+          msg = JSON.parse(event.data);
+        } catch (err) {
+          // Do nothing
+        }
+        if (!msg)
+          return false;
+
+        if (msg.name === 'resize' || msg.name === 'rendered') {
+          window.parent.postMessage({
+            sentinel: 'amp',
+            type: 'embed-size',
+            height: msg.data.height
+          }, '*');
+        }
+      }
+    }
+  </script>
+  <script>
+    Hatena.Star.SiteConfig = {
+      entryNodes: {
+        'div#container': {
+          uri: 'a',
+          title: 'h3',
+          container: 'div#hatena-star-container'
+        }
+      }
+    };
+  </script>
+  <script>
+    $(function(){
+      var shadowRoot = $("#hatena-star-container span")[0].shadowRoot;
+      shadowRoot.addEventListener('click', (e) =>{
+        e.preventDefault();
+        var a = $(e.target).parent()[0];
+        window.open(a.href, '_blank');
+      });
+    });
+  </script>
+</body>
+
+</html>
