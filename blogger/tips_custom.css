@@ -992,7 +992,7 @@ html[data-theme="dark"] .ms-fetch-error-wrap {
   line-height: 1;
   margin-right: 5px; 
 }  
-#sidebar-hashtags .tags a::before{
+.hashtag-pill a::before{
   font-family: 'Font Awesome 6 Free';
   content: "\f022";
   font-weight: 900;
