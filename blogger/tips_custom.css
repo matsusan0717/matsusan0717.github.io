@@ -2441,3 +2441,86 @@ div.hashtag-see-more:hover{
   .fa-earth-asia:before, .fa-earth-americas:before{
   margin-right:8px;
   }
+   .mtu-eyecatch-container {
+           display: flex;
+           justify-content: center;
+           align-items: flex-end;
+           gap: 2rem;
+           margin: 2.5em 0;
+           padding-bottom: 0.8em;
+           font-family: 'Noto Sans JP', sans-serif;
+           color: #0f2b46;
+           width: 100%;
+   }
+   .mtu-eyecatch-text {
+           line-height: 1.1;
+           text-align: right;
+   }
+   .mtu-eyecatch-text .upper {
+           font-size: 16px;
+           font-weight: 500;
+           display: block;
+   }
+   .mtu-eyecatch-text .lower {
+           font-size: 64px;
+           font-weight: 900;
+           display: block;
+           letter-spacing: -0.04em;
+   }
+   .mtu-eyecatch-detail {
+           text-align: left;
+           font-size: 15px;
+           font-weight: 700;
+           line-height: 1.4;
+           padding-bottom: 0.5em;
+   }
+   .mtu-eyecatch-detail .status-tag {
+           display: inline-block;
+           background-color: #0f2b46;
+           color: #ffffff;
+           padding: 0.1em 0.5em;
+           border-radius: 2px;
+           font-size: 12px;
+           margin-bottom: 0.2em;
+   }
+   @media screen and (max-width: 768px) {
+           .mtu-eyecatch-container {
+                   flex-direction: column;
+                   align-items: center;
+                   text-align: center;
+                   gap: 1rem;
+           }
+           .mtu-eyecatch-text {
+                   text-align: center;
+           }
+           .mtu-eyecatch-detail {
+                   text-align: center;
+                   padding-top: 1rem;
+                   border-top: 1px solid #ddd;
+                   width: 80%;
+           }
+   }
+   .status-msg-wrap {
+           width: 100%;
+           padding: 10px;
+   }
+   @media only screen and (min-width: 375px) {
+           .status-msg-wrap {
+                   width: 100%;
+                   padding: 0px;
+           }
+   }
+   .strux-side-text .lower, .mtu-eyecatch-text .lower {
+           font-family: "Archivo Black", sans-serif;
+           font-weight: 400;
+           font-style: normal;
+   }
+   span.lower span {
+           color: var(--header-bg) !important;
+   }
+   .mtu-eyecatch-detail a {
+           color: var(--base-navy) !important;
+   }
+   .mtu-eyecatch-detail a:hover {
+           color: var(--accent-hover) !important;
+   }
