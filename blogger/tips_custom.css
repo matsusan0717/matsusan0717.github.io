@@ -2429,3 +2429,15 @@ div.hashtag-see-more:hover{
   #custom-giscus-container small a:hover{
     color: var(--accent-hover) !important;
   }
+  .header-nav .fa-house-laptop:before,
+  .header-nav .fa-screwdriver-wrench:before, 
+  .header-nav .fa-marker:before, 
+  .header-nav .fa-toolbox:before,
+  .header-nav .fa-github-alt:before, 
+  .header-nav .fa-square-font-awesome:before{
+    font-size: 1.0rem;
+  	margin-right:5px;
+}
+  .fa-earth-asia:before, .fa-earth-americas:before{
+  margin-right:8px;
+  }
