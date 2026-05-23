@@ -982,7 +982,7 @@ html[data-theme="dark"] .ms-fetch-error-wrap {
 }   
 .tags a::before{
   font-family: 'Font Awesome 6 Free';
-  content: "\f02b";
+  content: "\f65d";
   font-weight: 900;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
