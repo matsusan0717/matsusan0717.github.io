@@ -1702,7 +1702,7 @@ div.ranking-item {
     position: relative;
 }
 .search-widget .search-form .search-input {
-    color: #ffffff !important;
+    color: #555555 !important;
 	-webkit-text-fill-color: inherit !important;
 }
 .search-widget .search-form .search-input:-webkit-autofill {
