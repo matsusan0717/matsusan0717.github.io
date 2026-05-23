@@ -2434,7 +2434,7 @@ div.hashtag-see-more:hover{
   .header-nav .fa-marker:before, 
   .header-nav .fa-toolbox:before,
   .header-nav .fa-github-alt:before, 
-  .header-nav .fa-square-font-awesome:before{
+  .header-nav .fa-font-awesome:before{
     font-size: 1.0rem;
   	margin-right:5px;
 }
