@@ -2566,3 +2566,14 @@ pre[class*="language-"] {
     border-radius: 5px;
     line-height: 1.5;
 }
+.blogger-box-td::after
+ {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 80px;
+    width: 1px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.2);
+}
