@@ -2426,3 +2426,6 @@ div.hashtag-see-more:hover{
     span.meta-item[title="コメント数"] {
     display: none !important;
     }
+  #custom-giscus-container small a:hover{
+    color: var(--accent-hover) !important;
+  }
