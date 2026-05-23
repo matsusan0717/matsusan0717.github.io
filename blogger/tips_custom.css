@@ -2748,7 +2748,7 @@ div.hashtag-see-more:hover{
 }
 .kaerebalink-name a:hover{
   	color: var(--accent-hover) !important;
-    text-decoration: none;
+    text-decoration: none !important;
   }
 @media screen and (max-width: 640px) {
     .kaerebalink-box {
