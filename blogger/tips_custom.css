@@ -2577,3 +2577,6 @@ pre[class*="language-"] {
     height: 30px;
     background: rgba(0, 0, 0, 0.2);
 }
+.custom-tabs-container{
+	margin:2em 0;	
+	}
