@@ -754,18 +754,19 @@ code:not([class*="language-"]) {
   border-radius: var(--radius) var(--radius) 0 0;
 }
 .custom-archive-select__options {
-  display: none;
   width: 100%;
-  max-height: 300px;
-  overflow-y: auto;
+  max-height: 0;                        
+  overflow: hidden;                   
   border: 1px solid var(--accent);
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
   background: var(--bg-color);
   box-sizing: border-box;
+  transition: max-height 300ms ease;      
 }
 .custom-archive-select.open .custom-archive-select__options {
-  display: block;
+  max-height: 300px;                     
+  overflow-y: auto;                       
 }
 .custom-archive-select__option {
   padding: 10px;
