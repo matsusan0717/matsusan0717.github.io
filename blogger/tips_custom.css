@@ -2181,7 +2181,7 @@ div.hashtag-see-more:hover{
       transform: scale(1.05);
       }
       .post-link:hover .post-title {
-      color: var(--accent);
+      color: var(--header-bg);
       }
 
       .list-link:hover .list-thumb-inner img {
