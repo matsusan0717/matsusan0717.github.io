@@ -2229,7 +2229,7 @@ div.hashtag-see-more:hover{
       }
       }
       .post-grid a:hover .post-title, .post-grid a:hover .post-readmore{
-      color: var(--accent-hover);
+      color: var(--header-bg);
       }       
       a.md-card-item:hover div span{
       color: var(--accent-hover) !important;
