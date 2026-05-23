@@ -962,7 +962,7 @@ html[data-theme="dark"] .ms-fetch-error-wrap {
     color: var(--accent-hover);
 	}  
 .hp-readmore:hover {
-    color: var(--accent-hover);
+    color: var(--header-bg);
 }  
 #matsu-profile-container .name:hover{
     color: var(--accent);
