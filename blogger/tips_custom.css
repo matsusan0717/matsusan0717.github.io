@@ -1026,7 +1026,7 @@ div#slide-sidebar-content .download a[style] {
   color: var(--accent-hover);
 }  
 .blsm-rest:hover .blossom-label a, .blsm-first:hover .blossom-label a{
-  color: var(--accent-hover);
+  background: var(--accent-hover);
 }  
 .recent-post-meta svg {
   margin-right:0px !important;
