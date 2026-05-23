@@ -2555,3 +2555,6 @@ pre[class*="language-"] {
   border-color: var(--accent, #4caf50);
   color: #fff;
 }
+.box-content p:nth-of-type(even) {
+    margin: 1em 0;
+}
