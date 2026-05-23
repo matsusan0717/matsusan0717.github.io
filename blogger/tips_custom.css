@@ -1024,9 +1024,11 @@ div#slide-sidebar-content .download a[style] {
   }
 .blsm-rest:hover .blossomt-title a, .blsm-first:hover .blossomt-title a{
   color: var(--accent-hover);
+  transition : all 0.5s;	
 }  
 .blsm-rest:hover .blossom-label a, .blsm-first:hover .blossom-label a{
   background: var(--accent-hover);
+  transition : all 0.5s;	
 }  
 .recent-post-meta svg {
   margin-right:0px !important;
