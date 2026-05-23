@@ -2539,3 +2539,261 @@ div.hashtag-see-more:hover{
 .recent-post-thumb {
   transition: transform 0.3s ease;
 }
+      @-moz-document url-prefix() {
+      .eva-header-wrapper,
+      .eva-main,
+      #eva_poster_box,
+      #eva_poster_title_area,
+      #eva_poster_main_title,
+      #eva_poster_sub_title,
+      .profile-card,
+      #matsu-profile-container {
+      background-attachment: scroll !important;
+      isolation: isolate;
+      }
+      .eva-header-wrapper::before,
+      .eva-header-wrapper::after,
+      .eva-main::before,
+      .eva-main::after,
+      #eva_poster_box::before,
+      #eva_poster_box::after,
+      #eva_poster_title_area::before,
+      #eva_poster_title_area::after,
+      #eva_poster_main_title::before,
+      #eva_poster_main_title::after {
+      background-attachment: scroll !important;
+      position: absolute !important;
+      }
+      }
+      .recent-post-link:hover .recent-post-thumb {
+      transform: scale(1.1);
+      }
+      .recent-post-thumb-wrap {
+      overflow: hidden;
+      }
+      .recent-post-thumb {
+      transition: transform 0.3s ease;
+      }
+
+      .post-link:hover .post-thumbnail {
+      transform: scale(1.05);
+      }
+      .post-link:hover .post-title {
+      color: var(--accent);
+      }
+
+      .list-link:hover .list-thumb-inner img {
+      transform: scale(1.05);
+      }
+      .list-link:hover .list-title {
+      color: var(--accent);
+      }
+
+      .rnd-list-item:hover img,
+      .rnd-card-item:hover img {
+      transform: scale(1.1);
+      }
+      @media (max-width:600px) {
+      .layout-container {
+      max-width: var(--max-width);
+      padding: 0 0.5rem;
+      }
+      .box-title h2 {
+      top: -32px;
+      } 
+      .post-body h2 {
+      padding: 0.4rem 1rem;
+      line-height:140%;
+      }      
+      .youtube-lazy {
+      max-width: 100%;
+      }
+      code, .post-body ul{
+      overflow-wrap: anywhere !important;
+      }
+      .link-card-wrapper
+      {
+      max-width: 350px;
+      }
+      .blogger-box-label .box-content {
+      padding: 0em !important;
+      color: #555;
+      }
+      .blogger-box-label {
+      padding: 1.5em 1em !important;
+      }
+      .htns{
+      top: 17px !important;
+      }
+      }
+      .post-grid a:hover .post-title, .post-grid a:hover .post-readmore{
+      color: var(--accent-hover);
+      }       
+      a.md-card-item:hover div span{
+      color: var(--accent-hover) !important;
+      }   
+      #sidebar-random-posts-list a:hover span{
+      color: var(--accent-hover) !important;
+      }      
+      .blogger-box-label .box-content {
+      padding: 0em !important;
+      color: #555 !important;
+      }
+      .mdsh2 {
+      font-size: 1.4rem !important;
+      }
+      .card-image img
+      {
+      max-width: 200px !important;
+      }
+
+
+      .kaerebalink-box {
+      display: flex;
+      flex-direction: row; /* 明示的にrowを指定 */
+      align-items: flex-start; /* 上揃え */
+      max-width: 950px;
+      margin: 10px auto;
+      padding: 10px;
+      border: 1px solid #e3e3e3;
+      background: #fff;
+      overflow: hidden;
+      }
+
+      .kaerebalink-image {
+      margin-right: 15px;
+      flex: 0 0 200px; 
+      max-width: 200px;
+      }
+
+      .kaerebalink-image img {
+      width: 100% !important;
+      max-width: 200px !important;
+      height: auto !important;
+      display: block;
+      }
+
+      /* トラッキング画像を非表示 */
+      .kaerebalink-image img[src*=&quot;moshimo.com&quot;],
+      .kaerebalink-image img[width=&quot;1&quot;] {
+      display: none !important;
+      height: 0 !important;
+      }
+
+      .kaerebalink-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; 
+      min-width: 0;
+      }
+
+      .kaerebalink-name {
+      margin-bottom: 50px;
+      font-weight: bold;
+      font-size: 15px;
+      line-height: 1.4;
+      }
+
+      .kaerebalink-name a {
+      color: #555555 !important;
+      text-decoration: none;
+      }
+
+      .kaerebalink-powered-date {
+      font-size: 9px;
+      color: #999;
+      }
+
+      .kaerebalink-detail {
+      display: none; 
+      }
+
+      .kaerebalink-link1 {
+      display: flex !important;
+      width: 100% !important;
+      gap: 5px;
+      margin-top: auto; 
+      }
+
+      .kaerebalink-link1 &gt; div {
+      flex: 1 !important;
+      }
+
+      .kaerebalink-link1 a {
+      display: block !important;
+      width: 100% !important;
+      padding: 10px 0 !important;
+      text-align: center;
+      text-decoration: none !important;
+      font-weight: bold;
+      font-size: 11px;
+      border-radius: 4px;
+      box-sizing: border-box;
+      }
+
+      .shoplinkrakuten a {
+      color: #c20004 !important;
+      border: 1px solid #c20004 !important;
+      }
+
+      .shoplinkamazon a {
+      color: #FF9901 !important;
+      border: 1px solid #FF9901 !important;
+      }
+
+      .shoplinkyahoo a {
+      color: #0076bf !important;
+      border: 1px solid #0076bf !important;
+      }
+
+      .shoplinkrakuten a:hover {
+      background: #c20004;
+      color: #fff !important;
+      }
+
+      .shoplinkamazon a:hover {
+      background: #FF9901;
+      color: #fff !important;
+      }
+
+      .shoplinkyahoo a:hover {
+      background: #0076bf;
+      color: #fff !important;
+      }
+
+      .shoplinkyahoo img,
+      .shoplinkrakuten img,
+      .shoplinkamazon img {
+      display: none !important;
+      }
+
+      @media screen and (max-width: 640px) {
+      .kaerebalink-box {
+      flex-direction: column;
+      }
+
+      .kaerebalink-image {
+      margin: 0 auto 10px;
+      flex: 0 0 auto;
+      width: 100%;
+      text-align: center;
+      }
+      .kaerebalink-name {
+      margin-bottom: 10px;
+      }      
+      }
+
+      .kaerebalink-link1 {
+      flex-direction: column;
+      gap: 6px;
+      }
+
+      .kaerebalink-link1 &gt; div {
+      flex: none !important;
+      width: 100% !important;
+      }
+      }
+      .kaerebalink-name a:hover{
+      color: var(--accent-hover) !important;
+      }
