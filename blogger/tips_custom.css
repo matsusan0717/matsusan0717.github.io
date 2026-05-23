@@ -1536,7 +1536,7 @@ div#slide-sidebar-content .download a[style] {
     padding: 8px 0;
     font-size: 0.9rem;
     outline: none;
-    color: #ffffff;
+    color: #555555;
     -webkit-box-shadow: 0 0 0px 1000px rgb(30, 58, 95) inset;
     box-shadow: 0 0 0px 1000px rgb(30, 58, 95) inset;
     -webkit-text-fill-color: inherit;
