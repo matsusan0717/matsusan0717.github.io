@@ -109,22 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', formatDates);
   })();
 
-  // 5. タイピング演出
-  (function() {
-    const origin = document.getElementById('tpd-origin-data'), 
-          target = document.getElementById('tpd-title-text'), 
-          con = document.getElementById('tpd-title-console');
-    if (!origin || !target || !con) return;
-    const blogTitle = origin.textContent.trim();
-    let letterCount = 0;
-    const typingTimer = setInterval(() => {
-      target.textContent = blogTitle.substring(0, ++letterCount);
-      if (letterCount >= blogTitle.length) clearInterval(typingTimer);
-    }, 150);
-    setInterval(() => { con.style.visibility = (con.style.visibility === "hidden") ? "visible" : "hidden"; }, 400);
-  })();
-
-  // 6. インフィード関連記事
+   // 6. インフィード関連記事
   (function() {
     const container = document.getElementById('infeed-slanted-card-container');
     if (!container) return;
