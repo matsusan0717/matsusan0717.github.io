@@ -1363,10 +1363,6 @@ div#slide-sidebar-content .download a[style] {
         position: relative;
         margin: 12px 0 0;
     }
-    .blogger-box-label .box-content {
-        padding: 1.5em 1em;
-        color: #111;
-    }
     :root {
         --if-prime: #3b70fc;
         --if-bg: #ffffff;
@@ -1438,10 +1434,6 @@ div#slide-sidebar-content .download a[style] {
     font-size: 1.2rem;
 }
 }  
-  .blogger-box-label .box-content {
-    padding: 1.5em 1em;
-    color: #111;
-}
 .blogger-box-label .box-title {
     position: absolute;
     top: -0.6em;
@@ -2216,10 +2208,6 @@ div.hashtag-see-more:hover{
       .link-card-wrapper
       {
       max-width: 350px;
-      }
-      .blogger-box-label .box-content {
-      padding: 0em !important;
-      color: #555;
       }
       .blogger-box-label {
       padding: 1.5em 1em !important;
