@@ -549,7 +549,7 @@ body.is-full-mode .sidebar {
       flex-shrink: 0;
    }
 }
-code:not([class*=&quot;language-&quot;]) {
+code:not([class*="language-"]) {
    color: #555;
 }
 #ms-lg-notice a:hover {
@@ -598,15 +598,12 @@ code:not([class*=&quot;language-&quot;]) {
     );
     background-size: 200% 100%;
     
-    /* 初期状態は左側の領域を表示（Blogger:白 / TIPS:色） */
     background-position: 0% 0%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
     transition: background-position 0.2s ease;
 }
-
-/* ホバー時に全体を右側（Blogger:色 / TIPS:白）へスライド */
 .site-title a:hover {
     background-position: 100% 0%;
 }
@@ -614,8 +611,6 @@ code:not([class*=&quot;language-&quot;]) {
    display: flex;
    align-items: center;
 }
-/* Like Button */
-
 .like-wrapper {
    display: flex;
    align-items: center;
@@ -677,7 +672,7 @@ code:not([class*=&quot;language-&quot;]) {
    top: -2px;
    position: relative;
 }
-.like-count[data-count=&quot;0&quot;], .like-count:empty {
+.like-count[data-count="0"], .like-count:empty {
    display: none !important;
 }
 .fa-solid.fa-hourglass-half
@@ -685,7 +680,7 @@ code:not([class*=&quot;language-&quot;]) {
   }  
 .aslot:after
  {
-    content: &#39;&#39;;
+    content: '';
     display: inline-block;
     height: 17px;
     margin-left: 10px;
@@ -826,12 +821,12 @@ code:not([class*=&quot;language-&quot;]) {
   }
 }
 @media (prefers-color-scheme: dark) {
-  html:not([data-theme=&quot;light&quot;]) .ms-fetch-error-wrap {
+  html:not([data-theme="light"]) .ms-fetch-error-wrap {
     background: linear-gradient(-45deg, #0f172a, #1e293b, #1e3a5f, #0f172a);
     background-size: 400% 400%;
   }
 }
-html[data-theme=&quot;dark&quot;] .ms-fetch-error-wrap {
+html[data-theme="dark"] .ms-fetch-error-wrap {
   background: linear-gradient(-45deg, #0f172a, #1e293b, #1e3a5f, #0f172a);
   background-size: 400% 400%;
 }
@@ -1008,8 +1003,7 @@ html[data-theme=&quot;dark&quot;] .ms-fetch-error-wrap {
   text-rendering: auto;
   line-height: 1;
   margin-right: 5px; 
-}  
-
+}
 .download a:hover{
     color:var(--accent-hover)!important;
   }
@@ -1030,7 +1024,7 @@ div#slide-sidebar-content .download a[style] {
 .hashtag-pill{
 	font-size:0.75em;
 	}
-.post-body .twitter-tweet-rendered iframe, .post-body iframe[id^=&quot;twitter-widget&quot;] {
+.post-body .twitter-tweet-rendered iframe, .post-body iframe[id^="twitter-widget"] {
    width: 100% !important;
    min-width: 100% !important;
 }
@@ -1048,7 +1042,7 @@ div#slide-sidebar-content .download a[style] {
    margin: 0 auto !important;
 }
 @media (max-width: 900px) {
-   .post-body .twitter-tweet-rendered, .post-body .twitter-tweet-rendered iframe, .post-body iframe[id^=&quot;twitter-widget&quot;] {
+   .post-body .twitter-tweet-rendered, .post-body .twitter-tweet-rendered iframe, .post-body iframe[id^="twitter-widget"] {
       max-width: 100% !important;
       width: 100% !important;
    }
@@ -1140,10 +1134,6 @@ div#slide-sidebar-content .download a[style] {
     background: #fff;
     overflow: hidden;
 }
-
-/* ==========================================
-   Tooltip
-========================================= */
     .post-body a.b-tooltip-container {
       position: relative;
       display: inline-block;
@@ -1176,10 +1166,6 @@ div#slide-sidebar-content .download a[style] {
 #slide-sidebar .download a {
   font-size: 11px !important;
 }
-
-/* ==========================================
-   Last.fm Widget
-========================================= */
     #lp-v-final * { box-sizing: border-box; }
     #lp-v-flex { display: flex !important; align-items: center !important; gap: 18px; }
     #lp-v-disk { position: relative; width: 100px; height: 100px; flex-shrink: 0; }
@@ -1192,7 +1178,7 @@ div#slide-sidebar-content .download a[style] {
     @keyframes lp-spin-final { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     .is-playing #lp-v-vinyl { animation: lp-spin-final 8s linear infinite; }
     #lp-v-art { width: 50px; height: 50px; border-radius: 50%; background-size: cover; background-position: center; background-color: #222; border: 1px solid #111; position: relative; }
-    #lp-v-art::after { content: &#39;&#39;; position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; background: #121212; border-radius: 50%; transform: translate(-50%, -50%); }
+    #lp-v-art::after { content: ''; position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; background: #121212; border-radius: 50%; transform: translate(-50%, -50%); }
     #lp-v-info { flex-grow: 1; text-align: left; overflow: hidden; padding-bottom: 5px; }
     #lp-v-info a { text-decoration: none; display: block; overflow: hidden; }
     #lp-v-title { font-weight: bold; font-size: 13px; color: #fff; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-bottom: 3px; transition: color 0.2s; }
@@ -1215,9 +1201,7 @@ div#slide-sidebar-content .download a[style] {
       display: block;
     }
     #lp-v-logo-link:hover { opacity: 1; transform: scale(1.1); }
-    #lp-v-logo-img { width: 100%; height: auto; display: block; border-radius: 4px; }
-  
-/* カード全体像 */
+    #lp-v-logo-img { width: 100%; height: auto; display: block; border-radius: 4px; }  
 .blogcard {
   max-width: 100%;
   margin-bottom: 30px;
@@ -1228,90 +1212,68 @@ div#slide-sidebar-content .download a[style] {
   background: white;
   transition: .2s ease-in-out;
 }
-
 .blogcard > a {
   color: rgb(51,51,51);
 }
-
-/* float親要素 */
 .blogcard-content {
   margin-bottom: 5px;
   overflow: hidden;
 }
-
-/* 画像 */
 .blogcard-image {
   display: inline-block;
-  float: right; /* 画像を左に配置したい場合は left に変更 1/2 */
-  width: 100px; /* 画像の表示サイズ変更は数値をpxで変更 1/6 */
-  height: 100px; /* 画像の表示サイズ変更は数値をpxで変更 2/6 */
-  margin: 0 0 5px 5px; /* 画像を左に配置したい場合は 0 10px 5px 0 に変更 2/2 */
+  float: right; 
+  width: 100px; 
+  height: 100px; 
+  margin: 0 0 5px 5px; 
 }
-
 .blogcard-image-wrapper {
   display: inline-block;
-  width: 100px; /* 画像の表示サイズ変更は数値をpxで変更 3/6 */
-  height: 100px; /* 画像の表示サイズ変更は数値をpxで変更 4/6 */
+  width: 100px; 
+  height: 100px; 
 }
-
 .blogcard-image-wrapper img {
-  width: 100px; /* 画像の表示サイズ変更は数値をpxで変更 5/6 */
-  height: 100px; /* 画像の表示サイズ変更は数値をpxで変更 6/6 */
+  width: 100px; 
+  height: 100px; 
   object-fit: cover;
   object-position: center center;
 }
-
-/* タイトル */
 .blogcard-title {
   margin: 0 !important;
   font-weight: bold;
   font-size: 15px;
   line-height: 1.4;
 }
-
-/* 引用 */
 .blogcard blockquote {
   position: static;
   margin: 0;
   padding: 0;
   box-shadow: none;
   border: 0;
-  background: transparent; /* ブログテンプレートに背景に関する強制力の強い指定がある場合には transparent の直後に !important を付けてください */
+  background: transparent; 
 }
-
 .blogcard blockquote::before,
 .blogcard blockquote::after {
   content: none;
 }
-
-/* 記事概要 */
 .blogcard-description {
   margin: 1em 0 !important;
   font-size: 13px;
   line-height: 1.5 !important;
 }
-
-/* フッター(元記事サイト名とリンク) */
 .blogcard-footer {
   font-size: 12px;
 }
-
 .blogcard-footer img {
   margin-right: 5px;
   vertical-align: middle;
 }
-
-/* カードマウスホバー */
 .blogcard:hover {
   box-shadow: 0 10px 10px 2px rgba(0,0,0,.1);
 }
-
 .blogcard:hover > a {
   color: rgb(51,51,51);
   text-decoration: none !important;
 }
-
-/* OSダークモード対応(テンプレートがダークモード未対応の場合は不要) */
 @media (prefers-color-scheme: dark) {
   .blogcard {
     box-shadow: 0px 20px 40px rgba(0,0,0,.5);
@@ -1358,8 +1320,8 @@ div#slide-sidebar-content .download a[style] {
         line-height: 1.6;
     }
     .talk-box.left .bubble::before {
-        content: &quot;
-        &quot;
+        content: "
+        "
         ;
         position: absolute;
         left: -8px;
@@ -1371,8 +1333,8 @@ div#slide-sidebar-content .download a[style] {
         border-right: 8px solid #ebebeb;
     }
     .talk-box.right .bubble::before {
-        content: &quot;
-        &quot;
+        content: "
+        "
         ;
         position: absolute;
         right: -8px;
@@ -1808,8 +1770,8 @@ div.ranking-item {
 		    padding: 1.5em 1em;
 		    background-color: #f6f5f5;
 		    border-radius: 4px;
-		    font-family: &#39;
-		    Noto Sans JP&#39;
+		    font-family: '
+		    Noto Sans JP'
 		    , sans-serif;
 		}
 		.mtu-theme-style {
@@ -2012,28 +1974,23 @@ div.ranking-item {
   #mc_embed_signup .clear.foot {
       justify-content: flex-end;
   }
-
-
 .eva-header-wrapper {
     background: #000;
     padding: 30px 0;
     width: 100%;
 	height:230px;
 }
-
 .eva-main {
     display: flex;
     align-items: center;
     justify-content: center;
     perspective: 800px;
 }
-
 @keyframes eva-rotate-anim {
     0% { transform: rotateY(-10deg) rotateX(-2deg); }
     50% { transform: rotateY(10deg) rotateX(2deg); }
     100% { transform: rotateY(-10deg) rotateX(-2deg); }
 }
-
 #eva_poster_box {
     aspect-ratio: 16 / 9;
     background: center / cover no-repeat url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjVe65lmVea0AQm2Ea4xvb_DkuIKsmGKd6P-UkMpKQInOCWzd2-Ejbq33tCE7uC1Zm4yPBJkXkojSySPFDDcxcg0RY8YyasHeWvZrMfaLdxby-gBBBVNEeixLbZvbrtfGIA-or3F5FsrJS9qChbMu6GnmHuTuu63YzG_rxsKWiFE9am5SVOmYQ2aZVvTdk/s1600/EVANGERION%20%281%29.png');
@@ -2043,7 +2000,6 @@ div.ranking-item {
     transform-style: preserve-3d;
     border-radius: 4px;
 }
-
 #eva_poster_title_area {
     position: absolute;
     top: 15%;
@@ -2051,7 +2007,6 @@ div.ranking-item {
     text-align: center;
     transform: translateZ(30px);
 }
-
 #eva_poster_main_title {
     font-family: 'Agency FB Black', sans-serif !important;
     font-size: 38px !important;
@@ -2062,7 +2017,6 @@ div.ranking-item {
     -webkit-background-clip: text;
     display: block;
 }
-
 #eva_poster_image_front {
     position: absolute;
     bottom: -5%;
@@ -2457,3 +2411,6 @@ div.hashtag-see-more:hover{
 #slider-container .pagination>#next::before{transform:translate(-70%,-50%) rotate(135deg);}
 @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
 @media only screen and (max-width:767px){.tpd-random-wrapper{display:none;}}
+    span.meta-item[title="コメント数"] {
+    display: none !important;
+    }
