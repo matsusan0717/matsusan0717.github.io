@@ -994,7 +994,7 @@ html[data-theme="dark"] .ms-fetch-error-wrap {
 }  
 a.hashtag-pill::before{
   font-family: 'Font Awesome 6 Free';
-  content: "\f022";
+  content: "\f0c6";
   font-weight: 900;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
