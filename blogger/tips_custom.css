@@ -2515,6 +2515,9 @@ div.hashtag-see-more:hover{
            font-weight: 400;
            font-style: normal;
    }
+  .strux-side-text .lower span{
+		   color: var(--base-navy) !important;
+  }
    span.lower span {
            color: var(--header-bg) !important;
    }
