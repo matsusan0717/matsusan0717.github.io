@@ -959,7 +959,7 @@ html[data-theme="dark"] .ms-fetch-error-wrap {
     border-color: var(--accent) !important;
 }  
 .post-readmore:hover {
-    color: var(--accent-hover);
+    color: var(--header-bg);
 	}  
 .hp-readmore:hover {
     color: var(--header-bg);
