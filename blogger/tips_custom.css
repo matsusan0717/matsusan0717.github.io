@@ -2646,6 +2646,130 @@ div.hashtag-see-more:hover{
       {
       max-width: 200px !important;
       }
-
-
-
+.kaerebalink-box {
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-start; 
+    max-width: 950px;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #e3e3e3;
+    background: #fff;
+    overflow: hidden;
+}
+.kaerebalink-image {
+    margin-right: 15px;
+    flex: 0 0 200px; 
+    max-width: 200px;
+}
+.kaerebalink-image img {
+    width: 100% !important;
+    max-width: 200px !important;
+    height: auto !important;
+    display: block;
+}
+.kaerebalink-image img[src*="moshimo.com"],
+.kaerebalink-image img[width="1"] {
+    display: none !important;
+    height: 0 !important;
+}
+.kaerebalink-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+}
+.kaerebalink-name {
+    margin-bottom: 50px;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 1.4;
+}
+.kaerebalink-name a {
+    color: #555555 !important;
+    text-decoration: none;
+}
+.kaerebalink-powered-date {
+    font-size: 9px;
+    color: #999;
+}
+.kaerebalink-detail {
+    display: none;
+}
+.kaerebalink-link1 {
+    display: flex !important;
+    width: 100% !important;
+    gap: 5px;
+    margin-top: auto;
+}
+.kaerebalink-link1 > div {
+    flex: 1 !important;
+}
+.kaerebalink-link1 a {
+    display: block !important;
+    width: 100% !important;
+    padding: 10px 0 !important;
+    text-align: center;
+    text-decoration: none !important;
+    font-weight: bold;
+    font-size: 11px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.shoplinkrakuten a {
+    color: #c20004 !important;
+    border: 1px solid #c20004 !important;
+}
+.shoplinkamazon a {
+    color: #FF9901 !important;
+    border: 1px solid #FF9901 !important;
+}
+.shoplinkyahoo a {
+    color: #0076bf !important;
+    border: 1px solid #0076bf !important;
+}
+.shoplinkrakuten a:hover {
+    background: #c20004;
+    color: #fff !important;
+}
+.shoplinkamazon a:hover {
+    background: #FF9901;
+    color: #fff !important;
+}
+.shoplinkyahoo a:hover {
+    background: #0076bf;
+    color: #fff !important;
+}
+.shoplinkyahoo img,
+.shoplinkrakuten img,
+.shoplinkamazon img {
+    display: none !important;
+}
+.kaerebalink-name a:hover{
+  	color: var(--accent-hover) !important;
+    text-decoration: none;
+  }
+@media screen and (max-width: 640px) {
+    .kaerebalink-box {
+        flex-direction: column;
+    }
+    .kaerebalink-image {
+        margin: 0 0 10px 0;
+        flex: 0 0 auto;
+        width: 100%;
+        text-align: center;
+  	 	margin: 0 auto 10px;
+    }
+    .kaerebalink-link1 {
+        flex-direction: column;
+        gap: 6px;
+    }
+    .kaerebalink-link1 > div {
+        flex: none !important;
+        width: 100% !important;
+    }
+  .kaerebalink-name {
+    margin-bottom: 10px;
+	}
+}
