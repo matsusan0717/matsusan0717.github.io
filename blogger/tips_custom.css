@@ -2558,3 +2558,11 @@ pre[class*="language-"] {
 .box-content p:nth-of-type(even) {
     margin: 1em 0;
 }
+.blogger-box-tu
+ {
+    background-color: #f0f8ff;
+    position: relative;
+    padding: 20px 0px 20px 80px;
+    border-radius: 5px;
+    line-height: 1.5;
+}
