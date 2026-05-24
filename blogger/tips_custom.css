@@ -1703,10 +1703,6 @@ div.ranking-item {
 #header-search .search-form .search-input:-webkit-autofill {
   -webkit-text-fill-color: #ffffff !important;
 } 
-.hashtag-see-more {
-    right: -150px;
-    position: relative;
-}
 .search-widget .search-form .search-input {
     color: #555555 !important;
 	-webkit-text-fill-color: inherit !important;
