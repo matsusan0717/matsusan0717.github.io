@@ -5203,3 +5203,6 @@ iframe.blogger-iframe-colorize {
 .highlight-post:hover .hp-title{
 	color: var(--header-bg) !important;
 }
+  .instagram-lazy iframe{
+  	width: 100% !important;
+  }
