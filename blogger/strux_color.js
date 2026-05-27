@@ -1,4 +1,3 @@
-<script>
 (function() {
 
 var SITE_URL = 'https://m-strux.matsusanjpn.com/';
@@ -580,4 +579,3 @@ function init() {
 init();
 
 })();
-</script>
