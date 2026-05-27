@@ -561,6 +561,34 @@ if (copyBtn) {
 }
 
 /* ===== 初期描画 ===== */
+
+/* ===== URLからの初期テーマ選択 ===== */
+(function() {
+  // /p/color-ash-rose.html → "ash-rose" を抽出
+  var match = location.pathname.match(/color-([^\/]+?)(?:\.html)?$/);
+  if (!match) return;
+  var slugFromURL = match[1]; // 例: "ash-rose"
+
+  // slugMap の逆引き（slug → themes配列のインデックス）
+  var slugMap = {
+    'amber-classic': 'amber', 'deep-blue': 'deepblue', 'dark-green': 'darkgreen',
+    'deep-maroon': 'terracotta', 'burnt-orange': 'olive', 'midnight-blue': 'indigo',
+    'coral-red': 'coral', 'peach': 'peach', 'salmon': 'salmon',
+    'earth-khaki': 'earthkhaki', 'slate-ivory': 'ivory', 'spring': 'spring',
+    'ash-rose': 'ashrose'
+  };
+
+  var themeId = slugMap[slugFromURL];
+  if (!themeId) return;
+
+  var idx = themes.findIndex(function(t) { return t.id === themeId; });
+  if (idx === -1) return;
+
+  selected = idx;
+  // ページネーションも合わせる
+  currentPage = Math.ceil((idx + 1) / PAGE_SIZE);
+})();
+  
 function init() {
   var grid = document.getElementById('tp-grid');
   if (!grid) {
