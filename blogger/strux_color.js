@@ -303,7 +303,7 @@ var themes = [
   id: "navyslate",
   name: "Navy Slate",
   tag: "",
-  swatches: ["#1a365d", "#7484c6", "#f7fafc", "#d4cdb5"],
+  swatches: ["#1a365d", "#7484c6", "#f7fafc"],
 light: {
     "--bg-color": "#f5f8fa",
     "--text-main": "#142a4a",
