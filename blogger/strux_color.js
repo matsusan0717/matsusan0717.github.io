@@ -598,7 +598,7 @@ if (copyBtn) {
     'deep-maroon': 'terracotta', 'burnt-orange': 'olive', 'midnight-blue': 'indigo',
     'coral-red': 'coral', 'peach': 'peach', 'salmon': 'salmon',
     'earth-khaki': 'earthkhaki', 'slate-ivory': 'ivory', 'spring': 'spring',
-    'ash-rose': 'ashrose'
+    'ash-rose': 'ashrose', 'sage-denim'
   };
 
   var themeId = slugMap[slugFromURL];
