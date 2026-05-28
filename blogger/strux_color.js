@@ -276,6 +276,29 @@ var themes = [
       "--tab-lamp-color": "#b1a3ad", "--tab-border-color": "#7c6c77",
     },
   },
+    {
+    id: "denim",
+    name: "Sage Denim",
+    tag: "",
+    swatches: ["#446e72", "#9ebb94", "#a8b4c2"],
+    light: {
+      "--bg-color": "#f4f3e5", "--text-main": "#233739", "--text-muted": "#536b6d",
+      "--card-bg": "transparent", "--border": "#d4dbe2", "--accent": "#446e72",
+      "--accent-hover": "#568b90", "--base-navy": "#446e72", "--sub-amber": "#9ebb94",
+      "--bq-bg": "#e9e8da", "--bq-border": "#cbd4be",
+      "--header-bg": "#446e72",
+      "--tab-text-active": "#446e72", "--tab-text-muted": "#a8b4c2",
+      "--tab-lamp-color": "#446e72", "--tab-border-color": "#d4dbe2",
+    },
+    dark: {
+      "--bg-color": "#1a2729", "--text-main": "#f4f3e5", "--text-muted": "#a8b4c2",
+      "--card-bg": "transparent", "--border": "#2d4547", "--accent": "#9ebb94",
+      "--accent-hover": "#b1ccaa", "--header-bg": "#1a2729",
+      "--bq-bg": "#243538", "--bq-border": "#385356",
+      "--tab-text-active": "#f4f3e5", "--tab-text-muted": "#536b6d",
+      "--tab-lamp-color": "#9ebb94", "--tab-border-color": "#2d4547",
+    },
+  },
 ];
 
 var selected = 0;
@@ -493,7 +516,7 @@ function renderApplyBtn() {
     amber:'amber-classic', deepblue:'deep-blue', darkgreen:'dark-green',
     terracotta:'deep-maroon', olive:'burnt-orange', indigo:'midnight-blue',
     coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
-    ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose'
+    ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim'sage-denim'
   };
   var t = themes[selected];
   var slug = slugMap[t.id] || t.id;
@@ -517,7 +540,7 @@ if (applyBtn) {
       amber:'amber-classic', deepblue:'deep-blue', darkgreen:'dark-green',
       terracotta:'deep-maroon', olive:'burnt-orange', indigo:'midnight-blue',
       coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
-      ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose'
+      ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim'sage-denim'
     };
     var t = themes[selected];
     var slug = slugMap[t.id] || t.id;
