@@ -11,3 +11,11 @@ var _timer = setInterval(function() {
     clearInterval(_timer);
   }
 }, 100);
+
+(function() {
+    var creditData = 'ICAgIDxkaXYgc3R5bGU9J21heC13aWR0aDogdmFyKC0tbWF4LXdpZHRoKTsgbWFyZ2luOiAwIGF1dG87IHBhZGRpbmc6IDAgMS41cmVtOyB0ZXh0LWFsaWduOiByaWdodDsnPgogICAgICA8cCBpZD0nZGVzaWduZWQtYnknIHN0eWxlPSdmb250LXNpemU6IDExcHg7IGNvbG9yOiAjODg4Oyc+CiAgICAgICAgPGEgaHJlZj0naHR0cHM6Ly9tLXN0cnV4Lm1hdHN1c2FuanBuLmNvbS8nIHN0eWxlPSdjb2xvcjogaW5oZXJpdDsgdGV4dC1kZWNvcmF0aW9uOiBub25lOycgdGFyZ2V0PSdfYmxhbmsnPiZjb3B5OyBtYXRzdXNhbjwvYT4KICAgICAgPC9wPgogICAgPC9kaXY+';
+    var container = document.getElementById('footer-credit');
+    if (container) {
+        container.innerHTML = atob(creditData);
+    }
+})();
