@@ -299,6 +299,48 @@ var themes = [
       "--tab-lamp-color": "#9ebb94", "--tab-border-color": "#2d4547",
     },
   },
+{
+  id: "navyslate",
+  name: "Navy Slate",
+  tag: "",
+  swatches: ["#1a365d", "#7484c6", "#f7fafc"],
+  light: {
+    "--bg-color": "#f7fafc",
+    "--text-main": "#1a365d",
+    "--text-muted": "#7484c6",
+    "--card-bg": "transparent",
+    "--border": "#d4cdb5",
+    "--accent": "#7484c6",
+    "--accent-hover": "#1a365d",
+    "--base-navy": "#1a365d",
+    "--sub-amber": "#d4cdb5",
+    "--bq-bg": "#f0f4f8",
+    "--bq-border": "#7484c6",
+    "--header-bg": "#1a365d",
+    "--tab-text-active": "#1a365d",
+    "--tab-text-muted": "#7484c6",
+    "--tab-lamp-color": "#d4cdb5",
+    "--tab-border-color": "#d4cdb5"
+  },
+  dark: {
+    "--bg-color": "#0b1829",
+    "--text-main": "#f7fafc",
+    "--text-muted": "#7484c6",
+    "--card-bg": "transparent",
+    "--border": "#23395b",
+    "--accent": "#d4cdb5",
+    "--accent-hover": "#f7fafc",
+    "--header-bg": "#0b1829",
+    "--bq-bg": "#13243c",
+    "--bq-border": "#7484c6",
+    "--tab-text-active": "#f7fafc",
+    "--tab-text-muted": "#7484c6",
+    "--tab-lamp-color": "#d4cdb5",
+    "--tab-border-color": "#23395b"
+  }
+}
+
+  
 ];
 
 var selected = 0;
@@ -516,7 +558,8 @@ function renderApplyBtn() {
     amber:'amber-classic', deepblue:'deep-blue', darkgreen:'dark-green',
     terracotta:'deep-maroon', olive:'burnt-orange', indigo:'midnight-blue',
     coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
-    ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim'
+    ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim',
+    navyslate:'navy-slate'
   };
   var t = themes[selected];
   var slug = slugMap[t.id] || t.id;
@@ -540,7 +583,8 @@ if (applyBtn) {
       amber:'amber-classic', deepblue:'deep-blue', darkgreen:'dark-green',
       terracotta:'deep-maroon', olive:'burnt-orange', indigo:'midnight-blue',
       coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
-      ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim'
+      ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim',
+      navyslate:'navy-slate'
     };
     var t = themes[selected];
     var slug = slugMap[t.id] || t.id;
