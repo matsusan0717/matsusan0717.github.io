@@ -5206,3 +5206,9 @@ iframe.blogger-iframe-colorize {
   .instagram-lazy iframe{
   	width: 100% !important;
   }
+.title-2{
+	  text-shadow:2px 2px 0 #FFF, -2px -2px 0 #FFF,
+              -2px 2px 0 #FFF, 2px -1px 0 #FFF,
+              0px 2px 0 #FFF,  0-2px 0 #FFF,
+              -2px 0 0 #FFF, 2px 0 0 #FFF;
+}
