@@ -257,7 +257,7 @@ var themes = [
   },
   {
     id: "ashrose", name: "Ash Rose", tag: "",
-    swatches: ["#363034", "#7c6c77", "#b1a3ad", "#e8e3e7"],
+    swatches: ["#363034", "#7c6c77", "#b1a3ad"],
     light: {
       "--bg-color": "#e8e3e7", "--text-main": "#363034", "--text-muted": "#7c6c77",
       "--card-bg": "transparent", "--border": "#b1a3ad", "--accent": "#7c6c77",
