@@ -5207,8 +5207,8 @@ iframe.blogger-iframe-colorize {
   	width: 100% !important;
   }
 #slider-container .details .title-2 {
-	  text-shadow:2px 2px 0 #FFF, -2px -2px 0 #FFF,
-              -2px 2px 0 #FFF, 2px -1px 0 #FFF,
-              0px 2px 0 #FFF,  0-2px 0 #FFF,
-              -2px 0 0 #FFF, 2px 0 0 #FFF;
+	  text-shadow:1px 1px 0 #FFF, -1px -1px 0 #FFF,
+              -1px 1px 0 #FFF, 1px -1px 0 #FFF,
+              0px 1px 0 #FFF,  0-1px 0 #FFF,
+              -1px 0 0 #FFF, 1px 0 0 #FFF;
 }
