@@ -516,7 +516,7 @@ function renderApplyBtn() {
     amber:'amber-classic', deepblue:'deep-blue', darkgreen:'dark-green',
     terracotta:'deep-maroon', olive:'burnt-orange', indigo:'midnight-blue',
     coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
-    ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim'sage-denim'
+    ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim'
   };
   var t = themes[selected];
   var slug = slugMap[t.id] || t.id;
@@ -540,7 +540,7 @@ if (applyBtn) {
       amber:'amber-classic', deepblue:'deep-blue', darkgreen:'dark-green',
       terracotta:'deep-maroon', olive:'burnt-orange', indigo:'midnight-blue',
       coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
-      ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim'sage-denim'
+      ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim'
     };
     var t = themes[selected];
     var slug = slugMap[t.id] || t.id;
