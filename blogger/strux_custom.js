@@ -19,3 +19,18 @@ var _timer = setInterval(function() {
         container.innerHTML = atob(creditData);
     }
 })();
+
+  (function() {
+    if (!localStorage.getItem('cookie_consent')) {
+      document.getElementById('cookie-popup').style.display = 'flex';
+    }
+  })();
+
+  function acceptCookies() {
+    localStorage.setItem('cookie_consent', '1');
+    const el = document.getElementById('cookie-popup');
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(12px)';
+    el.style.transition = 'opacity 0.25s, transform 0.25s';
+    setTimeout(() => el.style.display = 'none', 250);
+  }
