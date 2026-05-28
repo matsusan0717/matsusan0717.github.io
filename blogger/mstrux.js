@@ -1,16 +1,6 @@
-/* ==========================================
-   1. Footer Credit
-   ========================================== */
-(function() {
-    var creditData = 'ICAgIDxkaXYgc3R5bGU9J21heC13aWR0aDogdmFyKC0tbWF4LXdpZHRoKTsgbWFyZ2luOiAwIGF1dG87IHBhZGRpbmc6IDAgMS41cmVtOyB0ZXh0LWFsaWduOiByaWdodDsnPgogICAgICA8cCBpZD0nZGVzaWduZWQtYnknIHN0eWxlPSdmb250LXNpemU6IDExcHg7IGNvbG9yOiAjODg4Oyc+CiAgICAgICAgPGEgaHJlZj0naHR0cHM6Ly9tLXN0cnV4Lm1hdHN1c2FuanBuLmNvbS8nIHN0eWxlPSdjb2xvcjogaW5oZXJpdDsgdGV4dC1kZWNvcmF0aW9uOiBub25lOycgdGFyZ2V0PSdfYmxhbmsnPiZjb3B5OyBtYXRzdXNhbjwvYT4KICAgICAgPC9wPgogICAgPC9kaXY+';
-    var container = document.getElementById('footer-credit');
-    if (container) {
-        container.innerHTML = atob(creditData);
-    }
-})();
 
 /* ==========================================
-   2. Google Translate Integration
+   1. Google Translate Integration
    ========================================== */
 (function() {
   window.googleTranslateElementInit = function() {
@@ -65,7 +55,7 @@
 })();
 
 /* ==========================================
-   3. Bookmark System
+   2. Bookmark System
    ========================================== */
 (function() {
   var BM_KEY = 'mstrux-bookmarks';
@@ -193,7 +183,7 @@
 })();
 
 /* ==========================================
-   4. Custom Archive Select UI
+   3. Custom Archive Select UI
    ========================================== */
 (function() {
   function buildUI(sel) {
@@ -289,7 +279,7 @@
 })();
 
 /* ==========================================
-   5. Reading Time Counter
+   4. Reading Time Counter
    ========================================== */
 (function() {
   function insertReadingTime() {
@@ -322,7 +312,7 @@
 })();
 
 /* ==========================================
-   6. GAS Like Buttons
+   5. GAS Like Buttons
    ========================================== */
 var GAS_URL = "https://script.google.com/macros/s/AKfycbx_vl7skxZ-bwyi0hFmJvbwIg4UsLHkTXuzbxna9ypAToU9m9KRNgheJkwc0gyu2wcA/exec";
 function initLikeButtons() {
@@ -373,7 +363,7 @@ var observerLikes = new MutationObserver(function(mutations) {
 observerLikes.observe(document.body, { childList: true, subtree: true });
 
 /* ==========================================
-   7. Hashtag & Meta Text Normalizer
+   6. Hashtag & Meta Text Normalizer
    ========================================== */
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('#sidebar-hashtags .hashtag-pill, #toc-nav .toc-nav-item, .blossom-label a').forEach(element => {
@@ -405,21 +395,3 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-/* ==========================================
-   8. Cookie Consent Popup Event Listener
-   ========================================== */
-document.addEventListener('DOMContentLoaded', () => {
-  const cookieAcceptBtn = document.getElementById('cookie-accept-btn'); // HTML側のボタンに id="cookie-accept-btn" を付与してください
-  if (cookieAcceptBtn) {
-    cookieAcceptBtn.addEventListener('click', () => {
-      localStorage.setItem('cookie_consent', '1');
-      const el = document.getElementById('cookie-popup');
-      if (el) {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(12px)';
-        el.style.transition = 'opacity 0.25s, transform 0.25s';
-        setTimeout(() => el.style.display = 'none', 250);
-      }
-    });
-  }
-});
