@@ -604,7 +604,7 @@ function renderApplyBtn() {
     terracotta:'deep-maroon', olive:'burnt-orange', indigo:'midnight-blue',
     coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
     ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim',
-    navyslate:'navy-slate',rosewood:'rose-wood'
+    navyslate:'navy-slate',rosewood:'rose-wood',amethyst:'amethyst-garden'
   };
   var t = themes[selected];
   var slug = slugMap[t.id] || t.id;
@@ -629,7 +629,7 @@ if (applyBtn) {
       terracotta:'deep-maroon', olive:'burnt-orange', indigo:'midnight-blue',
       coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
       ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim',
-      navyslate:'navy-slate',rosewood:'rose-wood'
+      navyslate:'navy-slate',rosewood:'rose-wood',amethyst:'amethyst-garden'
     };
     var t = themes[selected];
     var slug = slugMap[t.id] || t.id;
@@ -688,7 +688,7 @@ if (copyBtn) {
     'coral-red': 'coral', 'peach': 'peach', 'salmon': 'salmon',
     'earth-khaki': 'earthkhaki', 'slate-ivory': 'ivory', 'spring': 'spring',
     'ash-rose': 'ashrose', 'sage-denim': 'denim','navy-slate':'navyslate',
-    'rose-wood':'rosewood'
+    'rose-wood':'rosewood','amethyst-garden':'amethyst'
   };
 
   var themeId = slugMap[slugFromURL];
