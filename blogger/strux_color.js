@@ -340,8 +340,8 @@ light: {
   }
 }
 {
-  id: "pastel-earth",
-  name: "Pastel Earth",
+  id: "pastel",
+  name: "Pastel",
   tag: "",
   swatches: ["#d2bd6a", "#c3a8a4", "#d7cba3"],
   light: {
