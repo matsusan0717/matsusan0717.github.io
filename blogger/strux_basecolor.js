@@ -339,46 +339,30 @@ var themes = [
       "--tab-border-color": "#1d3352"
     }
   },
-  {
-    id: "pastel",
-    name: "Pastel",
+{
+    id: "rosewood",
+    name: "Rose Wood",
     tag: "",
-    swatches: ["#d2bd6a", "#c3a8a4", "#d7cba3"],
+    swatches: ["#93633f", "#dfa89f", "#a3c5c6", "#aa3f4e", "#d99aad"],
     light: {
-      "--bg-color": "#f6f4ed",
-      "--text-main": "#3a3f47",
-      "--text-muted": "#77b6ba",
-      "--card-bg": "transparent",
-      "--border": "#d7cba3",
-      "--accent": "#d99aad",
-      "--accent-hover": "#c3a8a4",
-      "--base-navy": "#3a3f47",
-      "--sub-amber": "#d2bd6a",
-      "--bq-bg": "#ece9dc",
-      "--bq-border": "#77b6ba",
-      "--header-bg": "#3a3f47",
-      "--tab-text-active": "#d99aad",
-      "--tab-text-muted": "#c3a8a4",
-      "--tab-lamp-color": "#d2bd6a",
-      "--tab-border-color": "#d7cba3"
+      "--bg-color": "#fcf9f9", "--text-main": "#2b1c1e", "--text-muted": "#6e585a",
+      "--card-bg": "transparent", "--border": "#e6d3d5", "--accent": "#aa3f4e",
+      "--accent-hover": "#c45464", "--base-navy": "#93633f", "--sub-amber": "#d99aad",
+      "--bq-bg": "#f4eaec", "--bq-border": "#dfa89f",
+      "--header-bg": "#93633f",
+      "--tab-text-active": "#aa3f4e", "--tab-text-muted": "#dfa89f",
+      "--tab-lamp-color": "#aa3f4e", "--tab-border-color": "#e6d3d5",
     },
     dark: {
-      "--bg-color": "#1e2022",
-      "--text-main": "#f6f4ed",
-      "--text-muted": "#77b6ba",
-      "--card-bg": "transparent",
-      "--border": "#3a3f47",
-      "--accent": "#d2bd6a",
-      "--accent-hover": "#d99aad",
-      "--header-bg": "#1e2022",
-      "--bq-bg": "#292d33",
-      "--bq-border": "#77b6ba",
-      "--tab-text-active": "#f6f4ed",
-      "--tab-text-muted": "#c3a8a4",
-      "--tab-lamp-color": "#d2bd6a",
-      "--tab-border-color": "#3a3f47"
-    }
-  }
+      "--bg-color": "#1a1213", "--text-main": "#f5ecee", "--text-muted": "#ba9fa2",
+      "--card-bg": "transparent", "--border": "#4d2f33", "--accent": "#d99aad",
+      "--accent-hover": "#e3b1c0", "--base-navy": "#93633f", "--sub-amber": "#d99aad",
+      "--bq-bg": "#3d1c21", "--bq-border": "#aa3f4e",
+      "--header-bg": "#1a1213",
+      "--tab-text-active": "#f5ecee", "--tab-text-muted": "#735155",
+      "--tab-lamp-color": "#d99aad", "--tab-border-color": "#4d2f33",
+    },
+  },
 ];
 
 var selected = 0;
@@ -597,7 +581,7 @@ function renderApplyBtn() {
     terracotta:'deep-maroon', olive:'burnt-orange', indigo:'midnight-blue',
     coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
     ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim',
-    navyslate:'navy-slate',pastel:'pastel'
+    navyslate:'navy-slate',rosewood:'rose-wood'
   };
   var t = themes[selected];
   var slug = slugMap[t.id] || t.id;
@@ -622,7 +606,7 @@ if (applyBtn) {
       terracotta:'deep-maroon', olive:'burnt-orange', indigo:'midnight-blue',
       coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
       ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim',
-      navyslate:'navy-slate',pastel:'pastel'
+      navyslate:'navy-slate',rosewood:'rose-wood'
     };
     var t = themes[selected];
     var slug = slugMap[t.id] || t.id;
