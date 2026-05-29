@@ -367,7 +367,7 @@ var themes = [
     id: "amethyst",
     name: "Amethyst Garden",
     tag: "",
-    swatches: ["#b68882", "#e4e3d1", "#98ab52"],
+    swatches: ["#553c9a", "#e4e3d1", "#98ab52"],
     light: {
       "--bg-color": "#fafaf6", "--text-main": "#231c36", "--text-muted": "#5b5866",
       "--card-bg": "transparent", "--border": "#e2e1d5", "--accent": "#553c9a",
