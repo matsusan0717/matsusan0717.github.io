@@ -362,36 +362,3 @@ var observerLikes = new MutationObserver(function(mutations) {
 });
 observerLikes.observe(document.body, { childList: true, subtree: true });
 
-/* ==========================================
-   6. Hashtag & Meta Text Normalizer
-   ========================================== */
-window.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('#sidebar-hashtags .hashtag-pill, #toc-nav .toc-nav-item, .blossom-label a').forEach(element => {
-    const text = element.textContent;
-    if (text.includes('#')) {
-      element.textContent = text.replace(/#/g, '');
-    }
-  });
-  const tabWidget = document.getElementById('sidebar-tabs-widget');
-  if (tabWidget) {
-    const removeTabHashtags = () => {
-      tabWidget.querySelectorAll('.meta-item').forEach(element => {
-        element.childNodes.forEach(node => {
-          if (node.nodeType === Node.TEXT_NODE && node.textContent.includes('#')) {
-            node.textContent = node.textContent.replace(/#/g, '');
-          }
-        });
-      });
-    };
-    removeTabHashtags();
-
-    const observer = new MutationObserver(() => {
-      removeTabHashtags();
-    });
-    observer.observe(tabWidget, {
-      childList: true,
-      subtree: true
-    });
-  }
-});
-
