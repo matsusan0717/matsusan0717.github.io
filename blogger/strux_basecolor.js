@@ -390,7 +390,7 @@ var themes = [
   id: "warmpastel",
   name: "Warm Pastel",
   tag: "",
-  swatches: ["#cd8c42", "#92bea2", "#7ca4ac", "#d7a2a3", "#fed7e2"],
+  swatches: ["#cd8c42", "#92bea2", "#fed7e2"],
   light: {
     "--bg-color": "#faf6f0",
     "--text-main": "#2b231f",
