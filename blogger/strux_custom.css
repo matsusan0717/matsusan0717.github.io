@@ -3686,3 +3686,34 @@ a#color-preview-link:hover{
  {
     justify-content: flex-end;
 	}  
+@media (min-width: 1025px) {  
+.post-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem 1rem;
+   }
+.post-thumbnail-wrapper img{
+	  height:100% !important;
+	}
+}
+@media (max-width: 1024px) {
+    .post-grid {
+        grid-template-columns: repeat(2, 1fr);
+        display: grid;
+        gap: 1.2em;
+    }
+.post-thumbnail-wrapper img{
+	  height:100% !important;
+	}
+}
+@media (max-width: 600px) {    
+.post-grid {
+        grid-template-columns: 1fr !important;
+    }
+.post-thumbnail-wrapper img{
+	  height: 100% !important;
+	}
+}
+.tp-ref-card:hover .tp-ref-arrow {
+    color: var(--tab-text-muted) !important;
+}
