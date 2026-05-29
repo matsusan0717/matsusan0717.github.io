@@ -378,8 +378,7 @@ light: {
     "--tab-lamp-color": "#d2bd6a",
     "--tab-border-color": "#3a3f47"
   }
-}
-  
+}  
 ];
 
 var selected = 0;
