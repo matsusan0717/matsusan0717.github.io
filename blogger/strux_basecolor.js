@@ -343,7 +343,7 @@ var themes = [
     id: "rosewood",
     name: "Rose Wood",
     tag: "",
-    swatches: ["#93633f", "#dfa89f", "#a3c5c6", "#aa3f4e", "#d99aad"],
+    swatches: ["#93633f", "#dfa89f", "#a3c5c6"],
     light: {
       "--bg-color": "#fcf9f9", "--text-main": "#2b1c1e", "--text-muted": "#6e585a",
       "--card-bg": "transparent", "--border": "#e6d3d5", "--accent": "#aa3f4e",
