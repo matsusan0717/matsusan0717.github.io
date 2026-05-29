@@ -339,6 +339,46 @@ light: {
     "--tab-border-color": "#1d3352"
   }
 }
+{
+  id: "pastel-earth",
+  name: "Pastel Earth",
+  tag: "",
+  swatches: ["#d2bd6a", "#c3a8a4", "#d7cba3"],
+  light: {
+    "--bg-color": "#f6f4ed",
+    "--text-main": "#3a3f47",
+    "--text-muted": "#77b6ba",
+    "--card-bg": "transparent",
+    "--border": "#d7cba3",
+    "--accent": "#d99aad",
+    "--accent-hover": "#c3a8a4",
+    "--base-navy": "#3a3f47",
+    "--sub-amber": "#d2bd6a",
+    "--bq-bg": "#ece9dc",
+    "--bq-border": "#77b6ba",
+    "--header-bg": "#3a3f47",
+    "--tab-text-active": "#d99aad",
+    "--tab-text-muted": "#c3a8a4",
+    "--tab-lamp-color": "#d2bd6a",
+    "--tab-border-color": "#d7cba3"
+  },
+  dark: {
+    "--bg-color": "#1e2022",
+    "--text-main": "#f6f4ed",
+    "--text-muted": "#77b6ba",
+    "--card-bg": "transparent",
+    "--border": "#3a3f47",
+    "--accent": "#d2bd6a",
+    "--accent-hover": "#d99aad",
+    "--header-bg": "#1e2022",
+    "--bq-bg": "#292d33",
+    "--bq-border": "#77b6ba",
+    "--tab-text-active": "#f6f4ed",
+    "--tab-text-muted": "#c3a8a4",
+    "--tab-lamp-color": "#d2bd6a",
+    "--tab-border-color": "#3a3f47"
+  }
+}  
 ];
 
 var selected = 0;
@@ -557,7 +597,7 @@ function renderApplyBtn() {
     terracotta:'deep-maroon', olive:'burnt-orange', indigo:'midnight-blue',
     coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
     ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim',
-    navyslate:'navy-slate'
+    navyslate:'navy-slate',pastel:'pastel'
   };
   var t = themes[selected];
   var slug = slugMap[t.id] || t.id;
@@ -582,7 +622,7 @@ if (applyBtn) {
       terracotta:'deep-maroon', olive:'burnt-orange', indigo:'midnight-blue',
       coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
       ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim',
-      navyslate:'navy-slate'
+      navyslate:'navy-slate',pastel:'pastel'
     };
     var t = themes[selected];
     var slug = slugMap[t.id] || t.id;
@@ -640,7 +680,8 @@ if (copyBtn) {
     'deep-maroon': 'terracotta', 'burnt-orange': 'olive', 'midnight-blue': 'indigo',
     'coral-red': 'coral', 'peach': 'peach', 'salmon': 'salmon',
     'earth-khaki': 'earthkhaki', 'slate-ivory': 'ivory', 'spring': 'spring',
-    'ash-rose': 'ashrose', 'sage-denim': 'denim','navy-slate':'navyslate'
+    'ash-rose': 'ashrose', 'sage-denim': 'denim','navy-slate':'navyslate',
+    'pastel':'pastel'
   };
 
   var themeId = slugMap[slugFromURL];
