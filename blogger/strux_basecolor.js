@@ -645,7 +645,7 @@ function renderApplyBtn() {
     coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
     ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim',
     navyslate:'navy-slate',rosewood:'rose-wood',amethyst:'amethyst-garden',
-    warmpastel:'warm-pastel'
+    warmpastel:'warm-pastel',
   };
   var t = themes[selected];
   var slug = slugMap[t.id] || t.id;
@@ -671,7 +671,7 @@ if (applyBtn) {
       coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
       ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim',
       navyslate:'navy-slate',rosewood:'rose-wood',amethyst:'amethyst-garden',
-      warmpastel:'warm-pastel'
+      warmpastel:'warm-pastel',
     };
     var t = themes[selected];
     var slug = slugMap[t.id] || t.id;
