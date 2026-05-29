@@ -337,7 +337,7 @@ var themes = [
       "--tab-text-muted": "#5e6fae",
       "--tab-lamp-color": "#dfd9c4",
       "--tab-border-color": "#1d3352"
-    }
+    },
   },
 {
     id: "rosewood",
