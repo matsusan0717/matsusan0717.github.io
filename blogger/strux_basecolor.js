@@ -363,6 +363,29 @@ var themes = [
       "--tab-lamp-color": "#d99aad", "--tab-border-color": "#4d2f33",
     },
   },
+  {
+    id: "amethyst",
+    name: "Amethyst Garden",
+    tag: "",
+    swatches: ["#b68882", "#e4e3d1", "#98ab52", "#84c0d2", "#553c9a"],
+    light: {
+      "--bg-color": "#fafaf6", "--text-main": "#231c36", "--text-muted": "#5b5866",
+      "--card-bg": "transparent", "--border": "#e2e1d5", "--accent": "#553c9a",
+      "--accent-hover": "#6e54b6", "--base-navy": "#b68882", "--sub-amber": "#98ab52",
+      "--bq-bg": "#f4f3ea", "--bq-border": "#84c0d2",
+      "--header-bg": "#553c9a",
+      "--tab-text-active": "#553c9a", "--tab-text-muted": "#b68882",
+      "--tab-lamp-color": "#553c9a", "--tab-border-color": "#e2e1d5",
+    },
+    dark: {
+      "--bg-color": "#171324", "--text-main": "#f0edf7", "--text-muted": "#a39eb5",
+      "--card-bg": "transparent", "--border": "#382c59", "--accent": "#84c0d2",
+      "--accent-hover": "#a2d2e0", "--header-bg": "#171324",
+      "--bq-bg": "#271d42", "--bq-border": "#553c9a",
+      "--tab-text-active": "#f0edf7", "--tab-text-muted": "#645c7a",
+      "--tab-lamp-color": "#84c0d2", "--tab-border-color": "#382c59",
+    },
+  },
 ];
 
 var selected = 0;
@@ -581,7 +604,7 @@ function renderApplyBtn() {
     terracotta:'deep-maroon', olive:'burnt-orange', indigo:'midnight-blue',
     coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
     ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim',
-    navyslate:'navy-slate',rosewood:'rose-wood'
+    navyslate:'navy-slate',rosewood:'rose-wood',amethyst:'amethyst-garden'
   };
   var t = themes[selected];
   var slug = slugMap[t.id] || t.id;
@@ -606,7 +629,7 @@ if (applyBtn) {
       terracotta:'deep-maroon', olive:'burnt-orange', indigo:'midnight-blue',
       coral:'coral-red', peach:'peach', salmon:'salmon', earthkhaki:'earth-khaki',
       ivory:'slate-ivory', spring:'spring', ashrose:'ash-rose', denim:'sage-denim',
-      navyslate:'navy-slate',rosewood:'rose-wood'
+      navyslate:'navy-slate',rosewood:'rose-wood',amethyst:'amethyst-garden'
     };
     var t = themes[selected];
     var slug = slugMap[t.id] || t.id;
