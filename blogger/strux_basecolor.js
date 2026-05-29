@@ -401,7 +401,7 @@ var themes = [
     "--accent-hover": "#db9d54",
     "--base-navy": "#7ca4ac",
     "--sub-amber": "#92bea2",
-    "--bq-bg": #f5eae1",
+    "--bq-bg": "#f5eae1",
     "--bq-border": "#d7a2a3",
     "--header-bg": "#7ca4ac",
     "--tab-text-active": "#cd8c42",
