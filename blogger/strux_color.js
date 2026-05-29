@@ -337,7 +337,7 @@ var themes = [
       "--tab-text-muted": "#5e6fae",
       "--tab-lamp-color": "#dfd9c4",
       "--tab-border-color": "#1d3352"
-    }
+    },
   },
 {
     id: "rosewood",
@@ -362,6 +362,7 @@ var themes = [
       "--tab-text-active": "#f5ecee", "--tab-text-muted": "#735155",
       "--tab-lamp-color": "#d99aad", "--tab-border-color": "#4d2f33",
     },
+  },
 ];
 
 var selected = 0;
