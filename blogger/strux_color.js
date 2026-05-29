@@ -364,7 +364,7 @@ var themes = [
     },
   },
   {
-    id: "amethyst-garden",
+    id: "amethyst",
     name: "Amethyst Garden",
     tag: "",
     swatches: ["#553c9a", "#e4e3d1", "#98ab52"],
