@@ -3719,7 +3719,7 @@ a#color-preview-link:hover{
 }
 /* ===== 多言語化：言語別フォント ===== */
 :root {
-  --font-ja: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  --font-ja: "Inter", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
   --font-en: "Inter", "Poppins", system-ui, -apple-system, sans-serif;
   --font-zh: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-ko: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
