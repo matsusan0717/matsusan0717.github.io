@@ -433,24 +433,37 @@ window.STRUX_I18N = (function() {
 window.t = function(key) {
   return window.STRUX_I18N ? window.STRUX_I18N.t(key) : key;
 };
-// 翻訳ドロップダウンのクリックを処理
-document.querySelectorAll('#translate-dropdown a[data-lang]').forEach(function(link) {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    var lang = this.getAttribute('data-lang');
-    if (window.STRUX_I18N) {
-      window.STRUX_I18N.switch(lang);
-    }
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('translate-btn');
+  var dropdown = document.getElementById('translate-dropdown');
+  if (!btn || !dropdown) return;
+
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    dropdown.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', dropdown.classList.contains('is-open') ? 'true' : 'false');
   });
-});
 
-// 翻訳ボタンでドロップダウンを開閉
-document.getElementById('translate-btn').addEventListener('click', function(e) {
-  e.stopPropagation();
-  document.getElementById('translate-dropdown').classList.toggle('is-open');  // ← 'show' を 'is-open' に
-});
+  document.addEventListener('click', function() {
+    dropdown.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+  });
 
-// 外側クリックで閉じる
-document.addEventListener('click', function() {
-  document.getElementById('translate-dropdown').classList.remove('is-open');  // ← 同上
+  dropdown.addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
+
+  dropdown.querySelectorAll('a[data-lang]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var lang = this.getAttribute('data-lang');
+      dropdown.classList.remove('is-open');
+      if (window.STRUX_I18N && window.STRUX_I18N.switch) {
+        window.STRUX_I18N.switch(lang);
+      } else {
+        try { localStorage.setItem('strux-lang', lang); } catch(err) {}
+        location.reload();
+      }
+    });
+  });
 });
