@@ -3724,5 +3724,5 @@ a#color-preview-link:hover{
   transform: translateY(0);
 }
 .translate-btn {
-    color: white;
+    color: white !important;
 }
