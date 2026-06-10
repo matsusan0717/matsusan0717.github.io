@@ -1,6 +1,14 @@
 // strux_i18n.js
 window.STRUX_I18N = (function() {
-  const currentLang = document.documentElement.getAttribute('data-lang') || 'ja';
+  // localStorage に保存済み言語を優先、なければ data-lang 属性、なければ 'ja'
+  var savedLang;
+  try { savedLang = localStorage.getItem('strux-lang'); } catch(e) {}
+  const currentLang = savedLang
+    || document.documentElement.getAttribute('data-lang')
+    || 'ja';
+
+  // 起動時に html 要素へ反映
+  document.documentElement.setAttribute('data-lang', currentLang);
 
   const messages = {
     ja: {
@@ -249,7 +257,7 @@ window.STRUX_I18N = (function() {
       notFound: 'Aucun article trouvé.',
       home: 'ACCUEIL',
       report: 'Signaler',
-      previewNotice: 'Mode aperçu détecté. Saut de l’initialisation SPA.',
+      previewNotice: "Mode aperçu détecté. Saut de l'initialisation SPA.",
       commentsTitle: 'Commentaires',
       commentSubmit: 'Publier un commentaire',
       reply: 'Répondre',
@@ -376,28 +384,52 @@ window.STRUX_I18N = (function() {
   };
 
   const langAlias = {
-    ja: 'ja',
-    en: 'en',
-    'zh-CN': 'zh_CN',
-    'zh-TW': 'zh_TW',
-    ko: 'ko',
-    es: 'es',
-    fr: 'fr',
-    de: 'de',
-    pt: 'pt',
-    ar: 'ar'
+    ja: 'ja', en: 'en',
+    'zh-CN': 'zh_CN', 'zh-TW': 'zh_TW',
+    ko: 'ko', es: 'es', fr: 'fr',
+    de: 'de', pt: 'pt', ar: 'ar'
   };
 
-  const resolved = langAlias[currentLang] || 'ja';
+  var resolved = langAlias[currentLang] || 'ja';
 
   function t(key) {
     const dict = messages[resolved] || messages.ja;
     return dict[key] !== undefined ? dict[key] : (messages.ja[key] || key);
   }
 
+  // ★ switch(): 言語切替 + DOM 再適用（リロードなし）
+  function switchLang(lang) {
+    resolved = langAlias[lang] || 'ja';
+    try { localStorage.setItem('strux-lang', lang); } catch(e) {}
+    document.documentElement.setAttribute('data-lang', lang);
+
+    // data-i18n 属性を持つ要素を再適用
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var val = t(el.getAttribute('data-i18n'));
+      if (val) el.textContent = val;
+    });
+    // placeholder の更新
+    document.querySelectorAll('input[data-i18n="searchPlaceholder"]').forEach(function(el) {
+      el.setAttribute('placeholder', t('searchPlaceholder'));
+    });
+    // select default option
+    document.querySelectorAll('option[data-i18n="archiveSelectDefault"]').forEach(function(el) {
+      el.textContent = t('archiveSelectDefault');
+    });
+    // window.t も更新済みなので SPA が次に描画するコンテンツは新言語になる
+    // 既に描画済みの動的コンテンツ（記事カード等）はリロードが必要
+    location.reload();
+  }
+
   return {
     t: t,
+    switch: switchLang,
     lang: resolved,
     currentLang: currentLang
   };
 })();
+
+// グローバル window.t を定義（mstrux.js から呼べるように）
+window.t = function(key) {
+  return window.STRUX_I18N ? window.STRUX_I18N.t(key) : key;
+};
