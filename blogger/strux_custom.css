@@ -3717,35 +3717,4 @@ a#color-preview-link:hover{
 .tp-ref-card:hover .tp-ref-arrow {
     color: var(--tab-text-muted) !important;
 }
-/* ===== 多言語化：言語別フォント ===== */
-:root {
-  --font-ja: "Inter", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
-  --font-en: "Inter", "Poppins", system-ui, -apple-system, sans-serif;
-  --font-zh: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-ko: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
-}
 
-html[lang="ja"] body,
-html[data-lang="ja"] body {
-  font-family: var(--font-ja);
-}
-
-html[lang="en"] body,
-html[data-lang="en"] body {
-  font-family: var(--font-en);
-}
-
-html[lang="zh-CN"] body,
-html[data-lang="zh-CN"] body {
-  font-family: var(--font-zh);
-}
-
-html[lang="zh-TW"] body,
-html[data-lang="zh-TW"] body {
-  font-family: var(--font-zh);
-}
-
-html[lang="ko"] body,
-html[data-lang="ko"] body {
-  font-family: var(--font-ko);
-}
