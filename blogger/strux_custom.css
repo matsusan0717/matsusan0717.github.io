@@ -3717,4 +3717,9 @@ a#color-preview-link:hover{
 .tp-ref-card:hover .tp-ref-arrow {
     color: var(--tab-text-muted) !important;
 }
-
+.translate-btn.open .translate-dropdown {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
