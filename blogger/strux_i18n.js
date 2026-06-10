@@ -447,10 +447,10 @@ document.querySelectorAll('#translate-dropdown a[data-lang]').forEach(function(l
 // 翻訳ボタンでドロップダウンを開閉
 document.getElementById('translate-btn').addEventListener('click', function(e) {
   e.stopPropagation();
-  document.getElementById('translate-dropdown').classList.toggle('show');
+  document.getElementById('translate-dropdown').classList.toggle('is-open');  // ← 'show' を 'is-open' に
 });
 
 // 外側クリックで閉じる
 document.addEventListener('click', function() {
-  document.getElementById('translate-dropdown').classList.remove('show');
+  document.getElementById('translate-dropdown').classList.remove('is-open');  // ← 同上
 });
