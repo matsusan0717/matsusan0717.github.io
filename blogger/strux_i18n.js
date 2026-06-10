@@ -433,10 +433,12 @@ window.STRUX_I18N = (function() {
 window.t = function(key) {
   return window.STRUX_I18N ? window.STRUX_I18N.t(key) : key;
 };
-document.addEventListener('DOMContentLoaded', function() {
+var translateInit = function() {
   var btn = document.getElementById('translate-btn');
   var dropdown = document.getElementById('translate-dropdown');
   if (!btn || !dropdown) return;
+  if (btn.getAttribute('data-i18n-bound') === 'true') return;
+  btn.setAttribute('data-i18n-bound', 'true');
 
   btn.addEventListener('click', function(e) {
     e.stopPropagation();
@@ -466,4 +468,30 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-});
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    translateInit();
+    if (document.getElementById('translate-btn')) return;
+    window._i18nObserver = new MutationObserver(function(mutations) {
+      if (document.getElementById('translate-btn')) {
+        translateInit();
+      }
+    });
+    window._i18nObserver.observe(document.documentElement || document.body, {
+      childList: true,
+      subtree: true
+    });
+  });
+} else {
+  translateInit();
+  if (document.getElementById('translate-btn')) return;
+  window._i18nObserver = new MutationObserver(function() {
+    if (document.getElementById('translate-btn')) translateInit();
+  });
+  window._i18nObserver.observe(document.documentElement || document.body, {
+    childList: true,
+    subtree: true
+  });
+}
