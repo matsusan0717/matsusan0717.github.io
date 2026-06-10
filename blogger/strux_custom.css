@@ -3723,3 +3723,7 @@ a#color-preview-link:hover{
   visibility: visible;
   transform: translateY(0);
 }
+.translate-btn
+ {
+    color: white;
+}
