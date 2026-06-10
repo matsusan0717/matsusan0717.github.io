@@ -1,3 +1,58 @@
+/* ==========================================
+   1. Google Translate Integration
+   ========================================== */
+(function() {
+  window.googleTranslateElementInit = function() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'ja',
+      autoDisplay: false
+    }, 'google_translate_hidden');
+    hideBanner();
+  };
+
+  function hideBanner() {
+    var banner = document.querySelector('.goog-te-banner-frame');
+    if (banner) banner.style.display = 'none';
+    document.body.style.top = '0';
+    document.body.style.position = 'static';
+    var obs = new MutationObserver(function() {
+      var b = document.querySelector('.goog-te-banner-frame');
+      if (b) b.style.display = 'none';
+      document.body.style.top = '0';
+    });
+    obs.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
+  }
+
+  function translateTo(lang) {
+    var select = document.querySelector('.goog-te-combo');
+    if (select) {
+      select.value = lang;
+      select.dispatchEvent(new Event('change'));
+    } else {
+      setTimeout(function() { translateTo(lang); }, 300);
+    }
+  }
+
+  var btn = document.getElementById('translate-btn');
+  if (btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      btn.classList.toggle('open');
+    });
+    var links = btn.querySelectorAll('[data-lang]');
+    links.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        translateTo(this.getAttribute('data-lang'));
+        btn.classList.remove('open');
+      });
+    });
+  }
+  document.addEventListener('click', function() {
+    if (btn) btn.classList.remove('open');
+  });
+})();
+
 // strux_i18n.js
 window.STRUX_I18N = (function() {
   // localStorage に保存済み言語を優先、なければ data-lang 属性、なければ 'ja'
