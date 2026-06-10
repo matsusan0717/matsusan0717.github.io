@@ -433,3 +433,24 @@ window.STRUX_I18N = (function() {
 window.t = function(key) {
   return window.STRUX_I18N ? window.STRUX_I18N.t(key) : key;
 };
+// 翻訳ドロップダウンのクリックを処理
+document.querySelectorAll('#translate-dropdown a[data-lang]').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    var lang = this.getAttribute('data-lang');
+    if (window.STRUX_I18N) {
+      window.STRUX_I18N.switch(lang);
+    }
+  });
+});
+
+// 翻訳ボタンでドロップダウンを開閉
+document.getElementById('translate-btn').addEventListener('click', function(e) {
+  e.stopPropagation();
+  document.getElementById('translate-dropdown').classList.toggle('show');
+});
+
+// 外側クリックで閉じる
+document.addEventListener('click', function() {
+  document.getElementById('translate-dropdown').classList.remove('show');
+});
