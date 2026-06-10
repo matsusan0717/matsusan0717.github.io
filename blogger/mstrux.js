@@ -1,4 +1,3 @@
-
 /* ==========================================
    1. Google Translate Integration
    ========================================== */
@@ -34,24 +33,42 @@
     }
   }
 
-  var btn = document.getElementById('translate-btn');
-  if (btn) {
+  function init() {
+    var btn = document.getElementById('translate-btn');
+    // ★ ボタンの次の兄弟要素としてドロップダウンを取得
+    var dropdown = document.getElementById('translate-dropdown');
+    if (!btn || !dropdown) return;
+
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
-      btn.classList.toggle('open');
+      // ★ ドロップダウン要素に .open をトグルする
+      dropdown.classList.toggle('open');
     });
-    var links = btn.querySelectorAll('[data-lang]');
-    links.forEach(function(a) {
+
+    // ★ ドロップダウン内の [data-lang] リンクを参照先を修正
+    dropdown.querySelectorAll('[data-lang]').forEach(function(a) {
       a.addEventListener('click', function(e) {
         e.preventDefault();
         translateTo(this.getAttribute('data-lang'));
-        btn.classList.remove('open');
+        dropdown.classList.remove('open');
       });
     });
+
+    document.addEventListener('click', function() {
+      dropdown.classList.remove('open');
+    });
+
+    // ドロップダウン内クリックで閉じないよう伝播を止める
+    dropdown.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
   }
-  document.addEventListener('click', function() {
-    if (btn) btn.classList.remove('open');
-  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
 
 /* ==========================================
