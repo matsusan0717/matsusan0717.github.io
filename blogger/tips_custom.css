@@ -3650,6 +3650,7 @@ a:hover {
 } */
 
 blockquote{
+	margin: 2rem 0;
     position:relative;
     border-top:1px solid var(--base-navy);
     border-bottom:1px solid var(--base-navy);
