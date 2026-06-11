@@ -2124,7 +2124,7 @@ div.hashtag-see-more:hover{
   }  
 .blogger-box-alert::after
  {
-    left: 75px !important;
+    left: 60px !important;
 }
 .recent-post-link:hover .recent-post-thumb {
   transform: scale(1.1);
