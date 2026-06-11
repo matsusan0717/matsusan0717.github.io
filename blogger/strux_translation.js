@@ -35,13 +35,13 @@
     btn.classList.toggle('has-bookmarks', list.length > 0);
 
     if (list.length === 0) {
-      body.innerHTML = '<div class="bookmark-panel-empty">No bookmarks</div>';
+      body.innerHTML = '<div class="bookmark-panel-empty">ブックマークはありません</div>';
     } else {
       var html = '<ul class="bookmark-panel-list">';
       list.forEach(function(b) {
         html += '<li class="bookmark-panel-item">'
           + '<a href="' + b.url + '">' + (b.title || b.url) + '</a>'
-          + '<button class="bookmark-panel-remove" data-url="' + b.url + '" aria-label="Remove">'
+          + '<button class="bookmark-panel-remove" data-url="' + b.url + '" aria-label="削除">'
           + '<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
           + '</button></li>';
       });
@@ -65,7 +65,7 @@
     var bmed = isBookmarked(url);
     metaBtn.classList.toggle('bookmarked', bmed);
     var label = metaBtn.querySelector('.bm-label');
-    if (label) label.textContent = bmed ? 'Saved' : 'Read later';
+    if (label) label.textContent = bmed ? '保存済み' : 'あとで読む';
   }
 
   function init() {
@@ -239,7 +239,7 @@
     var minutes = Math.ceil(length / wpm);
     var message = document.createElement('p');
     message.style.cssText = 'font-size:80%;color:#999;text-align:right;display:flex;align-items:center;justify-content:space-between;';
-    message.innerHTML = '<span style="display:inline-block;border:1px solid #999;color:#999;font-size:90%;padding:1px 5px;border-radius:3px;line-height:1.4;">PR</span><span><i class="fa-solid fa-hourglass-half"></i> ' + minutes + ' min read.'</span>';
+    message.innerHTML = '<span style="display:inline-block;border:1px solid #999;color:#999;font-size:90%;padding:1px 5px;border-radius:3px;line-height:1.4;">PR</span><span><i class="fa-solid fa-hourglass-half"></i> この記事は約' + minutes + '分で読めます。</span>';
     $content.insertBefore(message, $content.firstChild);
   }
   var observer = new MutationObserver(function(mutations, obs) {
@@ -284,7 +284,7 @@ function initLikeButtons() {
         method: "POST",
         body: new URLSearchParams({ titleURL: url })
       })
-      .then(res => res.ok ? res.text() : Promise.reject("Failed to send"))
+      .then(res => res.ok ? res.text() : Promise.reject("送信失敗"))
       .then(() => {
         var currentCount = parseInt(countSpan.getAttribute('data-count') || 0);
         var newCount = currentCount + 1;
@@ -296,7 +296,7 @@ function initLikeButtons() {
         btn.disabled = true;
         setTimeout(() => btn.classList.remove("animate"), 600);
       })
-      .catch(err => { console.log(err); alert("Failed to send"); });
+      .catch(err => { console.log(err); alert("送信失敗"); });
     });
   });
 }
