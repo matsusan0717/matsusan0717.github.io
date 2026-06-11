@@ -2583,7 +2583,7 @@ pre[class*="language-"] {
 body {
    margin: 0;
    padding: 0;
-   font-family: 'Noto Sans','Inter', system-ui, -apple-system, sans-serif;
+   font-family: 'Noto Sans JP','Inter', system-ui, -apple-system, sans-serif;
    background-color: var(--bg-color);
    color: var(--text-main);
    line-height: 1.6
