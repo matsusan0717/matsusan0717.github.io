@@ -12,6 +12,7 @@ body {
    color: var(--text-main);
    line-height: 1.6
 }
+.post-body{font-family: 'Noto Sans JP','Inter', system-ui, -apple-system, sans-serif;}
 .site-header {
    position: sticky;
    top: 0;
