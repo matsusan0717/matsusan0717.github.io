@@ -2135,32 +2135,13 @@ div.hashtag-see-more:hover{
 .recent-post-thumb {
   transition: transform 0.3s ease;
 }
-      @-moz-document url-prefix() {
-      .eva-header-wrapper,
-      .eva-main,
-      #eva_poster_box,
-      #eva_poster_title_area,
-      #eva_poster_main_title,
-      #eva_poster_sub_title,
-      .profile-card,
-      #matsu-profile-container {
-      background-attachment: scroll !important;
-      isolation: isolate;
-      }
-      .eva-header-wrapper::before,
-      .eva-header-wrapper::after,
-      .eva-main::before,
-      .eva-main::after,
-      #eva_poster_box::before,
-      #eva_poster_box::after,
-      #eva_poster_title_area::before,
-      #eva_poster_title_area::after,
-      #eva_poster_main_title::before,
-      #eva_poster_main_title::after {
-      background-attachment: scroll !important;
-      position: absolute !important;
-      }
-	  }
+@-moz-document url-prefix() {
+  #eva_poster_box {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+}
       .recent-post-link:hover .recent-post-thumb {
       transform: scale(1.1);
       }
