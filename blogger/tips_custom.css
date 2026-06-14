@@ -2137,9 +2137,9 @@ div.hashtag-see-more:hover{
 }
 @-moz-document url-prefix() {
   #eva_poster_box {
-    animation: none;
-    transform: none;
-    will-change: auto;
+    animation: none !important;
+    transform: none  !important;
+    will-change: auto  !important;
   }
 }
       .recent-post-link:hover .recent-post-thumb {
