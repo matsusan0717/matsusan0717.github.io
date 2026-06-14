@@ -2135,13 +2135,6 @@ div.hashtag-see-more:hover{
 .recent-post-thumb {
   transition: transform 0.3s ease;
 }
-@-moz-document url-prefix() {
-  #eva_poster_box {
-    animation: none !important;
-    transform: none  !important;
-    will-change: auto  !important;
-  }
-}
       .recent-post-link:hover .recent-post-thumb {
       transform: scale(1.1);
       }
@@ -5192,4 +5185,11 @@ iframe.blogger-iframe-colorize {
 #slider-container .details .title-2 {
    text-shadow:1px 1px 0px var(--accent-hover);
    font-weight:bold;
+}
+@-moz-document url-prefix() {
+  #eva_poster_box {
+    animation: none !important;
+    transform: none  !important;
+    will-change: auto  !important;
+  }
 }
