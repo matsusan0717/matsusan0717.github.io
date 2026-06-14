@@ -2160,7 +2160,7 @@ div.hashtag-see-more:hover{
       background-attachment: scroll !important;
       position: absolute !important;
       }
-      }
+}
       .recent-post-link:hover .recent-post-thumb {
       transform: scale(1.1);
       }
