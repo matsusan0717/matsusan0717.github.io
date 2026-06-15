@@ -5193,3 +5193,11 @@ iframe.blogger-iframe-colorize {
     will-change: auto  !important;
   }
 }
+@media (max-width: 600px) {
+    #view-root pre, .post-full pre, .post-body pre {
+        max-width: calc(100vw - 2.8rem) !important;
+    }
+	.layout-container {
+    padding: 0 0.5rem;
+	}
+}
