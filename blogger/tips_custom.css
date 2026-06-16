@@ -706,10 +706,6 @@ code:not([class*="language-"]) {
         display: none;
     	}
 	}  
-.bm-label  {
-    top: -2px;
-    position: relative;
-  }
 .archive-select {
   display: none; 
 	}
