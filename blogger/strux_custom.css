@@ -3033,7 +3033,7 @@ code:not([class*=&quot;language-&quot;]) {
     	}
 	}  
 .bm-label  {
-    top: -2px;
+    top: 0px;
     position: relative;
   }
 .archive-select {
