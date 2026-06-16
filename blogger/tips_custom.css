@@ -5197,3 +5197,7 @@ iframe.blogger-iframe-colorize {
     padding: 0 0.5rem;
 	}
 }
+.bm-label{
+	top: -1px;
+    position: relative;	
+}
