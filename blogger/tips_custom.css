@@ -5191,7 +5191,7 @@ iframe.blogger-iframe-colorize {
 }
 @media (max-width: 600px) {
     #view-root pre, .post-full pre, .post-body pre {
-        max-width: calc(100vw - 2.8rem) !important;
+        max-width: calc(100vw - 1.8rem) !important;
     }
 	.layout-container {
     padding: 0 0.5rem;
