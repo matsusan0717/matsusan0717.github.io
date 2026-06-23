@@ -2211,7 +2211,7 @@ html[data-theme="dark"] {
 .mega-item-title {
    font-size: 0.8rem;
    font-weight: 700;
-   line-height: 1.6rem;
+   line-height: 1.2rem;
    color: #fff;
    display: -webkit-box;
    -webkit-line-clamp: 2;
