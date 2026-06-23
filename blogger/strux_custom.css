@@ -3726,3 +3726,6 @@ a#color-preview-link:hover{
 .translate-btn {
     color: white !important;
 }
+.mega-item-title{
+	line-height:1.6rem;
+}
