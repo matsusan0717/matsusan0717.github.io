@@ -4263,61 +4263,6 @@ iframe.blogger-iframe-colorize {
       font-size: 9px
    }
 }
-.pagination {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   gap: 8px;
-   margin-top: 4rem;
-   flex-wrap: wrap;
-   padding-bottom: 2rem
-}
-.pagination a, .pagination span {
-   display: inline-flex;
-   align-items: center;
-   justify-content: center;
-   min-width: 40px;
-   height: 40px;
-   padding: 0 8px;
-   border: 1px solid var(--border);
-   border-radius: var(--radius);
-   text-decoration: none;
-   color: var(--text-main);
-   font-weight: 600;
-   font-size: 0.9rem;
-   transition: all 0.2s;
-   background: var(--card-bg)
-}
-.pagination a:hover {
-   border-color: var(--header-bg);
-   color: var(--header-bg);
-}
-.pagination .current {
-   background: var(--header-bg);
-   color: white;
-   border-color: var(--header-bg);
-   pointer-events: none
-}
-.pagination .disabled {
-   opacity: 0.3;
-   cursor: not-allowed;
-   pointer-events: none
-}
-.pagination .dots {
-   border: none;
-   background: transparent;
-   cursor: default
-}
-@media (max-width:600px) {
-   .pagination {
-      gap: 6px
-   }
-   .pagination a, .pagination span {
-      min-width: 36px;
-      height: 36px;
-      font-size: 0.8rem
-   }
-}
 #hidden-label-widget {
    position: absolute;
    top: -9999px;
