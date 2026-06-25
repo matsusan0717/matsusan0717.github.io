@@ -5146,3 +5146,109 @@ iframe.blogger-iframe-colorize {
 	bottom: 0px;
     position: relative;	
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  padding-bottom: 2rem;
+}
+
+.pagination ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 8px;
+  border-radius: 50px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  list-style: none;
+  margin: 0;
+}
+
+.pagination ul li {
+  color: var(--header-bg);
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease, color 0.2s ease;
+  border-radius: 50%;
+}
+
+.pagination ul li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  line-height: 45px;
+  border-radius: inherit;
+}
+
+.pagination ul li.numb {
+  width: 45px;
+  margin: 0 2px;
+}
+
+.pagination ul li.numb.first {
+  margin-left: -4px;
+}
+
+.pagination ul li.numb.last {
+  margin-right: -4px;
+}
+
+.pagination ul li.dots {
+  min-width: 32px;
+  border-radius: 0;
+  cursor: default;
+  font-size: 1.1rem;
+}
+
+.pagination ul li.btn {
+  padding: 0 20px;
+  border-radius: 50px;
+  min-width: unset;
+}
+
+.pagination ul li.active,
+.pagination ul li.numb:not(.active):hover,
+.pagination ul li.btn:not(.disabled):hover {
+  color: #fff;
+  background: var(--header-bg);
+}
+
+.pagination ul li.active a {
+  color: #fff;
+}
+
+.pagination ul li.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .pagination ul {
+    padding: 6px;
+    border-radius: 40px;
+  }
+  .pagination ul li {
+    height: 38px;
+    line-height: 38px;
+    font-size: 0.85rem;
+  }
+  .pagination ul li.numb {
+    width: 38px;
+  }
+  .pagination ul li a {
+    line-height: 38px;
+  }
+  .pagination ul li.btn {
+    padding: 0 14px;
+  }
+}
