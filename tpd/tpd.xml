@@ -117,7 +117,7 @@
 <!-- Microsoft -->     
 <meta content='873DAE4035CE1FF9DBE82C2CA9B49E07' name='msvalidate.01'/>   
     
- <!-- CSS -->   
+<!-- CSS -->   
 <link href='https://matsusan0717.github.io/tpd/tpd.css' rel='stylesheet' type='text/css'/>    
   
 <!-- Template Style CSS -->
@@ -783,17 +783,27 @@ var monthFormat = ["January", "February", "March", "April", "May", "June", "July
 //]]>
 </script>
     
-<script>
-        document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
-            var url = window.location.href;
-            if (url === &quot;https://www.performancedoll.com/&quot; || url === &quot;https://www.performancedoll.com/?m=1&quot;) {
-                var elements = document.querySelectorAll(&#39;.widget.Blog&#39;);
-                elements.forEach(function(element) {
-                    element.remove(); // ここで要素を完全に削除
-                });
-            }
-        });
-</script>    
+    <script>
+      //<![CDATA[ 
+  if (navigator.userAgent.match(/Mobile|Android|iPhone|iPad/i)) {
+    if (!location.search.includes("m=1")) {
+     location.replace(location.href + (location.search ? "&" : "?") + "m=1");
+    }
+  }
+ //]]>
+    </script>        
+
+    <script>
+      //<![CDATA[   
+ (function() {
+     var uri = window.location.toString();
+     if (uri.indexOf("?m=1") > 0 || uri.indexOf("&m=1") > 0) {
+         var clean_uri = uri.replace(/[?&]m=1/g, "");
+         window.history.replaceState({}, document.title, clean_uri);
+     }
+ })();
+ //]]> 
+    </script>  
 
 <b:defaultmarkups>
   <b:defaultmarkup type='Common'>
@@ -1826,7 +1836,13 @@ var monthFormat = ["January", "February", "March", "April", "May", "June", "July
       </div>
    </div>
 </div>  
-<a class="btn_09" href="https://www.performancedoll.com/search?max-results=12#Page-1" style="margin: 1em auto;">投稿一覧</a>]]></b:widget-setting>
+<a class="btn_09" href="https://www.performancedoll.com/search?max-results=12#Page-1" style="margin: 1em auto;">投稿一覧</a>
+
+<style>
+#blog-pager{
+display:none;
+}
+</style>]]></b:widget-setting>
   </b:widget-settings>
   <b:includable id='main'>
 <!-- only display title if it's non-empty -->
@@ -2311,6 +2327,15 @@ var monthFormat = ["January", "February", "March", "April", "May", "June", "July
               
 <!-- 関連記事 -->              
 <b:if cond='data:blog.pageType == &quot;item&quot;'>
+  
+  <script async='async' crossorigin='anonymous' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8301948456376927'/>
+<!-- ディスプレイ広告 -->
+<ins class='adsbygoogle' data-ad-client='ca-pub-8301948456376927' data-ad-format='auto' data-ad-slot='7646419366' data-full-width-responsive='true' style='display:block'/>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  
+  
   <div id='related-posts'/>
   <script type='text/javascript'>
     const rp_current = &quot;<data:post.url/>&quot;;
@@ -2478,7 +2503,7 @@ var monthFormat = ["January", "February", "March", "April", "May", "June", "July
               </div>
             </b:includable>
             <b:includable id='postFooter' var='post'>              
-              <nav id='breadcrumb'><a expr:href='data:blog.homepageUrl'><data:messages.home/></a><b:if cond='data:post.labels'><em class='delimiter'/><a class='b-label' expr:href='data:post.labels.last.url'><data:post.labels.last.name/></a></b:if><em class='delimiter'/><span class='current'><data:post.title/></span></nav>
+              <nav id='breadcrumb'><a expr:href='data:blog.homepageUrl'><data:messages.home/></a><b:if cond='data:post.labels'><em class='delimiter'/><a class='b-label' expr:href='data:post.labels.last.url params {max-results: &quot;12&quot;}'><data:post.labels.last.name/></a></b:if><em class='delimiter'/><span class='current'><data:post.title/></span></nav>
               
 <div class='label-info'>
   <b:loop values='data:post.labels where(l =&gt; l.name not contains &quot;#&quot;)' var='label'>
@@ -2959,6 +2984,31 @@ const clipboard=new ClipboardJS(".copy_btn");window.addEventListener('DOMContent
 <!-- Sidebar Wrapper -->
       <div id='sidebar-wrapper'>
         <b:section class='sidebar common-widget' id='sidebar-right' name='Sidebar Right' showaddelement='yes'>
+          <b:widget id='HTML23' locked='false' title='ADVERTISEMENT' type='HTML' visible='true'>
+            <b:widget-settings>
+              <b:widget-setting name='content'><![CDATA[<script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8301948456376927" crossorigin="anonymous"></script>
+<!-- ディスプレイ広告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8301948456376927"
+     data-ad-slot="7646419366"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>]]></b:widget-setting>
+            </b:widget-settings>
+            <b:includable id='main'>
+      <b:if cond='data:widget.sectionId == &quot;instagram&quot;'>
+        <div class='widget-content' expr:data-token='data:content'/>
+        <b:else/>
+        <b:include name='widget-title'/>
+        <div class='widget-content'>
+          <data:content/>
+        </div>
+      </b:if>
+    </b:includable>
+          </b:widget>
           <b:widget id='HTML3' locked='false' title='東京パフォーマンスドール' type='HTML' visible='true'>
             <b:widget-settings>
               <b:widget-setting name='content'><![CDATA[<div class="separator" style="clear: both; text-align: center;"><a href="https://performancedoll.com/" style="margin-left: 1em; margin-right: 1em;"><img alt="東京パフォーマンスドール" border="0" data-original-height="308" data-original-width="600" height="auto" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwuEZJhPyV7ZK4Hh2RetFuHmHkU2DQ-h9-UgDvGP8rUa-mKvgXBQNGPEzt5C6Tex5WaM8ArJFykzROZqsx5S5QXFGnahH0T_3pKLTZC6Nr2e44DXbRtmuaBMeyT1e_r8R2EJzEBR8f4p6oUF6lp0OLJK02eRQBHwqlzSkwbggeg6C8Kp1kOq-N9SJ2Mmb_/w400-h205-rw/ESDB3277.jpg" title="https://www.performancedoll.com" width="400" /></a></div>
@@ -3175,16 +3225,16 @@ const clipboard=new ClipboardJS(".copy_btn");window.addEventListener('DOMContent
           <b:widget id='HTML21' locked='false' title='' type='HTML' visible='true'>
             <b:widget-settings>
               <b:widget-setting name='content'><![CDATA[<div class="tpd">
-<div data-date="2022-02-14"><iframe src="https://ototoy.jp/embed/player/album/1143642" height="410" width="340" title="sino R fine / Crazy for you on OTOTOY Music Store" loading="lazy"></iframe></div>
-<div data-date="2022-03-08"><iframe src="https://ototoy.jp/embed/player/album/910855" height="410" width="340" title="TPD COLLECTION on OTOTOY Music Store" loading="lazy"></iframe></div>
-<div data-date="2022-06-23"><iframe src="https://ototoy.jp/embed/player/album/904404" height="410" width="340" title="東京パフォーマンスドール  (1990～1994) / MAKE IT TRUE 〜Cha-DANCE Party Vol.6 on OTOTOY Music Store" loading="lazy"></iframe></div>
-<div data-date="2022-06-01"><iframe src="https://ototoy.jp/embed/player/album/883186" height="410" width="340" title="穴井夕子 / HEAVEN² on OTOTOY Music Store" loading="lazy"></iframe></div>
-<div data-date="2022-06-01"><iframe src="https://ototoy.jp/embed/player/album/889712" height="410" width="340" title="穴井 夕子 / Hallelujah! on OTOTOY Music Store" loading="lazy"></iframe></div>
-<div data-date="2022-06-01"><iframe src="https://ototoy.jp/embed/player/album/1856114" height="410" width="340" title="大阪パフォーマンスドール / 泣きたいッ on OTOTOY Music Store" loading="lazy"></iframe></div>
-<div data-date="2022-06-06"><iframe src="https://ototoy.jp/embed/player/album/886533" height="410" width="340" title="川村 知砂 / DANCE FOR YOUR FUTURE on OTOTOY Music Store" loading="lazy"></iframe></div>
-<div data-date="2022-06-21"><iframe src="https://ototoy.jp/embed/player/album/879662" height="600" width="400" title="東京パフォーマンスドール  (1990～1994) / 放課後はいつもパーティー (グリコプリッツの歌) on OTOTOY Music Store" loading="lazy"></iframe></div>
+<div data-date="2022-02-14"><iframe data-src="https://ototoy.jp/embed/player/album/1143642" src="" height="410" width="100%" title="sino R fine / Crazy for you on OTOTOY Music Store" loading="lazy"></iframe></div>
+<div data-date="2022-03-08"><iframe data-src="https://ototoy.jp/embed/player/album/910855" src="" height="410" width="100%" title="TPD COLLECTION on OTOTOY Music Store" loading="lazy"></iframe></div>
+<div data-date="2022-06-23"><iframe data-src="https://ototoy.jp/embed/player/album/904404" src="" height="410" width="100%" title="東京パフォーマンスドール  (1990～1994) / MAKE IT TRUE 〜Cha-DANCE Party Vol.6 on OTOTOY Music Store" loading="lazy"></iframe></div>
+<div data-date="2022-06-01"><iframe data-src="https://ototoy.jp/embed/player/album/883186" src="" height="410" width="100%" title="穴井夕子 / HEAVEN² on OTOTOY Music Store" loading="lazy"></iframe></div>
+<div data-date="2022-06-01"><iframe data-src="https://ototoy.jp/embed/player/album/889712" src="" height="410" width="100%" title="穴井 夕子 / Hallelujah! on OTOTOY Music Store" loading="lazy"></iframe></div>
+<div data-date="2022-06-01"><iframe data-src="https://ototoy.jp/embed/player/album/1856114" src="" height="410" width="100%" title="大阪パフォーマンスドール / 泣きたいッ on OTOTOY Music Store" loading="lazy"></iframe></div>
+<div data-date="2022-06-06"><iframe data-src="https://ototoy.jp/embed/player/album/886533" src="" height="410" width="100%" title="川村 知砂 / DANCE FOR YOUR FUTURE on OTOTOY Music Store" loading="lazy"></iframe></div>
+<div data-date="2022-06-21"><iframe data-src="https://ototoy.jp/embed/player/album/879662" src="" height="410" width="100%" title="東京パフォーマンスドール  (1990～1994) / 放課後はいつもパーティー (グリコプリッツの歌) on OTOTOY Music Store" loading="lazy"></iframe></div>
+<div data-date="2022-07-01"><iframe data-src="https://ototoy.jp/embed/player/album/886258" src="" height="410" width="100%" title="東京パフォーマンスドール  (1990～1994) / WAKE ME UP !! on OTOTOY Music Store" loading="lazy"></iframe></div>
 </div>
-
 
 
 <script>
@@ -3209,16 +3259,37 @@ const clipboard=new ClipboardJS(".copy_btn");window.addEventListener('DOMContent
   // 対象divすべて一旦非表示
   targetDivs.forEach(div => div.style.display = 'none');
 
+  // 選ばれた要素のiframeを表示する共通関数
+  const displayElement = (targetItem) => {
+    if (!targetItem) return;
+    
+    // 非表示を解除
+    targetItem.div.style.display = '';
+    
+    // 内部のiframeを探し、data-srcの値をsrcにコピーして読み込ませる
+    const iframe = targetItem.div.querySelector('iframe');
+    if (iframe) {
+      const dataSrc = iframe.getAttribute('data-src');
+      if (dataSrc) {
+        iframe.setAttribute('src', dataSrc);
+      }
+    }
+  };
+
   if (sameDayDivs.length > 0) {
     // 同日の中からランダムに1つ表示
     const randomIndex = Math.floor(Math.random() * sameDayDivs.length);
-    sameDayDivs[randomIndex].div.style.display = '';
+    displayElement(sameDayDivs[randomIndex]);
   } else {
     // 今日より前の中から最も近い1つだけ表示
     const pastDivs = datedDivs.filter(item => item.mmdd < todayMMDD);
     if (pastDivs.length > 0) {
-      const closest = pastDivs.reduce((a, b) => a.mmdd > b.mmdd ? a : b);
-      closest.div.style.display = '';
+      const closest = pastDivs.reduce((a, b) => a.mmdd >= b.mmdd ? a : b);
+      displayElement(closest);
+    } else {
+      // 今日より前の日付がない場合は、全データの中から最も末尾（未来）に近いものを表示
+      const closest = datedDivs.reduce((a, b) => a.mmdd > b.mmdd ? a : b);
+      displayElement(closest);
     }
   }
 </script>]]></b:widget-setting>
@@ -4243,7 +4314,7 @@ const clipboard=new ClipboardJS(".copy_btn");window.addEventListener('DOMContent
       </b:if>
     </b:includable>
           </b:widget>
-          <b:widget id='HTML9' locked='false' title='CONTENTS' type='HTML' visible='true'>
+          <b:widget id='HTML9' locked='false' title='ADVERTISEMENT' type='HTML' visible='true'>
             <b:widget-settings>
               <b:widget-setting name='content'><![CDATA[<script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8301948456376927" crossorigin="anonymous" ></script>
 <!-- サイドバー -->
