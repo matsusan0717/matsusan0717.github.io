@@ -1421,7 +1421,7 @@ div#slide-sidebar-content .download a[style] {
             height: 48px;
         }
     }
-    body.is-homepage #sidebar-random-posts-widget, body.is-homepage .sidebar-widget:has(#lp-v-final) {
+    body.is-homepage #sidebar-random-posts-widget, body.is-homepage .sidebar-widget:has(#lp-v-final), body.is-homepage .fm {
         display: none !important;
     }
     body:not(.is-homepage) #tpd-random-wrapper {
