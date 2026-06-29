@@ -3729,3 +3729,44 @@ a#color-preview-link:hover{
 .mega-item-title{
 	line-height:1.4rem;
 }
+@media screen and (max-width: 1440px) {
+	#lang-switch{
+	right: 110px !important;
+	}
+}
+@media screen and (max-width: 900px) {
+	.site-title {
+    left: -150px;
+    position: relative;
+	}
+    .theme-toggle {
+        right: 120px;
+        position: relative;
+    }
+	.bookmark-list-btn {
+    left: 55px;
+	}
+    #lang-switch {
+	right:10px !important;
+	}
+}
+@media screen and (max-width: 600px) {
+	#lang-switch{
+		top: 70px !important;
+		}
+.site-title {
+    left: -30px;
+    position: relative;
+	}
+.blsm-feat{
+	margin-top: 60px;
+	}
+    .bookmark-list-btn
+ {
+        left: 50px;
+    }
+    .theme-toggle {
+        right: 0px;
+        position: relative;
+    }
+}
