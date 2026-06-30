@@ -3729,7 +3729,7 @@ a#color-preview-link:hover{
 .mega-item-title{
 	line-height:1.4rem;
 }
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1240px) {
 	#lang-switch{
 	right: 110px !important;
 	}
