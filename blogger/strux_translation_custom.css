@@ -3752,7 +3752,7 @@ a#color-preview-link:hover{
 }
 @media screen and (max-width: 600px) {
 	#lang-switch{
-		top: 70px !important;
+		display:none;
 		}
 .site-title {
     left: -30px;
