@@ -1334,9 +1334,7 @@ div#slide-sidebar-content .download a[style] {
         line-height: 1.6;
     }
     .talk-box.left .bubble::before {
-        content: "
-        "
-        ;
+        content: "" ;
         position: absolute;
         left: -8px;
         top: 20px;
@@ -1347,9 +1345,7 @@ div#slide-sidebar-content .download a[style] {
         border-right: 8px solid #ebebeb;
     }
     .talk-box.right .bubble::before {
-        content: "
-        "
-        ;
+        content: "";
         position: absolute;
         right: -8px;
         top: 20px;
