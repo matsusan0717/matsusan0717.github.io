@@ -5253,3 +5253,10 @@ iframe.blogger-iframe-colorize {
 .bcg img {
 	border-radius: 0;
 }
+code:not(pre code) {
+  background-color: #f0f0f0;
+  border-radius: 3px;
+  border: 1px solid rgb(204, 204, 204);
+  padding: 2px 4px;
+  vertical-align: 1px;
+}
