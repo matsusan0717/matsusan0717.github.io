@@ -5260,3 +5260,97 @@ code:not(pre code) {
   padding: 2px 4px;
   vertical-align: 1px;
 }
+#tg-latest-widget {
+  --tg-bg: var(--card-bg, #ffffff);
+  --tg-border: var(--border-color, #e1e8ed);
+  --tg-text: var(--text-color, #14171a);
+  --tg-secondary: var(--text-secondary, #657786);
+  --tg-accent: var(--accent-hover, #1e3a5f);
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 300px;
+  font-family: inherit;
+}
+
+#tg-latest-widget * {
+  box-sizing: border-box;
+}
+
+.tg-card {
+  display: flex;
+  gap: 10px;
+  background: var(--tg-bg);
+  border: 1px solid var(--tg-border);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.tg-avatar {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px !important;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--tg-border);
+}
+
+.tg-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.tg-header {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.tg-name {
+  font-weight: 700;
+  color: var(--tg-text);
+}
+
+.tg-dot {
+  color: var(--tg-secondary);
+}
+
+.tg-date {
+  color: var(--tg-secondary);
+}
+
+.tg-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--tg-text);
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.tg-text a {
+  color: var(--tg-accent);
+  text-decoration: none;
+}
+
+.tg-text a:hover {
+  text-decoration: underline;
+}
+
+.tg-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 8px;
+  border: 1px solid var(--tg-border);
+}
+
+.tg-error {
+  font-size: 13px;
+  color: var(--tg-secondary, #657786);
+  padding: 8px 4px;
+}
