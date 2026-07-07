@@ -5354,3 +5354,8 @@ code:not(pre code) {
   color: var(--tg-secondary, #657786);
   padding: 8px 4px;
 }
+.tg-text a
+ {
+    color: #0f2b46;
+    text-decoration: none;
+}
