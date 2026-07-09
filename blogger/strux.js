@@ -262,7 +262,7 @@
    ========================================== */
 var GAS_URL = "https://script.google.com/macros/s/AKfycbx_vl7skxZ-bwyi0hFmJvbwIg4UsLHkTXuzbxna9ypAToU9m9KRNgheJkwc0gyu2wcA/exec";
 function initLikeButtons() {
-    document.querySelectorAll('.heart-btn').forEach(function(btn) {
+  document.querySelectorAll('.heart-btn').forEach(function(btn) {
     if (btn.dataset.initialized) return;
     btn.dataset.initialized = "true";    
     var url = btn.dataset.url;
@@ -302,9 +302,13 @@ function initLikeButtons() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initLikeButtons);
-var observerLikes = new MutationObserver(function(mutations) {
-    initLikeButtons();
+
+document.addEventListener('DOMContentLoaded', function() {
+  initLikeButtons();
+
+  var observerLikes = new MutationObserver(function(mutations) {
+      initLikeButtons();
+  });
+  observerLikes.observe(document.body, { childList: true, subtree: true });
 });
-observerLikes.observe(document.body, { childList: true, subtree: true });
 
