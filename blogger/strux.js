@@ -242,16 +242,18 @@
     message.innerHTML = '<span style="display:inline-block;border:1px solid #999;color:#999;font-size:90%;padding:1px 5px;border-radius:3px;line-height:1.4;">PR</span><span><i class="fa-solid fa-hourglass-half"></i> この記事は約' + minutes + '分で読めます。</span>';
     $content.insertBefore(message, $content.firstChild);
   }
-  var observer = new MutationObserver(function(mutations, obs) {
-    var target = document.querySelector('.entry-content');
-    if (target && target.querySelector('h1, h2, p')) {
-      obs.disconnect();
-      insertReadingTime();
-    }
-  });
-  observer.observe(document.body, { childList: true, subtree: true });
+
   document.addEventListener('DOMContentLoaded', function() {
     insertReadingTime();
+
+    var observer = new MutationObserver(function(mutations, obs) {
+      var target = document.querySelector('.entry-content');
+      if (target && target.querySelector('h1, h2, p')) {
+        obs.disconnect();
+        insertReadingTime();
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
   });
 })();
 
