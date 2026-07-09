@@ -239,19 +239,21 @@
     var minutes = Math.ceil(length / wpm);
     var message = document.createElement('p');
     message.style.cssText = 'font-size:80%;color:#999;text-align:right;display:flex;align-items:center;justify-content:space-between;';
-    message.innerHTML = '<span style="display:inline-block;border:1px solid #999;color:#999;font-size:90%;padding:1px 5px;border-radius:3px;line-height:1.4;">PR</span><span><i class="fa-solid fa-hourglass-half"></i> Approx. ' + minutes + ' min read.</span>';
+    message.innerHTML = '<span style="display:inline-block;border:1px solid #999;color:#999;font-size:90%;padding:1px 5px;border-radius:3px;line-height:1.4;">PR</span><span><i class="fa-solid fa-hourglass-half"></i> This article takes about' + minutes + 'to read.</span>';
     $content.insertBefore(message, $content.firstChild);
   }
-  var observer = new MutationObserver(function(mutations, obs) {
-    var target = document.querySelector('.entry-content');
-    if (target && target.querySelector('h1, h2, p')) {
-      obs.disconnect();
-      insertReadingTime();
-    }
-  });
-  observer.observe(document.body, { childList: true, subtree: true });
+
   document.addEventListener('DOMContentLoaded', function() {
     insertReadingTime();
+
+    var observer = new MutationObserver(function(mutations, obs) {
+      var target = document.querySelector('.entry-content');
+      if (target && target.querySelector('h1, h2, p')) {
+        obs.disconnect();
+        insertReadingTime();
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
   });
 })();
 
