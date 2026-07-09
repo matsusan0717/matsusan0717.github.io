@@ -2996,6 +2996,7 @@ code:not([class*=&quot;language-&quot;]) {
    font-weight: 600;
    color: var(--accent);
    top: -2px;
+   right:5px;
    position: relative;
 }
 .like-count[data-count=&quot;0&quot;], .like-count:empty {
