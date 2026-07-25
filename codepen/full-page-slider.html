@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <title>Animated Gradient Background</title>
   
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Swiper CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
 <style>
   
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
@@ -337,9 +342,9 @@ img {
 		margin-bottom: 0px;
 	}
 	.swiper-slide .slider-inner .swiper-content p.disc{
-		    margin: 20px auto 20px auto;
-    font-size: 16px;
-    width:95%;
+		margin: 20px auto 20px auto;
+		font-size: 16px;
+		width:95%;
 	}
 	.swiper-container-h .slider-pagination-area{
 		display: none;
@@ -538,9 +543,14 @@ img {
     <span class="coffee-icon">☕</span> Buy me a coffee
   </a>
   
-  <Script>
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Swiper JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script>
   $(document).ready(function() {
-    var swiper = new Swiper(".swiper-container-h", {
+      var swiper = new Swiper(".swiper-container-h", {
             direction: "horizontal",
             effect: "slide",
             autoplay: {
@@ -604,7 +614,7 @@ img {
               }
           });
 });
-  </Script>
+  </script>
 
  </body>
 </html>
