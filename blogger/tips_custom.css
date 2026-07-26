@@ -5359,3 +5359,11 @@ code:not(pre code) {
     color: #0f2b46;
     text-decoration: none;
 }
+  .mstrux-table-wrap{--base-navy:#1e3a5f;--accent-hover:#e97834;margin:0;overflow: auto;}
+  .mstrux-table{width:100%;border-collapse:collapse;font-size:0.95em;min-width:350px;margin:0 0 1rem !important;}
+  .mstrux-table caption{caption-side:top;text-align:left;font-weight:bold;color:var(--base-navy);margin-bottom:.5em;}
+  .mstrux-table th{background:var(--base-navy);color:#fff;padding:.6em .8em;text-align:left;white-space:nowrap;}
+  .mstrux-table td{padding:.6em .8em;border-bottom:1px solid #ddd;}
+  .mstrux-table tr:hover td{background:#f7f7f7;}
+  @media (max-width:600px){.mstrux-table th,.mstrux-table td{padding:.5em;font-size:.85em;}}
+  @media (max-width:480px){.mstrux-table caption{font-size:.9em;}}
