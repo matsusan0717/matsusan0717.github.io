@@ -5375,15 +5375,13 @@ code:not(pre code) {
   .mstrux-table tr, 
   .mstrux-table td {
     display: block;
-    width: 100%;
+    width: 99.8%;
     box-sizing: border-box;
   }
   .mstrux-table tr {
     margin-bottom: 1rem;
-    border: 1px solid #ddd;
     border-radius: 4px;
     background: #fff;
-    padding: .5em 0;
   }
   .mstrux-table td {
     text-align: left !important;
