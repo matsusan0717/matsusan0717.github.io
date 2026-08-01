@@ -5407,20 +5407,3 @@ code:not(pre code) {
   ol li {
   list-style:auto !important;
   } 
-  .post-body h3 {
-    font-size: 1.1rem;
-    font-weight: bold;
-    padding: 0 .3em .5em .8em;
-    text-indent: -.7em;
-  }
-
-  .post-body h3:before {
-    background-color: #446689;
-    border-radius: 1em;
-    content: "";
-    display: inline-block;
-    height: 1.2em;
-    margin-right: .5em;
-    vertical-align: middle;
-    width: .2em;
-  } 
