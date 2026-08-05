@@ -251,7 +251,7 @@ function initLikeButtons() {
         method: "POST",
         body: new URLSearchParams({ titleURL: url })
       })
-      .then(res => res.ok ? res.text() : Promise.reject("送信失敗"))
+      .then(res => res.ok ? res.text() : Promise.reject("Failed to send"))
       .then(() => {
         var currentCount = parseInt(countSpan.getAttribute('data-count') || 0);
         var newCount = currentCount + 1;
@@ -263,7 +263,7 @@ function initLikeButtons() {
         btn.disabled = true;
         setTimeout(() => btn.classList.remove("animate"), 600);
       })
-      .catch(err => { console.log(err); alert("送信失敗"); });
+      .catch(err => { console.log(err); alert("Failed to send"); });
     });
   });
 }
