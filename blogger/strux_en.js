@@ -225,54 +225,78 @@
 /* ==========================================
    4. GAS Like Buttons
    ========================================== */
-var GAS_URL = "https://script.google.com/macros/s/AKfycbx_vl7skxZ-bwyi0hFmJvbwIg4UsLHkTXuzbxna9ypAToU9m9KRNgheJkwc0gyu2wcA/exec";
-function initLikeButtons() {
-  document.querySelectorAll('.heart-btn').forEach(function(btn) {
-    if (btn.dataset.initialized) return;
-    btn.dataset.initialized = "true";    
-    var url = btn.dataset.url;
-    var wrapper = btn.closest('.like-wrapper');
-    var countSpan = wrapper.querySelector('.like-count');
-    var heart = btn.querySelector('i');    
-    fetch(GAS_URL + "?titleURL=" + encodeURIComponent(url))
-        .then(res => res.json())
-        .then(data => {
-        if (parseInt(data.likeCount) > 0) {
-            countSpan.textContent = data.likeCount;
-            countSpan.setAttribute('data-count', data.likeCount);
-        } else {
-            countSpan.textContent = "";
-            countSpan.setAttribute('data-count', "0");
-        }
-        });    
-    btn.addEventListener("click", function(){
-        if (btn.disabled) return;
-        fetch(GAS_URL, {
-        method: "POST",
-        body: new URLSearchParams({ titleURL: url })
-      })
-      .then(res => res.ok ? res.text() : Promise.reject("送信失敗"))
-      .then(() => {
-        var currentCount = parseInt(countSpan.getAttribute('data-count') || 0);
-        var newCount = currentCount + 1;
-        countSpan.textContent = newCount;
-        countSpan.setAttribute('data-count', newCount);
-        heart.classList.remove("far");
-        heart.classList.add("fas");
-        btn.classList.add("liked", "animate");
-        btn.disabled = true;
-        setTimeout(() => btn.classList.remove("animate"), 600);
-      })
-      .catch(err => { console.log(err); alert("送信失敗"); });
-    });
-  });
-}
+	var GAS_URL = "https://script.google.com/macros/s/AKfycbx_vl7skxZ-bwyi0hFmJvbwIg4UsLHkTXuzbxna9ypAToU9m9KRNgheJkwc0gyu2wcA/exec";
 
-document.addEventListener('DOMContentLoaded', function() {
-  initLikeButtons();
+	function fetchLikeCount(url, countSpan, retry) {
+		fetch(GAS_URL + "?titleURL=" + encodeURIComponent(url))
+			.then(res => {
+				if (!res.ok) throw new Error("HTTP " + res.status);
+				return res.json();
+			})
+			.then(data => {
+				if (parseInt(data.likeCount) > 0) {
+					countSpan.textContent = data.likeCount;
+					countSpan.setAttribute('data-count', data.likeCount);
+				} else {
+					countSpan.textContent = "";
+					countSpan.setAttribute('data-count', "0");
+				}
+			})
+			.catch(err => {
+				console.error("[like] count fetch failed:", err);
+				if (!retry) {
+					setTimeout(() => fetchLikeCount(url, countSpan, true), 1500);
+				}
+			});
+	}
 
-  var observerLikes = new MutationObserver(function(mutations) {
-      initLikeButtons();
-  });
-  observerLikes.observe(document.body, { childList: true, subtree: true });
-});
+	function initLikeButtons() {
+  		document.querySelectorAll('.heart-btn').forEach(function(btn) {
+    	if (btn.dataset.initialized) return;
+    	btn.dataset.initialized = "true";
+    	var url = btn.dataset.url;
+    	var wrapper = btn.closest('.like-wrapper');
+    	var countSpan = wrapper.querySelector('.like-count');
+    	var heart = btn.querySelector('i');
+
+    	fetchLikeCount(url, countSpan, false);
+
+    	btn.addEventListener("click", function(){
+      		if (btn.disabled) return;
+
+      		// ① 即時にUIを更新（楽観的更新）
+      		btn.disabled = true;
+      		var currentCount = parseInt(countSpan.getAttribute('data-count') || 0);
+      		var newCount = currentCount + 1;
+      		countSpan.textContent = newCount;
+      		countSpan.setAttribute('data-count', newCount);
+      		heart.classList.remove("far");
+      		heart.classList.add("fas");
+      		btn.classList.add("liked", "animate");
+      		setTimeout(() => btn.classList.remove("animate"), 600);
+
+      		// ② 裏側で送信。失敗時のみ表示を元に戻す
+      		fetch(GAS_URL, {
+        		method: "POST",
+        		body: new URLSearchParams({ titleURL: url })
+      		})
+      		.then(res => res.ok ? res.text() : Promise.reject("HTTP " + res.status))
+      		.catch(err => {
+        		console.error("[like] post failed:", err);
+        		// ロールバック
+        		countSpan.textContent = currentCount > 0 ? currentCount : "";
+        		countSpan.setAttribute('data-count', currentCount);
+        		heart.classList.remove("fas");
+        		heart.classList.add("far");
+        		btn.classList.remove("liked");
+        		btn.disabled = false;
+        		alert("送信に失敗しました。もう一度お試しください。");
+      		});
+    	});
+  	});
+	}
+	document.addEventListener('DOMContentLoaded', initLikeButtons);
+	var likeObserver = new MutationObserver(function(mutations) {
+  	initLikeButtons();
+	});
+	likeObserver.observe(document.body, { childList: true, subtree: true });
