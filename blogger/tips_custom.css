@@ -198,10 +198,30 @@
    padding-bottom: 15px;
 }
 #matsu-profile-container .social-icons a {
-   color: var(--text-muted);
-   font-size: 20px;
-   transition: 0.3s;
-   text-decoration: none;
+    color: var(--text-muted);
+    font-size: 20px;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+#matsu-profile-container .social-icons a svg {
+    width: 1em;
+    height: 1em;
+}
+#matsu-profile-container .social-icons a svg .cls-1 {
+    fill: currentColor;
+}
+#matsu-profile-container .social-icons a svg .cls-2 {
+    fill: #fff;
+}
+#matsu-profile-container .social-icons {
+    margin: 20px auto 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 15px;
 }
 #matsu-profile-container .social-icons a:hover {
    color: var(--accent);
