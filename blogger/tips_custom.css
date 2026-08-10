@@ -2274,7 +2274,7 @@ div.hashtag-see-more:hover{
     color: #999;
 }
 .kaerebalink-detail {
-    display: none;
+    display: block;
 }
 .kaerebalink-link1 {
     display: flex !important;
