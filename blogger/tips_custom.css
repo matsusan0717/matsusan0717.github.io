@@ -3100,6 +3100,11 @@ body {
    top: 80px;
    height: fit-content
 }
+#main-content {
+   position: sticky;
+   top: 80px;
+   align-self: start
+}
 @media (max-width:1024px) {
    .post-grid {
       grid-template-columns: repeat(2, 1fr) !important;
