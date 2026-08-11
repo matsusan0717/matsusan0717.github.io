@@ -5445,3 +5445,36 @@ code:not(pre code) {
 	width: 100% !important;
 	height: 100% !important;
 }
+.hateb {
+  margin: 40px auto 20px;
+  padding: 30px 20px 10px 20px;
+  border: 2px solid #1e3a5f;
+}
+.hateb-ttl {
+  background-color: #1e3a5f;
+  color: #fff;
+  border-radius: 100vh;
+  padding: 10px 1.5em;
+  margin: -55px 0 0 0;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+.hateb-ttl::after {
+  content: '';
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  border: 15px solid transparent;
+  width: 0;
+  height: 0;
+  border-top-color: #1e3a5f;
+}
