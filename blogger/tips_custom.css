@@ -5478,3 +5478,8 @@ code:not(pre code) {
   height: 0;
   border-top-color: #1e3a5f;
 }
+@media (max-width:600px){
+.hateb-ttl {
+    font-size: 0.79rem;
+}
+}
