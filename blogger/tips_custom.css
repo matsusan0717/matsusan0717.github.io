@@ -5483,3 +5483,8 @@ code:not(pre code) {
     font-size: 0.79rem;
 }
 }
+.hateb-badge{
+	background: #009ad0;
+    padding: 0 5px;
+    border-radius: 2px;	
+}
