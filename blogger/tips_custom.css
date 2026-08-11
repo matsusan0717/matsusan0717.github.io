@@ -5487,4 +5487,5 @@ code:not(pre code) {
 	background: #009ad0;
     padding: 0 5px;
     border-radius: 2px;	
+	margin-right:0.8rem;
 }
