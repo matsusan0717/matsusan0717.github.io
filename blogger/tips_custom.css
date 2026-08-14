@@ -2662,7 +2662,15 @@ body {
    top: 0;
    z-index: 999;
    background: var(--header-bg);
-   border-bottom: 1px solid var(--border)
+   border-bottom: 1px solid var(--border);
+   transition: transform 0.3s ease;
+   will-change: transform
+}
+.global-nav.nav-unpinned {
+   transform: translateY(-100%)
+}
+.global-nav.nav-pinned {
+   transform: translateY(0)
 }
 .global-nav-inner {
    max-width: var(--max-width);
