@@ -5497,3 +5497,22 @@ code:not(pre code) {
     border-radius: 2px;	
 	margin-right:0.8rem;
 }
+.related-posts-section h3 {
+display: flex;
+}
+.related-posts-section h3:after {
+    top: 8px;
+    position: relative;
+	content: '';
+    display: inline-block;
+    height: 17px;
+    margin-left: 10px;
+    flex-grow: 1;
+    background: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiN4w0P5Iz_o9_6YKyBVzq_ChqaWxmj_8l7vCM_qRJnG2VcrNzfftU3FbqfNcQPy7oVbsPW8d3kd4u8fQcBQoSWXK1A-TzE5KXQhfXz-Uf3OVtJ1ZYY3SINPvIQyCCk21EsezsOeZsVA8iK/s1600/repeat-bg.png) repeat;
+}
+.related-posts-section {
+    margin: 1.6rem 0;
+}
+.pSh {
+    margin: 2.5rem 0 0;
+}
