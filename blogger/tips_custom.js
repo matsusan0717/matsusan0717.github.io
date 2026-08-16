@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // 1. 画像最適化 (WebP/リサイズ) & 広告制御
   const optimizeContent = () => {
     document.querySelectorAll('img').forEach(img => {
+      if (img.closest('#matsu-lightbox')) return; // never touch the lightbox image (it holds the enlarged URL)
       const src = img.getAttribute('src');
       if (!src || src.includes('data:image')) return;
 
