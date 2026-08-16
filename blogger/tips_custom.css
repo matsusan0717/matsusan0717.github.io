@@ -5958,6 +5958,7 @@ ol li {
 .nav-link .fa-solid,
 .nav-link .fa-brands,
 .dropdown-menu .fa-solid,
-.dropdown-menu .fa-brands {
+.dropdown-menu .fa-brands,
+.dropdown-menu .fa-regular{
 	margin-right: 8px !important;
 }
