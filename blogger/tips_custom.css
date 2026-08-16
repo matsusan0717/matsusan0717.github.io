@@ -314,12 +314,14 @@ Blogger Custom Styles (matsusan0717) - External CSS
 #matsu-lightbox.is-active {
 	display: flex;
 	opacity: 1;
-	pointer-events: auto;
 }
-/* Close button: the ONLY way to dismiss the lightbox (besides Esc).
-   Background clicks never close it, which structurally eliminates the
-   "enlarges then shrinks on its own" bug that affected all browsers. */
+/* Clicking the image or the dark background closes the lightbox.
+   (The × button still closes it too.) */
+#matsu-lightbox.is-active {
+	cursor: zoom-out;
+}
 #matsu-lightbox .lb-close {
+	pointer-events: auto;
 	position: absolute;
 	top: 16px;
 	right: 20px;
