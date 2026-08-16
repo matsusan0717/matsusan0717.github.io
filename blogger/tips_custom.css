@@ -2832,15 +2832,6 @@ span.meta-item[title="コメント数"] {
 #custom-giscus-container small a:hover {
 	color: var(--accent-hover) !important;
 }
-.header-nav .fa-house-laptop:before,
-.header-nav .fa-screwdriver-wrench:before,
-.header-nav .fa-marker:before,
-.header-nav .fa-toolbox:before,
-.header-nav .fa-github-alt:before,
-.header-nav .fa-font-awesome:before {
-	font-size: 1.0rem;
-	margin-right: 5px;
-}
 .mtu-eyecatch-container {
 	display: flex;
 	justify-content: center;
