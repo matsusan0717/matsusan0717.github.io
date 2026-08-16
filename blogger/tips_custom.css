@@ -5516,3 +5516,6 @@ display: flex;
 .pSh {
     margin: 2.5rem 0 0;
 }
+.nav-link .fa-solid, .nav-link .fa-brands, .dropdown-menu .fa-solid, .dropdown-menu .fa-brands{
+margin-right:8px !important;
+}
