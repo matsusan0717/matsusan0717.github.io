@@ -316,20 +316,30 @@ Blogger Custom Styles (matsusan0717) - External CSS
 	opacity: 1;
 	pointer-events: auto;
 }
-/* While the lightbox is open, block ALL pointer events on the page content
-   behind it. This guarantees the opening click's trailing events (or a
-   spurious background click caused by the element under the cursor vanishing
-   after SPA re-render) can never reach a link or the overlay and close it.
-   The overlay itself is re-enabled so it can still receive the close click. */
-body.lb-open #view-root,
-body.lb-open .post-body,
-body.lb-open .sidebar,
-body.lb-open main,
-body.lb-open .layout-container {
-	pointer-events: none;
+/* Close button: the ONLY way to dismiss the lightbox (besides Esc).
+   Background clicks never close it, which structurally eliminates the
+   "enlarges then shrinks on its own" bug that affected all browsers. */
+#matsu-lightbox .lb-close {
+	position: absolute;
+	top: 16px;
+	right: 20px;
+	width: 44px;
+	height: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	border-radius: 50%;
+	background: rgba(0, 0, 0, 0.55);
+	color: #fff;
+	font-size: 30px;
+	line-height: 1;
+	cursor: pointer;
+	z-index: 10001;
+	transition: background 0.2s;
 }
-body.lb-open #matsu-lightbox {
-	pointer-events: auto;
+#matsu-lightbox .lb-close:hover {
+	background: rgba(0, 0, 0, 0.8);
 }
 #matsu-lightbox img {
 	max-width: 90%;
