@@ -4947,8 +4947,15 @@ color: var(--heading-light)
 	gap: 20px;
 }
 .blsm-rest {
-	flex: 1;
-	position: relative;
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.blsm-rest .blsm-img {
+  flex: 1 1 auto;
+  aspect-ratio: auto;
+  min-height: 0;
 }
 .blsm-img {
 	display: block;
@@ -5045,7 +5052,17 @@ color: var(--heading-light)
 	background: var(--border);
 }
 .blsm-author-fallback {
-	color: var(--accent);
+  color: var(--accent);
+}
+.blsm-time {
+  display: inline-flex;
+  align-items: center;
+}
+.blsm-time::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "073";
+  margin-right: 5px;
 }
 .blsm-rest .blossomt-title {
 	font-size: 1.05rem;
