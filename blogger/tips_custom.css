@@ -4917,7 +4917,7 @@ color: var(--heading-light)
 }
 .blsm-feat {
 	display: flex;
-	gap: 20px;
+	gap: 15px;
 	max-width: var(--max-width);
 	margin: 2rem auto;
 	padding: 0 1.5rem;
