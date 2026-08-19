@@ -5076,7 +5076,7 @@ color: var(--heading-light)
 	pointer-events: auto;
 }
 .blsm-label-tl a {
-	background: var(--accent);
+	background: #e97834;
 	color: white;
 	padding: 4px 10px;
 	font-size: 0.68rem;
