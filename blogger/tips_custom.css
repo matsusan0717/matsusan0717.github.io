@@ -4949,13 +4949,6 @@ color: var(--heading-light)
 .blsm-rest {
   flex: 1;
   position: relative;
-  display: flex;
-  flex-direction: column;
-}
-.blsm-rest .blsm-img {
-  flex: 1 1 auto;
-  aspect-ratio: auto;
-  min-height: 0;
 }
 .blsm-img {
 	display: block;
@@ -5076,7 +5069,7 @@ color: var(--heading-light)
 	pointer-events: auto;
 }
 .blsm-label-tl a {
-	background: #e97834;
+	background: var(--accent);
 	color: white;
 	padding: 4px 10px;
 	font-size: 0.68rem;
