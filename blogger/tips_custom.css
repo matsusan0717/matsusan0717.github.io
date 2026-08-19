@@ -4948,6 +4948,7 @@ color: var(--heading-light)
 }
 .blsm-rest {
 	flex: 1;
+	position: relative;
 }
 .blsm-img {
 	display: block;
@@ -4973,19 +4974,15 @@ color: var(--heading-light)
 }
 .blsm-con-blossom,
 .blossom-tent-ty {
-	position: static;
 	padding: 1rem 1.25rem 1.25rem;
 	color: var(--text-main);
 	width: 100%;
-	pointer-events: auto;
 	display: flex;
 	flex-direction: column;
 	flex: 1;
 }
 .blossom-label {
-	position: static;
 	margin-bottom: 0.5rem;
-	pointer-events: auto;
 }
 .blossom-label a {
 	background: var(--accent);
@@ -5009,7 +5006,6 @@ color: var(--heading-light)
 .blossomt-title a {
 	color: var(--text-main);
 	text-decoration: none;
-	text-shadow: none;
 }
 .blossomt-title a:hover {
 	color: var(--accent);
@@ -5032,26 +5028,45 @@ color: var(--heading-light)
 	margin-top: auto;
 	padding-top: 12px;
 	border-top: 1px solid var(--border);
-	font-size: 0.76rem;
+	font-size: 0.8rem;
 	color: var(--text-muted);
-}
-.blsm-time::before {
-	font-family: "Font Awesome 6 Free";
-	font-weight: 900;
-	content: "073";
-	margin-right: 5px;
 }
 .blsm-author {
 	display: inline-flex;
 	align-items: center;
-	gap: 5px;
+	gap: 8px;
 	font-weight: 600;
 }
-.blsm-author i {
+.blsm-author-img {
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	object-fit: cover;
+	background: var(--border);
+}
+.blsm-author-fallback {
 	color: var(--accent);
 }
 .blsm-rest .blossomt-title {
 	font-size: 1.05rem;
+}
+.blsm-label-tl {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 3;
+	pointer-events: auto;
+}
+.blsm-label-tl a {
+	background: var(--accent);
+	color: white;
+	padding: 4px 10px;
+	font-size: 0.68rem;
+	font-weight: 700;
+	border-radius: 4px;
+	text-decoration: none;
+	text-transform: uppercase;
+	display: inline-block;
 }
 @media (max-width: 900px) {
 	.blsm-feat {
