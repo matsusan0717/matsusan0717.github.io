@@ -4953,7 +4953,7 @@ color: var(--heading-light)
 .blsm-img {
 	display: block;
 	width: 100%;
-	aspect-ratio: 16 / 9;
+	aspect-ratio: 16 / 10;
 	background-color: var(--border);
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -5067,6 +5067,9 @@ color: var(--heading-light)
 	text-decoration: none;
 	text-transform: uppercase;
 	display: inline-block;
+}
+.blsm-label-tl a i {
+	margin-right: 4px;
 }
 @media (max-width: 900px) {
 	.blsm-feat {
