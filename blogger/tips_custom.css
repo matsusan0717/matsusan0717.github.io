@@ -4920,131 +4920,160 @@ color: var(--heading-light)
 	gap: 20px;
 	max-width: var(--max-width);
 	margin: 2rem auto;
-	padding: 0 1.5rem
+	padding: 0 1.5rem;
+	align-items: stretch;
+}
+.blsm-card {
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+	overflow: hidden;
+	background: var(--card-bg);
+	border: 1px solid var(--border);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+	transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.blsm-card:hover {
+	border-color: var(--accent);
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 .blsm-first {
 	flex: 0 0 60%;
-	position: relative;
-	border-radius: 10px;
-	overflow: hidden;
-	aspect-ratio: 16 / 10;
-	background: linear-gradient(90deg, var(--border) 25%, var(--bg-color) 50%, var(--border) 75%);
-	background-size: 200% 100%;
-	animation: shimmer 1.5s infinite linear
 }
 .blsm-rest-wrap {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	gap: 20px
+	gap: 20px;
 }
 .blsm-rest {
 	flex: 1;
-	position: relative;
-	border-radius: 10px;
-	overflow: hidden;
-	aspect-ratio: 16 / 8;
-	background: linear-gradient(90deg, var(--border) 25%, var(--bg-color) 50%, var(--border) 75%);
-	background-size: 200% 100%;
-	animation: shimmer 1.5s infinite linear
 }
 .blsm-img {
 	display: block;
 	width: 100%;
-	height: 100%;
+	aspect-ratio: 16 / 9;
+	background-color: var(--border);
+	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: center;
+	background-position: center top;
 	transition: transform 0.5s;
 	position: relative;
-	border-radius: 0
 }
 .blsm-img:hover {
-	transform: scale(1.05)
+	transform: scale(1.03);
 }
 .tyimg-lay {
 	position: absolute;
 	inset: 0;
-	background: radial-gradient(rgba(0, 0, 0, 0.3) 30%, transparent 31%), radial-gradient(rgba(0, 0, 0, 0.3) 30%, transparent 31%);
+	background: radial-gradient(rgba(0, 0, 0, 0.18) 30%, transparent 31%), radial-gradient(rgba(0, 0, 0, 0.18) 30%, transparent 31%);
 	background-size: 4px 4px;
-	background-position: 0 0, 2px 2px
+	background-position: 0 0, 2px 2px;
+	pointer-events: none;
 }
 .blsm-con-blossom,
 .blossom-tent-ty {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	padding: 1.5rem;
-	color: white;
+	position: static;
+	padding: 1rem 1.25rem 1.25rem;
+	color: var(--text-main);
 	width: 100%;
-	pointer-events: none
-}
-.blsm-con-blossom *,
-.blossom-tent-ty * {
-	pointer-events: auto
+	pointer-events: auto;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
 }
 .blossom-label {
-	margin-bottom: 0.6rem
+	position: static;
+	margin-bottom: 0.5rem;
+	pointer-events: auto;
 }
 .blossom-label a {
 	background: var(--accent);
 	color: white;
-	padding: 5px 10px;
-	font-size: 0.7rem;
+	padding: 4px 10px;
+	font-size: 0.68rem;
 	font-weight: 700;
 	border-radius: 4px;
 	text-decoration: none;
-	text-transform: uppercase
+	text-transform: uppercase;
+	display: inline-block;
 }
 .blossomt-title {
+	display: block;
 	margin: 0 0 0.5rem;
-	font-size: 1.6rem;
-	line-height: 1.6;
+	font-size: 1.35rem;
+	line-height: 1.4;
 	font-weight: 800;
-	letter-spacing: -0.02em
+	letter-spacing: -0.02em;
 }
 .blossomt-title a {
-	color: var(--accent);
+	color: var(--text-main);
 	text-decoration: none;
-	text-shadow: 2px 2px 0 #FFF, -2px -2px 0 #FFF, -2px 2px 0 #FFF, 2px -1px 0 #FFF, 0px 2px 0 #FFF, 0-2px 0 #FFF, -2px 0 0 #FFF, 2px 0 0 #FFF;
+	text-shadow: none;
 }
 .blossomt-title a:hover {
-	text-decoration: none
+	color: var(--accent);
+}
+.blsm-summary {
+	font-size: 0.88rem;
+	color: var(--text-muted);
+	line-height: 1.6;
+	margin: 0 0 0.9rem;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.blsm-meta {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 14px;
+	margin-top: auto;
+	padding-top: 12px;
+	border-top: 1px solid var(--border);
+	font-size: 0.76rem;
+	color: var(--text-muted);
+}
+.blsm-time::before {
+	font-family: "Font Awesome 6 Free";
+	font-weight: 900;
+	content: "073";
+	margin-right: 5px;
+}
+.blsm-author {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	font-weight: 600;
+}
+.blsm-author i {
+	color: var(--accent);
 }
 .blsm-rest .blossomt-title {
-	font-size: 1.1rem
+	font-size: 1.05rem;
 }
-.blsm-time {
-	font-size: 0.75rem;
-	opacity: 0.8
-}
-.blossom-auth-ty {
-	font-size: 0.75rem;
-	font-weight: 600;
-	margin-right: 12px
-}
-@media (max-width:900px) {
+@media (max-width: 900px) {
 	.blsm-feat {
 		flex-direction: column;
 		padding: 0 10px;
-		gap: 15px
+		gap: 15px;
 	}
 	.blsm-first {
 		flex: none;
 		width: 100%;
-		height: 280px
 	}
 	.blsm-rest-wrap {
-		height: auto;
-		gap: 15px
+		gap: 15px;
 	}
 	.blsm-rest {
-		height: 160px
+		flex: none;
 	}
 	.blossomt-title {
-		font-size: 1.3rem
+		font-size: 1.25rem;
 	}
 	.blsm-rest .blossomt-title {
-		font-size: 1rem
+		font-size: 1.05rem;
 	}
 }
 .post-list-wrap {
