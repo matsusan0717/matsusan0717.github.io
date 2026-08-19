@@ -1596,7 +1596,8 @@ body.is-homepage .sidebar-widget:has(#lp-v-final),
 body.is-homepage .fm {
 	display: none !important;
 }
-body:not(.is-homepage) #tpd-random-wrapper {
+body.is-homepage #tpd-random-wrapper,
+body.is-post #tpd-random-wrapper {
 	display: none !important;
 }
 .strux-ab-wrapper {
