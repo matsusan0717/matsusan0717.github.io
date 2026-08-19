@@ -4934,7 +4934,7 @@ color: var(--heading-light)
 	transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 .blsm-card:hover {
-	border-color: var(--accent);
+	/*border-color: var(--accent);*/
 	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 .blsm-first {
