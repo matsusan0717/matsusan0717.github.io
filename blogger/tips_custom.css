@@ -3601,8 +3601,8 @@ body {
 	margin-bottom: 3rem;
 	text-decoration: none;
 	color: inherit;
-	padding-bottom: 2rem;
-	padding-top: 2rem;
+	padding-bottom: 1.8rem;
+	padding-top: 1.8rem;
 	border-bottom: 1px solid var(--border);
 	border-top: 1px solid var(--border);
 }
