@@ -3598,14 +3598,14 @@ body {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 1.5rem;
-	margin-top: -20px;
+	margin-top: 0px;
 	margin-bottom: 3rem;
 	text-decoration: none;
 	color: inherit;
 	padding-bottom: 1.8rem;
 	padding-top: 1.8rem;
 	border-bottom: 1px solid var(--border);
-	border-top: 1px solid var(--border);
+	border-top: 0px solid var(--border);
 }
 .hp-thumb-link {
 	grid-column: span 1;
