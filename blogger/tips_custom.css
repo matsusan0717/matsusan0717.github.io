@@ -6049,3 +6049,26 @@ ol li {
 .dropdown-menu .fa-regular{
 	margin-right: 6px !important;
 }
+  .window-box {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto 2em;
+    padding: calc(1em + 25px) 1.5em 1em;
+    border: 2px solid #f2f2f2;
+    border-radius: 5px;
+    overflow: auto;
+  }
+
+  .window-box svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 25px;
+    background-color: #f2f2f2;
+  }
+
+  .window-box p {
+    margin: 0;
+    padding: 0;
+  }  
