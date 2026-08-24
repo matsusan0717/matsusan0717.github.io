@@ -726,7 +726,7 @@ code:not([class*="language-"]) {
 .like-count {
 	font-size: 0.9rem;
 	font-weight: 600;
-	color: var(--header-bg);
+	color: var(--accent);
 	top: -2px;
 	position: relative;
 	right: 10px;
@@ -4485,11 +4485,16 @@ pre[class*="language-"] .token.function {
 	inset: 0;
 	z-index: 1000;
 	background: rgba(0, 0, 0, 0.5);
-	backdrop-filter: blur(4px);
 	display: none;
 	align-items: center;
 	justify-content: center;
 	padding: 1.5rem
+}
+/* ぼかしは backdrop-filter ではなくページ側 filter で掛ける。
+   GSAPで常時transformされている RANDOM PICKS スライダーなど、
+   独立コンポジット層の要素まで確実にぼかる */
+body:has(#forShare:checked) .layout-container {
+	filter: blur(4px)
 }
 #forShare:checked~.share-modal {
 	display: flex
@@ -5945,9 +5950,6 @@ code:not(pre code) {
 	}
 	.mstrux-table td:last-child {
 		border-bottom: none;
-	}
-	.site-description{
-		text-align:left;
 	}
 }
 @media (max-width:480px) {
