@@ -6072,3 +6072,25 @@ ol li {
     margin: 0;
     padding: 0;
   }  
+@view-transition {
+  navigation: auto;
+}
+#header {
+  view-transition-name: tips-header;
+}
+::view-transition-group(*) {
+  animation-duration: .4s;
+  animation-timing-function: cubic-bezier(.4, 0, .2, 1);
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: .4s;
+  animation-timing-function: cubic-bezier(.4, 0, .2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
