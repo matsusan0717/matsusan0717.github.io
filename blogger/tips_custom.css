@@ -726,7 +726,7 @@ code:not([class*="language-"]) {
 .like-count {
 	font-size: 0.9rem;
 	font-weight: 600;
-	color: var(--header-bg);
+	color: var(--accent);
 	top: -2px;
 	position: relative;
 	right: 10px;
@@ -3547,7 +3547,15 @@ body {
 .sidebar {
 	position: sticky;
 	top: 80px;
-	height: fit-content
+	height: fit-content;
+	transition: filter .2s ease
+}
+/* 共有モーダル表示中: backdrop-filterがposition:stickyやselect等の
+   ネイティブフォームコントロールを正しくぼかせないChromeの挙動対策。
+   sidebar自体にfilterを直接かけて確実にぼかす。 */
+body:has(#forShare:checked) .sidebar {
+	filter: blur(6px);
+	pointer-events: none
 }
 #main-content {
 	position: sticky;
@@ -6072,6 +6080,19 @@ ol li {
   }  
 @view-transition {
   navigation: auto;
+}
+/* ===== 一覧→記事: クリックした画像だけ残してホワイトアウトする ===== */
+html.vt-mask {
+  background: #fff;
+}
+html.vt-mask body {
+  visibility: hidden;
+  pointer-events: none;
+}
+/* visibilityは子要素側でvisibleに上書きできるため、
+   祖先が隠れていてもこの画像だけは元の位置・サイズのまま表示され続ける */
+html.vt-mask .vt-keep-visible {
+  visibility: visible;
 }
 #header {
   view-transition-name: tips-header;
