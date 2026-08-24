@@ -6092,3 +6092,26 @@ ol li {
     animation: none !important;
   }
 }
+.post-body h3:before {
+    top: -2px;
+    position: relative;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px; 
+}
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+} 
+.matsu-poll-skip {
+    right: 5px;
+    position: relative;
+}
+@media (max-width: 600px) {
+    .mstrux-table td {
+        border-bottom: 1px solid #e2e8f0;
+    }
+}
