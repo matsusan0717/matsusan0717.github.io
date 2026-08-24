@@ -6058,7 +6058,6 @@ ol li {
     border-radius: 5px;
     overflow: auto;
   }
-
   .window-box svg {
     position: absolute;
     top: 0;
@@ -6067,7 +6066,6 @@ ol li {
     height: 25px;
     background-color: #f2f2f2;
   }
-
   .window-box p {
     margin: 0;
     padding: 0;
