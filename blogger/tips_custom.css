@@ -5946,6 +5946,9 @@ code:not(pre code) {
 	.mstrux-table td:last-child {
 		border-bottom: none;
 	}
+	.site-description{
+		text-align:left;
+	}
 }
 @media (max-width:480px) {
 	.mstrux-table caption {
