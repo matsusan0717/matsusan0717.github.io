@@ -1483,6 +1483,6 @@ figure {
         margin-bottom: 5px; 
     }
 }	
-.post-body p{
+.post-body p, .post-body li{
 	text-autospace: normal;
 }	
