@@ -4494,6 +4494,12 @@ pre[class*="language-"] .token.function {
 #forShare:checked~.share-modal {
 	display: flex
 }
+/* 共有モーダル表示中はサイドバー等のsticky要素を無効化し、
+   独立した合成レイヤーになることで暗転・ブラーが正しく重ならない問題を防ぐ */
+body:has(#forShare:checked) .sidebar,
+body:has(#forShare:checked) #main-content {
+	position: static !important;
+}
 .share-modal-content {
 	background: var(--bg-color);
 	border: 1px solid var(--border);
