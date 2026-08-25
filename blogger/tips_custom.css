@@ -726,7 +726,7 @@ code:not([class*="language-"]) {
 .like-count {
 	font-size: 0.9rem;
 	font-weight: 600;
-	color: #ff4757;
+	color: #800000;
 	top: -2px;
 	position: relative;
 	right: 10px;
