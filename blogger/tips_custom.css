@@ -6139,4 +6139,7 @@ ol li {
 .kaerebalink-image{
 	margin: 0 auto 10px;
 }
+.site-description	{
+	text-align:left;
+}
 }	
