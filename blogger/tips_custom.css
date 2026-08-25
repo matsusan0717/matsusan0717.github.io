@@ -6137,9 +6137,9 @@ ol li {
 }
 @media (max-width:600px) {
 .kaerebalink-image{
-	margin: 0 auto 10px;
+	margin: 0 auto 10px !important;
 }
 .site-description	{
-	text-align:left;
+	text-align:left !important;
 }
 }	
