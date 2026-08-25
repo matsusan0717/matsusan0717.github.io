@@ -6143,3 +6143,8 @@ ol li {
 	text-align:left !important;
 }
 }	
+@media (max-width:600px) {
+	.accordion-trigger i.fa-chevron-down {
+    margin-left:.4rem;
+}	
+}
