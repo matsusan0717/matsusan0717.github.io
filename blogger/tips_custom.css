@@ -6135,3 +6135,8 @@ ol li {
 .post-body p{
 	text-autospace: normal;
 }
+@media (max-width:600px) {
+.kaerebalink-image{
+	margin: 0 auto 10px;
+}
+}	
