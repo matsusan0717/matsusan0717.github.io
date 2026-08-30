@@ -4987,6 +4987,7 @@ color: var(--heading-light)
 	display: flex;
 	flex-direction: column;
 	flex: 1;
+	background: oldlace;
 }
 .blossom-label {
 	margin-bottom: 0.5rem;
