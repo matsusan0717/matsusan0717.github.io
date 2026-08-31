@@ -4987,7 +4987,7 @@ color: var(--heading-light)
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	background: oldlace;
+	background: rgb(41, 44, 50);
 }
 .blossom-label {
 	margin-bottom: 0.5rem;
@@ -5013,7 +5013,7 @@ color: var(--heading-light)
 	height:53px;
 }
 .blossomt-title a {
-	color: var(--text-main);
+	color: var(--bq-bg);
 	text-decoration: none;
 }
 .blossomt-title a:hover {
@@ -5039,7 +5039,7 @@ color: var(--heading-light)
 	padding-top: 12px;
 	border-top: 1px solid var(--border);
 	font-size: 0.8rem;
-	color: var(--text-muted);
+	color: var(--bq-bg);
 }
 .blsm-author {
 	display: inline-flex;
