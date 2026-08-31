@@ -6133,7 +6133,7 @@ ol li {
 	border-bottom: 8px solid transparent;
 	border-right: 8px solid #ebebeb;
 }
-.post-body p{
+.post-body p, .post-body li{
 	text-autospace: normal;
 }
 @media (max-width:600px) {
