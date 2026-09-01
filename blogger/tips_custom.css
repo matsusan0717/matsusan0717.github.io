@@ -6149,3 +6149,8 @@ ol li {
     margin-left:.4rem;
 }	
 }
+.star-source-row .source-btn:hover {
+	background: #1e3a5f;
+	color:#fff;
+	transition: all 0.5s 0s ease;
+}
