@@ -3191,7 +3191,7 @@ body {
 	right: 0;
 	background: var(--bg-color);
 	border: 1px solid var(--border);
-	border-radius: var(--radius);
+	border-radius:0 0 8px 8px;
 	padding: 0.5rem 0;
 	width: 300px;
 	opacity: 0;
@@ -3338,7 +3338,7 @@ body {
 	right: 0;
 	background: var(--bg-color);
 	border: 1px solid var(--border);
-	border-radius: var(--radius);
+	border-radius:0 0 8px 8px;
 	padding: 0.4rem 0;
 	min-width: 170px;
 	opacity: 0;
