@@ -5015,6 +5015,7 @@ color: var(--heading-light)
 .blossomt-title a {
 	color: var(--bq-bg);
 	text-decoration: none;
+	word-break: auto-phrase;
 }
 .blossomt-title a:hover {
 	color: var(--accent);
