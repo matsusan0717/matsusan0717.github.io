@@ -2682,7 +2682,7 @@ a.md-card-item:hover div span {
 	position: absolute;
 	top: 60px;
 	left: 40px;
-	max-width: 450px;
+	max-width: 540px;
 	opacity: 0;
 	visibility: hidden;
 	pointer-events: none;
