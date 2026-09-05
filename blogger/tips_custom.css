@@ -5110,6 +5110,7 @@ color: var(--heading-light)
 	}
 	.blossomt-title {
 		font-size: 1.0rem;
+		overflow-wrap: anywhere;
 	}
 	.blsm-rest .blossomt-title {
 		font-size: 1.05rem;
