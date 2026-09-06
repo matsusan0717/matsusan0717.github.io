@@ -6162,3 +6162,6 @@ ol li {
 .post-body p, .post-body li{
 	text-wrap: pretty;
 }
+.matsu-hatebu-card-title {
+    word-break: break-all;
+}
