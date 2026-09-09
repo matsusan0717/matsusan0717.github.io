@@ -3421,22 +3421,6 @@ body {
 	height: 12px;
 	background: transparent
 }
-.dropdown-menu {
-	position: absolute;
-	top: 132% !important;
-	left: 0;
-	background: var(--bg-color);
-	border: 1px solid var(--border);
-	border-radius: var(--radius);
-	padding: 0.5rem 0;
-	min-width: 160px;
-	opacity: 0;
-	visibility: hidden;
-	transform: translateY(-6px);
-	transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-	z-index: 1000
-}
 .has-dropdown:hover .dropdown-menu {
 	opacity: 1;
 	visibility: visible;
