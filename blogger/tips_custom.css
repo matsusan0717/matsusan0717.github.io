@@ -4007,6 +4007,7 @@ a:hover {
 	margin: 0 0 1.5rem;
 	font-weight: 800;
 	color: var(--text-main)
+	text-wrap: pretty;
 }
 .post-full-meta {
 	display: flex;
