@@ -5937,7 +5937,7 @@ code:not(pre code) {
 		padding: .5em .8em;
 	}
 	.mstrux-table td:last-child {
-		border-bottom: none;
+		border-bottom: 1px solid #e2e8f0;
 	}
 }
 @media (max-width:480px) {
