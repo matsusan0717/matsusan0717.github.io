@@ -5209,7 +5209,7 @@ color: var(--heading-light)
 }
 .dropdown-menu {
 	position: absolute;
-	top: 100%;
+	top: 132%;
 	left: 0;
 	background: var(--bg-color);
 	border: 0px solid var(--border);
