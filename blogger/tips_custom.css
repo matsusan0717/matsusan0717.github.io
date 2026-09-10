@@ -2974,7 +2974,7 @@ pre[class*="language-"] {
 	color: #fff;
 }
 .box-content p:nth-of-type(even) {
-	margin: 1em 0;
+	margin: 1em 0 0;
 }
 .blogger-box-tu {
 	background-color: #f0f8ff;
