@@ -6150,3 +6150,59 @@ ol li {
 .matsu-hatebu-card-title {
     word-break: break-all;
 }
+.step-wrap1 {
+counter-reset:count;
+margin: 2em 0;
+position: relative;
+}
+.step-content1 {
+padding: 0 0 1.3em 2em;
+margin: 0;
+position: relative;
+}
+.step-content1::before {
+content: "";
+display: block;
+width: 13px;
+height: 13px;
+background: #1e3a5f;
+border: solid 3px #ffffff;
+border-radius: 50%;
+position: absolute;
+top: 3px;
+left: 3px;
+box-shadow: 0 0 0 2px #1e3a5f;
+}
+.step-content1::after {
+content: "";
+display: block;
+height: calc(100% - 35px);
+border-left: dotted 5px #768888;
+position: absolute;
+top: 30px;
+left: 7px;
+}
+.step-title1 {
+font-weight: bold;
+font-size: 120%;
+}
+.step-label1 {
+color: #768888;
+font-weight: bold;
+top: -6px;
+position: relative;
+}
+.step-label1::after {
+counter-increment:count;
+content:counter(count);
+position: relative;
+left: .3em;
+}
+.step-body1 {
+margin-top: .5em;
+padding: 0 0 1em;
+border-bottom: dotted 2px #ddd;
+}
+.step-wrap1 > :last-of-type::after {
+display: none;
+}
