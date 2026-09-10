@@ -1588,7 +1588,7 @@ div#slide-sidebar-content .download a[style] {
 }
 @media (min-width: 600px) {
 	.post-grid h2 {
-		height: 48px;
+		height: 47px;
 	}
 }
 body.is-homepage #sidebar-random-posts-widget,
