@@ -727,7 +727,7 @@ code:not([class*="language-"]) {
 	font-size: 0.9rem;
 	font-weight: 600;
 	color: #800000;
-	top: 0;
+	top: -1px;
 	position: relative;
 	right: 10px;
 }
