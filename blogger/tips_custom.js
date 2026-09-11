@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
   (function() {
     const currentUrl = window.location.href;
     const currentPath = window.location.pathname;
-    if (currentPath.indexOf(EXCLUDE_PATH) !== -1 || /preview|draft/.test(currentUrl)) return;
+    if (currentPath.indexOf(EXCLUDE_PATH) !== -1 || /preview|draft/.test(currentUrl) || document.title.includes("404")) return;
 
     const startTime = Date.now();
     let maxScrollRate = 0;
