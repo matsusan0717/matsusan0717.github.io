@@ -6206,3 +6206,21 @@ border-bottom: dotted 2px #ddd;
 .step-wrap1 > :last-of-type::after {
 display: none;
 }
+.codepen-frame {
+position: relative;
+height: 0;
+overflow: hidden; 
+}
+.codepen-pc .codepen-frame {
+padding-top: 56.4583%;
+}
+.codepen-pc iframe {
+position: absolute;
+top: 0;
+left: 0;
+width: 250%;
+height: 250%;
+border: none;
+transform-origin: 0 0;
+transform: scale(0.4);
+} 
