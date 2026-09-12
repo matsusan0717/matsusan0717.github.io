@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })(jQuery);
   }
 
-  // 9. アクセスログ記録 (POST)
+// 9. アクセスログ記録 (POST)
   (function() {
     const currentUrl = window.location.href;
     const currentPath = window.location.pathname;
@@ -186,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const sendLog = () => {
       if (isSent) return;
+      if (document.title.includes("404")) return;
       const stayTimeSec = (Date.now() - startTime) / 1000;
       const payload = {
         path: currentPath, 
