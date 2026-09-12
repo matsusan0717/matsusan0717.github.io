@@ -6224,3 +6224,6 @@ border: none;
 transform-origin: 0 0;
 transform: scale(0.4);
 } 
+.download a:hover {
+color: var(--accent-hover) !important;
+}
