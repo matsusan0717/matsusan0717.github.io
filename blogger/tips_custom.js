@@ -281,7 +281,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   })();
-
 });
 
  // 12. Last.fm Now Playing
