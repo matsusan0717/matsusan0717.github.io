@@ -1,5 +1,5 @@
 /* ==========================================================
-   Blogger Custom Scripts (matsusan0717) - Full Integration (Tabs Removed)
+   Blogger Custom Scripts (matsusan0717) 
    ========================================================== */
 
 // 【設定】URL
@@ -284,10 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-/* ==========================================================
-   Last.fm Now Playing
-   (テンプレートのメインscriptブロックから移設)
-   ========================================================== */
+ // 11. Last.fm Now Playing
 (function() {
   var LASTFM_USER = "macco";
   var API_KEY = "a0bd7482e5a0eef8244954b4e2e30286";
