@@ -507,7 +507,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
   injectStyles();
 })();
-
-
    
 });
