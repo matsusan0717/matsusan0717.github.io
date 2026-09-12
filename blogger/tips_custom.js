@@ -1,42 +1,33 @@
 /* ==========================================================
    Blogger Custom Scripts (matsusan0717) 
    ========================================================== */
-
 // 【設定】URL
 const GAS_URL_POST = "https://script.google.com/macros/s/AKfycbz1r4vTFTaFObmrKFJsin5VjuKxXBdO9sF2AvDmxCHVZ9TjYsxyLbnq-FpLQSOHK_e8Mg/exec";
 const GAS_URL_GET  = "https://script.google.com/macros/s/AKfycby3MRkDpz_QhPwB5scSrxHj1qO9xJo_sugPX9caoJ8nNBThV9SBsZAsouKziHqW16MqPA/exec";
 const BLOG_URL = 'https://blogger.matsusanjpn.com/';
 const EXCLUDE_PATH = "/p/";
 const circleNumbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩"];
-
 document.addEventListener('DOMContentLoaded', () => {
-
   const BLOG_URL_HOSTNAME = window.location.hostname;
-
 // 1. 画像最適化 (WebP/リサイズ) & 広告制御
   const optimizeContent = () => {
     document.querySelectorAll('img').forEach(img => {
       if (img.closest('#matsu-lightbox')) return; // never touch the lightbox image (it holds the enlarged URL)
       const src = img.getAttribute('src');
       if (!src || src.includes('data:image')) return;
-
       // w750-rw/ から w900-rw/ に変更
       if (src.match(/\/s\d+(-rw)?\//)) {
         img.setAttribute('src', src.replace(/\/s\d+(-rw)?\//, '/w900-rw/'));
-      }
-      
+      }      
       if (img.closest('.md-thumb') && src.includes('/s1600/')) {
         img.setAttribute('src', src.replace('/s1600/', '/w400-rw/'));
       }
     });
-
-    // 不要な広告ユニットの削除
+    // 2. 不要な広告ユニットの削除
     document.querySelectorAll('.google-auto-placed, .adsbygoogle[data-ad-status="unfilled"]').forEach(ad => ad.remove());
   };
-
   window.addEventListener('load', optimizeContent);
   new MutationObserver(optimizeContent).observe(document.body, { childList: true, subtree: true });
-
   // 3. レーダーチャート生成
 (function() {
     const update = () => {
@@ -45,18 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const poly = container.querySelector('path[fill="#d0582530"]');
             const dots = container.querySelectorAll('g[fill="#d05825"] circle');
             const dds = container.querySelectorAll('dd');
-
             if (dds.length === 0) return;
-
             const centerX = 100, centerY = 100, radius = 100, count = dds.length;
             let points = [];
-
             for (let i = 0; i < count; i++) {
                 const val = parseFloat(dds[i].textContent) || 0;
                 const angle = (Math.PI * 2 / count) * i - (Math.PI / 2);
                 const x = (centerX + (radius * (val / 10)) * Math.cos(angle)).toFixed(1);
-                const y = (centerY + (radius * (val / 10)) * Math.sin(angle)).toFixed(1);
-                
+                const y = (centerY + (radius * (val / 10)) * Math.sin(angle)).toFixed(1);                
                 points.push(x + " " + y);
                 if (dots[i]) {
                     dots[i].setAttribute("cx", x);
@@ -66,25 +53,20 @@ document.addEventListener('DOMContentLoaded', () => {
             if (poly) poly.setAttribute("d", "M " + points.join(" L ") + " Z");
         });
     };
-
     const targetNode = document.getElementById('view-root') || document.documentElement;
-
     const observer = new MutationObserver(() => {
         update();
     });
-
     observer.observe(targetNode, {
         childList: true,
         subtree: true
     });
-
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', update);
     } else {
         update();
     }
 })();
-
   // 4. 日付形式の統一
   (function() {
     const formatDates = () => {
@@ -109,8 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     window.addEventListener('load', formatDates);
   })();
-
-   // 6. インフィード関連記事
+   // 5. インフィード関連記事
   (function() {
     const container = document.getElementById('infeed-slanted-card-container');
     if (!container) return;
@@ -135,8 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     script.src = `https://${BLOG_URL_HOSTNAME}/feeds/posts/default?alt=json-in-script&callback=callback_infeed_final&max-results=10&t=${Date.now()}`;
     document.body.appendChild(script);
   })();
-
-  // 7. 広告遅延読み込み
+  // 6. 広告遅延読み込み
   window.addEventListener("load", () => {
     setTimeout(() => {
       const ad = document.createElement("script");
@@ -146,8 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.head.appendChild(ad);
     }, 2000);
   });
-
-  // 8. jQuery依存機能 (読了率・ラベル)
+  // 7. jQuery依存機能 (読了率・ラベル)
   if (typeof jQuery !== 'undefined') {
     (function($) {
       // 読了率
@@ -159,31 +138,25 @@ document.addEventListener('DOMContentLoaded', () => {
         let prog = (st > cTop) ? ((st - cTop) / ($content.outerHeight() - $(window).height() + 200)) * 100 : 0;
         $('#reading-progress-bar').css('width', Math.min(100, Math.max(0, prog)) + '%');
       });
-
-      // ラベルリンクの修正
       $('a[href*="/search/label/"]').each(function() {
         const base = $(this).attr("href").split('?')[0];
         $(this).attr("href", base + "?&max-results=10");
       });
     })(jQuery);
   }
-
-// 9. アクセスログ記録 (POST)
+// 8. アクセスログ記録 (POST)
   (function() {
     const currentUrl = window.location.href;
     const currentPath = window.location.pathname;
     if (currentPath.indexOf(EXCLUDE_PATH) !== -1 || /preview|draft/.test(currentUrl) || document.title.includes("404")) return;
-
     const startTime = Date.now();
     let maxScrollRate = 0;
     let isSent = false;
-
     window.addEventListener("scroll", () => {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const currentRate = docHeight > 0 ? window.scrollY / docHeight : 0;
       if (currentRate > maxScrollRate) maxScrollRate = currentRate;
     }, { passive: true });
-
     const sendLog = () => {
       if (isSent) return;
       if (document.title.includes("404")) return;
@@ -203,12 +176,10 @@ document.addEventListener('DOMContentLoaded', () => {
         isSent = true;
       }
     };
-
     window.addEventListener("visibilitychange", () => { if (document.visibilityState === 'hidden') sendLog(); });
     window.addEventListener("pagehide", sendLog);
   })();
-
-  // 10. ページャー非表示
+  // 9. ページャー非表示
   (function() {
     const hidePager = () => {
       const pagers = document.querySelectorAll('.blog-pager, #blog-pager, .paging-control');
@@ -218,38 +189,31 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(hidePager, 500);
     setTimeout(hidePager, 1500);
   })();
-
-  // 11. お気に入り機能
+  // 10. お気に入り機能
   (function() {
     const favoriteButtons = document.querySelectorAll('.favorite-btn');
     if (!favoriteButtons.length) return;
-
     function getFavorites() {
       const favorites = localStorage.getItem('blogFavorites');
       return favorites ? JSON.parse(favorites) : [];
     }
-
     function saveFavorites(favorites) {
       localStorage.setItem('blogFavorites', JSON.stringify(favorites));
     }
-
     function isFavorited(url) {
       const favorites = getFavorites();
       return favorites.some(fav => fav.url === url);
     }
-
     function addFavorite(url, title) {
       const favorites = getFavorites();
       favorites.push({ url: url, title: title, date: new Date().toISOString() });
       saveFavorites(favorites);
     }
-
     function removeFavorite(url) {
       let favorites = getFavorites();
       favorites = favorites.filter(fav => fav.url !== url);
       saveFavorites(favorites);
     }
-
     function updateButtonState(button, isFav) {
       const icon = button.querySelector('i');
       const text = button.querySelector('.favorite-text');
@@ -263,7 +227,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (text) text.textContent = '保存して後で読む';
       }
     }
-
     favoriteButtons.forEach(function(button) {
       const postUrl = button.dataset.url;
       const postTitle = button.dataset.title;
@@ -281,9 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   })();
-
 });
-
  // 11. Last.fm Now Playing
 (function() {
   var LASTFM_USER = "macco";
