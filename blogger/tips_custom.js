@@ -12,10 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // 1. 画像最適化 (WebP/リサイズ) & 広告制御
   const optimizeContent = () => {
     document.querySelectorAll('img').forEach(img => {
-      if (img.closest('#matsu-lightbox')) return; // never touch the lightbox image (it holds the enlarged URL)
+      if (img.closest('#matsu-lightbox')) return; 
       const src = img.getAttribute('src');
       if (!src || src.includes('data:image')) return;
-      // w750-rw/ から w900-rw/ に変更
       if (src.match(/\/s\d+(-rw)?\//)) {
         img.setAttribute('src', src.replace(/\/s\d+(-rw)?\//, '/w900-rw/'));
       }      
