@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
- // 11. Last.fm Now Playing
+ // 12. Last.fm Now Playing
 (function() {
   var LASTFM_USER = "macco";
   var API_KEY = "a0bd7482e5a0eef8244954b4e2e30286";
