@@ -5786,6 +5786,9 @@ color: var(--heading-light)
 .view-status {
 	display: block;
 }
+.bcg {
+	margin:2rem 0;
+}
 .bcg img {
 	border-radius: 0;
 }
