@@ -6227,3 +6227,9 @@ transform: scale(0.4);
 .download a:hover {
 color: var(--accent-hover) !important;
 }
+.radar-chart-2 path.dynamic-poly {
+  transition: d 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.radar-chart-2 .dynamic-dots circle {
+  transition: cx 0.6s cubic-bezier(0.4, 0, 0.2, 1), cy 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
