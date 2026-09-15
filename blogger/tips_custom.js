@@ -2,7 +2,7 @@
    Blogger Custom Scripts (matsusan0717) 
    ========================================================== */
 // 【設定】URL
-const GAS_URL_POST = "https://script.google.com/macros/s/AKfycbz1r4vTFTaFObmrKFJsin5VjuKxXBdO9sF2AvDmxCHVZ9TjYsxyLbnq-FpLQSOHK_e8Mg/exec";
+const GAS_URL_POST = "https://script.google.com/macros/s/AKfycbzykUA05AvzFXEBzhUQvOq_z8tDZqtiNK35chHd6giW0c6o4p2hbhIyBTIsimFTYQ15Ow/exec";
 const GAS_URL_GET  = "https://script.google.com/macros/s/AKfycby3MRkDpz_QhPwB5scSrxHj1qO9xJo_sugPX9caoJ8nNBThV9SBsZAsouKziHqW16MqPA/exec";
 const BLOG_URL = 'https://blogger.matsusanjpn.com/';
 const EXCLUDE_PATH = "/p/";
