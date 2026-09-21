@@ -471,7 +471,7 @@ body.is-full-mode .sidebar {
 		display: block;
 		position: fixed;
 		top: 0;
-		right: -340px;
+		right: -370px;
 		width: 350px;
 		height: 100vh;
 		background: var(--bg-color);
