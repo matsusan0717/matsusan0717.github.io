@@ -6365,3 +6365,13 @@ font-family: monospace;
 .post-body .bcg img:hover {
     cursor: pointer !important;
 }
+.has-dropdown {
+    margin-left: 10px;
+    margin-right: -10px;
+}
+.dropdown-menu {
+    left: -17.6px;
+}
+.custom-archive-select__option {
+    font-variant-numeric: tabular-nums;
+}
