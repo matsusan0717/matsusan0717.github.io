@@ -3407,7 +3407,7 @@ body {
 }
 .nav-link:hover {
 	opacity: 1;
-	color: var(--accent-hover)
+	color:#c2a4a4;
 }
 .has-dropdown {
 	position: relative
