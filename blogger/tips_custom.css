@@ -1167,7 +1167,7 @@ div#slide-sidebar-content .download a[style] {
 .post-body a:hover {
 	color: var(--accent-hover);
 	text-decoration: underline;
-	text-decoration-color: var(--sub-amber) !important;
+	text-decoration-color: var(--accent-hover) !important;
 }
 .ms-fetch-error {
 	max-width: 650px !important;
