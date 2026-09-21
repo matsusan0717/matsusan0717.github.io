@@ -2304,7 +2304,7 @@ span#lp-v-artist:hover {
 	text-decoration: none !important;
 }
 div.hashtag-see-more:hover {
-	color: var(--accent-hover) !important;
+	color: var(--text-muted) !important;
 }
 .blogger-box-alert::after {
 	left: 60px !important;
