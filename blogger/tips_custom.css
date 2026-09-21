@@ -4549,7 +4549,7 @@ body:has(#forShare:checked) #main-content {
 	transition: background 0.3s
 }
 .copy-link-btn.success {
-	background: #10b981 !important
+	background: #64748b !important
 }
 .share-btn-list {
 	display: flex;
