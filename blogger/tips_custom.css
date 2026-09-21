@@ -472,7 +472,7 @@ body.is-full-mode .sidebar {
 		position: fixed;
 		top: 0;
 		right: -340px;
-		width: 320px;
+		width: 350px;
 		height: 100vh;
 		background: var(--bg-color);
 		border-left: 1px solid var(--border);
