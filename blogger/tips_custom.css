@@ -6375,3 +6375,6 @@ font-family: monospace;
 .custom-archive-select__option {
     font-variant-numeric: tabular-nums;
 }
+.post-full-meta a:hover{
+	color:var(--accent);
+}
