@@ -6378,3 +6378,17 @@ font-family: monospace;
 .post-full-meta a:hover{
 	color:var(--accent);
 }
+.slide-sidebar.is-open .sidebar-widget.fullright,
+.slide-sidebar.is-open .fm {
+	display:none;
+}
+.slide-sidebar.is-open .eva-main {
+    top: -85px;
+    position: relative;
+}
+.slide-sidebar.is-open #matsu-profile-container .avatar-img {
+	bottom: 125px;
+}
+.slide-sidebar .aslot {
+	margin-left: 0px;
+}
