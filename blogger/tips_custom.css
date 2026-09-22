@@ -3326,7 +3326,7 @@ body {
 	position: relative
 }
 .translate-btn:hover {
-	background: rgba(128, 128, 128, 0.1)
+	background: rgb(241 221 221 / 19%);
 }
 .translate-btn svg {
 	width: 20px;
