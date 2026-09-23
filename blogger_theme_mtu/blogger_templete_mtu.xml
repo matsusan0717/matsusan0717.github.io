@@ -1829,8 +1829,6 @@ input.gsc-input {
    .serif-left {
       margin-left: 80px; }
 }
-
-
 ]]></b:skin>
  
 <b:include data='blog' name='google-analytics'/>
@@ -1839,7 +1837,7 @@ input.gsc-input {
 <div id='site-header-wrap'>
 <div id='header'>
     <b:section id='ヘッダー' maxwidgets='1' showaddelement='no'>
-      <b:widget id='Header1' locked='true' title='Blogger Template MTU (Header)' type='Header' version='1'>
+      <b:widget id='Header1' locked='true' title='テスト (Header)' type='Header' version='1'>
         <b:widget-settings>
           <b:widget-setting name='displayUrl'/>
           <b:widget-setting name='displayHeight'>0</b:widget-setting>
@@ -2043,7 +2041,6 @@ input.gsc-input {
       .image-container { position: relative; width: 100%; line-height: 0; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 12px; -webkit-mask-image: -webkit-radial-gradient(white, black); transform: translateZ(0); }
       .image { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
       .featured-post-link:hover .image { transform: scale(1.05); }
-
       .label-badge {
         position: absolute;
         top: 15px;
@@ -2061,7 +2058,6 @@ input.gsc-input {
       }
       .badge-left { left: 15px; background-color: #e02d2d; }
       .badge-right { right: 15px; background-color: rgba(0, 0, 0, 0.7); }
-
       .text-overlay {
         position: absolute;
         bottom: 0; left: 0; right: 0;
@@ -2078,29 +2074,28 @@ input.gsc-input {
       </b:widget>
       <b:widget id='Blog1' locked='true' title='ブログの投稿' type='Blog' version='1'>
         <b:widget-settings>
+          <b:widget-setting name='showDateHeader'>true</b:widget-setting>
           <b:widget-setting name='commentLabel'>comments</b:widget-setting>
+          <b:widget-setting name='style.textcolor'>#ffffff</b:widget-setting>
           <b:widget-setting name='showShareButtons'>true</b:widget-setting>
           <b:widget-setting name='authorLabel'>By</b:widget-setting>
+          <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+          <b:widget-setting name='style.urlcolor'>#ffffff</b:widget-setting>
+          <b:widget-setting name='showAuthor'>false</b:widget-setting>
+          <b:widget-setting name='style.linkcolor'>#ffffff</b:widget-setting>
           <b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
+          <b:widget-setting name='style.bgcolor'>#ffffff</b:widget-setting>
           <b:widget-setting name='timestampLabel'>-</b:widget-setting>
           <b:widget-setting name='reactionsLabel'/>
           <b:widget-setting name='showAuthorProfile'>false</b:widget-setting>
           <b:widget-setting name='style.layout'>1x1</b:widget-setting>
+          <b:widget-setting name='showLabels'>true</b:widget-setting>
           <b:widget-setting name='showLocation'>false</b:widget-setting>
+          <b:widget-setting name='postLabelsLabel'>カテゴリ</b:widget-setting>
           <b:widget-setting name='showTimestamp'>false</b:widget-setting>
           <b:widget-setting name='postsPerAd'>1</b:widget-setting>
-          <b:widget-setting name='style.bordercolor'>#ffffff</b:widget-setting>
-          <b:widget-setting name='showDateHeader'>true</b:widget-setting>
-          <b:widget-setting name='style.textcolor'>#ffffff</b:widget-setting>
-          <b:widget-setting name='showCommentLink'>true</b:widget-setting>
-          <b:widget-setting name='style.urlcolor'>#ffffff</b:widget-setting>
-          <b:widget-setting name='postLocationLabel'>Location:</b:widget-setting>
-          <b:widget-setting name='showAuthor'>false</b:widget-setting>
-          <b:widget-setting name='style.linkcolor'>#ffffff</b:widget-setting>
-          <b:widget-setting name='style.bgcolor'>#ffffff</b:widget-setting>
-          <b:widget-setting name='showLabels'>true</b:widget-setting>
-          <b:widget-setting name='postLabelsLabel'>カテゴリ</b:widget-setting>
           <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+          <b:widget-setting name='style.bordercolor'>#ffffff</b:widget-setting>
           <b:widget-setting name='showInlineAds'>false</b:widget-setting>
           <b:widget-setting name='showReactions'>false</b:widget-setting>
         </b:widget-settings>
@@ -2129,24 +2124,19 @@ input.gsc-input {
    				<data:post.lastupdatedISO8601/><!-- 右側に表示される -->
 				</span>
 				<script>
-				// 投稿日
 				var published=new Date(&quot;<data:post.timestampISO8601/>&quot;);
-				// 最終更新日  
 				var updated =new Date(&quot;<data:post.lastUpdatedISO8601/>&quot;);
 				</script>
 				<script>
 				// <![CDATA[
-				// 投稿日
 				var pp_Y = ""+published.getFullYear();
 				var pp_M = ("0"+(published.getMonth()+1)).slice(-2);
 				var pp_D = ("0"+published.getDate()).slice(-2);
-				// 最終更新日 
 				var dd_Y = ""+updated.getFullYear();
 				var dd_M = ("0"+(updated.getMonth()+1)).slice(-2);
 				var dd_D = ("0"+updated.getDate()).slice(-2);
  
 				if(dd_Y == pp_Y && dd_M == pp_M && dd_D == pp_D){
-  			   //日付が同じときは出力しない
 				var updated_dd =""+ dd_Y+"/"+dd_M+"/"+dd_D+"";
  			    document.getElementById("last-modified").innerHTML = updated_dd;/*投稿日と更新日が同じでも双方表示させる---*/
 				}
@@ -2712,18 +2702,13 @@ input.gsc-input {
     <script type='text/javascript'>
       //<![CDATA[
       (function() {
-        // 判定対象：注目の投稿ウィジェット
         var featuredPost = document.getElementById('FeaturedPost1');
-        // 操作対象：スペーサー
         var spacer = document.getElementById('js-dynamic-spacer');
         
         if (featuredPost && spacer) {
-          // ウィジェットが存在し、かつ中身（HTML）が空でないかチェック
-          // trim()で空白を除去し、HTMLが存在すれば「表示されている」と判断
           var hasContent = featuredPost.innerHTML.replace(/\s+/g, '').length > 0;
           
           if (hasContent) {
-            // 注目記事がある場合はスペーサーを非表示（高さ0）にする
             spacer.style.display = 'none';
           }
         }
@@ -2749,162 +2734,229 @@ input.gsc-input {
   const blogUrl = &quot;<data:blog.homepageUrl.canonical/>&quot;;
   const label = &quot;<b:eval expr='data:blog.searchLabel'/>&quot;;
   const query = &quot;<b:eval expr='data:blog.searchQuery'/>&quot;;
-  const archiveYearTpl = &quot;<b:if cond='data:blog.pageType == &quot;archive&quot;'><data:view.archive.year/></b:if>&quot;;
-  const archiveMonthTpl = &quot;<b:if cond='data:blog.pageType == &quot;archive&quot;'><data:view.archive.month/></b:if>&quot;;
   const selector = &#39;.pagination&#39;;
   const maxResults = 4;
 
   //<![CDATA[
+  (function() {
+    const base = blogUrl.replace(/\/$/, "");
+    const path = window.location.pathname;
+    const currentSearch = window.location.search;
 
-  // 月別アーカイブのスコープ(年・月)を取得
-  // 1) アーカイブページ本体では view.archive から取得
-  // 2) ページャーで遷移した後の /search ページでは自前で付与したクエリ(ay, am)から取得
-  // 3) 念のためURLパス /YYYY/MM/ からも取得を試みる
-  function getArchiveScope() {
-    var y = archiveYearTpl;
-    var m = archiveMonthTpl;
-    if (!y || !m) {
-      var params = new URLSearchParams(location.search);
-      y = params.get('ay') || '';
-      m = params.get('am') || '';
+    function getUrlParam(name) {
+      const reg = new RegExp("(^|[?&])" + name + "=([^&]*)");
+      const r = currentSearch.match(reg);
+      return r != null ? decodeURIComponent(r[2]) : null;
     }
-    if (!y || !m) {
-      var pm = location.pathname.match(/\/(\d{4})\/(\d{1,2})\//);
-      if (pm) { y = pm[1]; m = pm[2]; }
+
+    const archiveParam = getUrlParam('archive');
+    const typeParam = getUrlParam('type');
+    const archiveMatch = path.match(/^\/\d{4}\/(\d{2}\/)?/);
+    let archivePath = archiveParam ? decodeURIComponent(archiveParam)
+      : (archiveMatch ? archiveMatch[0] : "");
+    const isArchive = archivePath !== "" || typeParam === 'archive';
+
+    if (archiveMatch && currentSearch.indexOf('max-results=') === -1) {
+      const sep = currentSearch ? '&' : '?';
+      location.href = path + currentSearch + sep + 'max-results=' + maxResults + '&type=archive';
+      return;
     }
-    return (y && m) ? { year: parseInt(y, 10), month: parseInt(m, 10) } : null;
-  }
 
-  function pad2(n) {
-    return (n < 10 ? '0' : '') + n;
-  }
+    function getMonthBounds() {
+      if (!archivePath) return null;
+      const parts = archivePath.split('/').filter(Boolean);
+      const year = parseInt(parts[0]);
+      const month = parts[1] ? parseInt(parts[1]) : null;
+      let startTime, endTime;
+      if (month) {
+        startTime = year + "-" + String(month).padStart(2, '0') + "-01T00:00:00";
+        let nextMonth = month + 1;
+        let nextYear = year;
+        if (nextMonth > 12) { nextMonth = 1; nextYear = year + 1; }
+        endTime = nextYear + "-" + String(nextMonth).padStart(2, '0') + "-01T00:00:00";
+      } else {
+        startTime = year + "-01-01T00:00:00";
+        endTime = (year + 1) + "-01-01T00:00:00";
+      }
+      return { start: startTime, end: endTime };
+    }
 
-  // 指定の年月(月初〜翌月月初)のpublished-min / published-maxを返す
-  function getArchiveBounds(year, month) {
-    var minDate = new Date(Date.UTC(year, month - 1, 1, 0, 0, 0));
-    var maxDate = new Date(Date.UTC(year, month, 1, 0, 0, 0));
-    return { min: minDate.toISOString(), max: maxDate.toISOString() };
-  }
+    if (isArchive) {
+      loadArchiveList();
+    }
 
-  const archiveScope = getArchiveScope();
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str == null ? '' : str;
+      return div.innerHTML;
+    }
 
-  setupPagination();
+    function buildPostHtml(entry) {
+      const title = entry.title && entry.title.$t ? entry.title.$t : '';
+      const linkObj = (entry.link || []).find(function(l){ return l.rel === 'alternate'; });
+      const url = linkObj ? linkObj.href : '#';
+      const publishedStr = entry.published ? entry.published.$t : '';
+      const d = publishedStr ? new Date(publishedStr) : null;
+      const dateText = d ? (d.getFullYear() + '/' + String(d.getMonth() + 1).padStart(2, '0') + '/' + String(d.getDate()).padStart(2, '0')) : '';
 
-  function setupPagination() {
-    let base = blogUrl.replace(/\/$/, "");
-    let feedUrl = base + '/feeds/posts/summary';
+      let imgHtml;
+      if (entry.media$thumbnail && entry.media$thumbnail.url) {
+        const imgSrc = entry.media$thumbnail.url.replace(/\/s\d+(-c)?\//, '/s640/');
+        imgHtml = '<a href="' + url + '"><img class="list-item-img" src="' + imgSrc + '" height="240" width="480"/></a>';
+      } else {
+        imgHtml = '<a href="' + url + '"><img class="list-item-img" height="240" src="https://placehold.jp/50px/70543e/ffffff/1280x720.jpg?text=NO%20IMAGE&css=%7B%22background%22%3A%22%20-webkit-gradient(linear%2C%20left%20top%2C%20left%20bottom%2C%20from(%23666666)%2C%20to(%23cccccc))%22%7D" width="480"/></a>';
+      }
 
-    if (archiveScope) {
-      // 月別アーカイブ: その月の投稿数だけを対象にする
-      const bounds = getArchiveBounds(archiveScope.year, archiveScope.month);
-      feedUrl += '?published-min=' + encodeURIComponent(bounds.min) + '&published-max=' + encodeURIComponent(bounds.max) + '&alt=json&max-results=1';
-    } else {
-      // ラベル検索時
+      let labelsHtml = '';
+      (entry.category || []).forEach(function(c) {
+        if (c.term && c.term.indexOf('#') === -1) {
+          labelsHtml += '<span class="list-item-category-item"><i class="fa-solid fa-tag" style="margin-right:5px;"></i><a href="' + base + '/search/label/' + encodeURIComponent(c.term) + '">' + escapeHtml(c.term) + '</a></span>';
+        }
+      });
+
+      return '<article class="list-item">' + imgHtml +
+        '<div class="list-item-inner">' +
+        '<p class="list-item-date"><i class="fa-regular fa-calendar" style="margin-right:5px;"></i>' + dateText + '</p>' +
+        '<h3 class="list-item-title"><a href="' + url + '">' + escapeHtml(title) + '</a></h3>' +
+        '<p class="list-item-category">' + labelsHtml + '</p>' +
+        '</div></article>';
+    }
+
+    function loadArchiveList() {
+      const list = document.getElementById('list');
+      if (!list) return;
+      list.style.visibility = 'hidden';
+
+      const startIndex = parseInt(getUrlParam('start')) || 0;
+      const bounds = getMonthBounds();
+      let feedUrl = base + '/feeds/posts/summary?alt=json&orderby=published&start-index=' + (startIndex + 1) + '&max-results=' + maxResults;
+      if (bounds) feedUrl += '&published-min=' + bounds.start + '&published-max=' + bounds.end;
+
+      fetch(feedUrl)
+        .then(function(r) { return r.json(); })
+        .then(function(json) {
+          const entries = (json.feed && json.feed.entry) ? json.feed.entry : [];
+          list.innerHTML = entries.map(buildPostHtml).join('');
+          list.style.visibility = 'visible';
+        })
+        .catch(function() {
+          list.style.visibility = 'visible';
+        });
+    }
+
+    setupPagination();
+
+    function setupPagination() {
+      let feedUrl = base + '/feeds/posts/summary';
+
       if (label) {
         feedUrl += '/-/' + encodeURIComponent(label);
       }
 
       feedUrl += (feedUrl.indexOf('?') <= -1 ? '?' : '&') + 'alt=json&max-results=1';
-    }
 
-    // 検索クエリがある場合
-    if (query) {
-      feedUrl = base + '/feeds/posts/summary?alt=json&max-results=99&q=' + encodeURIComponent(query);
-    }
-
-    fetch(feedUrl)
-      .then(r => r.json())
-      .then(json => {
-        if (!json.feed || !json.feed.openSearch$totalResults) return;
-        const totalResults = parseInt(json.feed.openSearch$totalResults.$t, 10);
-        const totalPages = Math.ceil(totalResults / maxResults);
-
-        let currentPage = 1;
-        if (location.href.indexOf('#Page-') > -1) {
-          currentPage = parseInt(location.href.split('#Page-')[1]);
-        }
-
-        if (totalResults > maxResults) {
-          let pagerHtml = '';
-          const delta = 2; // 現在のページの前後に表示する数
-
-          for (let i = 1; i <= totalPages; i++) {
-            // 省略ロジック: 1ページ目、最後、現在のページ周辺以外を飛ばす
-            if (i === 1 || i === totalPages || (i >= currentPage - delta && i <= currentPage + delta)) {
-              if (i === currentPage) {
-                pagerHtml += '<span class="pagination-link current-page">' + i + '</span>';
-              } else {
-                pagerHtml += '<a class="pagination-link" id="Page-' + i + '" href="#">' + i + '</a>';
-              }
-            } else if (i === currentPage - delta - 1 || i === currentPage + delta + 1) {
-              pagerHtml += '<span class="pagination-ellipsis">...</span>';
-            }
-          }
-
-          const pagerElem = document.querySelector(selector);
-          if (pagerElem) {
-            pagerElem.innerHTML = pagerHtml;
-            // 非同期でURLを設定
-            for (let i = 1; i <= totalPages; i++) {
-              if (i === currentPage) continue;
-              const link = document.querySelector(selector + ' #Page-' + i);
-              if (link) setPageUrl(i);
-            }
-          }
-        }
-      });
-  }
-
-  function setPageUrl(targetPage) {
-    let base = blogUrl.replace(/\/$/, "");
-    const archiveQuery = archiveScope ? '&ay=' + archiveScope.year + '&am=' + pad2(archiveScope.month) : '';
-
-    if (targetPage === 1) {
-      let firstPageHref;
-      if (archiveScope) {
-        // 月別アーカイブの1ページ目は本来のアーカイブURLに戻す
-        firstPageHref = base + '/' + archiveScope.year + '/' + pad2(archiveScope.month) + '/#Page-1';
-      } else {
-        firstPageHref = base + (label != '' ? '/search/label/' + encodeURIComponent(label) : '/search');
-        firstPageHref += (firstPageHref.indexOf('?') <= -1 ? '?' : '&') + 'max-results=' + maxResults + '#Page-1';
+      if (query) {
+        feedUrl = base + '/feeds/posts/summary?alt=json&max-results=99&q=' + encodeURIComponent(query);
       }
-      const firstPageLink = document.querySelector(selector + ' #Page-1');
-      if (firstPageLink) firstPageLink.href = firstPageHref;
-      return; 
+
+      const bounds = isArchive ? getMonthBounds() : null;
+      if (bounds) {
+        feedUrl += (feedUrl.indexOf('?') <= -1 ? '?' : '&') + 'published-min=' + bounds.start + '&published-max=' + bounds.end;
+      }
+
+      fetch(feedUrl)
+        .then(r => r.json())
+        .then(json => {
+          if (!json.feed || !json.feed.openSearch$totalResults) return;
+          const totalResults = parseInt(json.feed.openSearch$totalResults.$t, 10);
+          const totalPages = Math.ceil(totalResults / maxResults);
+
+          let currentPage = 1;
+          if (location.href.indexOf('#Page-') > -1) {
+            currentPage = parseInt(location.href.split('#Page-')[1]);
+          } else if (isArchive) {
+            const startParam = parseInt(getUrlParam('start')) || 0;
+            currentPage = Math.floor(startParam / maxResults) + 1;
+          }
+
+          if (totalResults > maxResults) {
+            let pagerHtml = '';
+            const delta = 2; 
+
+            for (let i = 1; i <= totalPages; i++) {
+              if (i === 1 || i === totalPages || (i >= currentPage - delta && i <= currentPage + delta)) {
+                if (i === currentPage) {
+                  pagerHtml += '<span class="pagination-link current-page">' + i + '</span>';
+                } else {
+                  pagerHtml += '<a class="pagination-link" id="Page-' + i + '" href="#">' + i + '</a>';
+                }
+              } else if (i === currentPage - delta - 1 || i === currentPage + delta + 1) {
+                pagerHtml += '<span class="pagination-ellipsis">...</span>';
+              }
+            }
+
+            const pagerElem = document.querySelector(selector);
+            if (pagerElem) {
+              pagerElem.innerHTML = pagerHtml;
+              for (let i = 1; i <= totalPages; i++) {
+                if (i === currentPage) continue;
+                const link = document.querySelector(selector + ' #Page-' + i);
+                if (link) setPageUrl(i);
+              }
+            }
+          }
+        });
     }
 
-    let startIndex = (targetPage - 1) * maxResults;
-    let feedUrl = base + "/feeds/posts/summary";
-    if (archiveScope) {
-      const bounds = getArchiveBounds(archiveScope.year, archiveScope.month);
-      feedUrl += '?published-min=' + encodeURIComponent(bounds.min) + '&published-max=' + encodeURIComponent(bounds.max);
-      feedUrl += '&alt=json&orderby=published&start-index=' + (startIndex + 1) + '&max-results=1';
-    } else {
-      if (label != '') feedUrl += '/-/' + encodeURIComponent(label);
-      feedUrl += (feedUrl.indexOf('?') <= -1 ? '?' : '&') + 'alt=json&orderby=published&start-index=' + (startIndex + 1) + '&max-results=1';
-    }
+    function setPageUrl(targetPage) {
+      if (targetPage === 1) {
+        let firstPageHref;
+        if (isArchive && archivePath) {
+          firstPageHref = base + archivePath + '?max-results=' + maxResults + '&type=archive#Page-1';
+        } else {
+          firstPageHref = base + (label != '' ? '/search/label/' + encodeURIComponent(label) : '/search');
+          firstPageHref += (firstPageHref.indexOf('?') <= -1 ? '?' : '&') + 'max-results=' + maxResults + '#Page-1';
+        }
+        const firstPageLink = document.querySelector(selector + ' #Page-1');
+        if (firstPageLink) firstPageLink.href = firstPageHref;
+        return;
+      }
 
-    fetch(feedUrl)
-      .then((response) => response.json())
-      .then((json) => {
-        if (!json.feed || !json.feed.entry) return;
-        const date = encodeDate(json.feed.entry[0].published.$t);
-        let hrefBase = base + '/search' + (label != '' ? '/label/' + encodeURIComponent(label) : '');
-        let finalHref = hrefBase + (hrefBase.indexOf('?') <= -1 ? '?' : '&') + 'updated-max=' + date + '&max-results=' + maxResults + '&start=' + startIndex + '&by-date=false' + archiveQuery + '#Page-' + targetPage;
+      let startIndex = (targetPage - 1) * maxResults;
+
+      if (isArchive) {
+        let archivePart = archivePath ? '&type=archive&archive=' + encodeURIComponent(archivePath) : '';
+        let finalHref = base + '/search?start=' + startIndex + archivePart + '#Page-' + targetPage;
         const liElem = document.querySelector(selector + ' #Page-' + targetPage);
         if (liElem) liElem.href = finalHref;
-      });
-  }
+        return;
+      }
 
-  function encodeDate(dateStr) {
-    dateStr = dateStr.substring(0, 19) + dateStr.substring(23, 29);
-    return encodeURIComponent(dateStr);
-  }
+      let feedUrl = base + "/feeds/posts/summary";
+      if (label != '') feedUrl += '/-/' + encodeURIComponent(label);
+      feedUrl += (feedUrl.indexOf('?') <= -1 ? '?' : '&') + 'alt=json&orderby=published&start-index=' + (startIndex + 1) + '&max-results=1';
+
+      fetch(feedUrl)
+        .then((response) => response.json())
+        .then((json) => {
+          if (!json.feed || !json.feed.entry) return;
+          const date = encodeDate(json.feed.entry[0].published.$t);
+          let hrefBase = base + '/search' + (label != '' ? '/label/' + encodeURIComponent(label) : '');
+          let finalHref = hrefBase + (hrefBase.indexOf('?') <= -1 ? '?' : '&') + 'updated-max=' + date + '&max-results=' + maxResults + '&start=' + startIndex + '&by-date=false#Page-' + targetPage;
+          const liElem = document.querySelector(selector + ' #Page-' + targetPage);
+          if (liElem) liElem.href = finalHref;
+        });
+    }
+
+    function encodeDate(dateStr) {
+      dateStr = dateStr.substring(0, 19) + dateStr.substring(23, 29);
+      return encodeURIComponent(dateStr);
+    }
+  })();
   //]]>
 </script>
   </b:if>
-  
-  <!-- 記事詳細ページではこちらを表示(アーカイブページは上の数字付きページャーを使用) -->
+  <!-- 記事詳細ページではこちらを表示(アーカイブは上の独自ページャーに統一) -->
   <b:if cond='data:blog.pageType == &quot;item&quot;'>
     <div class='blog-pager' id='blog-pager'>
       <b:if cond='data:newerPageUrl'>
@@ -3336,7 +3388,6 @@ input.gsc-input {
 </div>
 
 <style>
-/* ===== 全体余白 ===== */
 .popular-posts ul,
 #popular-posts-custom,
 #recent-posts-container {
@@ -3344,8 +3395,6 @@ input.gsc-input {
   margin: 0;
   padding: 10px;
 }
-
-/* ===== アイテム ===== */
 .popular-posts li,
 #popular-posts-custom li,
 #recent-posts-container li {
@@ -3362,8 +3411,6 @@ input.gsc-input {
 #recent-posts-container li:last-child {
   border-bottom: none;
 }
-
-/* ===== サムネ ===== */
 .item-thumbnail img,
 .recent-post-thumb {
   width: 72px;
@@ -3374,29 +3421,20 @@ input.gsc-input {
   display: block;
   flex-shrink: 0;
 }
-
-/* サムネを基準にする */
 .item-thumbnail {
   position: relative;
 }
-
-/* ランキングを前面に */
 #popular-posts-custom li::before {
-  z-index: 2;          /* ← これ追加（最重要） */
+  z-index: 2;
 }
-
-/* サムネを一段下げる */
 .item-thumbnail img {
   position: relative;
   z-index: 1;
 }
-
-/* ===== テキスト ===== */
 .item-title,
 .recent-post-info {
   flex: 1;
 }
-
 .item-title,
 .recent-post-title {
   font-size: 14px;
@@ -3404,66 +3442,48 @@ input.gsc-input {
   line-height: 1.6;
   margin: 0;
 }
-
-/* 2行制限（これが今回の要件） */
 .item-title a,
 .recent-post-title a {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-
   color: #555;
   text-decoration: none;
   transition: 0.2s;
 }
-
 .item-title a:hover,
 .recent-post-title a:hover {
   color: rgba(15, 43, 70, 0.7);
 }
-
-/* ===== ランキング ===== */
 #popular-posts-custom {
   counter-reset: rank-counter;
 }
-
 #popular-posts-custom li {
   counter-increment: rank-counter;
 }
-
 #popular-posts-custom li::before {
   content: counter(rank-counter);
   position: absolute;
   top: 10px;
   left: -2px;
-
   width: 18px;
   height: 18px;
   border-radius: 50%;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 10px;
   font-weight: bold;
-
   background: #999;
   color: #fff;
 }
-
-/* 上位3つ */
 #popular-posts-custom li:nth-child(1)::before { background: #E6B422; }
 #popular-posts-custom li:nth-child(2)::before { background: #B4B4B4; }
 #popular-posts-custom li:nth-child(3)::before { background: #AD7D4C; }
-
-/* バッジ分余白 */
 #popular-posts-custom .item-thumbnail {
   margin-left: 6px;
 }
-
-/* ===== タブ ===== */
 .lava-lamp-wrapper .tab-buttons {
   display: flex;
   background: #eee;
@@ -3492,8 +3512,6 @@ input.gsc-input {
 }
 .lava-lamp-wrapper .tab-content > div { display: none; }
 .lava-lamp-wrapper .tab-content > div.content1 { display: block; }
-
-/* ローディング */
 .loading {
   text-align: center;
   padding: 20px;
@@ -3608,7 +3626,7 @@ input.gsc-input {
     </div>
   </b:includable>
       </b:widget>
-      <b:widget id='PopularPosts1' locked='false' title='人気の投稿 ※消さないでください' type='PopularPosts' version='1'>
+      <b:widget id='PopularPosts1' locked='false' title='人気の投稿 ※消さないでください' type='PopularPosts'>
         <b:widget-settings>
           <b:widget-setting name='numItemsToShow'>3</b:widget-setting>
           <b:widget-setting name='showThumbnails'>true</b:widget-setting>
@@ -3835,17 +3853,12 @@ input.gsc-input {
 </div>
 
 <style type="text/css">
-/* 1. 初期状態：ガジェット枠を隠す */
 .widget:has(#toc-custom-widget) {
     display: none;
 }
-
-/* 目次全体のコンテナ */
 .toc-widget-container {
     width: 100%;
 }
-
-/* ハイライト時のスタイル */
 .toc-link.active {
     color: #0f2b46 !important;
     font-weight: 700 !important;
@@ -3853,7 +3866,6 @@ input.gsc-input {
     background: rgba(15, 43, 70, 0.05);
     padding-left: 8px;
 }
-
 .toc-link {
     display: block;
     padding: 4px 0;
@@ -3862,13 +3874,11 @@ input.gsc-input {
     color: #555555;
     font-size: 14px;
 }
-
 .custom-toc-wrapper ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
-
 .custom-toc-wrapper li {
     margin-bottom: 5px;
 }
@@ -3877,7 +3887,6 @@ input.gsc-input {
 <script type="text/javascript">
 //<![CDATA[
 (function($){
-    // 実行を高速化するため load ではなく ready (DOMContentLoaded) を使用
     $(function(){
         var $postBody = $('.post-body, .entry-content, .item-post-inner').first();
         var $tocArea = $('#toc-content-area');
@@ -3888,13 +3897,11 @@ input.gsc-input {
 
         var $headings = $postBody.find('h2, h3');
         
-        // 見出しがない場合は隠したまま終了
         if ($headings.length === 0) {
             $parentGadget.hide();
             return;
         }
 
-        // 目次生成
         var $ul = $('<ul></ul>');
         $headings.each(function(i, el){
             var id = 'toc-point-' + i;
@@ -3913,10 +3920,8 @@ input.gsc-input {
         
         $tocArea.empty().append($ul);
 
-        // 生成直後に表示（画像待ちをしない）
         $parentGadget.show();
 
-        // スクロール追従設定（画像読み込みで高さが変わるため、ここは load 後に再計算）
         var updateTocPosition;
         
         $(window).on('load', function(){
@@ -3957,7 +3962,6 @@ input.gsc-input {
                     $parentGadget.css({'position':'static','width':'auto'});
                 }
 
-                // ハイライト判定
                 var activeId = "";
                 $headings.each(function(){
                     var targetTop = $(this).offset().top;
@@ -4017,7 +4021,6 @@ input.gsc-input {
        </b:widget-settings>
        <b:includable id='main'>
 
-
 <div class='widget-content'>
 <div class='widget-content footer-nav-container'>
   <ul class='footer-nav-list'>
@@ -4066,11 +4069,7 @@ input.gsc-input {
   </div>
  </div>
   
-
-
-  
-<!-- スクリプト -->
-  
+<!-- スクリプト -->  
 <!-- 上へ戻る -->  
 <a href='javascript:void(0);' id='page-top'>
   <i class='fa-solid fa-chevron-up'/>
@@ -4080,9 +4079,7 @@ input.gsc-input {
 (function() {
   const pageTop = document.getElementById("page-top");
   if (pageTop) {
-    // スクロール検知
     window.addEventListener("scroll", function() {
-      // 200px以上スクロールしたら表示
       if (window.pageYOffset > 200) {
         pageTop.classList.add("show");
       } else {
@@ -4090,7 +4087,6 @@ input.gsc-input {
       }
     });
 
-    // クリックイベント
     pageTop.addEventListener("click", function(e) {
       e.preventDefault();
       window.scrollTo({
@@ -4143,7 +4139,6 @@ $("a.blog-pager-older-link").html(olderLinkTitle + " <i class='fas fa-angle-doub
     var topUl = nav.querySelector('ul');
     if (!topUl) return;
 
-    // li を配列に変換（DOMを操作するので先にコピー）
     var allItems = Array.prototype.slice.call(topUl.querySelectorAll(':scope > li'));
     var currentParent = null;
 
@@ -4153,7 +4148,6 @@ $("a.blog-pager-older-link").html(olderLinkTitle + " <i class='fas fa-angle-doub
       var text = link.textContent.trim();
 
       if (text.charAt(0) === '_') {
-        // 子アイテム：直前の親に追加
         if (currentParent) {
           var sub = currentParent.querySelector('ul.sub-menu');
           if (!sub) {
@@ -4162,12 +4156,10 @@ $("a.blog-pager-older-link").html(olderLinkTitle + " <i class='fas fa-angle-doub
             currentParent.appendChild(sub);
             currentParent.classList.add('has-sub');
 
-            // 親ラベルクリック → サブメニュー開閉
             var parentLink = currentParent.querySelector('a');
             parentLink.addEventListener('click', function(e) {
               e.preventDefault();
               e.stopPropagation();
-              // 他を閉じる
               var openItems = document.querySelectorAll('#PageList1 li.has-sub.open');
               for (var i = 0; i < openItems.length; i++) {
                 if (openItems[i] !== currentParent) {
@@ -4177,20 +4169,16 @@ $("a.blog-pager-older-link").html(olderLinkTitle + " <i class='fas fa-angle-doub
               currentParent.classList.toggle('open');
             });
           }
-          // 先頭の「_」を取り除く
           link.textContent = text.replace(/^_+/, '');
           sub.appendChild(item);
         }
       } else {
-        // 通常アイテム → 次の親候補
         currentParent = item;
       }
     });
 
-    // 準備完了 → 一斉に表示
     topUl.classList.add('menu-ready');
 
-    // メニュー外クリックで全閉じ
     document.addEventListener('click', function() {
       var openItems = document.querySelectorAll('#PageList1 li.has-sub.open');
       for (var i = 0; i < openItems.length; i++) {
@@ -4224,10 +4212,8 @@ $("a.blog-pager-older-link").html(olderLinkTitle + " <i class='fas fa-angle-doub
 
       document.addEventListener('DOMContentLoaded', function () {
         var rootElement = document.querySelector(toc_options.postBodySelector);
-        // 挿入先となるターゲット（id="toc" または class="toc"）を探す
         var tocPlaceholder = document.getElementById('toc') || document.querySelector('.toc');
 
-        // 記事本文がない、または目次用タグが記述されていない場合は実行しない
         if (!rootElement || !tocPlaceholder) { return; }
 
         if (toc_options.target.length == 0) return;
@@ -4236,7 +4222,6 @@ $("a.blog-pager-older-link").html(olderLinkTitle + " <i class='fas fa-angle-doub
 
         if (rootContent.children.length >= toc_options.condTargetCount) {
           var wrap = createElement(rootContent);
-          // 指定されたタグの中に目次を流し込む
           tocPlaceholder.innerHTML = ''; 
           tocPlaceholder.appendChild(wrap);
         }
@@ -4315,7 +4300,7 @@ $("a.blog-pager-older-link").html(olderLinkTitle + " <i class='fas fa-angle-doub
           }
         };
         a.addEventListener('click', toggleToc);
-        toggleToc(true); // 初期状態で表示
+        toggleToc(true);
 
         var ul = document.createElement("ul");
         ul.classList.add("toc-content");
@@ -4362,17 +4347,15 @@ $("a.blog-pager-older-link").html(olderLinkTitle + " <i class='fas fa-angle-doub
     	e.preventDefault();
     	let href = a.getAttribute('href');
     	let id = href.replace('#', '');
-    	// querySelector で # エスケープも考慮して検索
     	let targetElement = document.getElementById(id)
       	|| document.querySelector('[id="' + id + '"]');
     	if (targetElement) {
-      	const headerOffset = 60; // 固定ヘッダーがある場合はその高さに合わせる
+      	const headerOffset = 60; 
       	const rect = targetElement.getBoundingClientRect().top;
      	 const offset = window.pageYOffset;
      	 const target = rect + offset - headerOffset;
      	 window.scrollTo({ top: target, behavior: 'smooth' });
     	} else {
-     	 // フォールバック：ネイティブのアンカージャンプ
       	location.href = href;
     	}
     });
@@ -4393,8 +4376,7 @@ $("a.blog-pager-older-link").html(olderLinkTitle + " <i class='fas fa-angle-doub
   //]]>
   </script>
 </b:if>
-  
-  
+   
 <!-- タブ -->
 <script>
 //<![CDATA[  
@@ -4406,29 +4388,23 @@ jQuery(document).ready(function($){
     var $contentDivs = $wrapper.find('.tab-content > div');
     var $tabContent = $wrapper.find('.tab-content');
     
-    // ボタンの数から幅を自動計算 (2つなら50%, 3つなら33.33%...)
     var btnCount = $buttons.length;
     var lampWidth = 100 / btnCount;
     
-    // 初期状態のランプ幅を設定
     $lamp.css('width', lampWidth + '%');
     
     $buttons.click(function(){
       var targetClass = $(this).attr('class');
       var index = $buttons.index(this);
 
-      // ちらつき防止: 切り替え前に現在の高さを固定
       $tabContent.css('height', $tabContent.height());
 
-      // ランプの移動：(インデックス × 幅) で正確な位置へ
       $lamp.css('left', (index * lampWidth) + '%');
 
-      // コンテンツの切り替え
       $contentDivs.hide();
       var $nextContent = $wrapper.find('.tab-content > div.' + targetClass);
       
       $nextContent.fadeIn(400, function(){
-        // フェード完了後に高さをオートに戻す
         $tabContent.css('height', 'auto');
       });
     });
@@ -4550,9 +4526,7 @@ jQuery(document).ready(function($){
     const container = document.getElementById('custom-breadcrumbs');
     if (!container) return;
 
-    const units = Array.from(container.querySelectorAll('.bc-item-unit'));
-    
-    // 1. まず「#なしの正しいラベル」があるか探す
+    const units = Array.from(container.querySelectorAll('.bc-item-unit'));    
     const validLabel = units.find(unit => {
       const link = unit.querySelector('a');
       return link && !link.getAttribute('href').includes('%23');
@@ -4566,13 +4540,9 @@ jQuery(document).ready(function($){
 
       const isHash = link.getAttribute('href').includes('%23');
 
-      // 【判定ロジック】
-      // A. 他に正しいラベルがあるのに、これは #タグ である → 削除
-      // B. 既に1つ表示済みである → 削除
       if ((validLabel && isHash) || foundOne) {
         unit.parentNode.removeChild(unit);
       } 
-      // C. それ以外（「最初の正しいラベル」または「#しかない時の最初の#」） → 残す
       else {
         foundOne = true;
         const sep = unit.querySelector('.bc-sep');
@@ -4596,13 +4566,12 @@ jQuery(document).ready(function($){
    * false = 標準（最新を展開）のまま
    */
   const CONFIG_COLLAPSE_INIT = true; 
-  let isFirstRun = true; // 初回実行判定フラグ
+  let isFirstRun = true;
 
   const updateArchive = () => {
     const archiveList = document.getElementById('BlogArchive1_ArchiveList');
     if (!archiveList) return;
 
-    // 1. 日付フォーマットの変換 (2026 3月)
     const archiveLinks = archiveList.querySelectorAll('.post-count-link');
     archiveLinks.forEach(link => {
       const text = link.textContent.trim();
@@ -4612,7 +4581,6 @@ jQuery(document).ready(function($){
       }
     });
 
-    // 2. 初回のみ「閉じる」処理を実行
     if (CONFIG_COLLAPSE_INIT && isFirstRun) {
       const expandedItems = archiveList.querySelectorAll('.archivedate.expanded');
       expandedItems.forEach(item => {
@@ -4625,7 +4593,7 @@ jQuery(document).ready(function($){
           zippy.innerHTML = '&#9658;&nbsp;'; // ►
         }
       });
-      isFirstRun = false; // 二回目以降（クリック時など）はこのブロックを通さない
+      isFirstRun = false; 
     }
   };
 
