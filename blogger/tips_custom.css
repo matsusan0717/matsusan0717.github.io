@@ -6396,3 +6396,13 @@ font-family: monospace;
   content: "\A" ;
   white-space: pre;
 }
+#lp-v-info a:hover #lp-v-title {
+    color: var(--accent-hover);
+    text-decoration: none;
+}
+.bcg{
+	margin:0 8px;
+}
+.bcg a:hover {
+	box-shadow :0 8px 8px rgba(0,0,0,.12) !important;
+}
