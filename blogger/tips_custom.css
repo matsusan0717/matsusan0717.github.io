@@ -6392,3 +6392,7 @@ font-family: monospace;
 .slide-sidebar .aslot {
 	margin-left: 0px;
 }
+.css-br::after {
+  content: "\A" ;
+  white-space: pre;
+}
