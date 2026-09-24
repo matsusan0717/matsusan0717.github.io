@@ -788,7 +788,8 @@ html[data-theme="dark"] .tag:not(.token), @media (prefers-color-scheme:dark) {
    }
 }
 .tag:not(.token):hover {
-   background: rgba(37, 99, 235, 0.15)
+   background: var(--accent);
+   color: #ffffff;
 }
 .sidebar-widget {
    background: var(--card-bg);
