@@ -1320,12 +1320,12 @@ div#slide-sidebar-content .download a[style] {
 }
 #lp-v-title {
 	font-weight: bold;
-	font-size: 13px;
+	font-size: 12px;
 	color: #fff;
 	display: block;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	white-space: nowrap;
+	/* white-space: nowrap; */
 	margin-bottom: 3px;
 	transition: color 0.2s;
 }
