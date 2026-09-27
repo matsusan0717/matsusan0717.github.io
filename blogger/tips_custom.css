@@ -1319,6 +1319,7 @@ div#slide-sidebar-content .download a[style] {
 	overflow: hidden;
 }
 #lp-v-title {
+	font-family: "Oswald", "Noto Sans JP" , sans-serif;
 	font-weight: bold;
 	font-size: 12px;
 	color: #fff;
