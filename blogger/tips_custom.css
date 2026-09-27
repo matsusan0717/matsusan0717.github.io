@@ -1335,6 +1335,7 @@ div#slide-sidebar-content .download a[style] {
 		overflow: hidden;
 }
 #lp-v-artist {
+	font-family: "Oswald", "Noto Sans JP" , sans-serif;
 	font-size: 11px;
 	color: #b3b3b3;
 	display: block;
