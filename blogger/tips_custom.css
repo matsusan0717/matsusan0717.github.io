@@ -6412,3 +6412,24 @@ font-family: monospace;
 .bcg a:hover {
 	box-shadow :0 8px 8px rgba(0,0,0,.12) !important;
 }
+#custom-giscus-container .giscus {
+  min-height: 350px;
+}
+.post-body {
+  font-feature-settings: "palt";
+}
+.kaerebalink-name {
+  margin-bottom: 1.2rem;
+  margin-top: .4rem;
+}
+.kaerebalink-detail {
+  margin-bottom: 1.2rem;
+  font-size: .8rem;
+}
+.kaerebalink-link1 {
+  margin-bottom: .4rem;
+}
+#lp-v-final * {
+  box-sizing: border-box;
+  border-radius: 4px;
+}
