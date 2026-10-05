@@ -1289,7 +1289,7 @@ div#slide-sidebar-content .download a[style] {
 #lp-v-art {
 	width: 55px;
 	height: 55px;
-	border-radius: 50%;
+	border-radius: 50% !important;
 	background-size: cover;
 	background-position: center;
 	background-color: #222;
