@@ -6147,11 +6147,9 @@ ol li {
 	color:#fff;
 	transition: all 0.5s 0s ease;
 }
-.post-body p{
-	font-feature-settings: 'palt' on;
-}
-.post-body p, .post-body li{
+.post-body p, .post-body li {
 	text-wrap: pretty;
+	font-feature-settings: 'palt' on;
 }
 .matsu-hatebu-card-title {
     word-break: break-all;
