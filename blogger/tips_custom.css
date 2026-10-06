@@ -4201,7 +4201,7 @@ pre[class*="language-"] .token.boolean,
 pre[class*="language-"] .token.number,
 pre[class*="language-"] .token.tag,
 pre[class*="language-"] .token.deleted {
-	color: var(--accent-hover) !important;
+	color: var(--sub-amber) !important;
 }
 pre[class*="language-"] .token.keyword,
 pre[class*="language-"] .token.property,
@@ -6430,4 +6430,7 @@ font-family: monospace;
 #lp-v-final * {
   box-sizing: border-box;
   border-radius: 4px;
+}
+code a {
+ color: var(--sub-amber) !important;	
 }
