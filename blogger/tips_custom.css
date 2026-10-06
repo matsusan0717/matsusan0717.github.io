@@ -6293,9 +6293,7 @@ position: absolute;
 	border-radius: 0 0 8px 8px;
 }
 .dmca-badge img {
-    width: 104% !important;
-    left: -5px;
-    position: relative;
+    width: 200px !important;
 }
 .faq-section {
 margin: 2em 0;
