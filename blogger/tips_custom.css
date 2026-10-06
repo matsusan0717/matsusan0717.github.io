@@ -6292,8 +6292,10 @@ position: absolute;
 .tab-content pre[class*="language-"] {
 	border-radius: 0 0 8px 8px;
 }
-.dmca-badge img{
-width: 102% !important;
+.dmca-badge img {
+    width: 104% !important;
+    left: -5px;
+    position: relative;
 }
 .faq-section {
 margin: 2em 0;
