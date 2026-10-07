@@ -6500,3 +6500,103 @@ code a {
 	font-size: 0.7rem;
   }
 }
+#blg-faq-v3 {
+max-width: 900px;
+margin: 0 0 2em auto;
+}
+#blg-faq-v3 ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+#blg-faq-v3 ul li {
+position: relative;
+background: #fff;
+box-shadow: 0 3px 10px -2px rgba(0,0,0,0.1);
+margin-bottom: 15px;
+border-radius: 4px;
+overflow: hidden;
+}
+#blg-faq-v3 .faq-label {
+display: block;
+width: 100%;
+cursor: pointer;
+}
+
+#blg-faq-v3 .faq-trigger {
+display: none;
+}
+#blg-faq-v3 h2 {
+color: #1e3a5f !important;
+font-size: 18px !important;
+line-height: 1.4 !important;
+padding: 20px 50px 20px 15px !important;
+font-weight: 500 !important;
+margin: 0 !important;
+border: none !important;
+transition: .2s;
+text-align: left;
+}
+#blg-faq-v3 .faq-content {
+color: #333;
+overflow: hidden;
+max-height: 0;
+opacity: 0;
+padding: 0 15px;
+transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease;
+}
+#blg-faq-v3 .faq-content p {
+font-size: 14px !important;
+line-height: 1.6 !important;
+margin: 0 !important;
+padding-bottom: 20px;
+color: #333 !important;
+text-align: left;
+}
+#blg-faq-v3 .faq-trigger:checked ~ h2 {
+color: #555;
+}
+#blg-faq-v3 .faq-trigger:checked ~ .faq-content {
+max-height: 1000px;
+opacity: 1;
+}
+#blg-faq-v3 i {
+position: absolute;
+right: 20px;
+top: 32px;
+pointer-events: none;
+}
+#blg-faq-v3 i:before, #blg-faq-v3 i:after {
+content: "";
+position: absolute;
+background-color: #1e3a5f;
+width: 3px;
+height: 9px;
+transition: 0.3s;
+}
+#blg-faq-v3 .faq-trigger:not(:checked) ~ i:before {
+transform: translate(-2px, 0) rotate(45deg);
+}
+#blg-faq-v3 .faq-trigger:not(:checked) ~ i:after {
+transform: translate(2px, 0) rotate(-45deg);
+}
+#blg-faq-v3 .faq-trigger:checked ~ i:before {
+transform: translate(2px, 0) rotate(45deg);
+}
+#blg-faq-v3 .faq-trigger:checked ~ i:after {
+transform: translate(-2px, 0) rotate(-45deg);
+}
+#blg-faq-v3 .faq-content {
+color: #333;
+overflow: hidden;
+max-height: 0;
+opacity: 0;
+padding: 0 15px;
+transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease;
+}
+
+#blg-faq-v3 .faq-trigger:checked ~ .faq-content {
+max-height: none;
+opacity: 1;
+padding-bottom: 20px;
+}
