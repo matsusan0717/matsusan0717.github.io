@@ -6606,7 +6606,7 @@ padding-bottom: 20px;
     color: #ffffff !important;
     background-color: #800000 !important;
     height: 60px;
-    border-radius: 12px;
+    border-radius: var(--radius);
     font-size: 1.1rem;
     font-weight: Bold;
     border: none;
