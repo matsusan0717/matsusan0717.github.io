@@ -6600,3 +6600,34 @@ max-height: none;
 opacity: 1;
 padding-bottom: 20px;
 }
+.bmc-btn-text {
+    margin-left: 48px !important;
+}
+.bmc-btn {
+    width:300px !important;
+    color: #ffffff !important;
+    background-color: #800000 !important;
+    height: 60px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: Bold;
+    border: none;
+    padding: 0px 24px;
+    line-height: 27px;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center;
+    font-family: 'Arial', cursive !important;
+    -webkit-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+}
+.bmc-btn:hover, .bmc-btn:active, .bmc-btn:focus {
+    text-decoration: none !important;
+    cursor: pointer;
+    opacity: 0.9;
+}
+.fa-mug-hot:before {
+    top: -3px;
+	left:16px;
+    position: relative;
+}
