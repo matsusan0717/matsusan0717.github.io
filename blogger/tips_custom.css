@@ -4120,6 +4120,7 @@ blockquote cite {
 	font-size: 0.8rem;
 	text-align: right;
 	color: #808080;
+	font-style: normal;
 }
 code {
 	font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
