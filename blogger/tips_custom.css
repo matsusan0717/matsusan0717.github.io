@@ -6723,4 +6723,5 @@ figcaption {
     color: #3c4043;
     flex-shrink: 0;
     white-space: nowrap;
+	margin-bottom: 1rem;
 }
