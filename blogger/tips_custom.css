@@ -226,7 +226,7 @@ Blogger Custom Styles (matsusan0717) - External CSS
 	display: flex;
 	justify-content: center;
 	gap: 20px;
-	padding-bottom: 15px;
+	padding-bottom: 5px;
 }
 #matsu-profile-container .social-icons a:hover {
 	color: var(--accent);
