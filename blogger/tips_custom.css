@@ -6725,3 +6725,6 @@ figcaption {
     white-space: nowrap;
 	margin-bottom: 1rem;
 }
+.sidebar-random-posts-list:hover {
+	color: var(--sub-amber) !important;	
+}
