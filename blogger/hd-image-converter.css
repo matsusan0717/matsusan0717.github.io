@@ -413,6 +413,7 @@ a.wf-btn.wf-btn--primary:hover {
     color: var(--accent);
     margin-bottom: 0.2em;
 }  
+}
 .corp-h3 {
   font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif;
   font-size: var(--step-1);
