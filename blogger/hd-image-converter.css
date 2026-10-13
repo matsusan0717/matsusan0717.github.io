@@ -345,6 +345,7 @@ ul.responsive-table {
         content: attr(data-label);
         flex-basis: 50%;
         text-align: right;
+         display:none;
       }
     }
   }
