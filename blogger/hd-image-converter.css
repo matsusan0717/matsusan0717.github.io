@@ -433,11 +433,11 @@ ul.responsive-table {
     color: var(--base-navy);
 }
 #back-to-top {
-   background-color: var(--bg);   
+   background-color: var(--bg) !important;   
 }
 .wf-hero {
     padding: 1.6rem 0;
 }
 p.reading-time-msg {
-    margin-top: 2.4rem;
+    margin-top: 2.4rem !important;
 }
