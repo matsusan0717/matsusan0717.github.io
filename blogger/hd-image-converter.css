@@ -45,7 +45,7 @@ body{margin:0;background:#f8fafc;font-family:system-ui,'Hiragino Sans','Yu Gothi
   }  
 .wf-series *, .wf-series *::before, .wf-series *::after { box-sizing: inherit; }
 /* ---------- 全幅レイアウト(このシリーズ専用) ----------
-   テンプレート側の幅制限(.post-full の max-width / .layout-container の max-width と
+  テンプレート側の幅制限(.post-full の max-width / .layout-container の max-width と
    grid-template-columns)を、.wf-series--wide を含むページでだけ解除する。
    100vw で突き抜ける方式は横スクロールの原因になるため使わない。 */
   body {
@@ -231,7 +231,7 @@ a.wf-btn.wf-btn--primary:hover {
   padding: .65rem 1.25rem;
   background: var(--wf-tint);
   border-bottom: 1px solid var(--wf-line);
-  font-size: .2rem;
+  font-size: .9rem;
   font-weight: 700;
   color: var(--wf-navy);
 }
@@ -296,60 +296,6 @@ a.wf-btn.wf-btn--primary:hover {
 }
 .wf-product img { width: 100%; height: auto; aspect-ratio: 307 / 404; display: block; }
 .wf-product figcaption { margin-top: .4rem; font-size: .8rem; color: var(--wf-muted); text-align: center; }
-/* ---------- スペック表 ---------- */
-.responsive-table {
-  li {
-    border-radius: 3px;
-    padding: 25px 30px;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
-  }
-  .table-header {
-    background-color: #95A5A6;
-    font-size: 1.0rem;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-  }
-  .table-row {
-    background-color: var(--bg);
-    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
-    margin-bottom: .4rem;
-  }
-  .col-1 {
-    flex-basis: 15%;
-  }
-  .col-2 {
-    flex-basis: 85%;
-  }
-  }
-  ul.responsive-table {
-    padding: 0 !important;
-  }
-  @media all and (max-width: 767px) {
-    .table-header {
-      display: none;
-    }
-    .table-row {}
-    li {
-      display: block;
-    }
-    .col {
-      flex-basis: 100%;
-    }
-    .col {
-      display: flex;
-      padding: 10px 0;
-      &:before {
-        color: #6C7A89;
-        padding-right: 10px;
-        content: attr(data-label);
-        flex-basis: 50%;
-        text-align: right;
-      }
-    }
-  }
-}
 /* ---------- 手順リスト ---------- */
 .wf-steps { margin: 1.5rem 0; padding: 0; list-style: none; counter-reset: step; color:var(--bg); }
 .wf-steps > li {
@@ -382,9 +328,6 @@ a.wf-btn.wf-btn--primary:hover {
   .wf-cta { grid-template-columns: 1fr; padding: 1.25rem; }
   .wf-cta__banner { justify-self: center; }
   .wf-product { float: none; max-width: 307px; margin: 1rem auto; }
-  .wf-spec th { width: auto; white-space: normal; }
-  .wf-spec th, .wf-spec td { display: block; width: 100%; }
-  .wf-spec th { border-bottom: 0; padding-bottom: .25rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .wf-btn { transition: none; }
