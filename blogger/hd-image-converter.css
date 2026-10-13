@@ -430,3 +430,9 @@ a.wf-btn.wf-btn--primary:hover {
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
 }
+.fa-chevron-up:before {
+    color: var(--base-navy);
+}
+#back-to-top {
+   background-color: var(--bg);   
+}
