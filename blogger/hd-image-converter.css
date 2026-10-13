@@ -385,6 +385,7 @@ ul.responsive-table {
   .wf-spec th { width: auto; white-space: normal; }
   .wf-spec th, .wf-spec td { display: block; width: 100%; }
   .wf-spec th { border-bottom: 0; padding-bottom: .25rem; }
+  .global-nav { border-bottom: 0px;}
 }
 @media (prefers-reduced-motion: reduce) {
   .wf-btn { transition: none; }
