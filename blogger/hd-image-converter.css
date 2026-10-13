@@ -377,7 +377,7 @@ a.wf-btn.wf-btn--primary:hover {
     color: var(--base-navy);
 }
 #back-to-top {
-   background-color: var(--bg);   
+   background-color: var(--bg) !important;   
 }
 .wf-hero {
     padding: 1.6rem 0;
