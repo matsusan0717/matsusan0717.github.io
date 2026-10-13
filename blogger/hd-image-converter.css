@@ -380,7 +380,7 @@ ul.responsive-table {
   .wf-series .wf-h2 { font-size: 1.4rem; margin-top: 3rem; }
   .wf-cta { grid-template-columns: 1fr; padding: 1.25rem; }
   .wf-cta__banner { justify-self: center; }
-  .wf-product { float: none; max-width: 307px; margin: 1rem auto; }
+  .wf-product {  float: none; max-width: 100%; margin: 0 auto;  padding: 0;  width: 100%;}
   .wf-spec th { width: auto; white-space: normal; }
   .wf-spec th, .wf-spec td { display: block; width: 100%; }
   .wf-spec th { border-bottom: 0; padding-bottom: .25rem; }
