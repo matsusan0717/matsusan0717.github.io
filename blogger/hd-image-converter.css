@@ -441,3 +441,23 @@ ul.responsive-table {
 p.reading-time-msg {
     margin-top: 2.4rem !important;
 }
+.pr-line-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.pr-tag-dark {
+    color: var(--wf-muted);
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    background: var(--bg);
+}
+.pr-desc-dark {
+  font-size: 13px;
+  color: #e0e6ed; 
+  letter-spacing: 0.3px;
+}
