@@ -483,3 +483,182 @@ ol.wf-steps strong {
   	top: 2px;
     position: relative;
   }
+/* ---------- 箇条書き(濃色背景用) ---------- */
+.wf-series .wf-points {
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: .6rem;
+  color: var(--dark-ink, #e0e0e0);
+}
+.wf-series .wf-points > li {
+  position: relative;
+  padding-left: 1.4rem;
+  list-style: none;
+}
+.wf-series .wf-points > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .85em;
+  width: .6rem;
+  height: 1px;
+  background: var(--accent, #c9a96e);
+}
+.wf-series .wf-points strong { color: #fff; }
+.wf-shot-row.wf-shot-row--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 720px) {
+  .wf-shot-row.wf-shot-row--2 { grid-template-columns: 1fr; }
+}
+.wf-diff-wrap {
+  margin: 1.5rem 0 2rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.wf-diff {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .95rem;
+  color: var(--dark-ink, #e0e0e0);
+  background: transparent;
+  border: 0;
+}
+.wf-diff th,
+.wf-diff td {
+  padding: .8rem 1rem;
+  border: 0;
+  border-bottom: 1px solid var(--dark-line, #2a2a2a);
+  text-align: left;
+  vertical-align: top;
+  background: none;
+  line-height: 1.6;
+}
+.wf-diff thead th {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  color: var(--accent, #c9a96e);
+  border-bottom: 1px solid var(--accent, #c9a96e);
+  white-space: nowrap;
+}
+.wf-diff tbody th {
+  font-weight: 500;
+  color: #94a3b8;
+  white-space: nowrap;
+  width: 24%;
+}
+.wf-diff.wf-diff--2 tbody th { white-space: normal; width: 28%; color: #fff; }
+.wf-diff td.is-changed {
+  color: #fff;
+  font-weight: 700;
+  background: #f8fafc2e;
+}
+@media (max-width: 720px) {
+  .wf-diff { font-size: .88rem; min-width: 520px; }
+}
+.wf-compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin: 1.75rem 0 2.25rem;
+}
+.wf-compare__item {
+  margin: 0;
+  background: var(--dark-surface, #141414);
+  border: 1px solid var(--dark-line, #2a2a2a);
+  border-radius: var(--wf-radius, 4px);
+  overflow: hidden;
+}
+.wf-compare__item--after {
+  border-color: var(--accent, #c9a96e);
+  box-shadow: 0 0 0 1px rgba(201, 169, 110, .25);
+}
+.wf-compare__bar {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .7rem 1rem;
+  border-bottom: 1px solid var(--dark-line, #2a2a2a);
+}
+.wf-compare__tag {
+  display: inline-block;
+  padding: .12rem .55rem;
+  border-radius: 2px;
+  background: #334155;
+  color: #e2e8f0;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+  line-height: 1.6;
+}
+.wf-compare__item--after .wf-compare__tag {
+  background: var(--accent, #c9a96e);
+  color: #152a45;
+}
+.wf-compare__name {
+  font-size: .9rem;
+  font-weight: 700;
+  color: #fff;
+}
+.wf-compare__video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 64 / 36;
+  background: #000;
+}
+.wf-compare__spec {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .1rem 1rem;
+  margin: 0;
+  padding: .85rem 1rem 1rem;
+}
+.wf-compare__spec div { display: flex; flex-direction: column; padding: .25rem 0; }
+.wf-compare__spec dt {
+  font-size: .68rem;
+  letter-spacing: .12em;
+  color: #94a3b8;
+  margin: 0;
+}
+.wf-compare__spec dd {
+  margin: 0;
+  font-size: .95rem;
+  font-weight: 700;
+  color: #fff;
+}
+.wf-compare__item--after .wf-compare__spec dd { color: var(--accent, #c9a96e); }
+@media (max-width: 720px) {
+  .wf-compare { grid-template-columns: 1fr; gap: 1.25rem; }
+}
+.wf-slider-figure { margin: 1.75rem 0 2.25rem; }
+.wf-slider-slot {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  border: 1px dashed #475569;
+  border-radius: var(--wf-radius, 4px);
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.025) 0 12px, transparent 12px 24px),
+    var(--dark-surface, #141414);
+}
+.wf-slider-slot__label {
+  margin: 0;
+  padding: .4rem 1rem;
+  border: 1px solid #475569;
+  border-radius: 2px;
+  font-size: .8rem;
+  letter-spacing: .12em;
+  color: #94a3b8;
+}
+.wf-slider-figure figcaption {
+  margin-top: .5rem;
+  font-size: .8rem;
+  color: #94a3b8;
+}
+.post-body tr:last-child td {
+    border-bottom: 0px solid var(--border);
+}  
