@@ -1544,3 +1544,67 @@ html:has(.wf-sum) body {
     transition: none;
   }
 }
+  .comparison-block {
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+    margin : 2rem auto .3rem !important;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    line-height: 0;
+  }
+  .comparison-block::selection, .comparison-block *::selection { background-color: transparent; }
+  .comparison-block::-moz-selection, .comparison-block *::-moz-selection { background-color: transparent; }
+  .comparison-before-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 5;
+  }
+  .comparison-before-img img {
+    height: 100% !important;
+    width: auto !important;
+    display: block;
+    max-width: none !important;
+    object-fit: cover;
+    object-position: left center;
+  }
+  .comparison-after-img {
+    position: relative;
+    z-index: 1;
+  }
+  .comparison-after-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .comparison-arrow {
+    background-color: #fff;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    cursor: ew-resize;
+  }
+  .comparison-arrow:after {
+    content: '';
+    display: block;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: #fff;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="13 17 18 12 13 7"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  } 
