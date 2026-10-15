@@ -139,7 +139,7 @@ a.wf-btn.wf-btn--primary:hover {
 }  
 /* ---------- ヒーロー ---------- */
 .wf-hero {
-  background: var(--wf-navy-deep);
+  background: #0f1d30;
   color: #fff;
   padding-block: 3.5rem;
   padding:2.5rem;
