@@ -1544,9 +1544,3 @@ html:has(.wf-sum) body {
     transition: none;
   }
 }
-.svg-icon {
-  margin-right: 4px;
-}
-.svg-icon.mobile-icon {
-  display: none;
-}
