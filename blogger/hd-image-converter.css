@@ -452,7 +452,7 @@ p.reading-time-msg {
 .wf-shot { margin: 1.25rem 0 0; }
 .wf-shot img { display: block; max-width: 100%; height: auto; border: 1px solid var(--wf-line, #e2e8f0); border-radius: 2px; }
 .wf-shot figcaption { margin-top: .4rem; font-size: .8rem; color: #94a3b8; }
-.wf-shot--portrait img { max-width: 440px; }
+.wf-shot--portrait img { max-width: min(440px, 100%); }
 .wf-shot-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
 .wf-shot-row .wf-shot { margin: 0; }
 .wf-shot-row .wf-shot img { max-width: 100%; }
@@ -512,6 +512,7 @@ ol.wf-steps strong {
   .wf-shot-row.wf-shot-row--2 { grid-template-columns: 1fr; }
 }
 .wf-diff-wrap {
+  contain: inline-size;
   margin: 1.5rem 0 2rem;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
