@@ -678,6 +678,10 @@
 	    .global-nav {
 	        border-bottom: 0px;
 	    }
+
+		a.wf-btn.wf-btn--primary, a.wf-btn.wf-btn--ghost {
+			width: 100%;
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
