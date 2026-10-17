@@ -5599,7 +5599,7 @@ div.ranking-item {
 		padding: 0;
 		box-shadow: var(--shadow);
 		max-width: 97% !important;
-		left: 5px;
+		left: 0px;
 		position: relative;
 	}
 	.layout-container {
