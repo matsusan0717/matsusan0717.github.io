@@ -1572,18 +1572,6 @@ div#slide-sidebar-content .download a[style] {
 #matsu-profile-container .description {
 	color: var(--text-main);
 }
-.search-input {
-	flex: 1;
-	border: none;
-	background: transparent;
-	padding: 8px 0;
-	font-size: 0.9rem;
-	color: #ffffff;
-	outline: none;
-	-webkit-box-shadow: 0 0 0px 1000px transparent inset;
-	box-shadow: 0 0 0px 1000px transparent inset;
-	-webkit-text-fill-color: #ffffff;
-}
 .header-search .search-form,
 .header-search .search-input {
 	box-shadow: var(--header-bg) 0px 0px 0px 1000px inset !important;
@@ -1711,18 +1699,6 @@ body.is-post #tpd-random-wrapper {
 	.post-full-title {
 		font-size: 1.4rem !important;
 	}
-}
-.search-input {
-	flex: 1;
-	border: none;
-	background: transparent;
-	padding: 8px 0;
-	font-size: 0.9rem;
-	outline: none;
-	color: #555555;
-	-webkit-box-shadow: 0 0 0px 1000px rgb(30, 58, 95) inset;
-	box-shadow: 0 0 0px 1000px rgb(30, 58, 95) inset;
-	-webkit-text-fill-color: inherit;
 }
 .search-input:-webkit-autofill {
 	-webkit-text-fill-color: #ffffff !important;
