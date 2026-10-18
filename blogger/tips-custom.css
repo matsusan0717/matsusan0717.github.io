@@ -5598,7 +5598,7 @@ div.ranking-item {
 		background: var(--card-bg);
 		padding: 0;
 		box-shadow: var(--shadow);
-		max-width: 97% !important;
+		max-width: 100% !important;
 		left: 0px;
 		position: relative;
 	}
