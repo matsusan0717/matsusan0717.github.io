@@ -3624,6 +3624,7 @@ padding-bottom: 20px;
 .bottom-space li {
 	margin-bottom: .6rem;	
 }
+@media screen and (min-width:768px) { 
 @keyframes scroll-fade-up {
  from {
   opacity: 0;
@@ -3643,6 +3644,7 @@ padding-bottom: 20px;
    animation-trigger: --t play-once;
   }
  }
+}
 }
 .site-footer .footer-navigation {
   display: flex;
