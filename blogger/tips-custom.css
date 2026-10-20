@@ -2386,7 +2386,7 @@ color: var(--heading-light)
 	position: relative;
 	display: inline-block;
 	flex-shrink: 0;
-	overflow: visible;
+	overflow: visible !important;
 	padding: 6px 0 0 6px;
 	margin: -6px 0 0 -6px
 }
