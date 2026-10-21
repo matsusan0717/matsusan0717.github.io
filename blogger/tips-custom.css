@@ -5973,8 +5973,8 @@ pre[class*="language-"] {
 	#view-root pre,
 	.post-full pre,
 	.post-body pre {
-		max-width: calc(100vw - 2rem) !important;
-		width: calc(100vw - 1rem) !important;
+		max-width: calc(100vw - 1.4rem) !important;
+		width: calc(100vw - 1.4rem) !important;
 		overflow-x: auto !important;
 		white-space: pre !important;
 		word-break: normal !important;
