@@ -78,10 +78,9 @@
 <!-- CSS -->    
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css' rel='stylesheet'/>    
 <!-- JS -->
-<link href='https://matsusan0717.github.io/blogger/tips_custom.css' rel='stylesheet' type='text/css'/>
-<script src='https://matsusan0717.github.io/blogger/tips_custom.js' type='text/javascript'/>  
+<link href='https://matsusan0717.github.io/blogger/tips-custom.css' rel='stylesheet' type='text/css'/>
+<script src='https://matsusan0717.github.io/blogger/tips-common.js' type='text/javascript'/>  
 <script src='https://matsusan0717.github.io/blogger/peek.js' type='text/javascript'/>  
-<script src='https://cdn.jsdelivr.net/gh/ireade/caniuse-embed/public/caniuse-embed.min.js'/>
 <script>
 //<![CDATA[
 document.addEventListener('DOMContentLoaded', function() {
@@ -167,26 +166,23 @@ html {
   scroll-snap-type: y proximity;
   scroll-padding-top: 60px;
 }
-ins.adsbygoogle[data-anchor-status="displayed"],
-ins.adsbygoogle[data-anchor-status="displayed"] * {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  overflow: hidden !important;
-  transform: none !important;
-  transition: none !important;
-  animation: none !important;
-  pointer-events: none !important;
-}
-body.is-homepage.sidebar-ready {
+body.sidebar-ready, body.is-post.sidebar-ready {
   padding-bottom: 0 !important;
+  height:0 !important;
+}
+ins.adsbygoogle[data-anchor-status],
+ins.adsbygoogle[data-anchor-status],
+  ins.adsbygoogle[data-anchor-status="displayed"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    pointer-events: none !important;
 }
 ]]></b:skin>
-<script>
-//<![CDATA[
+<!-- View Transitions API -->    
+<script>//<![CDATA[
 (function () {
   var PREFIX = "post-image-";
   if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
@@ -407,79 +403,41 @@ body.is-homepage.sidebar-ready {
     }
   });
 })();
-//]]>
-</script>
+//]]></script>
+<!-- AdSense Footer -->    
 <script>
   //<![CDATA[
-      (function() {
-        var hideAnchorAds = function() {
-          document.querySelectorAll('ins.adsbygoogle[data-anchor-status="displayed"]').forEach(function(ad) {
-            ad.style.setProperty('display', 'none', 'important');
-            ad.style.setProperty('visibility', 'hidden', 'important');
-            ad.style.setProperty('opacity', '0', 'important');
-            ad.style.setProperty('height', '0', 'important');
-            ad.style.setProperty('min-height', '0', 'important');
-            ad.style.setProperty('max-height', '0', 'important');
-            ad.style.setProperty('overflow', 'hidden', 'important');
-            ad.style.setProperty('transform', 'none', 'important');
-            ad.style.setProperty('transition', 'none', 'important');
-            ad.style.setProperty('animation', 'none', 'important');
-            ad.style.setProperty('pointer-events', 'none', 'important');
-          });
-        };
-        hideAnchorAds();
-        var observer = new MutationObserver(function(mutations) {
-          var shouldHide = false;
-          for (var i = 0; i < mutations.length; i++) {
-            var m = mutations[i];
-            if (m.type === 'childList') {
-              for (var j = 0; j < m.addedNodes.length; j++) {
-                var node = m.addedNodes[j];
-                if (node.nodeType === 1) {
-                  if (node.matches && node.matches('ins.adsbygoogle[data-anchor-status="displayed"]')) {
-                    shouldHide = true;
-                    break;
-                  }
-                  if (node.querySelector && node.querySelector('ins.adsbygoogle[data-anchor-status="displayed"]')) {
-                    shouldHide = true;
-                    break;
-                  }
-                }
-              }
-            } else if (m.type === 'attributes' && m.attributeName === 'data-anchor-status') {
-              if (m.target.getAttribute('data-anchor-status') === 'displayed') {
-                shouldHide = true;
-              }
-            }
-            if (shouldHide) break;
-          }
-          if (shouldHide) hideAnchorAds();
-        });
-        observer.observe(document.documentElement, {
-          childList: true,
-          subtree: true,
-          attributes: true,
-          attributeFilter: ['data-anchor-status']
-        });
-        // SPA対応: History APIのフック
-        var origPushState = history.pushState;
-        if (origPushState) {
-          history.pushState = function() {
-            origPushState.apply(this, arguments);
-            setTimeout(hideAnchorAds, 0);
-            setTimeout(hideAnchorAds, 100);
-            setTimeout(hideAnchorAds, 300);
-          };
+  (function() {
+    var hideAnchorAds = function() {
+      document.querySelectorAll('ins.adsbygoogle').forEach(function(ad) {
+        var status = ad.getAttribute('data-anchor-status');
+        if (status === 'displayed' || status === 'loading' || status === 'scheduled') {
+          ad.style.setProperty('display', 'none', 'important');
+          ad.style.setProperty('visibility', 'hidden', 'important');
+          ad.style.setProperty('height', '0', 'important');
         }
-        window.addEventListener('popstate', function() {
-          setTimeout(hideAnchorAds, 0);
-          setTimeout(hideAnchorAds, 100);
-          setTimeout(hideAnchorAds, 300);
-        });
-        window.addEventListener('hashchange', hideAnchorAds);
-      })();
-      //]]>
-</script>    
+      });
+    };
+
+    hideAnchorAds();
+    setInterval(hideAnchorAds, 50);
+
+    var observer = new MutationObserver(function(mutations) {
+      hideAnchorAds();
+    });
+    
+    if (document.documentElement) {
+      observer.observe(document.documentElement, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['data-anchor-status']
+      });
+    }
+  })();
+  //]]>
+</script>
+<!-- Clarity -->   
 <script type='text/javascript'>
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -487,8 +445,6 @@ body.is-homepage.sidebar-ready {
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, &quot;clarity&quot;, &quot;script&quot;, &quot;y7cnlvn0m9&quot;);
 </script>    
-</head>
-  
 <!-- Google tag (gtag.js) -->
 <script async='async' src='https://www.googletagmanager.com/gtag/js?id=G-2P6L019SX6'/>
 <script>
@@ -498,6 +454,7 @@ body.is-homepage.sidebar-ready {
 
   gtag(&#39;config&#39;, &#39;G-2P6L019SX6&#39;);
 </script>
+</head>
   <body>
     <b:if cond='data:view.isPage'><script>document.body.classList.add(&#39;is-static-page&#39;);</script></b:if>
     <b:if cond='data:view.isPost'><script>document.body.classList.add(&#39;is-post&#39;);</script></b:if>
@@ -1377,6 +1334,34 @@ body.is-homepage.sidebar-ready {
   </ul>
 </b:includable>
         </b:widget>
+        <b:widget id='Stats1' locked='false' title='先月のページビュー' type='Stats' version='2' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='showGraphicalCounter'>false</b:widget-setting>
+            <b:widget-setting name='showAnimatedCounter'>false</b:widget-setting>
+            <b:widget-setting name='showSparkline'>true</b:widget-setting>
+            <b:widget-setting name='sparklineStyle'>BLACK_TRANSPARENT</b:widget-setting>
+            <b:widget-setting name='timeRange'>LAST_MONTH</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <b:include name='content'/>
+</b:includable>
+          <b:includable id='content'>
+  <div class='widget-content'>
+    <!-- Content is going to be visible when data will be fetched from server. -->
+    <div expr:id='data:widget.instanceId + &quot;_content&quot;' style='display: none;'>
+      <!-- Counter and image will be injected later via AJAX call. -->
+      <b:if cond='data:showSparkline'>
+        <script src='https://www.gstatic.com/charts/loader.js' type='text/javascript'/>
+        <span expr:id='data:widget.instanceId + &quot;_sparklinespan&quot;' style='display:inline-block; width:75px; height:30px'/>
+      </b:if>
+      <span expr:class='&quot;counter-wrapper &quot; + (data:showGraphicalCounter ? &quot;graph-counter-wrapper&quot; : &quot;text-counter-wrapper&quot;)' expr:id='data:widget.instanceId + &quot;_totalCount&quot;'>
+      </span>
+    </div>
+  </div>
+<script id='json:statsconfig' type='application/json'>{&quot;su&quot;:&quot;<data:statsUrl.jsonEscaped/>&quot;}</script>            
+</b:includable>
+        </b:widget>
       </b:section>
     </div>
     <!-- ヘッダー -->
@@ -1491,9 +1476,9 @@ body.is-homepage.sidebar-ready {
                 <b:widget-setting name='showLocation'>false</b:widget-setting>
                 <b:widget-setting name='postLabelsLabel'/>
                 <b:widget-setting name='showTimestamp'>true</b:widget-setting>
-                <b:widget-setting name='postsPerAd'>3</b:widget-setting>
+                <b:widget-setting name='postsPerAd'>1</b:widget-setting>
                 <b:widget-setting name='showBacklinks'>false</b:widget-setting>
-                <b:widget-setting name='showInlineAds'>true</b:widget-setting>
+                <b:widget-setting name='showInlineAds'>false</b:widget-setting>
                 <b:widget-setting name='showReactions'>false</b:widget-setting>
               </b:widget-settings>
               <b:includable id='main'>
@@ -2354,8 +2339,8 @@ body.is-homepage.sidebar-ready {
   </section>
 </b:includable>
               <b:includable id='threaded_comment_js' var='post'>
+<!-- Blogger Comment -->  
 <script async='async' expr:src='data:post.commentSrc' type='text/javascript'/>
-
 <script type='text/javascript'>
     (function() {
       var items = <data:post.commentJso/>;
@@ -2629,32 +2614,31 @@ body.is-homepage.sidebar-ready {
   
   <div class='hd-adslot'><a href='https://www.videoconverterfactory.com/jp/hd-video-converter/' style='text-align: center; '><img alt='HD Video Converter Factory Pro' border='0' data-original-height='250' data-original-width='300' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXyKcUzRKNQqfplsFRwr0ZMP3AVB1Oql5F_sEO0Zv14VclbDHcx5fmbt9Xw0jzWYN7J_ER_GZsyBEoNGAxKiPlht8D3514rZFDdpACJHwwjqi1c-_5i0cBxNxtuvSnAjysK0zuD-CogLqEF1b0HHJF-fnbaPXSrJ2BW92hIIC6n2R9AIu2dNc9manzlV4/s320/%E3%83%90%E3%83%8A%E3%83%BC%E7%94%BB%E5%83%8F.png' style='width:300px;border-radius: var(--radius); margin-bottom: 1.2rem;' width='320'/></a></div>
   
-  <div id='a8-random-banner-a'/>
-  
-<!-- <script>
-//<![CDATA[
-document.addEventListener('DOMContentLoaded', function() {
-    const adTags = [
-        '<a href="https://px.a8.net/svt/ejp?a8mat=3ZB8UD+ACPJN6+1WTI+64Z8X" rel="nofollow"><img border="0" width="300" height="250" alt="" src="https://www25.a8.net/svt/bgt?aid=240709765626&wid=009&eno=01&mid=s00000008919001031000&mc=1"></a><img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=3ZB8UD+ACPJN6+1WTI+64Z8X" alt="">',
-        '<a href="https://px.a8.net/svt/ejp?a8mat=3ZBM6W+CEJANM+34WQ+601S1" rel="nofollow"><img border="0" width="300" height="250" alt="" src="https://www28.a8.net/svt/bgt?aid=240727064750&wid=009&eno=01&mid=s00000014633001008000&mc=1"></a><img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=3ZBM6W+CEJANM+34WQ+601S1" alt="">',
-        '<a href="https://px.a8.net/svt/ejp?a8mat=3ZB822+GHLD2Q+1WTI+C0IZL" rel="nofollow"><img border="0" width="300" height="250" alt="" src="https://www25.a8.net/svt/bgt?aid=240708746997&wid=009&eno=01&mid=s00000008919002018000&mc=1"></a><img border="0" width="1" height="1" src="https://www15.a8.net/0.gif?a8mat=3ZB822+GHLD2Q+1WTI+C0IZL" alt="">'
-    ];
-    const targetElement = document.getElementById('a8-random-banner-a');
-    if (targetElement) {
-        const randomIndex = Math.floor(Math.random() * adTags.length);
-        targetElement.innerHTML = adTags[randomIndex];
-    } else {
-        window.addEventListener('load', function() {
-            const retryElement = document.getElementById('a8-random-banner-a');
-            if (retryElement) {
-                const randomIndex = Math.floor(Math.random() * adTags.length);
-                retryElement.innerHTML = adTags[randomIndex];
-            }
-        });
-    }
-});
-//]]>
-</script> -->
+  <div id='a8-random-banner-a'/>  
+  <!-- <script>
+  //<![CDATA[
+  document.addEventListener('DOMContentLoaded', function() {
+      const adTags = [
+          '<a href="https://px.a8.net/svt/ejp?a8mat=3ZB8UD+ACPJN6+1WTI+64Z8X" rel="nofollow"><img border="0" width="300" height="250" alt="" src="https://www25.a8.net/svt/bgt?aid=240709765626&wid=009&eno=01&mid=s00000008919001031000&mc=1"></a><img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=3ZB8UD+ACPJN6+1WTI+64Z8X" alt="">',
+          '<a href="https://px.a8.net/svt/ejp?a8mat=3ZBM6W+CEJANM+34WQ+601S1" rel="nofollow"><img border="0" width="300" height="250" alt="" src="https://www28.a8.net/svt/bgt?aid=240727064750&wid=009&eno=01&mid=s00000014633001008000&mc=1"></a><img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=3ZBM6W+CEJANM+34WQ+601S1" alt="">',
+          '<a href="https://px.a8.net/svt/ejp?a8mat=3ZB822+GHLD2Q+1WTI+C0IZL" rel="nofollow"><img border="0" width="300" height="250" alt="" src="https://www25.a8.net/svt/bgt?aid=240708746997&wid=009&eno=01&mid=s00000008919002018000&mc=1"></a><img border="0" width="1" height="1" src="https://www15.a8.net/0.gif?a8mat=3ZB822+GHLD2Q+1WTI+C0IZL" alt="">'
+      ];
+      const targetElement = document.getElementById('a8-random-banner-a');
+      if (targetElement) {
+          const randomIndex = Math.floor(Math.random() * adTags.length);
+          targetElement.innerHTML = adTags[randomIndex];
+      } else {
+          window.addEventListener('load', function() {
+              const retryElement = document.getElementById('a8-random-banner-a');
+              if (retryElement) {
+                  const randomIndex = Math.floor(Math.random() * adTags.length);
+                  retryElement.innerHTML = adTags[randomIndex];
+              }
+          });
+      }
+  });
+  //]]>
+  </script> -->
   <!-- プロフィールウィジェット -->
   <div id='matsu-profile-container' style='visibility: hidden;'>
     <div class='profile-card'>
@@ -2751,168 +2735,168 @@ document.addEventListener('DOMContentLoaded', function() {
     <h3 class='aslot'><i class='fa-solid fa-shuffle' style='margin:0 10px 0 0;'/> RANDOM PICKS</h3>
     <div id='sidebar-random-posts-list'><span style='color:var(--text-muted);font-size:0.9rem;'>読み込み中...</span></div>
   </div>
-<script>
-//<![CDATA[
-(function () {
-  function detectSingleItem() {
-    return (
-      /\/[0-9]{4}\/[0-9]{2}\/[^\/]+\.html/.test(window.location.href) ||
-      document.body.classList.contains("item-view")
-    );
-  }
-  function buildSidebarRandom() {
-    var single = detectSingleItem();
-    var postCount = single ? 5 : 3;
-    var blogURL =
-      window.location.protocol + "//" + window.location.hostname + "/";
-    fetch(blogURL + "feeds/posts/default?alt=json&max-results=50")
-      .then(function (r) {
-        return r.json();
-      })
-      .then(function (data) {
-        var entries = (data.feed && data.feed.entry) || [];
-        if (!entries.length) return;
-        var picked = [],
-          len = entries.length;
-        while (picked.length < Math.min(len, postCount)) {
-          var r = Math.floor(Math.random() * len);
-          if (picked.indexOf(r) === -1) picked.push(r);
-        }
-        var noImg =
-          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPDYu4ibLWCVdJdTwQa2zoBViIfND-ZB0Y9g8IU1Csk_7AoRwVi1efzTdGFKjaiXh9LPWyCllES9iKlhik8b2G2liUUd8oeAA4NOVflZO3VqPtxhzuUteSAIGCRkyw2Ps8R5FjyFd1FzhmgPYCeAUGBM2qx3Z-lXUGUft6xgiKGUORq3Uz2ULqbSZFEsQ/s1600/NoImage.png";
-        var html = "";
-        if (single) {
-          picked.forEach(function (idx) {
-            var e = entries[idx];
-            var title = e.title.$t;
-            var link = "";
-            for (var k = 0; k < e.link.length; k++) {
-              if (e.link[k].rel === "alternate") {
-                link = e.link[k].href;
-                break;
+  <script>
+  //<![CDATA[
+  (function () {
+    function detectSingleItem() {
+      return (
+        /\/[0-9]{4}\/[0-9]{2}\/[^\/]+\.html/.test(window.location.href) ||
+        document.body.classList.contains("item-view")
+      );
+    }
+    function buildSidebarRandom() {
+      var single = detectSingleItem();
+      var postCount = single ? 5 : 3;
+      var blogURL =
+        window.location.protocol + "//" + window.location.hostname + "/";
+      fetch(blogURL + "feeds/posts/default?alt=json&max-results=50")
+        .then(function (r) {
+          return r.json();
+        })
+        .then(function (data) {
+          var entries = (data.feed && data.feed.entry) || [];
+          if (!entries.length) return;
+          var picked = [],
+            len = entries.length;
+          while (picked.length < Math.min(len, postCount)) {
+            var r = Math.floor(Math.random() * len);
+            if (picked.indexOf(r) === -1) picked.push(r);
+          }
+          var noImg =
+            "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPDYu4ibLWCVdJdTwQa2zoBViIfND-ZB0Y9g8IU1Csk_7AoRwVi1efzTdGFKjaiXh9LPWyCllES9iKlhik8b2G2liUUd8oeAA4NOVflZO3VqPtxhzuUteSAIGCRkyw2Ps8R5FjyFd1FzhmgPYCeAUGBM2qx3Z-lXUGUft6xgiKGUORq3Uz2ULqbSZFEsQ/s1600/NoImage.png";
+          var html = "";
+          if (single) {
+            picked.forEach(function (idx) {
+              var e = entries[idx];
+              var title = e.title.$t;
+              var link = "";
+              for (var k = 0; k < e.link.length; k++) {
+                if (e.link[k].rel === "alternate") {
+                  link = e.link[k].href;
+                  break;
+                }
               }
-            }
-            var img = noImg;
-            if (e.media$thumbnail)
-              img = e.media$thumbnail.url
-                .replace(/\/(s|w|h)\d+[^/]*\//, "/s80-c/")
-                .replace(/=[swh]\d+[^&]*/, "=s80-c");
-            html +=
-              '<a href="' +
-              link +
-              '" class="rnd-list-item" style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none;">' +
-              '<span style="width:52px;min-width:52px;height:52px;border-radius:6px;overflow:hidden;flex-shrink:0;display:block;background:#eee;">' +
-              '<img src="' +
-              img +
-              '" alt="" style="width:52px;height:52px;object-fit:cover;display:block;transition:transform 0.3s ease;" loading="lazy"/>' +
-              "</span>" +
-              '<span style="flex:1;font-size:13px;font-weight:bold;color:var(--text-main);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">' +
-              title +
-              "</span>" +
-              "</a>";
-          });
-        } else {
-          picked.forEach(function (idx) {
-            var e = entries[idx];
-            var title = e.title.$t;
-            var link = "";
-            for (var k = 0; k < e.link.length; k++) {
-              if (e.link[k].rel === "alternate") {
-                link = e.link[k].href;
-                break;
+              var img = noImg;
+              if (e.media$thumbnail)
+                img = e.media$thumbnail.url
+                  .replace(/\/(s|w|h)\d+[^/]*\//, "/s80-c/")
+                  .replace(/=[swh]\d+[^&]*/, "=s80-c");
+              html +=
+                '<a href="' +
+                link +
+                '" class="rnd-list-item" style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none;">' +
+                '<span style="width:52px;min-width:52px;height:52px;border-radius:6px;overflow:hidden;flex-shrink:0;display:block;background:#eee;">' +
+                '<img src="' +
+                img +
+                '" alt="" style="width:52px;height:52px;object-fit:cover;display:block;transition:transform 0.3s ease;" loading="lazy"/>' +
+                "</span>" +
+                '<span style="flex:1;font-size:13px;font-weight:bold;color:var(--text-main);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">' +
+                title +
+                "</span>" +
+                "</a>";
+            });
+          } else {
+            picked.forEach(function (idx) {
+              var e = entries[idx];
+              var title = e.title.$t;
+              var link = "";
+              for (var k = 0; k < e.link.length; k++) {
+                if (e.link[k].rel === "alternate") {
+                  link = e.link[k].href;
+                  break;
+                }
               }
-            }
-            var img = noImg;
-            if (e.media$thumbnail)
-              img = e.media$thumbnail.url
-                .replace(/\/(s|w|h)\d+[^/]*\//, "/w400-rw/")
-                .replace(/=[swh]\d+[^&]*/, "=w400-rw");
-            html +=
-              '<a href="' +
-              link +
-              '" class="rnd-card-item" style="display:block;position:relative;width:100%;aspect-ratio:16/10;margin-bottom:14px;border-radius:8px;overflow:hidden;text-decoration:none;">' +
-              '<img src="' +
-              img +
-              '" alt="" style="width:100%;height:100%;object-fit:cover;background:#eee;transition:transform 0.3s ease;" loading="lazy">' +
-              '<div style="position:absolute;bottom:0;left:0;right:0;padding:24px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.78));">' +
-              '<span style="display:block;font-size:13px;font-weight:bold;color:#fff;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:1px 1px 3px rgba(0,0,0,.5);">' +
-              title +
-              "</span>" +
-              "</div></a>";
+              var img = noImg;
+              if (e.media$thumbnail)
+                img = e.media$thumbnail.url
+                  .replace(/\/(s|w|h)\d+[^/]*\//, "/w400-rw/")
+                  .replace(/=[swh]\d+[^&]*/, "=w400-rw");
+              html +=
+                '<a href="' +
+                link +
+                '" class="rnd-card-item" style="display:block;position:relative;width:100%;aspect-ratio:16/10;margin-bottom:14px;border-radius:8px;overflow:hidden;text-decoration:none;">' +
+                '<img src="' +
+                img +
+                '" alt="" style="width:100%;height:100%;object-fit:cover;background:#eee;transition:transform 0.3s ease;" loading="lazy">' +
+                '<div style="position:absolute;bottom:0;left:0;right:0;padding:24px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.78));">' +
+                '<span style="display:block;font-size:13px;font-weight:bold;color:#fff;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:1px 1px 3px rgba(0,0,0,.5);">' +
+                title +
+                "</span>" +
+                "</div></a>";
+            });
+          }
+          document.querySelectorAll('#sidebar-random-posts-list').forEach(function(el) {
+            el.innerHTML = html || '<span style="color:var(--text-muted);">記事が見つかりませんでした</span>';
           });
-        }
-        document.querySelectorAll('#sidebar-random-posts-list').forEach(function(el) {
-          el.innerHTML = html || '<span style="color:var(--text-muted);">記事が見つかりませんでした</span>';
+        })
+        .catch(function (err) {
+          console.error("Sidebar Random Posts Error:", err);
         });
-      })
-      .catch(function (err) {
-        console.error("Sidebar Random Posts Error:", err);
-      });
-  }
-  var _lastHref = "";
-  function initSidebarRandom() {
-    _lastHref = window.location.href;
-    buildSidebarRandom();
-    setInterval(function () {
-      if (window.location.href !== _lastHref) {
-        _lastHref = window.location.href;
-        setTimeout(buildSidebarRandom, 300);
-      }
-    }, 500);
-  }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initSidebarRandom);
-  } else {
-    initSidebarRandom();
-  }
-})();
-//]]>
-</script>
-<script>
-//<![CDATA[
-(function() {
-  function updateBodyClass() {
-    var path = window.location.pathname;
-    var search = window.location.search;
-    var params = new URLSearchParams(search);
-    var isPage1 = params.get('page') === '1';
-    var isHomepage =
-      ((path === '/' || path === '/index.html' || path === '') &&
-      (!search.includes('page=') || isPage1));
+    }
+    var _lastHref = "";
+    function initSidebarRandom() {
+      _lastHref = window.location.href;
+      buildSidebarRandom();
+      setInterval(function () {
+        if (window.location.href !== _lastHref) {
+          _lastHref = window.location.href;
+          setTimeout(buildSidebarRandom, 300);
+        }
+      }, 500);
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initSidebarRandom);
+    } else {
+      initSidebarRandom();
+    }
+  })();
+  //]]>
+  </script>
+  <script>
+  //<![CDATA[
+  (function() {
+    function updateBodyClass() {
+      var path = window.location.pathname;
+      var search = window.location.search;
+      var params = new URLSearchParams(search);
+      var isPage1 = params.get('page') === '1';
+      var isHomepage =
+        ((path === '/' || path === '/index.html' || path === '') &&
+        (!search.includes('page=') || isPage1));
 
-    if (isHomepage) {
-      document.body.classList.add('is-homepage');
-    } else {
-      document.body.classList.remove('is-homepage');
+      if (isHomepage) {
+        document.body.classList.add('is-homepage');
+      } else {
+        document.body.classList.remove('is-homepage');
+      }
+      var isPost = /\/\d{4}\/\d{2}\/[^/]+\.html$/.test(path);
+      if (isPost) {
+        document.body.classList.add('is-post');
+      } else {
+        document.body.classList.remove('is-post');
+      }
     }
-    var isPost = /\/\d{4}\/\d{2}\/[^/]+\.html$/.test(path);
-    if (isPost) {
-      document.body.classList.add('is-post');
-    } else {
-      document.body.classList.remove('is-post');
-    }
-  }
-  updateBodyClass();
-  var observer = new MutationObserver(function() {
     updateBodyClass();
-  });
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
-  var lastUrl = location.href;
-  new MutationObserver(function() {
-    if (location.href !== lastUrl) {
-      lastUrl = location.href;
+    var observer = new MutationObserver(function() {
       updateBodyClass();
-    }
-  }).observe(document, {
-    subtree: true,
-    childList: true
-  });
-})();
-//]]>
-</script>
+    });
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+    var lastUrl = location.href;
+    new MutationObserver(function() {
+      if (location.href !== lastUrl) {
+        lastUrl = location.href;
+        updateBodyClass();
+      }
+    }).observe(document, {
+      subtree: true,
+      childList: true
+    });
+  })();
+  //]]>
+  </script>
 <!-- Tweet -->    
   <div class='fm'>
     <div class='sidebar-widget fullright' style='margin-bottom: 0rem;'>
@@ -3038,33 +3022,31 @@ document.addEventListener('DOMContentLoaded', function() {
     <h3 class='aslot-ga'><i class='fa-solid fa-money-check' style='margin: 0 10px 0 0;'/> Advertisement</h3>
   <div class='adsense-slot' id='ad-sidebar-bottom'/>
   
-  <div id='a8-random-banner-b' style='max-width:300px;'/>
-  
-<script>
-//<![CDATA[
-document.addEventListener('DOMContentLoaded', function() {
-    const adTags = [
-        '<a href="https://px.a8.net/svt/ejp?a8mat=3ZB8U2+5R71GY+348+6KMIP" rel="nofollow"><img border="0" width="300" height="250" alt="" src="https://www29.a8.net/svt/bgt?aid=240709754348&wid=009&eno=01&mid=s00000000404001104000&mc=1"></a><img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=3ZB8U2+5R71GY+348+6KMIP" alt="">',
-        '<a href="https://px.a8.net/svt/ejp?a8mat=3ZB8U2+5R71GY+348+6EMGX" rel="nofollow"><img border="0" width="336" height="280" alt="" src="https://www23.a8.net/svt/bgt?aid=240709754348&wid=009&eno=01&mid=s00000000404001076000&mc=1" style="width:100%;"></a><img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=3ZB8U2+5R71GY+348+6EMGX" alt="">',
-        '<a href="https://px.a8.net/svt/ejp?a8mat=3Z55Z3+B2WIEI+3IB8+601S1" rel="nofollow"><img border="0" width="300" height="250" alt="" src="https://www21.a8.net/svt/bgt?aid=240426111670&wid=004&eno=01&mid=s00000016370001008000&mc=1"></a><img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=3Z55Z3+B2WIEI+3IB8+601S1" alt="">'
-    ];
-    const targetElement = document.getElementById('a8-random-banner-b');
-    if (targetElement) {
-        const randomIndex = Math.floor(Math.random() * adTags.length);
-        targetElement.innerHTML = adTags[randomIndex];
-    } else {
-        window.addEventListener('load', function() {
-            const retryElement = document.getElementById('a8-random-banner-b');
-            if (retryElement) {
-                const randomIndex = Math.floor(Math.random() * adTags.length);
-                retryElement.innerHTML = adTags[randomIndex];
-            }
-        });
-    }
-});
-//]]>
-</script>
-  
+  <div id='a8-random-banner-b' style='max-width:300px;'/>  
+  <script>
+  //<![CDATA[
+  document.addEventListener('DOMContentLoaded', function() {
+      const adTags = [
+          '<a href="https://px.a8.net/svt/ejp?a8mat=3ZB8U2+5R71GY+348+6KMIP" rel="nofollow"><img border="0" width="300" height="250" alt="" src="https://www29.a8.net/svt/bgt?aid=240709754348&wid=009&eno=01&mid=s00000000404001104000&mc=1"></a><img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=3ZB8U2+5R71GY+348+6KMIP" alt="">',
+          '<a href="https://px.a8.net/svt/ejp?a8mat=3ZB8U2+5R71GY+348+6EMGX" rel="nofollow"><img border="0" width="336" height="280" alt="" src="https://www23.a8.net/svt/bgt?aid=240709754348&wid=009&eno=01&mid=s00000000404001076000&mc=1" style="width:100%;"></a><img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=3ZB8U2+5R71GY+348+6EMGX" alt="">',
+          '<a href="https://px.a8.net/svt/ejp?a8mat=3Z55Z3+B2WIEI+3IB8+601S1" rel="nofollow"><img border="0" width="300" height="250" alt="" src="https://www21.a8.net/svt/bgt?aid=240426111670&wid=004&eno=01&mid=s00000016370001008000&mc=1"></a><img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=3Z55Z3+B2WIEI+3IB8+601S1" alt="">'
+      ];
+      const targetElement = document.getElementById('a8-random-banner-b');
+      if (targetElement) {
+          const randomIndex = Math.floor(Math.random() * adTags.length);
+          targetElement.innerHTML = adTags[randomIndex];
+      } else {
+          window.addEventListener('load', function() {
+              const retryElement = document.getElementById('a8-random-banner-b');
+              if (retryElement) {
+                  const randomIndex = Math.floor(Math.random() * adTags.length);
+                  retryElement.innerHTML = adTags[randomIndex];
+              }
+          });
+      }
+  });
+  //]]>
+  </script>  
 </aside>
 </div>
 <!-- フッター -->
@@ -3077,6 +3059,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <a href='/p/contact.html'>CONTACT</a>
         <span class='separator'>&#65372;</span>
         <a href='/p/site-map.html'>SITEMAP</a>
+        <span class='separator'>&#65372;</span>
+        <a href='/p/access-stats-30days.html'>TRAFFIC TRENDS</a>        
       </div>
       <p>&#169; <span id='year'/> <data:blog.title/>. All rights reserved.</p>
     </footer>
@@ -3170,7 +3154,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
 :root,html,html[data-theme=&quot;dark&quot;]{--bg-color:#f8fafc !important;--text-main:#1e293b !important;--text-muted:#64748b !important;--card-bg:transparent !important;--border:#e2e8f0 !important;--accent:#b45309 !important;--accent-hover:#e97834 !important;--base-navy:#1e3a5f !important;--sub-amber:#f59e0b !important;--bq-bg:#f3f3f3 !important;--bq-border:#c4c4c4 !important;--header-bg:#1e3a5f !important;--tab-text-active:#333 !important;--tab-text-muted:#aaaaaa !important;--tab-lamp-color:#333 !important;--tab-border-color:#eeeeee !important;color-scheme:light !important}#view-root{display:none}
 </style>
-</b:if>		
+</b:if>
+<!-- Custom Property -->    
 <script>
 //<![CDATA[
 var BLOG_CONFIG = {
@@ -3388,6 +3373,7 @@ var SNS_CONFIG = {
 };
 //]]>
 </script>
+<!-- Rendering JS-->    
 <script>
 //<![CDATA[
 function calculateTotal(items) {
@@ -5554,6 +5540,7 @@ o.addEventListener("click", function(e) {
     <button id='back-to-top' title='Go to top'><i class='fa-solid fa-chevron-up'/></button>
 	<div id='matsu-lightbox'><img alt='Lightbox' src=''/><button aria-label='Close' class='lb-close' title='Close'>&#215;</button></div>
 <b:if cond='data:view.isPage'>
+  <!-- Blogger Layout Screen-->
     <script>
     //<![CDATA[
     (function() {
@@ -5591,6 +5578,7 @@ o.addEventListener("click", function(e) {
     //]]>
     </script>
 </b:if>
+<!-- Google Translate -->    
 <script>
 //<![CDATA[
 (function() {
@@ -5643,6 +5631,7 @@ o.addEventListener("click", function(e) {
 })();
 //]]>
 </script>
+<!-- Bookmark -->
 <script>
 //<![CDATA[
 (function() {
@@ -5762,6 +5751,7 @@ o.addEventListener("click", function(e) {
 })();
 //]]>
 </script>
+<!-- cleanup -->    
 <script>
 	//<![CDATA[   
 	(function() {
@@ -5871,6 +5861,7 @@ o.addEventListener("click", function(e) {
 </script>       
     <div id='google_translate_hidden' style='display:none'/>
     <script src='//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'/>
+<!-- Archive Gadget Control -->    
 <script type='text/javascript'>
   //<![CDATA[
   (function() {
@@ -5906,6 +5897,7 @@ o.addEventListener("click", function(e) {
   })();
   //]]>
 </script>
+<!-- Heart -->    
 <script>
 //<![CDATA[
 	var GAS_URL =
@@ -6007,6 +5999,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 //]]>
 </script>
+<!-- Copy Botton -->    
 <script>
 //<![CDATA[
 (function() {
@@ -6048,6 +6041,7 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 //]]>
 </script>
+<!-- # Cleanup -->
 <script>
 //<![CDATA[    
 window.addEventListener("DOMContentLoaded", () => {
@@ -6086,7 +6080,8 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 //]]>
-</script> 
+</script>
+<!-- Infeed Blog Card -->
 <script>
 //<![CDATA[
 (function() {
@@ -6163,7 +6158,8 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 })();
 //]]>
-</script> 
+</script>
+<!-- TAB Lavalamp -->    
 <script>
 //<![CDATA[
 document.addEventListener("DOMContentLoaded", () => {
@@ -6221,18 +6217,16 @@ document.addEventListener("DOMContentLoaded", () => {
   _tabObs.observe(document.body || document.documentElement, { childList: true, subtree: true });
 });
 //]]>
-</script> 
+</script>
+<!-- Site Header-->
 <script>
 //<![CDATA[   
 (function() {
   var header = document.querySelector('.site-header');
   if (!header) return;
-
   var bgUrl = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhVZbMAogx2LneA2z_8LuHLg8NI6wiruiwl98SftmpYTJwPE-2-tvWlpn4hzbgqWhd9E_OQ1YCnhTvxp0nOwhgZrQE7yoPrM6BYWn8w2HTWn_uFjHbr_yOiS3keIKM1IWlrUxFWJTTOy9EPITk3v2BsUgPhlpUwQg9KjMQKKtH8ge3GbbnAUc0TYGDjQgw/w1920/aig-esports_7525009-xl_TP_V.webp";
-  
-  var img = new Image();
-  img.src = bgUrl;
-  
+    var img = new Image();
+  img.src = bgUrl;  
     if (img.complete) {
     header.classList.add('is-loaded');
   } else {
@@ -6253,6 +6247,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <button onclick='acceptCookies()' style='font-size:13px; padding:6px 18px; border-radius:8px; cursor:pointer;'>了解しました</button>
   </div>
 </div>
+<!-- Cookie -->
 <script>
 //<![CDATA[      
   (function() {
@@ -6269,7 +6264,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => el.style.display = 'none', 250);
   }
 //]]>
-</script> 
+</script>
+<!-- Ranking -->
 <script>
 //<![CDATA[
 (function() {
@@ -6289,7 +6285,6 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
         var COEFFICIENT = 100;
-
         rows.sort(function(a, b) {
           return (a.finalScore || 0) - (b.finalScore || 0);
         });
@@ -6335,6 +6330,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 //]]>
 </script>
+<!-- Firefox -->
 <script>
 //<![CDATA[  
 if (navigator.userAgent.indexOf('Firefox') !== -1) {
@@ -6355,6 +6351,7 @@ if (navigator.userAgent.indexOf('Firefox') !== -1) {
 }
 //]]>
 </script>  
+<!-- Tweet -->
 <script>
 //<![CDATA[    
 (function () {
@@ -6439,7 +6436,8 @@ if (navigator.userAgent.indexOf('Firefox') !== -1) {
     });
 })();
 //]]>
-</script>    
+</script>
+<!-- Poll -->
 <script>
 //<![CDATA[      
 (function () {
@@ -6605,6 +6603,7 @@ if (navigator.userAgent.indexOf('Firefox') !== -1) {
 })();
 //]]>
 </script>
+<!-- hatena Bookmark -->
 <script>//<![CDATA[
 (function () {
   'use strict'; 
@@ -6730,6 +6729,7 @@ if (navigator.userAgent.indexOf('Firefox') !== -1) {
   injectStyles();
 })();
 //]]></script>
+<!-- Lenis -->
 <script>//<![CDATA[
 !function(t,e){"object"==typeof exports&&"undefined"!=typeof module?module.exports=e():"function"==typeof define&&define.amd?define(e):(t||self).Lenis=e()}(this,function(){function t(t,e){for(var i=0;i<e.length;i++){var o=e[i];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,"symbol"==typeof(n=function(t,e){if("object"!=typeof t||null===t)return t;var i=t[Symbol.toPrimitive];if(void 0!==i){var o=i.call(t,"string");if("object"!=typeof o)return o;throw new TypeError("@@toPrimitive must return a primitive value.")}return String(t)}(o.key))?n:String(n),o)}var n}function e(e,i,o){return i&&t(e.prototype,i),o&&t(e,o),Object.defineProperty(e,"prototype",{writable:!1}),e}function i(){return i=Object.assign?Object.assign.bind():function(t){for(var e=1;e<arguments.length;e++){var i=arguments[e];for(var o in i)Object.prototype.hasOwnProperty.call(i,o)&&(t[o]=i[o])}return t},i.apply(this,arguments)}function o(t,e,i){return Math.max(t,Math.min(e,i))}var n=/*#__PURE__*/function(){function t(){}var e=t.prototype;return e.advance=function(t){var e,i,n,s;if(this.isRunning){var r=!1;if(this.lerp)this.value=(i=this.value,n=this.to,(1-(s=1-Math.exp(-60*this.lerp*t)))*i+s*n),Math.round(this.value)===this.to&&(this.value=this.to,r=!0);else{this.currentTime+=t;var l=o(0,this.currentTime/this.duration,1),h=(r=l>=1)?1:this.easing(l);this.value=this.from+(this.to-this.from)*h}null==(e=this.onUpdate)||e.call(this,this.value,{completed:r}),r&&this.stop()}},e.stop=function(){this.isRunning=!1},e.fromTo=function(t,e,i){var o=i.lerp,n=void 0===o?.1:o,s=i.duration,r=void 0===s?1:s,l=i.easing,h=void 0===l?function(t){return t}:l,a=i.onUpdate;this.from=this.value=t,this.to=e,this.lerp=n,this.duration=r,this.easing=h,this.currentTime=0,this.isRunning=!0,this.onUpdate=a},t}(),s=/*#__PURE__*/function(){function t(t){var e,i,o=this,n=void 0===t?{}:t,s=n.wrapper,r=n.content,l=n.autoResize,h=void 0===l||l;if(this.resize=function(){o.onWrapperResize(),o.onContentResize()},this.onWrapperResize=function(){o.wrapper===window?(o.width=window.innerWidth,o.height=window.innerHeight):(o.width=o.wrapper.clientWidth,o.height=o.wrapper.clientHeight)},this.onContentResize=function(){o.scrollHeight=o.content.scrollHeight,o.scrollWidth=o.content.scrollWidth},this.wrapper=s,this.content=r,h){var a=(e=this.resize,function(){var t=arguments,o=this;clearTimeout(i),i=setTimeout(function(){e.apply(o,t)},250)});this.wrapper!==window&&(this.wrapperResizeObserver=new ResizeObserver(a),this.wrapperResizeObserver.observe(this.wrapper)),this.contentResizeObserver=new ResizeObserver(a),this.contentResizeObserver.observe(this.content)}this.resize()}return t.prototype.destroy=function(){var t,e;null==(t=this.wrapperResizeObserver)||t.disconnect(),null==(e=this.contentResizeObserver)||e.disconnect()},e(t,[{key:"limit",get:function(){return{x:this.scrollWidth-this.width,y:this.scrollHeight-this.height}}}]),t}(),r=/*#__PURE__*/function(){function t(){this.events={}}var e=t.prototype;return e.emit=function(t){for(var e=this.events[t]||[],i=0,o=e.length;i<o;i++)e[i].apply(e,[].slice.call(arguments,1))},e.on=function(t,e){var i,o=this;return(null==(i=this.events[t])?void 0:i.push(e))||(this.events[t]=[e]),function(){var i;o.events[t]=null==(i=o.events[t])?void 0:i.filter(function(t){return e!==t})}},e.destroy=function(){this.events={}},t}(),l=/*#__PURE__*/function(){function t(t,e){var i=this,n=e.wheelMultiplier,s=void 0===n?1:n,l=e.touchMultiplier,h=void 0===l?2:l,a=e.normalizeWheel,c=void 0!==a&&a;this.onTouchStart=function(t){var e=t.targetTouches?t.targetTouches[0]:t,o=e.clientY;i.touchStart.x=e.clientX,i.touchStart.y=o,i.lastDelta={x:0,y:0}},this.onTouchMove=function(t){var e=t.targetTouches?t.targetTouches[0]:t,o=e.clientX,n=e.clientY,s=-(o-i.touchStart.x)*i.touchMultiplier,r=-(n-i.touchStart.y)*i.touchMultiplier;i.touchStart.x=o,i.touchStart.y=n,i.lastDelta={x:s,y:r},i.emitter.emit("scroll",{type:"touch",deltaX:s,deltaY:r,event:t})},this.onTouchEnd=function(t){i.emitter.emit("scroll",{type:"touch",inertia:!0,deltaX:i.lastDelta.x,deltaY:i.lastDelta.y,event:t})},this.onWheel=function(t){var e=t.deltaX,n=t.deltaY;i.normalizeWheel&&(e=o(-100,e,100),n=o(-100,n,100)),i.emitter.emit("scroll",{type:"wheel",deltaX:e*=i.wheelMultiplier,deltaY:n*=i.wheelMultiplier,event:t})},this.element=t,this.wheelMultiplier=s,this.touchMultiplier=h,this.normalizeWheel=c,this.touchStart={x:null,y:null},this.emitter=new r,this.element.addEventListener("wheel",this.onWheel,{passive:!1}),this.element.addEventListener("touchstart",this.onTouchStart,{passive:!1}),this.element.addEventListener("touchmove",this.onTouchMove,{passive:!1}),this.element.addEventListener("touchend",this.onTouchEnd,{passive:!1})}var e=t.prototype;return e.on=function(t,e){return this.emitter.on(t,e)},e.destroy=function(){this.emitter.destroy(),this.element.removeEventListener("wheel",this.onWheel,{passive:!1}),this.element.removeEventListener("touchstart",this.onTouchStart,{passive:!1}),this.element.removeEventListener("touchmove",this.onTouchMove,{passive:!1}),this.element.removeEventListener("touchend",this.onTouchEnd,{passive:!1})},t}();
 return function(){function t(t){var e=this,o=void 0===t?{}:t,h=o.wrapper,a=void 0===h?window:h,c=o.content,u=void 0===c?document.documentElement:c,p=o.wheelEventsTarget,d=void 0===p?a:p,v=o.smoothWheel,m=void 0===v||v,f=o.smoothTouch,g=void 0!==f&&f,y=o.syncTouch,S=void 0!==y&&y,w=o.syncTouchLerp,T=void 0===w?.1:w,b=o.__iosNoInertiaSyncTouchLerp,z=void 0===b?.4:b,M=o.touchInertiaMultiplier,E=void 0===M?35:M,L=o.duration,_=o.easing,O=void 0===_?function(t){return Math.min(1,1.001-Math.pow(2,-10*t))}:_,R=o.lerp,W=void 0===R?L&&.1:R,k=o.infinite,x=void 0!==k&&k,H=o.orientation,j=void 0===H?"vertical":H,A=o.gestureOrientation,X=void 0===A?"vertical":A,Y=o.touchMultiplier,D=void 0===Y?1:Y,I=o.wheelMultiplier,P=void 0===I?1:I,C=o.normalizeWheel,U=void 0!==C&&C,N=o.autoResize,V=void 0===N||N;this.onVirtualScroll=function(t){var o=t.type,n=t.inertia,s=t.deltaX,r=t.deltaY,l=t.event;if(!l.ctrlKey){var h="touch"===o,a="wheel"===o;if(!("vertical"===e.options.gestureOrientation&&0===r||"horizontal"===e.options.gestureOrientation&&0===s||h&&"vertical"===e.options.gestureOrientation&&0===e.scroll&&!e.options.infinite&&r<=0||l.composedPath().find(function(t){return(null==t||null==t.hasAttribute?void 0:t.hasAttribute("data-lenis-prevent"))||h&&(null==t||null==t.hasAttribute?void 0:t.hasAttribute("data-lenis-prevent-touch"))||a&&(null==t||null==t.hasAttribute?void 0:t.hasAttribute("data-lenis-prevent-wheel"))})))if(e.isStopped||e.isLocked)l.preventDefault();else{if(e.isSmooth=(e.options.smoothTouch||e.options.syncTouch)&&h||e.options.smoothWheel&&a,!e.isSmooth)return e.isScrolling=!1,void e.animate.stop();l.preventDefault();var c=r;"both"===e.options.gestureOrientation?c=Math.abs(r)>Math.abs(s)?r:s:"horizontal"===e.options.gestureOrientation&&(c=s);var u=h&&e.options.syncTouch,p=h&&n&&Math.abs(c)>1;p&&(c=e.velocity*e.options.touchInertiaMultiplier),e.scrollTo(e.targetScroll+c,i({programmatic:!1},u&&{lerp:p?e.syncTouchLerp:e.options.__iosNoInertiaSyncTouchLerp}))}}},this.onScroll=function(){if(!e.isScrolling){var t=e.animatedScroll;e.animatedScroll=e.targetScroll=e.actualScroll,e.velocity=0,e.direction=Math.sign(e.animatedScroll-t),e.emit()}},window.lenisVersion="1.0.18",a!==document.documentElement&&a!==document.body||(a=window),this.options={wrapper:a,content:u,wheelEventsTarget:d,smoothWheel:m,smoothTouch:g,syncTouch:S,syncTouchLerp:T,__iosNoInertiaSyncTouchLerp:z,touchInertiaMultiplier:E,duration:L,easing:O,lerp:W,infinite:x,gestureOrientation:X,orientation:j,touchMultiplier:D,wheelMultiplier:P,normalizeWheel:U,autoResize:V},this.dimensions=new s({wrapper:a,content:u,autoResize:V}),this.rootElement.classList.add("lenis"),this.velocity=0,this.isStopped=!1,this.isSmooth=m||g,this.isScrolling=!1,this.targetScroll=this.animatedScroll=this.actualScroll,this.animate=new n,this.emitter=new r,this.options.wrapper.addEventListener("scroll",this.onScroll,{passive:!1}),this.virtualScroll=new l(d,{touchMultiplier:D,wheelMultiplier:P,normalizeWheel:U}),this.virtualScroll.on("scroll",this.onVirtualScroll)}var h=t.prototype;return h.destroy=function(){this.emitter.destroy(),this.options.wrapper.removeEventListener("scroll",this.onScroll,{passive:!1}),this.virtualScroll.destroy(),this.dimensions.destroy(),this.rootElement.classList.remove("lenis"),this.rootElement.classList.remove("lenis-smooth"),this.rootElement.classList.remove("lenis-scrolling"),this.rootElement.classList.remove("lenis-stopped")},h.on=function(t,e){return this.emitter.on(t,e)},h.off=function(t,e){var i;this.emitter.events[t]=null==(i=this.emitter.events[t])?void 0:i.filter(function(t){return e!==t})},h.setScroll=function(t){this.isHorizontal?this.rootElement.scrollLeft=t:this.rootElement.scrollTop=t},h.resize=function(){this.dimensions.resize()},h.emit=function(){this.emitter.emit("scroll",this)},h.reset=function(){this.isLocked=!1,this.isScrolling=!1,this.velocity=0,this.animate.stop()},h.start=function(){this.isStopped=!1,this.reset()},h.stop=function(){this.isStopped=!0,this.animate.stop(),this.reset()},h.raf=function(t){var e=t-(this.time||t);this.time=t,this.animate.advance(.001*e)},h.scrollTo=function(t,e){var i=this,n=void 0===e?{}:e,s=n.offset,r=void 0===s?0:s,l=n.immediate,h=void 0!==l&&l,a=n.lock,c=void 0!==a&&a,u=n.duration,p=void 0===u?this.options.duration:u,d=n.easing,v=void 0===d?this.options.easing:d,m=n.lerp,f=void 0===m?!p&&this.options.lerp:m,g=n.onComplete,y=void 0===g?null:g,S=n.force,w=n.programmatic,T=void 0===w||w;if(!this.isStopped||void 0!==S&&S){if(["top","left","start"].includes(t))t=0;else if(["bottom","right","end"].includes(t))t=this.limit;else{var b,z;if("string"==typeof t?z=document.querySelector(t):null!=(b=t)&&b.nodeType&&(z=t),z){if(this.options.wrapper!==window){var M=this.options.wrapper.getBoundingClientRect();r-=this.isHorizontal?M.left:M.top}var E=z.getBoundingClientRect();t=(this.isHorizontal?E.left:E.top)+this.animatedScroll}}if("number"==typeof t){if(t+=r,t=Math.round(t),this.options.infinite?T&&(this.targetScroll=this.animatedScroll=this.scroll):t=o(0,t,this.limit),h)return this.animatedScroll=this.targetScroll=t,this.setScroll(this.scroll),this.reset(),this.emit(),void(null==y||y());if(!T){if(t===this.targetScroll)return;this.targetScroll=t}this.animate.fromTo(this.animatedScroll,t,{duration:p,easing:v,lerp:f,onUpdate:function(t,e){var o=e.completed;c&&(i.isLocked=!0),i.isScrolling=!0,i.velocity=t-i.animatedScroll,i.direction=Math.sign(i.velocity),i.animatedScroll=t,i.setScroll(i.scroll),T&&(i.targetScroll=t),o&&(c&&(i.isLocked=!1),requestAnimationFrame(function(){i.isScrolling=!1}),i.velocity=0,null==y||y()),i.emit()}})}}},e(t,[{key:"rootElement",get:function(){return this.options.wrapper===window?this.options.content:this.options.wrapper}},{key:"limit",get:function(){return this.dimensions.limit[this.isHorizontal?"x":"y"]}},{key:"isHorizontal",get:function(){return"horizontal"===this.options.orientation}},{key:"actualScroll",get:function(){return this.isHorizontal?this.rootElement.scrollLeft:this.rootElement.scrollTop}},{key:"scroll",get:function(){return this.options.infinite?(this.animatedScroll%(t=this.limit)+t)%t:this.animatedScroll;var t}},{key:"progress",get:function(){return 0===this.limit?1:this.scroll/this.limit}},{key:"isSmooth",get:function(){return this.__isSmooth},set:function(t){this.__isSmooth!==t&&(this.rootElement.classList.toggle("lenis-smooth",t),this.__isSmooth=t)}},{key:"isScrolling",get:function(){return this.__isScrolling},set:function(t){this.__isScrolling!==t&&(this.rootElement.classList.toggle("lenis-scrolling",t),this.__isScrolling=t)}},{key:"isStopped",get:function(){return this.__isStopped},set:function(t){this.__isStopped!==t&&(this.rootElement.classList.toggle("lenis-stopped",t),this.__isStopped=t)}}]),t}()});
@@ -6743,7 +6743,6 @@ document.addEventListener('DOMContentLoaded', function () {
     requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
-
   (function () {
     var timer = null;
     var safeResize = function () {
@@ -6758,30 +6757,26 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     window.addEventListener('load', safeResize);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(safeResize);
-
     window.matsuSafeResize = safeResize;
   })();
 });
 //]]></script>
+<!--AdSense Block -->
 <script>
 //<![CDATA[
 document.addEventListener('DOMContentLoaded', () => {
     const hostname = window.location.hostname;
     const search = window.location.search;
-
     const isBloggerPreview =
         hostname === 'draft.blogger.com' ||
         hostname.endsWith('.blogger.com') ||
         /[?&]preview(?:=|&|$)/i.test(search) ||
         /[?&]view=preview(?:&|$)/i.test(search);
-
     const isMobile =
         /Android|iPhone|iPad|iPod|Mobile/i.test(
             window.navigator.userAgent
         );
-
     const isMobileView = /[?&]m=1(?:&|$)/i.test(search);
-
     if (isBloggerPreview || isMobile || isMobileView) {
         return;
     }
@@ -6847,6 +6842,7 @@ function initAdBlockCheck(modal) {
 }
 //]]>
 </script>
+<!-- 全画面ページ専用 -->
 <script>    
 //<![CDATA[
 (function () {
@@ -6895,6 +6891,185 @@ function initAdBlockCheck(modal) {
     <button class='reload-btn' onclick='location.reload()'>解除して再読み込み</button>
   </div>
 </div>
+<!-- see more-->
+<script>
+//<![CDATA[
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('#slide-sidebar .hashtag-see-more') : null;
+  if (!btn) return;
+  var wrap = btn.previousElementSibling;
+  if (!wrap) return;
+  wrap.style.transition = 'none';
+  wrap.style.maxHeight = 'none';
+  var h = wrap.scrollHeight;
+  wrap.style.maxHeight = '0';
+  wrap.getBoundingClientRect();
+  wrap.style.transition = 'max-height 400ms ease';
+  wrap.style.maxHeight = h ? h + 'px' : 'none';
+  btn.remove();
+});
+//]]>
+</script>
+<!-- Accordion-->
+<script>
+//<![CDATA[
+  document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.faq-label')) {
+        if (e.target.closest('.tab-buttons') || e.target.closest('.tab-content') || e.target.closest('a') || e.target.closest('button')) {
+          e.preventDefault();
+        }
+      }
+    });
+  });
+//]]>
+</script>
+<!-- 記事の読み上げボタン -->
+<script>
+//<![CDATA[
+(function () {
+  if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) return;
+  var synth = window.speechSynthesis;
+  var RATE = 1.5;   // 読み上げ速度
+  var PITCH = 1.2;  // ピッチ
+  var state = { playing: false, paused: false, chunks: [], idx: 0, session: 0, path: '' };
+  var ICON_PLAY = '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+  var ICON_PAUSE = '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+  function injectStyle() {
+    if (document.getElementById('tts-row-style')) return;
+    var s = document.createElement('style');
+    s.id = 'tts-row-style';
+    s.textContent =
+      '.tts-row{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:2px 0 1rem;font-size:80%;color:#999;}' +
+      '.tts-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;border:none;border-radius:50%;background:var(--accent,#1e3a5f);color:#fff;cursor:pointer;transition:background .2s;}' +
+      '.tts-btn:hover{background:var(--accent-hover,#64748b);}';
+    document.head.appendChild(s);
+  }
+  function buildChunks() {
+    var body = document.querySelector('.post-body');
+    if (!body) return [];
+    var out = [];
+    body.querySelectorAll('h2, h3, h4, p, li').forEach(function (el) {
+      if (el.closest('pre, code, style, script, .matsu-toc, #toc, .reading-time-msg, .tts-row')) return;
+      if (el.tagName === 'LI' && el.querySelector('p')) return;
+      var t = (el.textContent || '').replace(/\s+/g, ' ').trim();
+      if (!t) return;
+      var sentences = t.match(/[^。！？!?]+[。！？!?]?/g) || [t];
+      sentences.forEach(function (s) {
+        s = s.trim();
+        if (!s) return;
+        if (s.length <= 120) { out.push(s); return; }
+        var buf = '';
+        (s.match(/[^、,]+[、,]?/g) || [s]).forEach(function (p) {
+          if ((buf + p).length > 120 && buf) { out.push(buf); buf = ''; }
+          buf += p;
+        });
+        if (buf) out.push(buf);
+      });
+    });
+    return out;
+  }
+  function pickVoice() {
+    var vs = synth.getVoices() || [];
+    for (var i = 0; i < vs.length; i++) {
+      if (/^ja/i.test(vs[i].lang)) return vs[i];
+    }
+    return null;
+  }
+  function updateUI() {
+    document.querySelectorAll('.tts-btn').forEach(function (b) {
+      b.innerHTML = state.playing ? ICON_PAUSE : ICON_PLAY;
+      b.setAttribute('aria-label', state.playing ? '一時停止' : '再生');
+    });
+  }
+  function finish() {
+    state.playing = false;
+    state.paused = false;
+    state.idx = 0;
+    state.chunks = [];
+    updateUI();
+  }
+  function speakNext(sess) {
+    if (sess !== state.session) return;
+    if (state.idx >= state.chunks.length) { finish(); return; }
+    var u = new SpeechSynthesisUtterance(state.chunks[state.idx]);
+    u.lang = 'ja-JP';
+    u.rate = RATE;
+    u.pitch = PITCH;
+    var v = pickVoice();
+    if (v) u.voice = v;
+    u.onend = function () {
+      if (sess !== state.session) return;
+      state.idx++;
+      speakNext(sess);
+    };
+    u.onerror = function (e) {
+      if (sess !== state.session) return;
+      if (e && (e.error === 'canceled' || e.error === 'interrupted')) return;
+      state.idx++;
+      speakNext(sess);
+    };
+    synth.speak(u);
+  }
+  function play() {
+    synth.cancel();
+    state.session++;
+    if (!state.paused || state.path !== location.pathname || !state.chunks.length) {
+      state.chunks = buildChunks();
+      state.idx = 0;
+    }
+    if (!state.chunks.length) { finish(); return; }
+    state.path = location.pathname;
+    state.playing = true;
+    state.paused = false;
+    updateUI();
+    speakNext(state.session);
+  }
+  function pause() {
+    state.session++;      
+    synth.cancel();       
+    state.playing = false;
+    state.paused = true;
+    updateUI();
+  }
+  function stopAll() {
+    state.session++;
+    synth.cancel();
+    finish();
+  }
+  function ensureRow() {
+    var msg = document.querySelector('.post-body .reading-time-msg');
+    if (!msg) return;
+    var next = msg.nextElementSibling;
+    if (next && next.classList.contains('tts-row')) return;
+    injectStyle();
+    var row = document.createElement('div');
+    row.className = 'tts-row';
+    row.innerHTML = '<span class="tts-label">記事の読み上げ</span>' +
+      '<button type="button" class="tts-btn" aria-label="再生">' + ICON_PLAY + '</button>';
+    row.querySelector('.tts-btn').addEventListener('click', function () {
+      if (state.playing) pause(); else play();
+    });
+    msg.parentNode.insertBefore(row, msg.nextSibling);
+    updateUI();
+  }
+  var timer = null;
+  function onMutate() {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      if ((state.playing || state.paused) && state.path && state.path !== location.pathname) {
+        stopAll();
+      }
+      ensureRow();
+    }, 80);
+  }
+  new MutationObserver(onMutate).observe(document.body, { childList: true, subtree: true });
+  document.addEventListener('DOMContentLoaded', ensureRow);
+  window.addEventListener('beforeunload', function () { synth.cancel(); });
+  if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = function () {};
+})();
+//]]>
+</script>    
 <noscript>
 <span style='visibility: hidden; position: absolute; top: 0; left: 0;'>
 <img alt='tracker' height='1' src='https://cf247737.cloudfree.jp/lunalys/analyzer/tracker.php?act=img&amp;site=1' width='1'/>
