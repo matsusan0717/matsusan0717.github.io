@@ -5905,9 +5905,6 @@ div.ranking-item {
 	filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.6));
 	pointer-events: none;
 }
-pre[class*="language-"] {
-	position: relative;
-}
 .code-copy-btn {
 	position: absolute;
 	top: 8px;
