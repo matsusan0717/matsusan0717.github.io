@@ -1159,7 +1159,6 @@ pre[class*="language-"] {
 	white-space: pre-wrap;
 	max-width: 100%;
 	box-sizing: border-box;
-	-webkit-overflow-scrolling: touch;
 	word-break: normal;
 	overflow-wrap: normal;
 	display: block;
@@ -2693,11 +2692,6 @@ color: var(--heading-light)
 	}
 }
 @media (max-width: 600px) {
-	#view-root pre,
-	.post-full pre,
-	.post-body pre {
-		max-width: calc(100vw - 1.8rem) !important;
-	}
 	.layout-container {
 		padding: 0 0.5rem;
 	}
@@ -3869,23 +3863,6 @@ Blogger Custom Styles (matsusan0717) - External CSS
 		max-width: 100% !important;
 		margin-left: 0 !important;
 		margin-right: 0 !important;
-	}
-	#view-root pre,
-	.post-full pre,
-	.post-body pre {
-		max-width: calc(100vw - 3rem) !important;
-		width: calc(100vw - 3rem) !important;
-		overflow-x: auto !important;
-		white-space: pre !important;
-		word-break: normal !important;
-		overflow-wrap: normal !important;
-	}
-	#view-root pre code,
-	.post-full pre code,
-	.post-body pre code {
-		white-space: pre !important;
-		word-break: normal !important;
-		overflow-wrap: normal !important;
 	}
 }
 #matsu-profile-container {
@@ -5631,18 +5608,6 @@ div.ranking-item {
 		grid-template-columns: 1fr var(--sidebar-width);
 		gap: 45px;
 		align-items: start;
-	}
-}
-@media (max-width: 900px) {
-	#view-root pre,
-	.post-full pre,
-	.post-body pre {
-		max-width: calc(100vw - 2rem) !important;
-		width: calc(100vw - 1rem) !important;
-		overflow-x: auto !important;
-		white-space: pre !important;
-		word-break: normal !important;
-		overflow-wrap: normal !important;
 	}
 }
 .post-full-meta {
