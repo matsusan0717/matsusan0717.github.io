@@ -1159,7 +1159,6 @@ pre[class*="language-"] {
 	white-space: pre-wrap;
 	max-width: 100%;
 	box-sizing: border-box;
-	-webkit-overflow-scrolling: touch;
 	word-break: normal;
 	overflow-wrap: normal;
 	display: block;
