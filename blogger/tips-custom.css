@@ -2422,7 +2422,7 @@ color: var(--heading-light)
   background-size: 800% 400%;
   animation: gradient 5s infinite cubic-bezier(.62, .28, .23, .99) both;
 }
-@keyframes gradient {
+.sidebar @keyframes gradient {
   0% {
     background-position: 0% 50%;
   }
