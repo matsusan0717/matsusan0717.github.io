@@ -919,7 +919,7 @@ a:hover {
 	margin-bottom: 0.25rem;
 	color: var(--text-main);
 	transition: color 0.2s
-	margin-top:5px;
+	margin-top:-5px;
 }
 .recent-post-link:hover .recent-post-title {
 	color: var(--accent)
