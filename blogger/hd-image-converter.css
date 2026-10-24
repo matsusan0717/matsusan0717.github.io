@@ -773,6 +773,7 @@
 	    font-size: 13px;
 	    color: #e0e6ed;
 	    letter-spacing: 0.3px;
+		margin-top: -3px;
 	}
 
 	.wf-series .wf-inner>p,
