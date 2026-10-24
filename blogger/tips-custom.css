@@ -6683,3 +6683,4 @@ pre[class*="language-"] {
 	right: -150px;
 	position: relative;
 }
+.slide-sidebar .gam-slot { display: none; }
