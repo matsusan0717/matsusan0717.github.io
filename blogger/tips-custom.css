@@ -6685,3 +6685,6 @@ pre[class*="language-"] {
 	position: relative;
 }
 .slide-sidebar .gam-slot { display: none; }
+img.bc-avatar[src="https://img1.blogblog.com/img/blank.gif"] {
+  content: url('https://resources.blogblog.com/img/anon36.png');
+}
