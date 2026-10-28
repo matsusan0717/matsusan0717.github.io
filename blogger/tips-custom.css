@@ -6688,3 +6688,31 @@ pre[class*="language-"] {
 img.bc-avatar[src="https://img1.blogblog.com/img/blank.gif"] {
   content: url('https://resources.blogblog.com/img/anon36.png');
 }
+/* ===== 人気記事スライダー (Swiper) : #pop-slider-root ===== */
+#pop-slider-root { width: 100%; }
+#pop-slider-root:empty { display: none; }
+.ps-inner { max-width: var(--max-width, 1225px); margin: 0 auto; padding: 20px 16px 4px; box-sizing: border-box; }
+.ps-heading { font-size: 15px; font-weight: 700; color: var(--text-main); margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.ps-heading span { background: var(--accent, #1e3a5f); color: #fff; font-size: 11px; letter-spacing: .08em; padding: 3px 10px; border-radius: 999px; }
+.ps-swiper { padding: 4px 4px 40px; --swiper-theme-color: var(--accent, #1e3a5f); --swiper-navigation-size: 18px; }
+.ps-swiper .swiper-slide { height: auto; }
+.ps-card { display: flex; flex-direction: column; background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb); border-radius: var(--radius, 8px); overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06); transition: box-shadow .2s, transform .2s; }
+.ps-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,.12); transform: translateY(-2px); }
+.ps-card-image { position: relative; display: block; aspect-ratio: 16 / 9; background: #e5e7eb; overflow: hidden; }
+.ps-card-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ps-noimg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 13px; }
+.ps-tag { position: absolute; left: 10px; top: 10px; background: var(--sub-amber, #f59e0b); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.ps-card-content { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px 16px; flex: 1; }
+.ps-date { font-size: 12px; color: var(--text-muted); }
+.ps-card-title { margin: 0; font-size: 15px; line-height: 1.5; font-weight: 700; min-height: 3em; }
+.ps-card-title a { color: var(--text-main); text-decoration: none; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.ps-card-title a:hover { color: var(--accent, #1e3a5f); }
+.ps-card-footer { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 10px; border-top: 1px solid var(--border, #e5e7eb); }
+.ps-profile { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.ps-avatar { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
+.ps-author { font-size: 12px; font-weight: 600; color: var(--text-main); }
+.ps-button { flex-shrink: 0; font-size: 12px; font-weight: 700; color: #fff !important; background: var(--accent, #1e3a5f); padding: 6px 14px; border-radius: 999px; text-decoration: none; transition: opacity .2s; }
+.ps-button:hover { opacity: .85; }
+.ps-swiper .swiper-button-prev, .ps-swiper .swiper-button-next { background: var(--card-bg, #fff); width: 36px; height: 36px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
+.ps-swiper .swiper-button-prev::after, .ps-swiper .swiper-button-next::after { font-size: 14px; font-weight: 700; }
+@media (max-width: 767px) { .ps-swiper .swiper-button-prev, .ps-swiper .swiper-button-next { display: none; } }
