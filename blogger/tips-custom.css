@@ -6689,6 +6689,7 @@ img.bc-avatar[src="https://img1.blogblog.com/img/blank.gif"] {
   content: url('https://resources.blogblog.com/img/anon36.png');
 }
 /* ===== 人気記事スライダー (Swiper) : #pop-slider-root ===== */
+.swiper {padding: 8px 4px !important;}
 #pop-slider-root { width: 100%; }
 #pop-slider-root:empty { display: none; }
 .ps-inner { max-width: var(--max-width, 1225px); margin: 0 auto; padding: 20px 16px 4px; box-sizing: border-box; }
