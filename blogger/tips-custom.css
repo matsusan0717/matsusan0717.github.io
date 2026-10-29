@@ -6713,6 +6713,6 @@ img.bc-avatar[src="https://img1.blogblog.com/img/blank.gif"] {
 .ps-author { font-size: 12px; font-weight: 600; color: var(--text-main); }
 .ps-button { flex-shrink: 0; font-size: 12px; font-weight: 700; color: #fff !important; background: var(--accent, #1e3a5f); padding: 6px 14px; border-radius: 999px; text-decoration: none; transition: opacity .2s; }
 .ps-button:hover { opacity: .85; }
-.ps-swiper .swiper-button-prev, .ps-swiper .swiper-button-next { background: var(--card-bg, #fff); width: 36px; height: 36px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
+.ps-swiper .swiper-button-prev, .ps-swiper .swiper-button-next { background: #ffffff63;; width: 36px; height: 36px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
 .ps-swiper .swiper-button-prev::after, .ps-swiper .swiper-button-next::after { font-size: 14px; font-weight: 700; }
 @media (max-width: 767px) { .ps-swiper .swiper-button-prev, .ps-swiper .swiper-button-next { display: none; } }
