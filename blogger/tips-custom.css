@@ -3605,7 +3605,7 @@ opacity: 1;
 padding-bottom: 20px;
 }
 .bmc-btn {
-width: 150px !important;
+width: 100% !important;
 color: #5c3a28 !important;
 background-color: #ffffff !important;
 height: 40px;
@@ -3624,10 +3624,12 @@ box-sizing: border-box !important;
 border: solid 1px;
 }
 .bmc-btn-text {
-margin-left: 12px !important;
+margin-left: 8px !important;
+top: 2px;
+position: relative;
 }
 .bmc-btn-text.github {
-margin-left: 30px !important;
+margin-left: 20px !important;
 }
 .bmc-btn.github {
 color: #FF758E !important;
