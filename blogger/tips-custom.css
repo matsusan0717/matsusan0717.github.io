@@ -3604,46 +3604,46 @@ max-height: none;
 opacity: 1;
 padding-bottom: 20px;
 }
-  .bmc-btn {
-  	width: 150px !important;
-  	color: #5c3a28 !important;
-  	background-color: #ffffff !important;
-  	height: 40px;
-  	border-radius: var(--radius);
-  	font-size: .7rem;
-  	font-weight: Bold;
-  	border: none;
-  	padding: 0px 12px;
-  	line-height: 27px;
-  	text-decoration: none !important;
-  	display: inline-flex !important;
-  	align-items: center;
-  	font-family: 'Arial', cursive !important;
-  	-webkit-box-sizing: border-box !important;
-  	box-sizing: border-box !important;
-  	border: solid 1px;
-  }
-  .bmc-btn-text {
-  	margin-left: 12px !important;
-  }
-  .bmc-btn-text.github {
-  	margin-left: 30px !important;
-  }
-  .bmc-btn.github {
-  	color: #FF758E !important;
-  }
-  .bmc-btn:hover {
-  	background: #deb88770 !important;
-  	transition: all 0.5s 0s ease;
-  }
-  .bmc-btn.github:hover {
-  	background: #ff758e2e !important;
-  	transition: all 0.5s 0s ease;
-  }
+.bmc-btn {
+width: 150px !important;
+color: #5c3a28 !important;
+background-color: #ffffff !important;
+height: 40px;
+border-radius: var(--radius);
+font-size: .7rem;
+font-weight: Bold;
+border: none;
+padding: 0px 12px;
+line-height: 27px;
+text-decoration: none !important;
+display: inline-flex !important;
+align-items: center;
+font-family: 'Arial', cursive !important;
+-webkit-box-sizing: border-box !important;
+box-sizing: border-box !important;
+border: solid 1px;
+}
+.bmc-btn-text {
+margin-left: 12px !important;
+}
+.bmc-btn-text.github {
+margin-left: 30px !important;
+}
+.bmc-btn.github {
+color: #FF758E !important;
+}
+.bmc-btn:hover {
+background: #deb88770 !important;
+transition: all 0.5s 0s ease;
+}
+.bmc-btn.github:hover {
+background: #ff758e2e !important;
+transition: all 0.5s 0s ease;
+}
 .bmc-btn:active, .bmc-btn:focus {
-    text-decoration: none !important;
-    cursor: pointer;
-    opacity: 0.9;
+text-decoration: none !important;
+cursor: pointer;
+opacity: 0.9;
 }
 .fa-mug-hot:before {
     top: -3px;
