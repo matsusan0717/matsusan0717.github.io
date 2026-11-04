@@ -3411,10 +3411,10 @@ font-family: monospace;
     text-decoration: none;
 }
 .bcg{
-	margin:0 8px;
+	margin:0 4px;
 }
 .bcg a:hover {
-	box-shadow :0 8px 8px rgba(0,0,0,.12) !important;
+	box-shadow :0 2px 8px #888 !important;
 }
 #custom-giscus-container .giscus {
   min-height: 350px;
