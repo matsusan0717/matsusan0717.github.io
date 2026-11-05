@@ -6708,3 +6708,4 @@ img.bc-avatar[src="https://img1.blogblog.com/img/blank.gif"] {
 .ps-swiper .swiper-button-prev::after, .ps-swiper .swiper-button-next::after { font-size: 14px; font-weight: 700; }
 .swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal.swiper-pagination-bullets-dynamic {top: -20px; position: relative;}
 @media (max-width: 767px) { .ps-swiper .swiper-button-prev, .ps-swiper .swiper-button-next { display: none; } }
+@media (max-width: 600px) { #hatena-star-container {bottom: 3px;position: relative;}}
