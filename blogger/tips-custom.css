@@ -3721,7 +3721,7 @@ opacity: 0.9;
   }
 }
 strong {
-	font-size:1.05rem;	
+	font-size:1.02rem;	
 }
 figcaption {
 	font-size:.8rem;
@@ -6709,3 +6709,4 @@ img.bc-avatar[src="https://img1.blogblog.com/img/blank.gif"] {
 .swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal.swiper-pagination-bullets-dynamic {top: -20px; position: relative;}
 @media (max-width: 767px) { .ps-swiper .swiper-button-prev, .ps-swiper .swiper-button-next { display: none; } }
 @media (max-width: 600px) { #hatena-star-container {bottom: 3px;position: relative;}}
+td strong { font-size: .9rem;}
